@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nivel A1 — Inglés en Familia</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  /* Color del nivel — cambia solo esta variable para adaptar la página */
+  :root { --nivel: var(--green); --nivel-soft: #c8f5e0; }
+
+  .clase-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 28px;
+  }
+
+  .clase-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .clase-card:hover {
+    transform: translateX(4px);
+    border-color: var(--nivel);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+  }
+  .clase-card.done {
+    background: #f4fff9;
+    border-color: var(--nivel);
+  }
+
+  .clase-num {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1rem;
+    font-weight: 800;
+    color: white;
+    background: var(--nivel);
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .clase-card.locked .clase-num {
+    background: var(--border);
+    color: var(--muted);
+  }
+
+  .clase-info { flex: 1; }
+  .clase-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .clase-sub {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .clase-card.locked .clase-title,
+  .clase-card.locked .clase-sub { color: var(--muted); }
+
+  .clase-status {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  /* Barra de progreso del nivel */
+  .nivel-progress {
+    margin-top: 20px;
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 18px;
+  }
+  .nivel-progress-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .nivel-progress-top span { color: var(--muted); }
+  .nivel-progress-top strong { color: var(--nivel); font-family: 'Baloo 2', cursive; font-size: 1rem; }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-title">🌟 Inglés en Familia</div>
+  <!-- Puedes agregar member-pills aquí si lo necesitas -->
+</div>
+
+<div style="max-width:640px; margin:0 auto; padding:32px 16px 56px;">
+
+  <!-- Encabezado del nivel -->
+  <a href="../menu.html" style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:800; color:var(--muted); text-decoration:none; margin-bottom:20px;">
+    ← Todos los niveles
+  </a>
+
+  <div style="display:flex; align-items:center; gap:14px; margin-bottom:6px;">
+    <span style="font-family:'Baloo 2',cursive; font-size:2rem; font-weight:800; background:var(--nivel); color:white; width:56px; height:56px; border-radius:16px; display:flex; align-items:center; justify-content:center;">A1</span>
+    <div>
+      <div style="font-size:11px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--muted);">Nivel</div>
+      <h1 style="font-family:'Baloo 2',cursive; font-size:1.8rem; font-weight:800; line-height:1.1;">Principiante</h1>
+    </div>
+  </div>
+  <p class="hero-sub" style="margin-bottom:0;">Saludos, números, colores y las primeras frases del día a día.</p>
+
+  <!-- Barra de progreso -->
+  <div class="nivel-progress">
+    <div class="nivel-progress-top">
+      <span>Progreso del nivel</span>
+      <strong>1 / 8 clases</strong>
+    </div>
+    <div class="timer-bar" style="margin-bottom:0;">
+      <div class="timer-fill" style="width: 12.5%;"></div>
+    </div>
+  </div>
+
+  <!-- Lista de clases -->
+  <div class="clase-list">
+
+    <a class="clase-card done" href="clase1_saludos.html">
+      <div class="clase-num">1</div>
+      <div class="clase-info">
+        <div class="clase-title">Saludos y presentaciones</div>
+        <div class="clase-sub">Hello · Good morning · My name is…</div>
+      </div>
+      <div class="clase-status">✅</div>
+    </a>
+    <a class="clase-card done" href="practica1.html">
+      <div class="clase-num">1.1</div>
+      <div class="clase-info">
+        <div class="clase-title">Practica 1</div>
+        <div class="clase-sub">Hello · Good morning · My name is…</div>
+      </div>
+      <div class="clase-status">✅</div>
+    </a>
+
+    <a class="clase-card" href="clase2.html">
+      <div class="clase-num">2</div>
+      <div class="clase-info">
+        <div class="clase-title">Números 1–20</div>
+        <div class="clase-sub">One, two, three… pronunciación y escritura</div>
+      </div>
+      <div class="clase-status">📖</div>
+    </a>
+
+    <a class="clase-card locked" href="#">
+      <div class="clase-num">3</div>
+      <div class="clase-info">
+        <div class="clase-title">Colores</div>
+        <div class="clase-sub">Red, blue, green… describe tu mundo</div>
+      </div>
+      <div class="clase-status">🔒</div>
+    </a>
+
+    <a class="clase-card locked" href="#">
+      <div class="clase-num">4</div>
+      <div class="clase-info">
+        <div class="clase-title">La familia</div>
+        <div class="clase-sub">Mother, father, brother, sister…</div>
+      </div>
+      <div class="clase-status">🔒</div>
+    </a>
+
+    <a class="clase-card locked" href="#">
+      <div class="clase-num">5</div>
+      <div class="clase-info">
+        <div class="clase-title">El hogar</div>
+        <div class="clase-sub">Room, kitchen, bathroom… vocabulario en casa</div>
+      </div>
+      <div class="clase-status">🔒</div>
+    </a>
+
+    <a class="clase-card locked" href="#">
+      <div class="clase-num">6</div>
+      <div class="clase-info">
+        <div class="clase-title">Números 20–100</div>
+        <div class="clase-sub">Twenty, thirty… decenas y compuestos</div>
+      </div>
+      <div class="clase-status">🔒</div>
+    </a>
+
+    <a class="clase-card locked" href="#">
+      <div class="clase-num">7</div>
+      <div class="clase-info">
+        <div class="clase-title">Los días y meses</div>
+        <div class="clase-sub">Monday, January… el calendario en inglés</div>
+      </div>
+      <div class="clase-status">🔒</div>
+    </a>
+
+    <a class="clase-card locked" href="#">
+      <div class="clase-num">8</div>
+      <div class="clase-info">
+        <div class="clase-title">Repaso general A1</div>
+        <div class="clase-sub">Practica todo lo aprendido en el nivel</div>
+      </div>
+      <div class="clase-status">🔒</div>
+    </a>
+
+  </div>
+</div>
+
+</body>
+</html>

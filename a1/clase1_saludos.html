@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clase 1 — Hello, Family!</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-title">🌟 Clase 1 — Hello, Family!</div>
+  <div class="nav-steps">
+    <div class="nav-step active" id="step0" onclick="goTo(0)">1</div>
+    <div class="nav-step" id="step1" onclick="goTo(1)">2</div>
+    <div class="nav-step" id="step2" onclick="goTo(2)">3</div>
+    <div class="nav-step" id="step3" onclick="goTo(3)">4</div>
+    <div class="nav-step" id="step4" onclick="goTo(4)">5</div>
+    <div class="nav-step" id="step5" onclick="goTo(5)">6</div>
+  </div>
+</nav>
+
+<!-- SECCIÓN 0: BIENVENIDA -->
+<div class="section active" id="sec0">
+  <div class="hero-section">
+    <span class="hero-emoji">🌍</span>
+    <div class="hero-tag">Sesión 1 · Fase A1</div>
+    <h1 class="big">Hello,<br><span>Family!</span></h1>
+    <p class="hero-sub">Hoy empezamos juntos. En 2 horas van a aprender a saludarse, presentarse y sobrevivir su primera conversación en inglés.</p>
+    <div class="agenda-grid">
+      <div class="agenda-item">
+        <div class="agenda-num" style="background:var(--orange)">1</div>
+        Saludos del día — Hello, Good morning…
+        <span class="agenda-time">20 min</span>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num" style="background:var(--blue)">2</div>
+        Presentaciones — My name is…
+        <span class="agenda-time">25 min</span>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num" style="background:var(--green)">3</div>
+        Números 1–20
+        <span class="agenda-time">20 min</span>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num" style="background:var(--pink)">4</div>
+        🎮 Juego: La pelota de nombres
+        <span class="agenda-time">20 min</span>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num" style="background:var(--purple)">5</div>
+        Práctica en parejas + bonus
+        <span class="agenda-time">25 min</span>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num" style="background:var(--yellow); color:var(--text)">6</div>
+        Tarea de la semana + cierre
+        <span class="agenda-time">10 min</span>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="goTo(1)">¡Empezar la clase! →</button>
+    </div>
+  </div>
+</div>
+
+<!-- SECCIÓN 1: SALUDOS -->
+<div class="section" id="sec1">
+  <div class="timer-bar"><div class="timer-fill" style="width:16%"></div></div>
+  <div class="section-label">Parte 1 · 20 minutos</div>
+  <h2 class="section-h">Saludos del día 👋</h2>
+  <p class="section-desc">Estas son las formas de saludar en inglés según la hora. Haz clic en cada tarjeta para ver la traducción.</p>
+
+  <div class="vocab-grid">
+    <div class="vocab-card" onclick="reveal(this)">
+      <span class="vocab-emoji">☀️</span>
+      <div class="vocab-en">Good morning</div>
+      <div class="vocab-pron">/gud MOR-ning/</div>
+      <div class="vocab-es">Buenos días</div>
+    </div>
+    <div class="vocab-card" onclick="reveal(this)">
+      <span class="vocab-emoji">🌤️</span>
+      <div class="vocab-en">Good afternoon</div>
+      <div class="vocab-pron">/gud af-ter-NOON/</div>
+      <div class="vocab-es">Buenas tardes</div>
+    </div>
+    <div class="vocab-card" onclick="reveal(this)">
+      <span class="vocab-emoji">🌙</span>
+      <div class="vocab-en">Good night</div>
+      <div class="vocab-pron">/gud NAYT/</div>
+      <div class="vocab-es">Buenas noches</div>
+    </div>
+    <div class="vocab-card" onclick="reveal(this)">
+      <span class="vocab-emoji">😊</span>
+      <div class="vocab-en">Hello / Hi</div>
+      <div class="vocab-pron">/heh-LOH/ /hay/</div>
+      <div class="vocab-es">Hola (formal/informal)</div>
+    </div>
+    <div class="vocab-card" onclick="reveal(this)">
+      <span class="vocab-emoji">👋</span>
+      <div class="vocab-en">Goodbye / Bye</div>
+      <div class="vocab-pron">/gud-BAY/ /bay/</div>
+      <div class="vocab-es">Adiós / Chao</div>
+    </div>
+    <div class="vocab-card" onclick="reveal(this)">
+      <span class="vocab-emoji">😴</span>
+      <div class="vocab-en">Good night</div>
+      <div class="vocab-pron">/gud NAYT/</div>
+      <div class="vocab-es">Al despedirse de noche</div>
+    </div>
+  </div>
+  <p class="vocab-hint">👆 Toca cada tarjeta para ver la traducción</p>
+
+  <div class="phrase-list">
+    <div class="phrase-card">
+      <div class="phrase-icon">🤝</div>
+      <div>
+        <div class="phrase-en">How are you?</div>
+        <div class="phrase-pron">/haw ar YU/</div>
+        <div class="phrase-es">¿Cómo estás?</div>
+      </div>
+      <div class="phrase-badge" style="background:#e8f8ee;color:var(--green)">Formal</div>
+    </div>
+    <div class="phrase-card">
+      <div class="phrase-icon">😎</div>
+      <div>
+        <div class="phrase-en">I'm fine, thanks!</div>
+        <div class="phrase-pron">/aim FAYN, THANKS/</div>
+        <div class="phrase-es">Estoy bien, ¡gracias!</div>
+      </div>
+      <div class="phrase-badge" style="background:#fff8e8;color:var(--orange)">Respuesta</div>
+    </div>
+    <div class="phrase-card">
+      <div class="phrase-icon">✌️</div>
+      <div>
+        <div class="phrase-en">What's up?</div>
+        <div class="phrase-pron">/WOTS ap/</div>
+        <div class="phrase-es">¿Qué hay? / ¿Qué más?</div>
+      </div>
+      <div class="phrase-badge" style="background:#f8e8ff;color:var(--purple)">Informal</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-ghost" onclick="goTo(0)">← Atrás</button>
+    <button class="btn btn-primary" onclick="goTo(2)">Siguiente: Presentaciones →</button>
+  </div>
+</div>
+
+<!-- SECCIÓN 2: PRESENTACIONES -->
+<div class="section" id="sec2">
+  <div class="timer-bar"><div class="timer-fill" style="width:33%"></div></div>
+  <div class="section-label">Parte 2 · 25 minutos</div>
+  <h2 class="section-h">My name is… 🙋</h2>
+  <p class="section-desc">Ahora aprenden a presentarse. Cada uno practica con las frases de su tarjeta.</p>
+
+  <div class="phrase-list">
+    <div class="phrase-card">
+      <div class="phrase-icon">🗣️</div>
+      <div>
+        <div class="phrase-en">My name is ___.</div>
+        <div class="phrase-pron">/may NAYM iz/</div>
+        <div class="phrase-es">Me llamo ___.</div>
+      </div>
+    </div>
+    <div class="phrase-card">
+      <div class="phrase-icon">❓</div>
+      <div>
+        <div class="phrase-en">What is your name?</div>
+        <div class="phrase-pron">/wot iz YOR naym/</div>
+        <div class="phrase-es">¿Cómo te llamas?</div>
+      </div>
+    </div>
+    <div class="phrase-card">
+      <div class="phrase-icon">🌍</div>
+      <div>
+        <div class="phrase-en">I am from Panama.</div>
+        <div class="phrase-pron">/ay am from PA-na-ma/</div>
+        <div class="phrase-es">Soy de Panamá.</div>
+      </div>
+    </div>
+    <div class="phrase-card">
+      <div class="phrase-icon">🎂</div>
+      <div>
+        <div class="phrase-en">I am ___ years old.</div>
+        <div class="phrase-pron">/ay am ___ yirs OLD/</div>
+        <div class="phrase-es">Tengo ___ años.</div>
+      </div>
+    </div>
+    <div class="phrase-card">
+      <div class="phrase-icon">💼</div>
+      <div>
+        <div class="phrase-en">I am a security guard.</div>
+        <div class="phrase-pron">/ay am a se-KYUR-ih-tee gard/</div>
+        <div class="phrase-es">Soy guardia de seguridad.</div>
+      </div>
+      <div class="phrase-badge" style="background:#ffe8e8;color:var(--pink)">Papá</div>
+    </div>
+    <div class="phrase-card">
+      <div class="phrase-icon">🏠</div>
+      <div>
+        <div class="phrase-en">I take care of my home.</div>
+        <div class="phrase-pron">/ay teyk ker ov may HOHM/</div>
+        <div class="phrase-es">Me encargo de mi hogar.</div>
+      </div>
+      <div class="phrase-badge" style="background:#f8e8ff;color:var(--purple)">Mamá</div>
+    </div>
+    <div class="phrase-card">
+      <div class="phrase-icon">📚</div>
+      <div>
+        <div class="phrase-en">I am a student.</div>
+        <div class="phrase-pron">/ay am a STYU-dent/</div>
+        <div class="phrase-es">Soy estudiante.</div>
+      </div>
+      <div class="phrase-badge" style="background:#e8f8ee;color:var(--green)">Hermanos</div>
+    </div>
+  </div>
+
+  <div class="practice-card" style="border-color:var(--blue);">
+    <h4>🎯 Turno de cada uno — practica en voz alta:</h4>
+    <ul>
+      <li>Hello! <span>My name is ___.</span> I am from Panama.</li>
+      <li>I am <span>___ years old.</span></li>
+      <li>I am a <span>[tu trabajo/rol]</span>.</li>
+      <li>Nice to meet you! <span>/NAYS tu mit YU/</span> — Mucho gusto.</li>
+    </ul>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-ghost" onclick="goTo(1)">← Atrás</button>
+    <button class="btn btn-primary" onclick="goTo(3)">Siguiente: Números →</button>
+  </div>
+</div>
+
+<!-- SECCIÓN 3: NÚMEROS -->
+<div class="section" id="sec3">
+  <div class="timer-bar"><div class="timer-fill" style="width:50%"></div></div>
+  <div class="section-label">Parte 3 · 20 minutos</div>
+  <h2 class="section-h">Números 1–20 🔢</h2>
+  <p class="section-desc">Repitan en voz alta juntos. El más pequeño puede ser el "maestro" y señalar los números.</p>
+
+  <div class="vocab-grid" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="vocab-card" onclick="reveal(this)"><span class="vocab-emoji">1️⃣</span><div class="vocab-en">One</div><div class="vocab-pron">/WAN/</div><div class="vocab-es">uno</div></div>
+    <div class="vocab-card" onclick="reveal(this)"><span class="vocab-emoji">2️⃣</span><div class="vocab-en">Two</div><div class="vocab-pron">/TU/</div><div class="vocab-es">dos</div></div>
+    <div class="vocab-card" onclick="reveal(this)"><span class="vocab-emoji">3️⃣</span><div class="vocab-en">Three</div><div class="vocab-pron">/THRI/</div><div class="vocab-es">tres</div></div>
+    <div class="vocab-card" onclick="reveal(this)"><span class="vocab-emoji">4️⃣</span><div class="vocab-en">Four</div><div class="vocab-pron">/FOR/</div><div class="vocab-es">cuatro</div></div>
+    <div class="vocab-card" onclick="reveal(this)"><span class="vocab-emoji">5️⃣</span><div class="vocab-en">Five</div><div class="vocab-pron">/FAYV/</div><div class="vocab-es">cinco</div></div>
+    <div class="vocab-card" onclick="reveal(this)"><span class="vocab-emoji">6️⃣</span><div class="vocab-en">Six</div><div class="vocab-pron">/SIKS/</div><div class="vocab-es">seis</div></div>
+    <div class="vocab-card" onclick="reveal(this)"><span class="vocab-emoji">7️⃣</span><div class="vocab-en">Seven</div><div class="vocab-pron">/SE-ven/</div><div class="vocab-es">siete</div></div>
+    <div class="vocab-card" onclick="reveal(this)"><span class="vocab-emoji">8️⃣</span><div class="vocab-en">Eight</div><div class="vocab-pron">/EYT/</div><div class="vocab-es">ocho</div></div>
+    <div class="vocab-card" onclick="reveal(this)"><span class="vocab-emoji">9️⃣</span><div class="vocab-en">Nine</div><div class="vocab-pron">/NAYN/</div><div class="vocab-es">nueve</div></div>
+    <div class="vocab-card" onclick="reveal(this)"><span class="vocab-emoji">🔟</span><div class="vocab-en">Ten</div><div class="vocab-pron">/TEN/</div><div class="vocab-es">diez</div></div>
+    <div class="vocab-card" onclick="reveal(this)"><span class="vocab-emoji">1️⃣1️⃣</span><div class="vocab-en">Eleven</div><div class="vocab-pron">/ih-LE-ven/</div><div class="vocab-es">once</div></div>
+    <div class="vocab-card" onclick="reveal(this)"><span class="vocab-emoji">1️⃣2️⃣</span><div class="vocab-en">Twelve</div><div class="vocab-pron">/TWELV/</div><div class="vocab-es">doce</div></div>
+    <div class="vocab-card" onclick="reveal(this)"><span class="vocab-emoji">🔢</span><div class="vocab-en">Thirteen</div><div class="vocab-pron">/ther-TIN/</div><div class="vocab-es">trece</div></div>
+    <div class="vocab-card" onclick="reveal(this)"><span class="vocab-emoji">🔢</span><div class="vocab-en">Fourteen</div><div class="vocab-pron">/for-TIN/</div><div class="vocab-es">catorce</div></div>
+    <div class="vocab-card" onclick="reveal(this)"><span class="vocab-emoji">🔢</span><div class="vocab-en">Fifteen</div><div class="vocab-pron">/fif-TIN/</div><div class="vocab-es">quince</div></div>
+    <div class="vocab-card" onclick="reveal(this)"><span class="vocab-emoji">🔢</span><div class="vocab-en">Twenty</div><div class="vocab-pron">/TWEN-ti/</div><div class="vocab-es">veinte</div></div>
+  </div>
+  <p class="vocab-hint">👆 Toca para ver la traducción · Practiquen en voz alta</p>
+
+  <div class="btn-row">
+    <button class="btn btn-ghost" onclick="goTo(2)">← Atrás</button>
+    <button class="btn btn-primary" onclick="goTo(4)">Siguiente: ¡El Juego! 🎮 →</button>
+  </div>
+</div>
+
+<!-- SECCIÓN 4: JUEGO -->
+<div class="section" id="sec4">
+  <div class="timer-bar"><div class="timer-fill" style="width:67%"></div></div>
+  <div class="section-label">Parte 4 · 20 minutos</div>
+  <h2 class="section-h">🎮 ¡Juego familiar!</h2>
+  <p class="section-desc">Dos juegos rápidos para practicar todo lo aprendido. El que ría más aprende más.</p>
+
+  <div class="game-box" style="border-color:var(--orange)">
+    <h3>🏐 La Pelota de Nombres</h3>
+    <p>Simulen que se pasan un objeto (cojín, pelota, cualquier cosa). Quien lo recibe <strong>debe saludar y presentarse en inglés</strong> antes de pasarlo al siguiente.</p>
+    <div class="game-steps">
+      <div class="game-step"><div class="game-step-num">1</div>El que lanza dice: <strong>"Hello! What is your name?"</strong></div>
+      <div class="game-step"><div class="game-step-num">2</div>El que recibe dice: <strong>"Hi! My name is ___. I am ___ years old."</strong></div>
+      <div class="game-step"><div class="game-step-num">3</div>Luego lanza el objeto al siguiente y pregunta lo mismo.</div>
+      <div class="game-step"><div class="game-step-num">4</div>3 rondas completas. Si alguien se equivoca, ¡todos aplauden!</div>
+    </div>
+  </div>
+
+  <div class="game-box" style="border-color:var(--green)">
+    <h3>🔢 Bingo Numérico Rápido</h3>
+    <p>Cada uno escoge 5 números del 1 al 20 y los anota. El maestro (tú) dice números en inglés al azar. Quien complete sus 5 primero grita <strong>"Bingo!"</strong></p>
+    <div class="game-steps">
+      <div class="game-step"><div class="game-step-num">1</div>Cada quien anota 5 números en papel.</div>
+      <div class="game-step"><div class="game-step-num">2</div>Dices un número en inglés: <strong>"Seven!"</strong> — ellos buscan y tachan.</div>
+      <div class="game-step"><div class="game-step-num">3</div>El ganador grita <strong>"Bingo!"</strong> y dice sus 5 números en inglés.</div>
+      <div class="game-step"><div class="game-step-num">4</div>Hagan 2-3 rondas. Premio: elegir la merienda 😄</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-ghost" onclick="goTo(3)">← Atrás</button>
+    <button class="btn btn-primary" onclick="goTo(5)">Siguiente: Práctica final →</button>
+  </div>
+</div>
+
+<!-- SECCIÓN 5: CIERRE + TAREA -->
+<div class="section" id="sec5">
+  <div class="timer-bar"><div class="timer-fill" style="width:100%"></div></div>
+  <div class="section-label">Parte 5 & 6 · Cierre</div>
+  <h2 class="section-h">Práctica + Tarea 📝</h2>
+  <p class="section-desc">Mini-conversación final y lo que deben practicar esta semana en casa.</p>
+
+  <div class="practice-card" style="border-color:var(--purple); margin-bottom: 16px;">
+    <h4>🎭 Role Play Final (5 min por pareja)</h4>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.6">Se saludan como si fueran extraños que se conocen por primera vez. En inglés completo:</p>
+    <ul>
+      <li><span>A:</span> "Good morning! How are you?"</li>
+      <li><span>B:</span> "I'm fine, thanks! What is your name?"</li>
+      <li><span>A:</span> "My name is ___. Nice to meet you!"</li>
+      <li><span>B:</span> "Nice to meet you too! I am from Panama."</li>
+      <li><span>A:</span> "Goodbye! Have a good day!"</li>
+    </ul>
+  </div>
+
+  <h3 style="font-family:'Baloo 2',cursive;font-size:1.2rem;font-weight:800;margin-bottom:12px;">🏠 Tarea para la semana</h3>
+  <div class="hw-grid">
+    <div class="hw-item">
+      <div class="hw-icon">📝</div>
+      <div class="hw-text"><strong>Post-its en la casa</strong>Pongan 5 post-its en objetos del hogar con su nombre en inglés: door, window, table, chair, kitchen.</div>
+    </div>
+    <div class="hw-item">
+      <div class="hw-icon">🗣️</div>
+      <div class="hw-text"><strong>Práctica diaria de 5 min</strong>Cada mañana, salúdense en inglés: "Good morning! How are you?" — "I'm fine, thanks!"</div>
+    </div>
+    <div class="hw-item">
+      <div class="hw-icon">🔢</div>
+      <div class="hw-text"><strong>Contar en inglés</strong>El hermano de 9 años: practicar contar del 1 al 20 todos los días. El de 17: aprender del 1 al 100.</div>
+    </div>
+    <div class="hw-item">
+      <div class="hw-icon">📱</div>
+      <div class="hw-text"><strong>App opcional</strong>Descargar Duolingo y hacer la lección de "Basics 1". Solo 5–10 min al día.</div>
+    </div>
+  </div>
+
+  <div class="congrats">
+    <div style="margin-bottom:12px">🎉 <span class="confetti-emoji">⭐</span> 🎉</div>
+    <div style="font-family:'Baloo 2',cursive;font-size:1.6rem;font-weight:800;margin-bottom:6px">¡Primera clase completada!</div>
+    <p style="font-size:14px;color:var(--muted);max-width:400px;margin:0 auto;line-height:1.6">Aprendieron: 6 saludos, presentaciones completas, números 1–20 y dos juegos. ¡La próxima semana: más!</p>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-ghost" onclick="goTo(4)">← Atrás</button>
+    <button class="btn btn-accent" onclick="goTo(0)">↺ Ver desde el inicio</button>
+  </div>
+</div>
+
+<script>
+  let current = 0;
+  function goTo(n) {
+    document.getElementById('sec' + current).classList.remove('active');
+    document.getElementById('step' + current).classList.remove('active');
+    document.getElementById('step' + current).classList.add('done');
+    current = n;
+    document.getElementById('sec' + n).classList.add('active');
+    document.querySelectorAll('.nav-step').forEach((s,i) => {
+      if (i === n) { s.classList.add('active'); s.classList.remove('done'); }
+      else if (i < n) { s.classList.remove('active'); s.classList.add('done'); }
+      else { s.classList.remove('active','done'); }
+    });
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+  function reveal(card) {
+    card.classList.toggle('revealed');
+  }
+</script>
+</body>
+</html>

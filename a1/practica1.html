@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarea Semana 1 — Familia</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-title">📚 Tarea Semana 1</div>
+  <div class="member-pills">
+    <div class="member-pill pill-papa" onclick="show('papa')">👨 <span>Papá</span></div>
+    <div class="member-pill pill-mama" onclick="show('mama')">👩 <span>Mamá</span></div>
+    <div class="member-pill pill-h9"   onclick="show('h9')">🧒 <span>9 años</span></div>
+    <div class="member-pill pill-h17"  onclick="show('h17')">🧑 <span>17 años</span></div>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="panel-home" class="panel active">
+  <p class="home-title">¿Quién va a practicar?</p>
+  <p class="home-sub">Cada uno tiene su propia sección con las frases y ejercicios de su tarea.</p>
+  <div class="home-grid">
+    <div class="home-card home-card-papa" onclick="show('papa')">
+      <div class="home-card-icon">👨</div>
+      <div class="home-card-name">Papá</div>
+      <div class="home-card-sub">Presentación de seguridad + frases del trabajo</div>
+    </div>
+    <div class="home-card home-card-mama" onclick="show('mama')">
+      <div class="home-card-icon">👩</div>
+      <div class="home-card-name">Mamá</div>
+      <div class="home-card-sub">Post-its del hogar + presentación personal</div>
+    </div>
+    <div class="home-card home-card-h9" onclick="show('h9')">
+      <div class="home-card-icon">🧒</div>
+      <div class="home-card-name">Hermano/a · 9 años</div>
+      <div class="home-card-sub">Números 1–20 con pronunciación</div>
+    </div>
+    <div class="home-card home-card-h17" onclick="show('h17')">
+      <div class="home-card-icon">🧑</div>
+      <div class="home-card-name">Hermano/a · 17 años</div>
+      <div class="home-card-sub">Números 1–100 + presentación completa</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAPÁ
+══════════════════════════════════════ -->
+<div id="panel-papa" class="panel">
+  <div class="hero-banner">
+    <div class="hero-inner">
+      <div class="hero-tag">👨 Papá · Seguridad</div>
+      <h1>Tu tarea<br>esta semana</h1>
+      <p>Practica tu presentación hasta que salga sola. Imagina que le hablas a un turista en tu trabajo.</p>
+    </div>
+  </div>
+  <div class="content">
+
+    <div class="sec-title">Mi presentación completa</div>
+    <div class="phrase-stack">
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">👋</div>
+        <div>
+          <div class="phrase-en">Hello! Good morning.</div>
+          <div class="phrase-pron">/HE-lou/ /gud MOR-ning/</div>
+          <div class="phrase-es">¡Hola! Buenos días.</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">🗣️</div>
+        <div>
+          <div class="phrase-en">My name is ___.</div>
+          <div class="phrase-pron">/may NAYM iz/</div>
+          <div class="phrase-es">Me llamo ___.</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">🔒</div>
+        <div>
+          <div class="phrase-en">I am a security guard.</div>
+          <div class="phrase-pron">/ay am a se-KYUR-ih-tee GARD/</div>
+          <div class="phrase-es">Soy guardia de seguridad.</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">🌍</div>
+        <div>
+          <div class="phrase-en">I am from Panama.</div>
+          <div class="phrase-pron">/ay am from PA-na-ma/</div>
+          <div class="phrase-es">Soy de Panamá.</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">🤝</div>
+        <div>
+          <div class="phrase-en">Nice to meet you!</div>
+          <div class="phrase-pron">/NAYS tu MIT yu/</div>
+          <div class="phrase-es">¡Mucho gusto!</div>
+        </div>
+      </div>
+    </div>
+    <p class="phrase-hint">👆 Toca cada frase para ver la traducción</p>
+
+    <div class="sec-title">Frases útiles en el trabajo</div>
+    <div class="phrase-stack">
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">🪪</div>
+        <div>
+          <div class="phrase-en">Can I see your ID, please?</div>
+          <div class="phrase-pron">/kan ay SÍ yor ay-DÍ plis/</div>
+          <div class="phrase-es">¿Me puede mostrar su identificación?</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">🚪</div>
+        <div>
+          <div class="phrase-en">Access denied. Sorry.</div>
+          <div class="phrase-pron">/AK-ses de-NAYD. SOR-ee/</div>
+          <div class="phrase-es">Acceso denegado. Lo siento.</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">✅</div>
+        <div>
+          <div class="phrase-en">You may go in. Thank you.</div>
+          <div class="phrase-pron">/yu mey GO in. THANK yu/</div>
+          <div class="phrase-es">Puede pasar. Gracias.</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">❓</div>
+        <div>
+          <div class="phrase-en">How can I help you?</div>
+          <div class="phrase-pron">/haw kan ay HELP yu/</div>
+          <div class="phrase-es">¿En qué le puedo ayudar?</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">⚠️</div>
+        <div>
+          <div class="phrase-en">Please wait here.</div>
+          <div class="phrase-pron">/plis WEYT hir/</div>
+          <div class="phrase-es">Por favor espere aquí.</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">📞</div>
+        <div>
+          <div class="phrase-en">I will call my supervisor.</div>
+          <div class="phrase-pron">/ay wil KOL may SU-per-vai-sor/</div>
+          <div class="phrase-es">Voy a llamar a mi supervisor.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-title">Checklist de la semana</div>
+    <div class="checklist">
+      <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Practiqué mi presentación en voz alta 1 vez al día</div>
+      <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Aprendí las frases del trabajo</div>
+      <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Saludé a alguien en inglés esta semana</div>
+    </div>
+
+    <button class="back-btn" onclick="show('home')">← Volver al inicio</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     MAMÁ
+══════════════════════════════════════ -->
+<div id="panel-mama" class="panel">
+  <div class="hero-banner">
+    <div class="hero-inner">
+      <div class="hero-tag">👩 Mamá · Hogar</div>
+      <h1>Tu tarea<br>esta semana</h1>
+      <p>Aprende los objetos de la casa y practica tu presentación. Pega los post-its en los objetos reales.</p>
+    </div>
+  </div>
+  <div class="content">
+
+    <div class="sec-title">Post-its del hogar — toca para ver la pronunciación</div>
+    <div class="postit-grid">
+      <div class="postit" onclick="this.classList.toggle('shown')">
+        <div class="postit-en">Door</div>
+        <div class="postit-pron">/DOR/</div>
+        <div class="postit-es">Puerta</div>
+      </div>
+      <div class="postit" onclick="this.classList.toggle('shown')">
+        <div class="postit-en">Window</div>
+        <div class="postit-pron">/WIN-dou/</div>
+        <div class="postit-es">Ventana</div>
+      </div>
+      <div class="postit" onclick="this.classList.toggle('shown')">
+        <div class="postit-en">Table</div>
+        <div class="postit-pron">/TEY-bol/</div>
+        <div class="postit-es">Mesa</div>
+      </div>
+      <div class="postit" onclick="this.classList.toggle('shown')">
+        <div class="postit-en">Chair</div>
+        <div class="postit-pron">/CHER/</div>
+        <div class="postit-es">Silla</div>
+      </div>
+      <div class="postit" onclick="this.classList.toggle('shown')">
+        <div class="postit-en">Kitchen</div>
+        <div class="postit-pron">/KI-chen/</div>
+        <div class="postit-es">Cocina</div>
+      </div>
+      <div class="postit" onclick="this.classList.toggle('shown')">
+        <div class="postit-en">Fridge</div>
+        <div class="postit-pron">/FRIY/</div>
+        <div class="postit-es">Refrigeradora</div>
+      </div>
+      <div class="postit" onclick="this.classList.toggle('shown')">
+        <div class="postit-en">Bed</div>
+        <div class="postit-pron">/BED/</div>
+        <div class="postit-es">Cama</div>
+      </div>
+      <div class="postit" onclick="this.classList.toggle('shown')">
+        <div class="postit-en">Bathroom</div>
+        <div class="postit-pron">/BATH-rum/</div>
+        <div class="postit-es">Baño</div>
+      </div>
+    </div>
+    <p class="phrase-hint" style="margin-top:10px">👆 Toca cada post-it para ver la traducción</p>
+
+    <div class="sec-title">Mi presentación</div>
+    <div class="phrase-stack">
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">👋</div>
+        <div>
+          <div class="phrase-en">Hello! My name is ___.</div>
+          <div class="phrase-pron">/HE-lou/ /may NAYM iz/</div>
+          <div class="phrase-es">¡Hola! Me llamo ___.</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">🏠</div>
+        <div>
+          <div class="phrase-en">I take care of my home.</div>
+          <div class="phrase-pron">/ay TEYK ker ov may HOHM/</div>
+          <div class="phrase-es">Me encargo de mi hogar.</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">👨‍👩‍👧‍👦</div>
+        <div>
+          <div class="phrase-en">I have a family of four.</div>
+          <div class="phrase-pron">/ay hav a FA-mi-li ov FOR/</div>
+          <div class="phrase-es">Tengo una familia de cuatro.</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">🌍</div>
+        <div>
+          <div class="phrase-en">I am from Panama.</div>
+          <div class="phrase-pron">/ay am from PA-na-ma/</div>
+          <div class="phrase-es">Soy de Panamá.</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">🤝</div>
+        <div>
+          <div class="phrase-en">Nice to meet you!</div>
+          <div class="phrase-pron">/NAYS tu MIT yu/</div>
+          <div class="phrase-es">¡Mucho gusto!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-title">Frases de cocina / compras bonus</div>
+    <div class="phrase-stack">
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">🛒</div>
+        <div>
+          <div class="phrase-en">I need to buy eggs and milk.</div>
+          <div class="phrase-pron">/ay NID tu bay EGZ and MILK/</div>
+          <div class="phrase-es">Necesito comprar huevos y leche.</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">🍳</div>
+        <div>
+          <div class="phrase-en">I am cooking dinner.</div>
+          <div class="phrase-pron">/ay am KUK-ing DI-ner/</div>
+          <div class="phrase-es">Estoy cocinando la cena.</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">🧹</div>
+        <div>
+          <div class="phrase-en">I am cleaning the house.</div>
+          <div class="phrase-pron">/ay am KLIN-ing da HAWS/</div>
+          <div class="phrase-es">Estoy limpiando la casa.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-title">Checklist de la semana</div>
+    <div class="checklist">
+      <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Pegué post-its en 5 objetos de la casa</div>
+      <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Leí los post-its en voz alta cada día</div>
+      <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Practiqué mi presentación completa</div>
+    </div>
+
+    <button class="back-btn" onclick="show('home')">← Volver al inicio</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     HERMANO/A 9 AÑOS
+══════════════════════════════════════ -->
+<div id="panel-h9" class="panel">
+  <div class="hero-banner">
+    <div class="hero-inner">
+      <div class="hero-tag">🧒 9 años · ¡A jugar!</div>
+      <h1>Números<br>1 al 20</h1>
+      <p>Toca cada número para escuchar cómo se dice. ¡Meta: llegar al 20 sin equivocarte!</p>
+    </div>
+  </div>
+  <div class="content">
+
+    <div class="sec-title">Números 1–20 — toca para ver cómo se pronuncia</div>
+
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="prog-h9" style="width:0%"></div></div>
+      <div class="progress-label" id="prog-h9-label">0 de 20 descubiertos</div>
+    </div>
+
+    <div class="num-grid num-grid-20" id="grid-h9"></div>
+
+    <div class="sec-title" style="margin-top:28px">Saludos que ya sé</div>
+    <div class="phrase-stack">
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">☀️</div>
+        <div>
+          <div class="phrase-en">Good morning!</div>
+          <div class="phrase-pron">/gud MOR-ning/</div>
+          <div class="phrase-es">¡Buenos días!</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">😊</div>
+        <div>
+          <div class="phrase-en">My name is ___. I am 9 years old.</div>
+          <div class="phrase-pron">/may NAYM iz ___ ay am NAYN yirz OLD/</div>
+          <div class="phrase-es">Me llamo ___. Tengo 9 años.</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">📚</div>
+        <div>
+          <div class="phrase-en">I am a student.</div>
+          <div class="phrase-pron">/ay am a STYU-dent/</div>
+          <div class="phrase-es">Soy estudiante.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-title">Mi reto de la semana 🏆</div>
+    <div class="challenge-box">
+      <h4>🎯 Reto: contar sin parar</h4>
+      <p>Cada mañana, cuenta del <strong>1 al 20 en inglés</strong> como si fuera una canción. Puedes hacerlo mientras te lavas los dientes. Si llegas al 20 sin parar toda la semana, ¡ganas el reto!</p>
+    </div>
+
+    <div class="sec-title">Checklist de la semana</div>
+    <div class="checklist">
+      <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Conté del 1 al 20 hoy (Lunes)</div>
+      <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Conté del 1 al 20 hoy (Martes)</div>
+      <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Conté del 1 al 20 hoy (Miércoles)</div>
+      <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Conté del 1 al 20 hoy (Jueves)</div>
+      <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Conté del 1 al 20 hoy (Viernes)</div>
+    </div>
+
+    <button class="back-btn" onclick="show('home')">← Volver al inicio</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     HERMANO/A 17 AÑOS
+══════════════════════════════════════ -->
+<div id="panel-h17" class="panel">
+  <div class="hero-banner">
+    <div class="hero-inner">
+      <div class="hero-tag">🧑 17 años · Nivel avanzado</div>
+      <h1>Números<br>1 al 100</h1>
+      <p>Domina todos los números y prepara tu presentación de 5 oraciones para la próxima clase.</p>
+    </div>
+  </div>
+  <div class="content">
+
+    <div class="sec-title">Números 1–100 — toca para ver pronunciación</div>
+
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="prog-h17" style="width:0%"></div></div>
+      <div class="progress-label" id="prog-h17-label">0 de 100 revisados</div>
+    </div>
+
+    <div class="num-grid num-grid-100" id="grid-h17"></div>
+
+    <div class="sec-title" style="margin-top:28px">Patrones clave — apréndetelos, no memorices cada número</div>
+    <div class="phrase-stack">
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">🔑</div>
+        <div>
+          <div class="phrase-en">-teen = del 13 al 19</div>
+          <div class="phrase-pron">thir-TEEN, four-TEEN, fif-TEEN…</div>
+          <div class="phrase-es">El acento va en -TEEN. "Thirteen, Fourteen, Fifteen…"</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">🔑</div>
+        <div>
+          <div class="phrase-en">-ty = decenas (20, 30, 40…)</div>
+          <div class="phrase-pron">TWEN-ty, THIR-ty, FOR-ty…</div>
+          <div class="phrase-es">El acento va en la primera sílaba. "TWEN-ty, THIR-ty…"</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">🔑</div>
+        <div>
+          <div class="phrase-en">Compuestos: Twenty-one, Thirty-five…</div>
+          <div class="phrase-pron">/TWEN-ti WAN/ /THIR-ti FAYV/</div>
+          <div class="phrase-es">Se une la decena + el número con guión.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-title">Mi presentación — 5 oraciones para la próxima clase</div>
+    <div class="phrase-stack">
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">1️⃣</div>
+        <div>
+          <div class="phrase-en">Hello! My name is ___.</div>
+          <div class="phrase-pron">/HE-lou may NAYM iz/</div>
+          <div class="phrase-es">¡Hola! Me llamo ___.</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">2️⃣</div>
+        <div>
+          <div class="phrase-en">I am 17 years old and I am from Panama.</div>
+          <div class="phrase-pron">/ay am SEV-en-TIN yirz OLD/</div>
+          <div class="phrase-es">Tengo 17 años y soy de Panamá.</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">3️⃣</div>
+        <div>
+          <div class="phrase-en">I am a high school student.</div>
+          <div class="phrase-pron">/ay am a HAY skul STYU-dent/</div>
+          <div class="phrase-es">Soy estudiante de bachillerato.</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">4️⃣</div>
+        <div>
+          <div class="phrase-en">I like technology and music.</div>
+          <div class="phrase-pron">/ay layk tek-NOL-o-yi and MYU-zik/</div>
+          <div class="phrase-es">Me gusta la tecnología y la música.</div>
+        </div>
+      </div>
+      <div class="phrase-row" onclick="toggle(this)">
+        <div class="phrase-icon">5️⃣</div>
+        <div>
+          <div class="phrase-en">Nice to meet you all!</div>
+          <div class="phrase-pron">/NAYS tu MIT yu OL/</div>
+          <div class="phrase-es">¡Mucho gusto a todos!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-title">Reto avanzado esta semana 💡</div>
+    <div class="challenge-box">
+      <h4>📝 Escribe tus 5 oraciones en papel</h4>
+      <p>Luego practica diciéndolas sin leer. La próxima clase las dices frente a toda la familia de memoria. Puedes agregar más si quieres.</p>
+    </div>
+
+    <div class="sec-title">Checklist de la semana</div>
+    <div class="checklist">
+      <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Revisé todos los números 1–100</div>
+      <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Aprendí los patrones -teen y -ty</div>
+      <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Escribí mis 5 oraciones de presentación</div>
+      <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Las practiqué sin leer el papel</div>
+    </div>
+
+    <button class="back-btn" onclick="show('home')">← Volver al inicio</button>
+  </div>
+</div>
+
+<script>
+// ─── DATA ───────────────────────────────
+const nums20 = [
+  {n:1,  en:"One",      pr:"/WAN/"},
+  {n:2,  en:"Two",      pr:"/TU/"},
+  {n:3,  en:"Three",    pr:"/THRI/"},
+  {n:4,  en:"Four",     pr:"/FOR/"},
+  {n:5,  en:"Five",     pr:"/FAYV/"},
+  {n:6,  en:"Six",      pr:"/SIKS/"},
+  {n:7,  en:"Seven",    pr:"/SE-ven/"},
+  {n:8,  en:"Eight",    pr:"/EYT/"},
+  {n:9,  en:"Nine",     pr:"/NAYN/"},
+  {n:10, en:"Ten",      pr:"/TEN/"},
+  {n:11, en:"Eleven",   pr:"/ih-LE-ven/"},
+  {n:12, en:"Twelve",   pr:"/TWELV/"},
+  {n:13, en:"Thirteen", pr:"/ther-TIN/"},
+  {n:14, en:"Fourteen", pr:"/for-TIN/"},
+  {n:15, en:"Fifteen",  pr:"/fif-TIN/"},
+  {n:16, en:"Sixteen",  pr:"/siks-TIN/"},
+  {n:17, en:"Seventeen",pr:"/sev-en-TIN/"},
+  {n:18, en:"Eighteen", pr:"/ey-TIN/"},
+  {n:19, en:"Nineteen", pr:"/nayn-TIN/"},
+  {n:20, en:"Twenty",   pr:"/TWEN-ti/"},
+];
+
+const nums100 = [];
+const base = [
+  [1,"One","/WAN/"],[2,"Two","/TU/"],[3,"Three","/THRI/"],[4,"Four","/FOR/"],
+  [5,"Five","/FAYV/"],[6,"Six","/SIKS/"],[7,"Seven","/SE-ven/"],[8,"Eight","/EYT/"],
+  [9,"Nine","/NAYN/"],[10,"Ten","/TEN/"],[11,"Eleven","/ih-LE-ven/"],
+  [12,"Twelve","/TWELV/"],[13,"Thirteen","/ther-TIN/"],[14,"Fourteen","/for-TIN/"],
+  [15,"Fifteen","/fif-TIN/"],[16,"Sixteen","/siks-TIN/"],[17,"Seventeen","/sev-en-TIN/"],
+  [18,"Eighteen","/ey-TIN/"],[19,"Nineteen","/nayn-TIN/"],[20,"Twenty","/TWEN-ti/"],
+];
+const tens = [
+  [30,"Thirty","/THIR-ti/"],[40,"Forty","/FOR-ti/"],[50,"Fifty","/FIF-ti/"],
+  [60,"Sixty","/SIKS-ti/"],[70,"Seventy","/SEV-en-ti/"],[80,"Eighty","/EY-ti/"],
+  [90,"Ninety","/NAYN-ti/"],[100,"One hundred","/wan HUN-dred/"],
+];
+const tenNames = ["","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"];
+const oneNames = ["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine"];
+const onePron  = ["","/WAN/","/TU/","/THRI/","/FOR/","/FAYV/","/SIKS/","/SE-ven/","/EYT/","/NAYN/"];
+const tenPron  = ["","","/TWEN-ti/","/THIR-ti/","/FOR-ti/","/FIF-ti/","/SIKS-ti/","/SEV-en-ti/","/EY-ti/","/NAYN-ti/"];
+
+for (let i = 1; i <= 100; i++) {
+  if (i <= 20) {
+    nums100.push({n:i, en:base[i-1][1], pr:base[i-1][2]});
+  } else if (i % 10 === 0) {
+    const t = tens.find(x=>x[0]===i);
+    nums100.push({n:i, en:t[1], pr:t[2]});
+  } else {
+    const dec = Math.floor(i/10);
+    const unit = i % 10;
+    nums100.push({
+      n:i,
+      en: tenNames[dec] + "-" + oneNames[unit],
+      pr: tenPron[dec].replace("/","").replace("/","") + "-" + onePron[unit].replace("/","").replace("/","")
+    });
+  }
+}
+
+// ─── BUILD GRIDS ───────────────────────
+function buildGrid(containerId, data, progressId, labelId) {
+  const el = document.getElementById(containerId);
+  let shown = 0;
+  data.forEach((item, idx) => {
+    const card = document.createElement('div');
+    card.className = 'num-card';
+    card.innerHTML = `
+      <span class="num-digit">${item.n}</span>
+      <span class="num-en">${item.en}</span>
+      <span class="num-pron">${item.pr}</span>`;
+    card.addEventListener('click', () => {
+      if (!card.classList.contains('shown')) {
+        card.classList.add('shown');
+        shown++;
+        const pct = Math.round(shown / data.length * 100);
+        document.getElementById(progressId).style.width = pct + '%';
+        document.getElementById(labelId).textContent = shown + ' de ' + data.length + ' descubiertos';
+      } else {
+        card.classList.remove('shown');
+        shown--;
+        const pct = Math.round(shown / data.length * 100);
+        document.getElementById(progressId).style.width = pct + '%';
+        document.getElementById(labelId).textContent = shown + ' de ' + data.length + ' descubiertos';
+      }
+    });
+    el.appendChild(card);
+  });
+}
+
+buildGrid('grid-h9',  nums20,  'prog-h9',  'prog-h9-label');
+buildGrid('grid-h17', nums100, 'prog-h17', 'prog-h17-label');
+
+// ─── NAV ──────────────────────────────
+function show(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  document.querySelectorAll('.member-pill').forEach(p => p.classList.remove('active'));
+  if (id !== 'home') document.querySelector('.pill-' + id).classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function toggle(row) { row.classList.toggle('shown'); }
+
+function check(item) {
+  item.classList.toggle('done');
+  const box = item.querySelector('.check-box');
+  box.textContent = item.classList.contains('done') ? '✓' : '✓';
+}
+</script>
+</body>
+</html>
