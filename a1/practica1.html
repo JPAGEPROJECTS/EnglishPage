@@ -5,7 +5,311 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tarea Semana 1 — Familia</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles.css">
+<style>
+/* ─── RESET & BASE ─────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #f5f3ef;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* ─── TOPBAR ────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: #fff;
+  border-bottom: 2px solid #eee;
+  padding: 10px 16px;
+  display: flex; align-items: center; gap: 12px;
+  flex-wrap: wrap;
+}
+.topbar-title {
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: 800; font-size: 18px;
+  color: #333; flex-shrink: 0;
+}
+.member-pills {
+  display: flex; gap: 8px; flex-wrap: wrap; flex: 1;
+  justify-content: flex-end;
+}
+.member-pill {
+  display: flex; align-items: center; gap: 5px;
+  padding: 5px 12px; border-radius: 20px;
+  font-size: 13px; font-weight: 700;
+  cursor: pointer; transition: all .2s;
+  border: 2px solid transparent;
+}
+.member-pill:hover { transform: scale(1.05); }
+.member-pill.active { border-color: currentColor; }
+
+.pill-papa  { background: #dbeafe; color: #1d4ed8; }
+.pill-mama  { background: #fce7f3; color: #be185d; }
+.pill-h9    { background: #d1fae5; color: #065f46; }
+.pill-h17   { background: #ede9fe; color: #5b21b6; }
+
+/* ─── PANELS ───────────────────────────── */
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* ─── HOME ──────────────────────────────── */
+.home-title {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 26px; font-weight: 800;
+  text-align: center; padding: 32px 16px 4px;
+  color: #222;
+}
+.home-sub {
+  text-align: center; color: #666;
+  font-size: 15px; padding: 0 16px 24px;
+}
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px; padding: 0 16px 40px;
+  max-width: 860px; margin: 0 auto;
+}
+.home-card {
+  border-radius: 18px; padding: 24px 20px;
+  cursor: pointer; transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,.07);
+}
+.home-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,.12); }
+.home-card-icon { font-size: 40px; margin-bottom: 10px; }
+.home-card-name {
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: 800; font-size: 20px; margin-bottom: 6px;
+}
+.home-card-sub { font-size: 13px; opacity: .8; line-height: 1.4; }
+
+.home-card-papa  { background: #dbeafe; color: #1d4ed8; }
+.home-card-mama  { background: #fce7f3; color: #be185d; }
+.home-card-h9    { background: #d1fae5; color: #065f46; }
+.home-card-h17   { background: #ede9fe; color: #5b21b6; }
+
+/* ─── HERO BANNER ───────────────────────── */
+.hero-banner {
+  padding: 32px 20px 28px;
+  color: #fff;
+}
+.hero-inner { max-width: 640px; margin: 0 auto; }
+.hero-tag {
+  display: inline-block;
+  background: rgba(255,255,255,.25);
+  border-radius: 20px; padding: 4px 14px;
+  font-size: 13px; font-weight: 700;
+  margin-bottom: 12px;
+}
+.hero-banner h1 {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: clamp(32px, 6vw, 48px);
+  font-weight: 800; line-height: 1.1;
+  margin-bottom: 12px;
+}
+.hero-banner p { font-size: 15px; opacity: .9; line-height: 1.5; }
+
+#panel-papa  .hero-banner { background: linear-gradient(135deg, #1d4ed8, #3b82f6); }
+#panel-mama  .hero-banner { background: linear-gradient(135deg, #be185d, #ec4899); }
+#panel-h9    .hero-banner { background: linear-gradient(135deg, #065f46, #10b981); }
+#panel-h17   .hero-banner { background: linear-gradient(135deg, #5b21b6, #8b5cf6); }
+
+/* ─── CONTENT WRAPPER ───────────────────── */
+.content {
+  max-width: 680px; margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+/* ─── SECTION TITLES ────────────────────── */
+.sec-title {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 18px; font-weight: 800;
+  color: #222; margin: 28px 0 14px;
+  border-left: 4px solid #6366f1;
+  padding-left: 10px;
+}
+
+/* ─── PHRASE STACK ──────────────────────── */
+.phrase-stack { display: flex; flex-direction: column; gap: 8px; }
+.phrase-row {
+  display: flex; align-items: center; gap: 14px;
+  background: #fff; border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  cursor: pointer; transition: box-shadow .2s;
+  user-select: none;
+}
+.phrase-row:hover { box-shadow: 0 4px 12px rgba(0,0,0,.1); }
+
+.phrase-icon {
+  font-size: 26px; flex-shrink: 0;
+  width: 42px; height: 42px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: #f3f4f6;
+  transition: background .15s;
+}
+.speak-btn {
+  flex-shrink: 0;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid #d1d5db;
+  background: #f9fafb;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  transition: all .15s;
+  flex-shrink: 0;
+}
+.speak-btn:hover { background: #e0e7ff; border-color: #6366f1; }
+.speak-btn.playing { background: #e0e7ff; border-color: #6366f1; animation: pulse .6s infinite alternate; }
+@keyframes pulse { from { transform: scale(1); } to { transform: scale(1.12); } }
+
+.phrase-en {
+  font-size: 16px; font-weight: 700; color: #1e1b4b;
+  margin-bottom: 2px;
+}
+.phrase-pron {
+  font-size: 13px; color: #6366f1; font-weight: 600;
+  margin-bottom: 2px;
+}
+.phrase-es {
+  font-size: 13px; color: #64748b;
+  display: none;
+}
+.phrase-row.shown .phrase-es { display: block; }
+
+.phrase-hint {
+  font-size: 12px; color: #9ca3af;
+  text-align: center; margin-top: 8px;
+}
+
+/* ─── POST-IT GRID ──────────────────────── */
+.postit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+.postit {
+  background: #fef08a;
+  border-radius: 4px;
+  padding: 16px 12px 12px;
+  cursor: pointer;
+  box-shadow: 2px 3px 8px rgba(0,0,0,.12), 0 0 0 1px rgba(0,0,0,.04);
+  transition: transform .2s;
+  position: relative;
+  min-height: 110px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+}
+.postit::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 28px;
+  background: rgba(0,0,0,.05);
+}
+.postit:hover { transform: rotate(-1deg) scale(1.04); }
+.postit-en { font-size: 18px; font-weight: 800; color: #422006; margin-bottom: 4px; }
+.postit-pron { font-size: 13px; color: #78350f; font-weight: 600; }
+.postit-es { font-size: 12px; color: #92400e; display: none; margin-top: 6px; }
+.postit.shown .postit-es { display: block; }
+.postit-speak {
+  position: absolute; top: 6px; right: 6px;
+  font-size: 16px; background: rgba(255,255,255,.5);
+  border: none; border-radius: 50%;
+  width: 24px; height: 24px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  padding: 0;
+}
+
+/* ─── NUMBER GRID ───────────────────────── */
+.progress-wrap { margin-bottom: 14px; }
+.progress-track {
+  height: 8px; background: #e5e7eb; border-radius: 8px;
+  overflow: hidden; margin-bottom: 6px;
+}
+.progress-fill {
+  height: 100%; border-radius: 8px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  transition: width .4s ease;
+}
+.progress-label { font-size: 12px; color: #9ca3af; text-align: right; }
+
+.num-grid {
+  display: grid; gap: 8px;
+}
+.num-grid-20  { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+.num-grid-100 { grid-template-columns: repeat(auto-fill, minmax(90px,  1fr)); }
+
+.num-card {
+  background: #fff; border-radius: 12px;
+  padding: 12px 8px 10px;
+  text-align: center; cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  transition: all .2s;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  position: relative;
+}
+.num-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,.1); transform: translateY(-2px); }
+.num-card.shown { background: #ede9fe; }
+
+.num-digit { font-size: 22px; font-weight: 800; color: #5b21b6; }
+.num-en    { font-size: 13px; font-weight: 700; color: #1e1b4b; }
+.num-pron  { font-size: 11px; color: #6366f1; display: none; }
+.num-card.shown .num-pron { display: block; }
+
+.num-speak {
+  position: absolute; top: 5px; right: 5px;
+  font-size: 13px; opacity: 0.5;
+  background: none; border: none; cursor: pointer; padding: 0;
+}
+.num-card.shown .num-speak { opacity: 1; }
+.num-card:hover .num-speak  { opacity: 1; }
+
+/* ─── CHALLENGE BOX ─────────────────────── */
+.challenge-box {
+  background: #fff;
+  border-left: 5px solid #f59e0b;
+  border-radius: 0 14px 14px 0;
+  padding: 16px 18px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.challenge-box h4 { font-size: 16px; font-weight: 800; color: #92400e; margin-bottom: 8px; }
+.challenge-box p  { font-size: 14px; color: #78350f; line-height: 1.6; }
+
+/* ─── CHECKLIST ─────────────────────────── */
+.checklist { display: flex; flex-direction: column; gap: 8px; }
+.check-item {
+  display: flex; align-items: center; gap: 12px;
+  background: #fff; border-radius: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  font-size: 15px; font-weight: 600; color: #374151;
+  transition: all .2s;
+}
+.check-box {
+  width: 26px; height: 26px; border-radius: 8px;
+  border: 2px solid #d1d5db;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+  color: transparent; transition: all .2s;
+}
+.check-item.done .check-box {
+  background: #10b981; border-color: #10b981; color: #fff;
+}
+.check-item.done { text-decoration: line-through; color: #9ca3af; }
+
+/* ─── BACK BUTTON ───────────────────────── */
+.back-btn {
+  display: block; margin: 32px auto 0;
+  padding: 12px 28px;
+  background: #6366f1; color: #fff;
+  border: none; border-radius: 50px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px; font-weight: 700;
+  cursor: pointer; transition: background .2s;
+}
+.back-btn:hover { background: #4f46e5; }
+</style>
 </head>
 <body>
 
@@ -19,7 +323,7 @@
   </div>
 </div>
 
-<!-- HOME -->
+<!-- ══════════════════════════════════════ HOME -->
 <div id="panel-home" class="panel active">
   <p class="home-title">¿Quién va a practicar?</p>
   <p class="home-sub">Cada uno tiene su propia sección con las frases y ejercicios de su tarea.</p>
@@ -47,9 +351,7 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     PAPÁ
-══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAPÁ -->
 <div id="panel-papa" class="panel">
   <div class="hero-banner">
     <div class="hero-inner">
@@ -63,7 +365,7 @@
     <div class="sec-title">Mi presentación completa</div>
     <div class="phrase-stack">
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">👋</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('Hello! Good morning.')">🔊</button>
         <div>
           <div class="phrase-en">Hello! Good morning.</div>
           <div class="phrase-pron">/HE-lou/ /gud MOR-ning/</div>
@@ -71,7 +373,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">🗣️</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('My name is blank.')">🔊</button>
         <div>
           <div class="phrase-en">My name is ___.</div>
           <div class="phrase-pron">/may NAYM iz/</div>
@@ -79,7 +381,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">🔒</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('I am a security guard.')">🔊</button>
         <div>
           <div class="phrase-en">I am a security guard.</div>
           <div class="phrase-pron">/ay am a se-KYUR-ih-tee GARD/</div>
@@ -87,7 +389,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">🌍</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('I am from Panama.')">🔊</button>
         <div>
           <div class="phrase-en">I am from Panama.</div>
           <div class="phrase-pron">/ay am from PA-na-ma/</div>
@@ -95,7 +397,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">🤝</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('Nice to meet you!')">🔊</button>
         <div>
           <div class="phrase-en">Nice to meet you!</div>
           <div class="phrase-pron">/NAYS tu MIT yu/</div>
@@ -103,12 +405,12 @@
         </div>
       </div>
     </div>
-    <p class="phrase-hint">👆 Toca cada frase para ver la traducción</p>
+    <p class="phrase-hint">🔊 Toca el botón para escuchar · Toca la frase para ver la traducción</p>
 
     <div class="sec-title">Frases útiles en el trabajo</div>
     <div class="phrase-stack">
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">🪪</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('Can I see your ID, please?')">🔊</button>
         <div>
           <div class="phrase-en">Can I see your ID, please?</div>
           <div class="phrase-pron">/kan ay SÍ yor ay-DÍ plis/</div>
@@ -116,7 +418,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">🚪</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('Access denied. Sorry.')">🔊</button>
         <div>
           <div class="phrase-en">Access denied. Sorry.</div>
           <div class="phrase-pron">/AK-ses de-NAYD. SOR-ee/</div>
@@ -124,7 +426,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">✅</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('You may go in. Thank you.')">🔊</button>
         <div>
           <div class="phrase-en">You may go in. Thank you.</div>
           <div class="phrase-pron">/yu mey GO in. THANK yu/</div>
@@ -132,7 +434,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">❓</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('How can I help you?')">🔊</button>
         <div>
           <div class="phrase-en">How can I help you?</div>
           <div class="phrase-pron">/haw kan ay HELP yu/</div>
@@ -140,7 +442,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">⚠️</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('Please wait here.')">🔊</button>
         <div>
           <div class="phrase-en">Please wait here.</div>
           <div class="phrase-pron">/plis WEYT hir/</div>
@@ -148,7 +450,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">📞</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('I will call my supervisor.')">🔊</button>
         <div>
           <div class="phrase-en">I will call my supervisor.</div>
           <div class="phrase-pron">/ay wil KOL may SU-per-vai-sor/</div>
@@ -163,14 +465,11 @@
       <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Aprendí las frases del trabajo</div>
       <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Saludé a alguien en inglés esta semana</div>
     </div>
-
     <button class="back-btn" onclick="show('home')">← Volver al inicio</button>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     MAMÁ
-══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ MAMÁ -->
 <div id="panel-mama" class="panel">
   <div class="hero-banner">
     <div class="hero-inner">
@@ -184,52 +483,60 @@
     <div class="sec-title">Post-its del hogar — toca para ver la pronunciación</div>
     <div class="postit-grid">
       <div class="postit" onclick="this.classList.toggle('shown')">
+        <button class="postit-speak" onclick="event.stopPropagation(); speak('Door')">🔊</button>
         <div class="postit-en">Door</div>
         <div class="postit-pron">/DOR/</div>
         <div class="postit-es">Puerta</div>
       </div>
       <div class="postit" onclick="this.classList.toggle('shown')">
+        <button class="postit-speak" onclick="event.stopPropagation(); speak('Window')">🔊</button>
         <div class="postit-en">Window</div>
         <div class="postit-pron">/WIN-dou/</div>
         <div class="postit-es">Ventana</div>
       </div>
       <div class="postit" onclick="this.classList.toggle('shown')">
+        <button class="postit-speak" onclick="event.stopPropagation(); speak('Table')">🔊</button>
         <div class="postit-en">Table</div>
         <div class="postit-pron">/TEY-bol/</div>
         <div class="postit-es">Mesa</div>
       </div>
       <div class="postit" onclick="this.classList.toggle('shown')">
+        <button class="postit-speak" onclick="event.stopPropagation(); speak('Chair')">🔊</button>
         <div class="postit-en">Chair</div>
         <div class="postit-pron">/CHER/</div>
         <div class="postit-es">Silla</div>
       </div>
       <div class="postit" onclick="this.classList.toggle('shown')">
+        <button class="postit-speak" onclick="event.stopPropagation(); speak('Kitchen')">🔊</button>
         <div class="postit-en">Kitchen</div>
         <div class="postit-pron">/KI-chen/</div>
         <div class="postit-es">Cocina</div>
       </div>
       <div class="postit" onclick="this.classList.toggle('shown')">
+        <button class="postit-speak" onclick="event.stopPropagation(); speak('Fridge')">🔊</button>
         <div class="postit-en">Fridge</div>
         <div class="postit-pron">/FRIY/</div>
         <div class="postit-es">Refrigeradora</div>
       </div>
       <div class="postit" onclick="this.classList.toggle('shown')">
+        <button class="postit-speak" onclick="event.stopPropagation(); speak('Bed')">🔊</button>
         <div class="postit-en">Bed</div>
         <div class="postit-pron">/BED/</div>
         <div class="postit-es">Cama</div>
       </div>
       <div class="postit" onclick="this.classList.toggle('shown')">
+        <button class="postit-speak" onclick="event.stopPropagation(); speak('Bathroom')">🔊</button>
         <div class="postit-en">Bathroom</div>
         <div class="postit-pron">/BATH-rum/</div>
         <div class="postit-es">Baño</div>
       </div>
     </div>
-    <p class="phrase-hint" style="margin-top:10px">👆 Toca cada post-it para ver la traducción</p>
+    <p class="phrase-hint" style="margin-top:10px">🔊 Toca el ícono de sonido · Toca el post-it para ver la traducción</p>
 
     <div class="sec-title">Mi presentación</div>
     <div class="phrase-stack">
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">👋</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('Hello! My name is blank.')">🔊</button>
         <div>
           <div class="phrase-en">Hello! My name is ___.</div>
           <div class="phrase-pron">/HE-lou/ /may NAYM iz/</div>
@@ -237,7 +544,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">🏠</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('I take care of my home.')">🔊</button>
         <div>
           <div class="phrase-en">I take care of my home.</div>
           <div class="phrase-pron">/ay TEYK ker ov may HOHM/</div>
@@ -245,7 +552,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">👨‍👩‍👧‍👦</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('I have a family of four.')">🔊</button>
         <div>
           <div class="phrase-en">I have a family of four.</div>
           <div class="phrase-pron">/ay hav a FA-mi-li ov FOR/</div>
@@ -253,7 +560,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">🌍</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('I am from Panama.')">🔊</button>
         <div>
           <div class="phrase-en">I am from Panama.</div>
           <div class="phrase-pron">/ay am from PA-na-ma/</div>
@@ -261,7 +568,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">🤝</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('Nice to meet you!')">🔊</button>
         <div>
           <div class="phrase-en">Nice to meet you!</div>
           <div class="phrase-pron">/NAYS tu MIT yu/</div>
@@ -273,7 +580,7 @@
     <div class="sec-title">Frases de cocina / compras bonus</div>
     <div class="phrase-stack">
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">🛒</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('I need to buy eggs and milk.')">🔊</button>
         <div>
           <div class="phrase-en">I need to buy eggs and milk.</div>
           <div class="phrase-pron">/ay NID tu bay EGZ and MILK/</div>
@@ -281,7 +588,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">🍳</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('I am cooking dinner.')">🔊</button>
         <div>
           <div class="phrase-en">I am cooking dinner.</div>
           <div class="phrase-pron">/ay am KUK-ing DI-ner/</div>
@@ -289,7 +596,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">🧹</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('I am cleaning the house.')">🔊</button>
         <div>
           <div class="phrase-en">I am cleaning the house.</div>
           <div class="phrase-pron">/ay am KLIN-ing da HAWS/</div>
@@ -304,37 +611,32 @@
       <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Leí los post-its en voz alta cada día</div>
       <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Practiqué mi presentación completa</div>
     </div>
-
     <button class="back-btn" onclick="show('home')">← Volver al inicio</button>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     HERMANO/A 9 AÑOS
-══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ 9 AÑOS -->
 <div id="panel-h9" class="panel">
   <div class="hero-banner">
     <div class="hero-inner">
       <div class="hero-tag">🧒 9 años · ¡A jugar!</div>
       <h1>Números<br>1 al 20</h1>
-      <p>Toca cada número para escuchar cómo se dice. ¡Meta: llegar al 20 sin equivocarte!</p>
+      <p>Toca el 🔊 para escuchar cómo se dice. ¡Meta: llegar al 20 sin equivocarte!</p>
     </div>
   </div>
   <div class="content">
 
-    <div class="sec-title">Números 1–20 — toca para ver cómo se pronuncia</div>
-
+    <div class="sec-title">Números 1–20 — toca para escuchar y descubrir</div>
     <div class="progress-wrap">
       <div class="progress-track"><div class="progress-fill" id="prog-h9" style="width:0%"></div></div>
       <div class="progress-label" id="prog-h9-label">0 de 20 descubiertos</div>
     </div>
-
     <div class="num-grid num-grid-20" id="grid-h9"></div>
 
     <div class="sec-title" style="margin-top:28px">Saludos que ya sé</div>
     <div class="phrase-stack">
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">☀️</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('Good morning!')">🔊</button>
         <div>
           <div class="phrase-en">Good morning!</div>
           <div class="phrase-pron">/gud MOR-ning/</div>
@@ -342,7 +644,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">😊</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('My name is blank. I am nine years old.')">🔊</button>
         <div>
           <div class="phrase-en">My name is ___. I am 9 years old.</div>
           <div class="phrase-pron">/may NAYM iz ___ ay am NAYN yirz OLD/</div>
@@ -350,7 +652,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">📚</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('I am a student.')">🔊</button>
         <div>
           <div class="phrase-en">I am a student.</div>
           <div class="phrase-pron">/ay am a STYU-dent/</div>
@@ -373,14 +675,11 @@
       <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Conté del 1 al 20 hoy (Jueves)</div>
       <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Conté del 1 al 20 hoy (Viernes)</div>
     </div>
-
     <button class="back-btn" onclick="show('home')">← Volver al inicio</button>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     HERMANO/A 17 AÑOS
-══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ 17 AÑOS -->
 <div id="panel-h17" class="panel">
   <div class="hero-banner">
     <div class="hero-inner">
@@ -391,19 +690,17 @@
   </div>
   <div class="content">
 
-    <div class="sec-title">Números 1–100 — toca para ver pronunciación</div>
-
+    <div class="sec-title">Números 1–100 — toca para escuchar y ver pronunciación</div>
     <div class="progress-wrap">
       <div class="progress-track"><div class="progress-fill" id="prog-h17" style="width:0%"></div></div>
       <div class="progress-label" id="prog-h17-label">0 de 100 revisados</div>
     </div>
-
     <div class="num-grid num-grid-100" id="grid-h17"></div>
 
-    <div class="sec-title" style="margin-top:28px">Patrones clave — apréndetelos, no memorices cada número</div>
+    <div class="sec-title" style="margin-top:28px">Patrones clave</div>
     <div class="phrase-stack">
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">🔑</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('Thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen.')">🔊</button>
         <div>
           <div class="phrase-en">-teen = del 13 al 19</div>
           <div class="phrase-pron">thir-TEEN, four-TEEN, fif-TEEN…</div>
@@ -411,7 +708,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">🔑</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('Twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety.')">🔊</button>
         <div>
           <div class="phrase-en">-ty = decenas (20, 30, 40…)</div>
           <div class="phrase-pron">TWEN-ty, THIR-ty, FOR-ty…</div>
@@ -419,7 +716,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">🔑</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('Twenty-one. Thirty-five. Forty-eight.')">🔊</button>
         <div>
           <div class="phrase-en">Compuestos: Twenty-one, Thirty-five…</div>
           <div class="phrase-pron">/TWEN-ti WAN/ /THIR-ti FAYV/</div>
@@ -431,7 +728,7 @@
     <div class="sec-title">Mi presentación — 5 oraciones para la próxima clase</div>
     <div class="phrase-stack">
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">1️⃣</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('Hello! My name is blank.')">🔊</button>
         <div>
           <div class="phrase-en">Hello! My name is ___.</div>
           <div class="phrase-pron">/HE-lou may NAYM iz/</div>
@@ -439,7 +736,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">2️⃣</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('I am seventeen years old and I am from Panama.')">🔊</button>
         <div>
           <div class="phrase-en">I am 17 years old and I am from Panama.</div>
           <div class="phrase-pron">/ay am SEV-en-TIN yirz OLD/</div>
@@ -447,7 +744,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">3️⃣</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('I am a high school student.')">🔊</button>
         <div>
           <div class="phrase-en">I am a high school student.</div>
           <div class="phrase-pron">/ay am a HAY skul STYU-dent/</div>
@@ -455,7 +752,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">4️⃣</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('I like technology and music.')">🔊</button>
         <div>
           <div class="phrase-en">I like technology and music.</div>
           <div class="phrase-pron">/ay layk tek-NOL-o-yi and MYU-zik/</div>
@@ -463,7 +760,7 @@
         </div>
       </div>
       <div class="phrase-row" onclick="toggle(this)">
-        <div class="phrase-icon">5️⃣</div>
+        <button class="speak-btn" onclick="event.stopPropagation(); speak('Nice to meet you all!')">🔊</button>
         <div>
           <div class="phrase-en">Nice to meet you all!</div>
           <div class="phrase-pron">/NAYS tu MIT yu OL/</div>
@@ -485,37 +782,45 @@
       <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Escribí mis 5 oraciones de presentación</div>
       <div class="check-item" onclick="check(this)"><div class="check-box">✓</div>Las practiqué sin leer el papel</div>
     </div>
-
     <button class="back-btn" onclick="show('home')">← Volver al inicio</button>
   </div>
 </div>
 
 <script>
-// ─── DATA ───────────────────────────────
+/* ─── SPEECH ─────────────────────────── */
+function speak(text) {
+  window.speechSynthesis.cancel();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.lang  = 'en-US';
+  utt.rate  = 0.82;
+  utt.pitch = 1;
+  window.speechSynthesis.speak(utt);
+}
+
+/* ─── NUMBER DATA ────────────────────── */
 const nums20 = [
-  {n:1,  en:"One",      pr:"/WAN/"},
-  {n:2,  en:"Two",      pr:"/TU/"},
-  {n:3,  en:"Three",    pr:"/THRI/"},
-  {n:4,  en:"Four",     pr:"/FOR/"},
-  {n:5,  en:"Five",     pr:"/FAYV/"},
-  {n:6,  en:"Six",      pr:"/SIKS/"},
-  {n:7,  en:"Seven",    pr:"/SE-ven/"},
-  {n:8,  en:"Eight",    pr:"/EYT/"},
-  {n:9,  en:"Nine",     pr:"/NAYN/"},
-  {n:10, en:"Ten",      pr:"/TEN/"},
-  {n:11, en:"Eleven",   pr:"/ih-LE-ven/"},
-  {n:12, en:"Twelve",   pr:"/TWELV/"},
-  {n:13, en:"Thirteen", pr:"/ther-TIN/"},
-  {n:14, en:"Fourteen", pr:"/for-TIN/"},
-  {n:15, en:"Fifteen",  pr:"/fif-TIN/"},
-  {n:16, en:"Sixteen",  pr:"/siks-TIN/"},
-  {n:17, en:"Seventeen",pr:"/sev-en-TIN/"},
-  {n:18, en:"Eighteen", pr:"/ey-TIN/"},
-  {n:19, en:"Nineteen", pr:"/nayn-TIN/"},
-  {n:20, en:"Twenty",   pr:"/TWEN-ti/"},
+  {n:1,  en:"One",       pr:"/WAN/"},
+  {n:2,  en:"Two",       pr:"/TU/"},
+  {n:3,  en:"Three",     pr:"/THRI/"},
+  {n:4,  en:"Four",      pr:"/FOR/"},
+  {n:5,  en:"Five",      pr:"/FAYV/"},
+  {n:6,  en:"Six",       pr:"/SIKS/"},
+  {n:7,  en:"Seven",     pr:"/SE-ven/"},
+  {n:8,  en:"Eight",     pr:"/EYT/"},
+  {n:9,  en:"Nine",      pr:"/NAYN/"},
+  {n:10, en:"Ten",       pr:"/TEN/"},
+  {n:11, en:"Eleven",    pr:"/ih-LE-ven/"},
+  {n:12, en:"Twelve",    pr:"/TWELV/"},
+  {n:13, en:"Thirteen",  pr:"/ther-TIN/"},
+  {n:14, en:"Fourteen",  pr:"/for-TIN/"},
+  {n:15, en:"Fifteen",   pr:"/fif-TIN/"},
+  {n:16, en:"Sixteen",   pr:"/siks-TIN/"},
+  {n:17, en:"Seventeen", pr:"/sev-en-TIN/"},
+  {n:18, en:"Eighteen",  pr:"/ey-TIN/"},
+  {n:19, en:"Nineteen",  pr:"/nayn-TIN/"},
+  {n:20, en:"Twenty",    pr:"/TWEN-ti/"},
 ];
 
-const nums100 = [];
 const base = [
   [1,"One","/WAN/"],[2,"Two","/TU/"],[3,"Three","/THRI/"],[4,"Four","/FOR/"],
   [5,"Five","/FAYV/"],[6,"Six","/SIKS/"],[7,"Seven","/SE-ven/"],[8,"Eight","/EYT/"],
@@ -534,49 +839,54 @@ const oneNames = ["","One","Two","Three","Four","Five","Six","Seven","Eight","Ni
 const onePron  = ["","/WAN/","/TU/","/THRI/","/FOR/","/FAYV/","/SIKS/","/SE-ven/","/EYT/","/NAYN/"];
 const tenPron  = ["","","/TWEN-ti/","/THIR-ti/","/FOR-ti/","/FIF-ti/","/SIKS-ti/","/SEV-en-ti/","/EY-ti/","/NAYN-ti/"];
 
+const nums100 = [];
 for (let i = 1; i <= 100; i++) {
   if (i <= 20) {
     nums100.push({n:i, en:base[i-1][1], pr:base[i-1][2]});
   } else if (i % 10 === 0) {
-    const t = tens.find(x=>x[0]===i);
+    const t = tens.find(x => x[0] === i);
     nums100.push({n:i, en:t[1], pr:t[2]});
   } else {
-    const dec = Math.floor(i/10);
-    const unit = i % 10;
+    const dec = Math.floor(i / 10), unit = i % 10;
     nums100.push({
-      n:i,
+      n: i,
       en: tenNames[dec] + "-" + oneNames[unit],
-      pr: tenPron[dec].replace("/","").replace("/","") + "-" + onePron[unit].replace("/","").replace("/","")
+      pr: tenPron[dec].replace(/\//g,"") + " " + onePron[unit].replace(/\//g,"")
     });
   }
 }
 
-// ─── BUILD GRIDS ───────────────────────
+/* ─── BUILD GRIDS ────────────────────── */
 function buildGrid(containerId, data, progressId, labelId) {
   const el = document.getElementById(containerId);
   let shown = 0;
-  data.forEach((item, idx) => {
+
+  data.forEach(item => {
     const card = document.createElement('div');
     card.className = 'num-card';
-    card.innerHTML = `
-      <span class="num-digit">${item.n}</span>
-      <span class="num-en">${item.en}</span>
-      <span class="num-pron">${item.pr}</span>`;
-    card.addEventListener('click', () => {
-      if (!card.classList.contains('shown')) {
-        card.classList.add('shown');
-        shown++;
-        const pct = Math.round(shown / data.length * 100);
-        document.getElementById(progressId).style.width = pct + '%';
-        document.getElementById(labelId).textContent = shown + ' de ' + data.length + ' descubiertos';
-      } else {
-        card.classList.remove('shown');
-        shown--;
-        const pct = Math.round(shown / data.length * 100);
-        document.getElementById(progressId).style.width = pct + '%';
-        document.getElementById(labelId).textContent = shown + ' de ' + data.length + ' descubiertos';
-      }
+    card.innerHTML =
+      '<button class="num-speak" title="Escuchar">🔊</button>' +
+      '<span class="num-digit">' + item.n  + '</span>' +
+      '<span class="num-en">'    + item.en + '</span>' +
+      '<span class="num-pron">'  + item.pr + '</span>';
+
+    const speakBtn = card.querySelector('.num-speak');
+    speakBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      speak(item.en);
     });
+
+    card.addEventListener('click', () => {
+      speak(item.en);
+      const wasShown = card.classList.contains('shown');
+      card.classList.toggle('shown');
+      shown += wasShown ? -1 : 1;
+      const pct = Math.round(shown / data.length * 100);
+      document.getElementById(progressId).style.width = pct + '%';
+      document.getElementById(labelId).textContent =
+        shown + ' de ' + data.length + ' descubiertos';
+    });
+
     el.appendChild(card);
   });
 }
@@ -584,21 +894,20 @@ function buildGrid(containerId, data, progressId, labelId) {
 buildGrid('grid-h9',  nums20,  'prog-h9',  'prog-h9-label');
 buildGrid('grid-h17', nums100, 'prog-h17', 'prog-h17-label');
 
-// ─── NAV ──────────────────────────────
+/* ─── NAV ────────────────────────────── */
 function show(id) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.getElementById('panel-' + id).classList.add('active');
   document.querySelectorAll('.member-pill').forEach(p => p.classList.remove('active'));
   if (id !== 'home') document.querySelector('.pill-' + id).classList.add('active');
-  window.scrollTo({top:0, behavior:'smooth'});
+  window.speechSynthesis.cancel();
+  window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
 function toggle(row) { row.classList.toggle('shown'); }
 
 function check(item) {
   item.classList.toggle('done');
-  const box = item.querySelector('.check-box');
-  box.textContent = item.classList.contains('done') ? '✓' : '✓';
 }
 </script>
 </body>
