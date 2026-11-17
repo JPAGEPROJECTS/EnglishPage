@@ -192,6 +192,31 @@ h3 { font-size: 1.1rem; margin-bottom: 8px; }
 }
 .btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
 .btn-row { display: flex; gap: 10px; justify-content: space-between; flex-wrap: wrap; margin-top: 20px; }
+/* Método */
+.metodo-body p, .metodo-body ul, .metodo-body ol, .metodo-body table { margin-top: 8px; }
+.metodo-body ul, .metodo-body ol { padding-left: 20px; }
+.metodo-body li { margin: 4px 0; }
+.metodo-body table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.metodo-body th, .metodo-body td { text-align: left; padding: 6px; border-bottom: 1px solid var(--border); }
+.metodo-body th { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+.err { padding: 10px 0; border-top: 1px solid var(--border); }
+.err:first-child { border-top: none; padding-top: 2px; }
+.err > div:first-child { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.err .mal { color: var(--rosso); text-decoration: line-through; text-decoration-thickness: 1px; }
+.err .bien { color: var(--verde); font-weight: 700; }
+.err .why { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.reto { border: 2px dashed var(--verde); }
+.flash { text-align: center; border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 14px; margin-top: 12px; background: var(--bg); }
+.flash-count { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+.flash-q { font-size: 1.2rem; font-weight: 700; margin: 12px 0 8px; min-height: 1.6em; }
+.flash-a { min-height: 3em; }
+.flash-a .it { font-size: 1.15rem; color: var(--verde); font-weight: 700; }
+.flash-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
+.guide-link { display: flex; align-items: center; gap: 12px; text-decoration: none; font-size: 1.4rem; }
+.guide-link span { flex: 1; font-size: 15px; }
+.guide-link small { color: var(--muted); font-size: 13px; }
+.guide-link:hover { border-color: var(--verde); }
+
 .small-btn {
   font: inherit; font-size: 13px; font-weight: 600; background: none; border: 1px solid var(--border);
   color: var(--muted); padding: 6px 10px; border-radius: 8px; cursor: pointer;
