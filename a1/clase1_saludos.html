@@ -373,6 +373,7 @@
       else if (i < n) { s.classList.remove('active'); s.classList.add('done'); }
       else { s.classList.remove('active','done'); }
     });
+    if (n === 5) { try { const d = JSON.parse(localStorage.getItem('en-a1') || '{}'); d[1] = true; localStorage.setItem('en-a1', JSON.stringify(d)); } catch (e) {} }
     window.scrollTo({top: 0, behavior: 'smooth'});
   }
   function reveal(card) {
