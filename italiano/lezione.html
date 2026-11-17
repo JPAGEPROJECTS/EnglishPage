@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Idiomas">
-<title>Lezione — Italiano A1</title>
+<title>Lezione — Italiano</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="italiano.css">
 </head>
@@ -78,8 +78,8 @@
 <script>
   const n = Math.min(Math.max(parseInt(new URLSearchParams(location.search).get('n')) || 1, 1), LEZIONI.length);
   const L = LEZIONI[n - 1];
-  document.title = `${n}. ${L.title} — Italiano A1`;
-  document.getElementById('kicker').textContent = `Lezione ${n} de ${LEZIONI.length}`;
+  document.title = `${n}. ${L.title} — Italiano ${L.level || 'A1'}`;
+  document.getElementById('kicker').textContent = `Nivel ${L.level || 'A1'} · Lezione ${n} de ${LEZIONI.length}`;
   document.getElementById('title').textContent = L.title;
   document.getElementById('intro').textContent = L.intro;
 
@@ -115,7 +115,7 @@
   // ---- Vocabulario ----
   document.getElementById('vocab').innerHTML = L.vocab.map(([it, es, pr, say]) => `
     <div class="word">${playBtn(say || it)}
-      <div class="word-text"><div class="it">${it}</div><div class="pron">/${pr}/</div>${es ? `<div class="es">${es}</div>` : ''}</div>
+      <div class="word-text"><div class="it">${it}</div>${pr ? `<div class="pron">/${pr}/</div>` : ''}${es ? `<div class="es">${es}</div>` : ''}</div>
     </div>`).join('');
 
   // ---- Frases ----
@@ -204,6 +204,6 @@
   if (n < LEZIONI.length) next.href = `lezione.html?n=${n + 1}`;
   else { next.href = 'index.html'; next.textContent = 'Volver al menú'; }
 </script>
-<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js');</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js').catch(() => {});</script>
 </body>
 </html>

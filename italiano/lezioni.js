@@ -683,5 +683,524 @@ const LEZIONI = [
       { q: "Escribe “salimos” (uscire, noi, grupo mixto):", fill: ["siamo usciti", "noi siamo usciti"] },
       { q: "¿Qué verbo usa ESSERE en pasado?", opts: ["mangiare", "partire", "guardare"], a: 1 }
     ]
+  },
+
+  // ===================== NIVEL A2 =====================
+
+  {
+    id: "a2-imperfetto",
+    level: "A2",
+    title: "Ricordi: l'imperfetto",
+    sub: "Cuando era niño… · descripciones y costumbres",
+    intro: "El segundo pasado del italiano. Se usa para describir cómo eran las cosas, lo que hacías habitualmente y el contexto de una historia.",
+    vocab: [
+      ["da bambino / da bambina", "de niño / de niña", "da bam-BÍ-no"],
+      ["quando ero piccolo", "cuando era pequeño", "CUÁN-do É-ro PÍC-co-lo"],
+      ["l'infanzia", "la infancia", "in-FÁN-tsia"],
+      ["la scuola elementare", "la escuela primaria", "SCUÓ-la e-le-men-TÁ-re"],
+      ["il quartiere", "el barrio", "cuar-TIÉ-re"],
+      ["giocare", "jugar", "yo-CÁ-re"],
+      ["i nonni", "los abuelos", "NÓN-ni"],
+      ["ogni estate", "cada verano", "Ó-ñi es-TÁ-te"],
+      ["di solito / sempre", "normalmente / siempre", "di SÓ-li-to"],
+      ["mentre", "mientras", "MÉN-tre"],
+      ["all'improvviso", "de repente", "al-lim-prov-VÍ-so"],
+      ["timido / vivace", "tímido / inquieto", "TÍ-mi-do / vi-VÁ-che"]
+    ],
+    phrases: [
+      ["Da bambino giocavo a calcio ogni giorno.", "De niño jugaba fútbol todos los días.", "Acción habitual → imperfetto"],
+      ["Quando ero piccolo vivevo con i nonni.", "Cuando era pequeño vivía con mis abuelos.", ""],
+      ["Ero molto timido.", "Era muy tímido.", "Descripción → imperfetto"],
+      ["Ogni estate andavamo al mare.", "Cada verano íbamos a la playa.", ""],
+      ["Mentre studiavo, è arrivato Marco.", "Mientras estudiaba, llegó Marco.", "Contexto (imperf.) + acción puntual (pass. pross.)"],
+      ["Faceva caldo e c'era tanta gente.", "Hacía calor y había mucha gente.", ""],
+      ["Com'eri da piccolo?", "¿Cómo eras de pequeño?", ""]
+    ],
+    grammar: {
+      title: "Imperfetto: formación y uso",
+      html: `<p>Se quita <strong>-re</strong> al infinitivo y se añade <strong>-vo, -vi, -va, -vamo, -vate, -vano</strong>. ¡Se parece muchísimo al español!</p>
+      <table><tr><th>Persona</th><th>parlare</th><th>avere</th><th>dormire</th></tr>
+      <tr><td>io</td><td>parlavo</td><td>avevo</td><td>dormivo</td></tr>
+      <tr><td>tu</td><td>parlavi</td><td>avevi</td><td>dormivi</td></tr>
+      <tr><td>lui/lei</td><td>parlava</td><td>aveva</td><td>dormiva</td></tr>
+      <tr><td>noi</td><td>parlavamo</td><td>avevamo</td><td>dormivamo</td></tr>
+      <tr><td>voi</td><td>parlavate</td><td>avevate</td><td>dormivate</td></tr>
+      <tr><td>loro</td><td>parlavano</td><td>avevano</td><td>dormivano</td></tr></table>
+      <p>Irregulares: <strong>essere</strong> → ero, eri, era, eravamo, eravate, erano · <strong>fare</strong> → facevo · <strong>bere</strong> → bevevo · <strong>dire</strong> → dicevo.</p>
+      <p><strong>¿Imperfetto o passato prossimo?</strong> Igual que “-aba/-ía” vs “-é/-í” en español: <em>Ieri <u>pioveva</u> (contexto) e <u>sono rimasto</u> a casa (acción concreta)</em>.</p>`
+    },
+    tips: [
+      "<strong>Truco:</strong> si en español usarías “jugaba, tenía, era, íbamos”, en italiano casi siempre va imperfetto. Tu intuición de hispanohablante funciona aquí.",
+      "<strong>Ojo:</strong> el acento de la 3ª plural cae lejos: <em>PAR-la-va-no, A-ve-va-no</em>, no “parlaVAno”."
+    ],
+    dialog: [
+      ["A", "Com'eri da bambino?", "¿Cómo eras de niño?"],
+      ["B", "Ero vivacissimo! Non stavo mai fermo.", "¡Era inquietísimo! Nunca me quedaba quieto."],
+      ["A", "E cosa ti piaceva fare?", "¿Y qué te gustaba hacer?"],
+      ["B", "Giocavo a calcio con i miei cugini ogni pomeriggio.", "Jugaba fútbol con mis primos todas las tardes."],
+      ["A", "Io invece ero timida. Leggevo sempre.", "Yo en cambio era tímida. Siempre leía."],
+      ["B", "Ecco perché adesso sai tutto!", "¡Por eso ahora lo sabes todo!"]
+    ],
+    quiz: [
+      { q: "“De niño vivía en Panamá” =", opts: ["Da bambino ho vissuto a Panama", "Da bambino vivevo a Panama", "Da bambino vivo a Panama"], a: 1 },
+      { q: "Imperfetto de essere, io:", opts: ["era", "ero", "sono stato"], a: 1 },
+      { q: "Mentre ___ la TV, è suonato il telefono.", opts: ["guardavo", "ho guardato", "guardo"], a: 0 },
+      { q: "Escribe “nosotros teníamos” (avere):", fill: ["avevamo", "noi avevamo"] },
+      { q: "Escribe “ella hacía” (fare):", fill: ["faceva", "lei faceva"] },
+      { q: "Escucha y escribe:", say: "andavamo al mare", fill: ["andavamo al mare"] }
+    ]
+  },
+
+  {
+    id: "a2-futuro",
+    level: "A2",
+    title: "Progetti: il futuro",
+    sub: "Planes, viajes y promesas · farò, andrò",
+    intro: "Para hablar de tus planes: qué vas a hacer el año que viene, tus metas y lo que harás cuando viajes a Italia.",
+    vocab: [
+      ["l'anno prossimo", "el año que viene", "PRÓS-si-mo"],
+      ["fra due settimane", "dentro de dos semanas", "fra DÚ-e set-ti-MÁ-ne"],
+      ["un giorno", "algún día", "un YÓR-no"],
+      ["il progetto", "el proyecto / plan", "pro-YÉT-to"],
+      ["l'obiettivo", "la meta", "o-biet-TÍ-vo"],
+      ["risparmiare", "ahorrar", "ris-par-MIÁ-re"],
+      ["trasferirsi", "mudarse (de ciudad)", "tras-fe-RÍR-si"],
+      ["laurearsi", "graduarse (universidad)", "lau-re-ÁR-si"],
+      ["forse", "quizás", "FÓR-se"],
+      ["sicuramente", "seguramente", "si-cu-ra-MÉN-te"],
+      ["spero di…", "espero…", "SPÉ-ro di"],
+      ["ho intenzione di…", "tengo la intención de…", "in-ten-TSIÓ-ne"]
+    ],
+    phrases: [
+      ["L'anno prossimo andrò in Italia.", "El año que viene iré a Italia.", ""],
+      ["Cosa farai questo weekend?", "¿Qué harás este fin de semana?", ""],
+      ["Quando avrò più soldi, viaggerò di più.", "Cuando tenga más dinero, viajaré más.", "En italiano: futuro + futuro"],
+      ["Sarà difficile, ma ce la farò.", "Será difícil, pero lo lograré.", "farcela = lograrlo"],
+      ["Spero di parlare bene italiano.", "Espero hablar bien italiano.", ""],
+      ["Domani studio tutto il giorno.", "Mañana estudio todo el día.", "Para planes cercanos se usa mucho el presente"],
+      ["Che ore saranno?", "¿Qué hora será?", "Futuro de suposición"]
+    ],
+    grammar: {
+      title: "Futuro semplice",
+      html: `<p>Terminaciones iguales para todos: <strong>-ò, -ai, -à, -emo, -ete, -anno</strong>. Ojo: los verbos en <em>-are</em> cambian la <em>a</em> por <em>e</em> (parl<u>e</u>rò).</p>
+      <table><tr><th>Persona</th><th>parlare</th><th>prendere</th><th>partire</th></tr>
+      <tr><td>io</td><td>parlerò</td><td>prenderò</td><td>partirò</td></tr>
+      <tr><td>tu</td><td>parlerai</td><td>prenderai</td><td>partirai</td></tr>
+      <tr><td>lui/lei</td><td>parlerà</td><td>prenderà</td><td>partirà</td></tr>
+      <tr><td>noi</td><td>parleremo</td><td>prenderemo</td><td>partiremo</td></tr>
+      <tr><td>voi</td><td>parlerete</td><td>prenderete</td><td>partirete</td></tr>
+      <tr><td>loro</td><td>parleranno</td><td>prenderanno</td><td>partiranno</td></tr></table>
+      <p>Irregulares: <strong>essere</strong> → sarò · <strong>avere</strong> → avrò · <strong>andare</strong> → andrò · <strong>fare</strong> → farò · <strong>venire</strong> → verrò · <strong>volere</strong> → vorrò · <strong>potere</strong> → potrò.</p>`
+    },
+    tips: [
+      "<strong>Ojo:</strong> después de <em>quando</em> y <em>se</em> (si) referidos al futuro, el italiano usa futuro donde el español usa subjuntivo: <em>Quando arriverò</em> = Cuando llegue.",
+      "<strong>Acento:</strong> la tilde final es obligatoria y cambia el significado: <em>parlo</em> (hablo) ≠ <em>parlò</em> (habló, pasado remoto) ≠ <em>parlerò</em> (hablaré)."
+    ],
+    dialog: [
+      ["A", "Allora, cosa farai dopo la laurea?", "Entonces, ¿qué harás después de graduarte?"],
+      ["B", "Ho intenzione di trasferirmi in Italia.", "Tengo la intención de mudarme a Italia."],
+      ["A", "Davvero? Dove andrai?", "¿En serio? ¿A dónde irás?"],
+      ["B", "Forse a Bologna. Prima però risparmierò un po'.", "Quizás a Bolonia. Pero primero ahorraré un poco."],
+      ["A", "Sarà un'esperienza bellissima!", "¡Será una experiencia preciosa!"],
+      ["B", "Lo spero! Quando arriverò, ti chiamerò.", "¡Eso espero! Cuando llegue, te llamaré."]
+    ],
+    quiz: [
+      { q: "Futuro de fare, io:", opts: ["farò", "facerò", "fazzo"], a: 0 },
+      { q: "Futuro de parlare, noi:", opts: ["parlaremo", "parleremo", "parliamo"], a: 1 },
+      { q: "“Cuando llegue, te llamo” =", opts: ["Quando arrivo, ti chiamo", "Quando arriverò, ti chiamerò", "Ambas son posibles"], a: 2 },
+      { q: "Escribe “yo seré” (essere):", fill: ["sarò", "io sarò", "saro"] },
+      { q: "Escribe “ellos irán” (andare):", fill: ["andranno", "loro andranno"] },
+      { q: "Escucha y escribe:", say: "l'anno prossimo", fill: ["l'anno prossimo"] }
+    ]
+  },
+
+  {
+    id: "a2-shopping",
+    level: "A2",
+    title: "Fare shopping: lo, la, li, le",
+    sub: "Ropa, tallas y pronombres directos",
+    intro: "Compra ropa en Italia sin problema: pedir tu talla, probarte algo y decir “me lo llevo”. De paso aprendes los pronombres directos.",
+    vocab: [
+      ["i vestiti", "la ropa", "ves-TÍ-ti"],
+      ["la maglietta", "la camiseta", "ma-LIÉT-ta"],
+      ["la camicia", "la camisa", "ca-MÍ-cha"],
+      ["i pantaloni", "los pantalones", "pan-ta-LÓ-ni"],
+      ["la giacca", "la chaqueta", "YÁC-ca"],
+      ["le scarpe", "los zapatos", "SCÁR-pe"],
+      ["la taglia", "la talla (ropa)", "TÁ-lia"],
+      ["il numero", "la talla (zapatos)", "NÚ-me-ro"],
+      ["il camerino", "el probador", "ca-me-RÍ-no"],
+      ["i saldi / lo sconto", "las rebajas / el descuento", "SÁL-di / SCÓN-to"],
+      ["stretto / largo", "apretado / ancho", "STRÉT-to / LÁR-go"],
+      ["la cassa", "la caja (para pagar)", "CÁS-sa"]
+    ],
+    phrases: [
+      ["Posso provarla?", "¿Me la puedo probar?", ""],
+      ["Che taglia porta?", "¿Qué talla usa?", "Formal"],
+      ["Porto la M.", "Uso la M.", ""],
+      ["Ce l'avete in nero?", "¿La tienen en negro?", "Muy usado: ce l'avete = ¿lo tienen?"],
+      ["Mi sta stretta.", "Me queda apretada.", "stare = quedar (ropa)"],
+      ["Avete una taglia più grande?", "¿Tienen una talla más grande?", ""],
+      ["La prendo!", "¡Me la llevo!", ""],
+      ["Sto solo guardando, grazie.", "Solo estoy mirando, gracias.", ""]
+    ],
+    grammar: {
+      title: "Pronombres directos",
+      html: `<p>Sustituyen a la cosa o persona, como “lo/la/los/las” en español, y van antes del verbo.</p>
+      <table><tr><th>Español</th><th>Italiano</th><th>Ejemplo</th></tr>
+      <tr><td>me</td><td>mi</td><td>Mi chiami?</td></tr>
+      <tr><td>te</td><td>ti</td><td>Ti vedo domani.</td></tr>
+      <tr><td>lo</td><td>lo</td><td>Il cappotto? Lo prendo.</td></tr>
+      <tr><td>la</td><td>la</td><td>La giacca? La provo.</td></tr>
+      <tr><td>nos / os</td><td>ci / vi</td><td>Ci aspetti?</td></tr>
+      <tr><td>los</td><td>li</td><td>I pantaloni? Li compro.</td></tr>
+      <tr><td>las</td><td>le</td><td>Le scarpe? Le provo.</td></tr></table>
+      <p>Con infinitivo se pegan al final: <em>Posso provar<u>la</u>?</em> En passato prossimo el participio concuerda: <em>La giacca? L'ho comprat<u>a</u>.</em></p>`
+    },
+    tips: [
+      "<strong>Falso amigo:</strong> <em>la camicia</em> = camisa, pero <em>la camiseta</em> se dice <em>maglietta</em>. Y <em>il vestito</em> también puede ser “el vestido” o “el traje”.",
+      "<strong>Ojo:</strong> <em>le</em> es “las” (directo femenino plural), no “le” como en español. “Le” en italiano también significa “a ella” (indirecto), lo verás en otra clase."
+    ],
+    dialog: [
+      ["A", "Buongiorno, posso aiutarla?", "Buenos días, ¿le puedo ayudar?"],
+      ["B", "Sì, cerco una giacca. Questa ce l'avete in blu?", "Sí, busco una chaqueta. ¿Esta la tienen en azul?"],
+      ["A", "Certo. Che taglia porta?", "Claro. ¿Qué talla usa?"],
+      ["B", "La L, credo. Posso provarla?", "La L, creo. ¿Me la puedo probar?"],
+      ["A", "Il camerino è in fondo a destra.", "El probador está al fondo a la derecha."],
+      ["B", "Mi sta benissimo. La prendo!", "Me queda perfecta. ¡Me la llevo!"]
+    ],
+    quiz: [
+      { q: "I pantaloni? ___ compro.", opts: ["Lo", "Li", "Le"], a: 1 },
+      { q: "Le scarpe? ___ provo.", opts: ["Le", "Li", "La"], a: 0 },
+      { q: "“Me queda grande” =", opts: ["Mi sta larga", "Mi è grande", "Ho grande"], a: 0 },
+      { q: "Escribe: “¡Me la llevo!”", fill: ["la prendo!", "la prendo"] },
+      { q: "Escribe “la talla” (ropa):", fill: ["la taglia"] },
+      { q: "La maglietta? L'ho ___.", opts: ["comprato", "comprata", "comprati"], a: 1 }
+    ]
+  },
+
+  {
+    id: "a2-salute",
+    level: "A2",
+    title: "Dal medico",
+    sub: "Mi fa male… · dovere, potere, volere",
+    intro: "Si te enfermas en Italia necesitas explicar qué te duele, entender al médico y pedir en la farmacia. Aquí también aprendes los verbos modales.",
+    vocab: [
+      ["la testa", "la cabeza", "TÉS-ta"],
+      ["la gola", "la garganta", "GÓ-la"],
+      ["la pancia", "la barriga", "PÁN-cha"],
+      ["la schiena", "la espalda", "SKIÉ-na"],
+      ["il braccio / le braccia", "el brazo / los brazos", "BRÁT-cho"],
+      ["la gamba", "la pierna", "GÁM-ba"],
+      ["la febbre", "la fiebre", "FÉB-bre"],
+      ["la tosse", "la tos", "TÓS-se"],
+      ["il raffreddore", "el resfriado", "raf-fred-DÓ-re"],
+      ["la ricetta", "la receta médica", "ri-CHÉT-ta"],
+      ["la pastiglia", "la pastilla", "pas-TÍ-lia"],
+      ["il pronto soccorso", "urgencias", "PRÓN-to soc-CÓR-so"]
+    ],
+    phrases: [
+      ["Non mi sento bene.", "No me siento bien.", ""],
+      ["Mi fa male la testa.", "Me duele la cabeza.", "Singular → fa"],
+      ["Mi fanno male i piedi.", "Me duelen los pies.", "Plural → fanno"],
+      ["Ho mal di gola.", "Tengo dolor de garganta.", ""],
+      ["Ho la febbre da ieri.", "Tengo fiebre desde ayer.", ""],
+      ["Sono allergico alla penicillina.", "Soy alérgico a la penicilina.", ""],
+      ["Deve riposare e bere molta acqua.", "Debe descansar y tomar mucha agua.", ""],
+      ["Posso avere qualcosa per il raffreddore?", "¿Me puede dar algo para el resfriado?", "En la farmacia"]
+    ],
+    grammar: {
+      title: "Verbos modales: dovere, potere, volere",
+      html: `<p>Van seguidos de un infinitivo, igual que “deber, poder, querer”. Los tres son irregulares:</p>
+      <table><tr><th>Persona</th><th>dovere</th><th>potere</th><th>volere</th></tr>
+      <tr><td>io</td><td>devo</td><td>posso</td><td>voglio</td></tr>
+      <tr><td>tu</td><td>devi</td><td>puoi</td><td>vuoi</td></tr>
+      <tr><td>lui/lei</td><td>deve</td><td>può</td><td>vuole</td></tr>
+      <tr><td>noi</td><td>dobbiamo</td><td>possiamo</td><td>vogliamo</td></tr>
+      <tr><td>voi</td><td>dovete</td><td>potete</td><td>volete</td></tr>
+      <tr><td>loro</td><td>devono</td><td>possono</td><td>vogliono</td></tr></table>
+      <p><strong>Mi fa male</strong> funciona como <em>mi piace</em>: el verbo concuerda con la parte del cuerpo. <em>Mi fa male il braccio / Mi fanno male le braccia.</em></p>`
+    },
+    tips: [
+      "<strong>Falso amigo:</strong> <em>la ricetta</em> es la receta del médico <u>y</u> la de cocina. Pero <em>constipato</em> significa resfriado/congestionado, ¡no estreñido!",
+      "<strong>Cultura:</strong> las farmacias tienen una cruz verde. Para urgencias el número es el <strong>112</strong>.",
+      "<strong>Plural raro:</strong> algunas partes del cuerpo cambian a femenino en plural: <em>il braccio → le braccia, il dito → le dita, il ginocchio → le ginocchia</em>."
+    ],
+    dialog: [
+      ["A", "Buongiorno, cosa si sente?", "Buenos días, ¿qué siente?"],
+      ["B", "Ho mal di gola e un po' di febbre.", "Tengo dolor de garganta y un poco de fiebre."],
+      ["A", "Da quanto tempo?", "¿Desde hace cuánto?"],
+      ["B", "Da due giorni. E mi fa male anche la testa.", "Desde hace dos días. Y también me duele la cabeza."],
+      ["A", "È un'influenza. Deve stare a letto e prendere queste pastiglie.", "Es una gripe. Debe guardar reposo y tomar estas pastillas."],
+      ["B", "Posso andare a lavorare domani?", "¿Puedo ir a trabajar mañana?"]
+    ],
+    quiz: [
+      { q: "“Me duelen las piernas” =", opts: ["Mi fa male le gambe", "Mi fanno male le gambe", "Ho male le gambe"], a: 1 },
+      { q: "Potere, tu:", opts: ["puoi", "poti", "può"], a: 0 },
+      { q: "Volere, io:", opts: ["volo", "voglio", "vuoglio"], a: 1 },
+      { q: "“Sono constipato” significa…", opts: ["Estoy estreñido", "Estoy resfriado", "Estoy cansado"], a: 1 },
+      { q: "Escribe “Tengo fiebre.”", fill: ["ho la febbre", "ho la febbre."] },
+      { q: "Escribe “nosotros debemos” (dovere):", fill: ["dobbiamo", "noi dobbiamo"] }
+    ]
+  },
+
+  {
+    id: "a2-casa",
+    level: "A2",
+    title: "Cercare casa",
+    sub: "Alquilar piso · comparativos y superlativos",
+    intro: "Buscar apartamento, comparar opciones y hablar con el dueño. Las comparaciones te sirven para todo: ciudades, trabajos, comida…",
+    vocab: [
+      ["l'appartamento", "el apartamento", "ap-par-ta-MÉN-to"],
+      ["l'affitto", "el alquiler", "af-FÍT-to"],
+      ["affittare", "alquilar", "af-fit-TÁ-re"],
+      ["il padrone di casa", "el dueño / casero", "pa-DRÓ-ne"],
+      ["le spese (condominiali)", "los gastos comunes", "SPÉ-se"],
+      ["la caparra", "el depósito / fianza", "ca-PÁR-ra"],
+      ["la camera da letto", "el dormitorio", "CÁ-me-ra da LÉT-to"],
+      ["il soggiorno", "la sala", "sod-YÓR-no"],
+      ["ammobiliato", "amueblado", "am-mo-bi-LIÁ-to"],
+      ["luminoso", "luminoso", "lu-mi-NÓ-so"],
+      ["il coinquilino", "el compañero de piso", "co-in-cui-LÍ-no"],
+      ["il trasloco", "la mudanza", "tras-LÓ-co"]
+    ],
+    phrases: [
+      ["Quanto costa l'affitto al mese?", "¿Cuánto cuesta el alquiler al mes?", ""],
+      ["Le spese sono incluse?", "¿Los gastos están incluidos?", ""],
+      ["Questo è più grande dell'altro.", "Este es más grande que el otro.", ""],
+      ["È meno caro di quanto pensavo.", "Es menos caro de lo que pensaba.", ""],
+      ["È il più luminoso di tutti.", "Es el más luminoso de todos.", ""],
+      ["La zona è tranquillissima.", "La zona es tranquilísima.", ""],
+      ["Quando posso vederlo?", "¿Cuándo lo puedo ver?", ""],
+      ["Cerco una stanza in un appartamento condiviso.", "Busco una habitación en un piso compartido.", ""]
+    ],
+    grammar: {
+      title: "Comparar: più, meno, come",
+      html: `<table><tr><th>Español</th><th>Italiano</th></tr>
+      <tr><td>más … que</td><td>più … di</td></tr>
+      <tr><td>menos … que</td><td>meno … di</td></tr>
+      <tr><td>tan … como</td><td>(così) … come</td></tr>
+      <tr><td>el más …</td><td>il più …</td></tr>
+      <tr><td>-ísimo</td><td>-issimo</td></tr>
+      <tr><td>mejor / peor</td><td>migliore / peggiore</td></tr></table>
+      <p><strong>di</strong> se usa antes de un sustantivo o pronombre: <em>Roma è più grande <u>di</u> Firenze.</em></p>
+      <p><strong>che</strong> se usa al comparar dos adjetivos, verbos o cantidades: <em>È più bello <u>che</u> comodo. Meglio tardi <u>che</u> mai.</em></p>
+      <p><strong>meglio / peggio</strong> son adverbios (mejor/peor con verbos): <em>Parli meglio di me.</em></p>`
+    },
+    tips: [
+      "<strong>Cultura:</strong> en Italia los contratos de alquiler suelen pedir 2-3 meses de <em>caparra</em>. Para estudiantes es muy común vivir en <em>appartamento condiviso</em>.",
+      "<strong>Ojo:</strong> <em>il piano</em> = el piso (planta), y el primer piso italiano es nuestro segundo: la planta baja se llama <em>piano terra</em>."
+    ],
+    dialog: [
+      ["A", "Allora, che ne pensi dei due appartamenti?", "Entonces, ¿qué piensas de los dos apartamentos?"],
+      ["B", "Il primo è più grande, ma il secondo è più luminoso.", "El primero es más grande, pero el segundo es más luminoso."],
+      ["A", "E il prezzo?", "¿Y el precio?"],
+      ["B", "Il secondo costa cento euro in meno, e le spese sono incluse.", "El segundo cuesta cien euros menos, y los gastos están incluidos."],
+      ["A", "Allora è il migliore!", "¡Entonces es el mejor!"],
+      ["B", "Sì, chiamo subito il padrone di casa.", "Sí, llamo ahora mismo al dueño."]
+    ],
+    quiz: [
+      { q: "Milano è più cara ___ Napoli.", opts: ["che", "di", "come"], a: 1 },
+      { q: "È più bello ___ comodo.", opts: ["di", "che", "del"], a: 1 },
+      { q: "“El alquiler” =", opts: ["l'affitto", "l'alquilo", "la caparra"], a: 0 },
+      { q: "Superlativo de “bello” (-ísimo):", opts: ["bellisimo", "bellissimo", "molto bellissimo"], a: 1 },
+      { q: "Escribe “mejor” (adjetivo, il … ristorante):", fill: ["migliore", "il migliore"] },
+      { q: "Escucha y escribe:", say: "le spese sono incluse", fill: ["le spese sono incluse"] }
+    ]
+  },
+
+  {
+    id: "a2-viaggio",
+    level: "A2",
+    title: "In viaggio",
+    sub: "Tren, hotel, aeropuerto · mi, ti, gli, le",
+    intro: "Todo para viajar por Italia: comprar billetes de tren, hacer check-in en el hotel y resolver problemas. Con los pronombres indirectos: “me puede dar…”, “le escribo”.",
+    vocab: [
+      ["il binario", "el andén", "bi-NÁ-rio"],
+      ["andata e ritorno", "ida y vuelta", "an-DÁ-ta e ri-TÓR-no"],
+      ["il treno è in ritardo", "el tren viene con retraso", "ri-TÁR-do"],
+      ["la coincidenza", "el transbordo / conexión", "coin-chi-DÉN-tsa"],
+      ["timbrare / convalidare", "validar el ticket", "tim-BRÁ-re"],
+      ["la valigia", "la maleta", "va-LÍ-ya"],
+      ["il volo", "el vuelo", "VÓ-lo"],
+      ["la carta d'imbarco", "la tarjeta de embarque", "im-BÁR-co"],
+      ["la camera singola / doppia", "habitación simple / doble", "SÍN-go-la / DÓP-pia"],
+      ["la colazione è inclusa", "el desayuno está incluido", "co-la-TSIÓ-ne"],
+      ["la prenotazione", "la reserva", "pre-no-ta-TSIÓ-ne"],
+      ["perdere il treno", "perder el tren", "PÉR-de-re"]
+    ],
+    phrases: [
+      ["Un biglietto di andata e ritorno per Napoli.", "Un billete de ida y vuelta a Nápoles.", ""],
+      ["Da quale binario parte?", "¿De qué andén sale?", ""],
+      ["Mi può dare la chiave, per favore?", "¿Me puede dar la llave, por favor?", "mi = a mí"],
+      ["Le scrivo una mail per confermare.", "Le escribo un correo para confirmar.", "Le = a usted (formal)"],
+      ["Gli ho mandato un messaggio.", "Le mandé un mensaje (a él).", "gli = a él / a ellos"],
+      ["A che ora è il check-out?", "¿A qué hora es el check-out?", ""],
+      ["Il riscaldamento non funziona.", "La calefacción no funciona.", ""],
+      ["Ho perso la coincidenza.", "Perdí la conexión.", ""]
+    ],
+    grammar: {
+      title: "Pronombres indirectos",
+      html: `<p>Responden a “¿a quién?”. Van antes del verbo, como en español.</p>
+      <table><tr><th>Español</th><th>Italiano</th></tr>
+      <tr><td>me (a mí)</td><td>mi</td></tr>
+      <tr><td>te (a ti)</td><td>ti</td></tr>
+      <tr><td>le (a él)</td><td>gli</td></tr>
+      <tr><td>le (a ella)</td><td>le</td></tr>
+      <tr><td>le (a usted)</td><td>Le</td></tr>
+      <tr><td>nos / os</td><td>ci / vi</td></tr>
+      <tr><td>les (a ellos/ellas)</td><td>gli</td></tr></table>
+      <p>Ejemplos: <em>Telefono a Marco → <u>Gli</u> telefono.</em> · <em>Scrivo a Giulia → <u>Le</u> scrivo.</em> · <em>Che cosa <u>ti</u> ha detto?</em></p>`
+    },
+    tips: [
+      "<strong>Transporte:</strong> los billetes regionales de tren en papel hay que <em>convalidarlos</em> en las máquinas verdes antes de subir, o te multan. Los digitales no.",
+      "<strong>Ojo:</strong> <em>gli</em> sirve para “a él” y “a ellos”. En el habla diaria casi nadie usa <em>loro</em> para “a ellos”."
+    ],
+    dialog: [
+      ["A", "Buonasera, ho una prenotazione a nome Page.", "Buenas noches, tengo una reserva a nombre de Page."],
+      ["B", "Sì, una camera doppia per tre notti. Mi può dare un documento?", "Sí, una habitación doble por tres noches. ¿Me puede dar un documento?"],
+      ["A", "Ecco il passaporto. La colazione è inclusa?", "Aquí está el pasaporte. ¿El desayuno está incluido?"],
+      ["B", "Sì, dalle sette alle dieci al piano terra.", "Sí, de siete a diez en la planta baja."],
+      ["A", "Perfetto. Domani devo prendere il treno delle otto per Firenze.", "Perfecto. Mañana tengo que tomar el tren de las ocho a Florencia."],
+      ["B", "Allora Le chiamo un taxi per le sette e mezza?", "¿Entonces le llamo un taxi para las siete y media?"]
+    ],
+    quiz: [
+      { q: "Telefono a Paolo → ___ telefono.", opts: ["Lo", "Gli", "Le"], a: 1 },
+      { q: "Scrivo a Sara → ___ scrivo.", opts: ["Gli", "La", "Le"], a: 2 },
+      { q: "“El andén” =", opts: ["il binario", "la banchina", "il marciapiede"], a: 0 },
+      { q: "Escribe “ida y vuelta”:", fill: ["andata e ritorno"] },
+      { q: "Escribe “la maleta”:", fill: ["la valigia"] },
+      { q: "Escucha y escribe:", say: "il treno è in ritardo", fill: ["il treno è in ritardo", "il treno e in ritardo"] }
+    ]
+  },
+
+  {
+    id: "a2-lavoro",
+    level: "A2",
+    title: "Il colloquio di lavoro",
+    sub: "Entrevista y CV · condizionale",
+    intro: "Prepárate para una entrevista de trabajo o una conversación profesional, y aprende el condicional: la forma educada de pedir y de hablar de deseos.",
+    vocab: [
+      ["il colloquio", "la entrevista", "col-LÓ-cuio"],
+      ["il curriculum", "el CV", "cur-RÍ-cu-lum"],
+      ["l'azienda", "la empresa", "a-DZIÉN-da"],
+      ["lo stipendio", "el sueldo", "sti-PÉN-dio"],
+      ["il contratto", "el contrato", "con-TRÁT-to"],
+      ["a tempo pieno / part-time", "a tiempo completo / parcial", "a TÉM-po PIÉ-no"],
+      ["il capo", "el jefe", "CÁ-po"],
+      ["il collega", "el compañero de trabajo", "col-LÉ-ga"],
+      ["le ferie", "las vacaciones (laborales)", "FÉ-rie"],
+      ["l'esperienza", "la experiencia", "es-pe-RIÉN-tsa"],
+      ["candidarsi", "postularse", "can-di-DÁR-si"],
+      ["il punto di forza", "el punto fuerte", "PÚN-to di FÓR-tsa"]
+    ],
+    phrases: [
+      ["Mi piacerebbe lavorare con voi.", "Me gustaría trabajar con ustedes.", ""],
+      ["Ho due anni di esperienza nel settore.", "Tengo dos años de experiencia en el sector.", ""],
+      ["Parlo spagnolo, inglese e un po' di italiano.", "Hablo español, inglés y un poco de italiano.", ""],
+      ["Il mio punto di forza è la flessibilità.", "Mi punto fuerte es la flexibilidad.", ""],
+      ["Potrebbe ripetere la domanda?", "¿Podría repetir la pregunta?", ""],
+      ["Quando potrei cominciare?", "¿Cuándo podría empezar?", ""],
+      ["Dovresti mandare il curriculum entro venerdì.", "Deberías mandar el CV antes del viernes.", "Consejo → dovresti"],
+      ["Sarei disponibile da subito.", "Estaría disponible de inmediato.", ""]
+    ],
+    grammar: {
+      title: "Condizionale presente",
+      html: `<p>Raíz del futuro + <strong>-ei, -esti, -ebbe, -emmo, -este, -ebbero</strong>. Equivale a “-ría” en español.</p>
+      <table><tr><th>Persona</th><th>parlare</th><th>essere</th><th>potere</th></tr>
+      <tr><td>io</td><td>parlerei</td><td>sarei</td><td>potrei</td></tr>
+      <tr><td>tu</td><td>parleresti</td><td>saresti</td><td>potresti</td></tr>
+      <tr><td>lui/lei</td><td>parlerebbe</td><td>sarebbe</td><td>potrebbe</td></tr>
+      <tr><td>noi</td><td>parleremmo</td><td>saremmo</td><td>potremmo</td></tr>
+      <tr><td>voi</td><td>parlereste</td><td>sareste</td><td>potreste</td></tr>
+      <tr><td>loro</td><td>parlerebbero</td><td>sarebbero</td><td>potrebbero</td></tr></table>
+      <p>Usos: <strong>pedir con cortesía</strong> (<em>vorrei, potrebbe…?</em>), <strong>deseos</strong> (<em>mi piacerebbe</em>), <strong>consejos</strong> (<em>dovresti</em>).</p>`
+    },
+    tips: [
+      "<strong>Ojo:</strong> <em>noi</em> lleva doble m (<em>parleremmo</em> = hablaríamos) y el futuro una sola (<em>parleremo</em> = hablaremos). Se distinguen al pronunciar.",
+      "<strong>Falso amigo:</strong> <em>il capo</em> es el jefe; <em>la carriera</em> es la carrera profesional, pero la carrera universitaria es <em>il corso di laurea</em>."
+    ],
+    dialog: [
+      ["A", "Buongiorno, si accomodi. Mi parli un po' di Lei.", "Buenos días, siéntese. Hábleme un poco de usted."],
+      ["B", "Ho 24 anni, sono panamense e ho esperienza nel servizio clienti.", "Tengo 24 años, soy panameño y tengo experiencia en atención al cliente."],
+      ["A", "Perché vorrebbe lavorare con noi?", "¿Por qué querría trabajar con nosotros?"],
+      ["B", "Mi piacerebbe crescere in un'azienda internazionale.", "Me gustaría crecer en una empresa internacional."],
+      ["A", "Sarebbe disponibile a lavorare nel weekend?", "¿Estaría disponible para trabajar los fines de semana?"],
+      ["B", "Sì, nessun problema. Quando potrei cominciare?", "Sí, ningún problema. ¿Cuándo podría empezar?"]
+    ],
+    quiz: [
+      { q: "“Me gustaría” =", opts: ["Mi piacerà", "Mi piacerebbe", "Mi piaceva"], a: 1 },
+      { q: "Condicional de potere, Lei (formal):", opts: ["potrebbe", "potrà", "può"], a: 0 },
+      { q: "“Hablaríamos” =", opts: ["parleremo", "parleremmo", "parlavamo"], a: 1 },
+      { q: "Escribe “yo sería / estaría” (essere):", fill: ["sarei", "io sarei"] },
+      { q: "Escribe “deberías” (dovere, tu):", fill: ["dovresti", "tu dovresti"] },
+      { q: "“Lo stipendio” es…", opts: ["el horario", "el sueldo", "el contrato"], a: 1 }
+    ]
+  },
+
+  {
+    id: "a2-colloquiale",
+    level: "A2",
+    title: "Parlare come un italiano",
+    sub: "Expresiones, chats e imperativo informal",
+    intro: "Lo que no viene en los libros: las muletillas y expresiones que oirás todo el día, cómo escriben los italianos por WhatsApp y el imperativo para hablar con amigos.",
+    vocab: [
+      ["Dai!", "¡Vamos! / ¡No me digas!", "DAI"],
+      ["Boh", "Ni idea", "BO"],
+      ["Magari!", "¡Ojalá!", "ma-GÁ-ri"],
+      ["Figurati!", "¡No hay de qué! / ¡Para nada!", "fi-GÚ-ra-ti"],
+      ["Meno male", "Menos mal", "MÉ-no MÁ-le"],
+      ["Che figata!", "¡Qué chévere!", "fi-GÁ-ta"],
+      ["Mi raccomando", "Por favor, no lo olvides", "rac-co-MÁN-do"],
+      ["Non vedo l'ora!", "¡No veo la hora!", "non VÉ-do LÓ-ra"],
+      ["Allora…", "Entonces… / Bueno…", "al-LÓ-ra"],
+      ["Insomma", "En fin / Más o menos", "in-SÓM-ma"],
+      ["Va be'", "Bueno, vale", "va BE"],
+      ["Ci sta", "Tiene sentido / Me parece bien", "chi STA"]
+    ],
+    phrases: [
+      ["Dimmi tutto!", "¡Cuéntamelo todo!", "di' + mi"],
+      ["Fammi sapere.", "Avísame.", "fa' + mi"],
+      ["Vieni stasera? Dai!", "¿Vienes esta noche? ¡Anda!", ""],
+      ["Non ti preoccupare.", "No te preocupes.", "No + infinitivo"],
+      ["Scrivimi quando arrivi.", "Escríbeme cuando llegues.", ""],
+      ["Cmq nn posso, scs", "Comunque non posso, scusa", "Chat: “igual no puedo, perdón”"],
+      ["Xké nn rispondi?", "Perché non rispondi?", "Chat: ¿por qué no respondes?"],
+      ["Tvb ❤️", "Ti voglio bene", "Te quiero (amigos y familia)"]
+    ],
+    grammar: {
+      title: "Imperativo informal (tu)",
+      html: `<table><tr><th>Verbo</th><th>tu</th><th>Ejemplo</th></tr>
+      <tr><td>parlare (-are)</td><td>parla!</td><td>Parla più piano!</td></tr>
+      <tr><td>prendere (-ere)</td><td>prendi!</td><td>Prendi un caffè!</td></tr>
+      <tr><td>sentire (-ire)</td><td>senti!</td><td>Senti, ti devo dire una cosa.</td></tr>
+      <tr><td>fare</td><td>fa' / fai</td><td>Fammi vedere!</td></tr>
+      <tr><td>dire</td><td>di'</td><td>Dimmi!</td></tr>
+      <tr><td>andare</td><td>va' / vai</td><td>Vai tranquillo!</td></tr></table>
+      <p>Los pronombres se pegan al final: <em>scrivi<u>mi</u>, chiama<u>lo</u></em>. Con <em>fa', di', va'</em> la consonante se duplica: <em>fa<u>mm</u>i, di<u>mm</u>i</em>.</p>
+      <p><strong>Negativo:</strong> <em>non</em> + infinitivo: <em>Non parlare! Non ti preoccupare!</em></p>`
+    },
+    tips: [
+      "<strong>Ti voglio bene</strong> es cariño a amigos y familia. <strong>Ti amo</strong> es solo para la pareja. ¡No los confundas!",
+      "<strong>Chat:</strong> <em>x</em> = per (xké = perché, xò = però), <em>cmq</em> = comunque, <em>nn</em> = non, <em>raga</em> = ragazzi, <em>grz</em> = grazie, <em>ahah</em> = jaja.",
+      "<strong>Gesto:</strong> la famosa mano con los dedos juntos hacia arriba significa “¿pero qué dices?”. Úsala con moderación 😄."
+    ],
+    dialog: [
+      ["A", "Raga, stasera pizza da me?", "Chicos, ¿esta noche pizza en mi casa?"],
+      ["B", "Dai, che figata! A che ora?", "¡Vamos, qué chévere! ¿A qué hora?"],
+      ["A", "Boh, verso le nove? Fammi sapere se vieni.", "Ni idea, ¿tipo a las nueve? Avísame si vienes."],
+      ["B", "Ci sta. Porto io le birre.", "Me parece bien. Yo llevo las cervezas."],
+      ["A", "Grazie mille!", "¡Muchas gracias!"],
+      ["B", "Figurati! Non vedo l'ora.", "¡No hay de qué! No veo la hora."]
+    ],
+    quiz: [
+      { q: "Alguien te pregunta algo y no sabes. Dices…", opts: ["Magari!", "Boh", "Figurati!"], a: 1 },
+      { q: "“¡Ojalá!” =", opts: ["Magari!", "Dai!", "Meno male!"], a: 0 },
+      { q: "Imperativo: “¡Dime!”", opts: ["Dici!", "Dimmi!", "Dimi!"], a: 1 },
+      { q: "“No te preocupes” =", opts: ["Non ti preoccupi", "Non preoccuparti", "Non ti preoccupare / Non preoccuparti"], a: 2 },
+      { q: "Escribe “Avísame.” (fare sapere):", fill: ["fammi sapere", "fammi sapere."] },
+      { q: "A tu mejor amigo le dices…", opts: ["Ti amo", "Ti voglio bene", "Ti piaccio"], a: 1 },
+      { q: "Escucha y escribe:", say: "non vedo l'ora", fill: ["non vedo l'ora", "non vedo l'ora!"] }
+    ]
   }
 ];

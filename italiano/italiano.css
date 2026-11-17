@@ -73,6 +73,16 @@ h3 { font-size: 1.1rem; margin-bottom: 8px; }
 .bar > div { height: 100%; background: var(--verde); width: 0; transition: width .4s; }
 
 .lesson-list { display: flex; flex-direction: column; gap: 10px; margin-top: 22px; }
+.level-head {
+  display: flex; align-items: center; gap: 10px; margin-top: 18px;
+  font-family: 'Fraunces', Georgia, serif; font-size: 1.25rem; font-weight: 700;
+}
+.level-head:first-child { margin-top: 0; }
+.level-head b {
+  font-family: 'Inter', sans-serif; font-size: 13px; color: #fff; background: var(--verde);
+  padding: 4px 9px; border-radius: 8px;
+}
+.level-head span { margin-left: auto; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; color: var(--muted); }
 .lesson {
   display: flex; align-items: center; gap: 14px; text-decoration: none;
   background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);

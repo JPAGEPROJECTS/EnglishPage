@@ -1,7 +1,7 @@
 // Service worker: guarda la app para que funcione sin internet.
 // Estrategia: muestra lo guardado al instante y, en segundo plano, descarga la versión nueva
 // para la próxima vez. Si agregas páginas nuevas, añádelas a ARCHIVOS y sube VERSION.
-const VERSION = 'v1';
+const VERSION = 'v2';
 const CACHE = 'idiomas-' + VERSION;
 const ARCHIVOS = [
   './',

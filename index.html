@@ -128,9 +128,9 @@
       <div class="strip"><i></i><i></i><i></i></div>
       <div class="flag">🇮🇹</div>
       <div class="lang-name">Impariamo <em>l'italiano</em></div>
-      <div class="lang-desc">Mi curso personal: abecedario, números, conversación y gramática, con audio y test en cada clase.</div>
+      <div class="lang-desc">Mi curso personal, niveles A1 y A2: conversación, gramática y vida real en Italia, con audio y test en cada clase.</div>
       <div class="lang-foot">
-        <span class="pill" id="it-progress">Personal · A1</span>
+        <span class="pill" id="it-progress">Personal · A1 + A2</span>
         <span class="go">Entra →</span>
       </div>
     </a>
@@ -198,6 +198,6 @@
     document.getElementById('it-progress').textContent = `${done} / ${LEZIONI.length} clases`;
   } catch (e) {}
 </script>
-<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});</script>
 </body>
 </html>

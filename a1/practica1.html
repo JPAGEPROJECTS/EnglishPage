@@ -917,6 +917,6 @@ function check(item) {
   item.classList.toggle('done');
 }
 </script>
-<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js');</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js').catch(() => {});</script>
 </body>
 </html>

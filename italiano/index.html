@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Idiomas">
-<title>Italiano A1</title>
+<title>Italiano</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="italiano.css">
 </head>
@@ -22,7 +22,7 @@
 </div>
 
 <div class="wrap">
-  <div class="kicker">Nivel A1 · Curso personal</div>
+  <div class="kicker">Niveles A1 y A2 · Curso personal</div>
   <h1>Impariamo <em>l'italiano</em></h1>
   <p class="lead">Clases cortas para aprender italiano partiendo del español: vocabulario con audio, gramática explicada, diálogos reales y un test al final de cada clase.</p>
 
@@ -41,11 +41,23 @@
   }
   const scores = getScores();
   const list = document.getElementById('list');
-  let done = 0;
+  const NIVELES = { A1: 'Principiante', A2: 'Básico' };
+  let done = 0, nivel = null, head = null, doneNivel = 0, totNivel = 0;
+  function cerrarNivel() { if (head) head.querySelector('span').textContent = `${doneNivel} / ${totNivel}`; }
   LEZIONI.forEach((l, i) => {
+    const lv = l.level || 'A1';
+    if (lv !== nivel) {
+      cerrarNivel();
+      nivel = lv; doneNivel = 0; totNivel = 0;
+      head = document.createElement('div');
+      head.className = 'level-head';
+      head.innerHTML = `<b>${lv}</b> ${NIVELES[lv] || ''} <span></span>`;
+      list.appendChild(head);
+    }
+    totNivel++;
     const s = scores[l.id];
     const passed = s && s.best >= 0.7;
-    if (passed) done++;
+    if (passed) { done++; doneNivel++; }
     const a = document.createElement('a');
     a.className = 'lesson' + (passed ? ' done' : '');
     a.href = 'lezione.html?n=' + (i + 1);
@@ -58,9 +70,10 @@
       ${s ? `<div class="lesson-score">${Math.round(s.best * 100)}%</div>` : '<div class="lesson-score" style="color:var(--muted)">›</div>'}`;
     list.appendChild(a);
   });
+  cerrarNivel();
   document.getElementById('prog-label').textContent = `${done} / ${LEZIONI.length} clases`;
   document.getElementById('prog-bar').style.width = (done / LEZIONI.length * 100) + '%';
 </script>
-<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js');</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js').catch(() => {});</script>
 </body>
 </html>
