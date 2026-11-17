@@ -1,13 +1,193 @@
 // Contenido de las clases de italiano (nivel A1, para adulto hispanohablante).
 // Para agregar una clase nueva, copia un objeto y cambia el contenido.
-// vocab:   [italiano, español, pronunciación]
+// id:      identificador único (se usa para guardar tu progreso, no lo cambies)
+// vocab:   [italiano, español, pronunciación, texto a leer en voz alta (opcional)]
 // phrases: [italiano, español, nota opcional]
 // dialog:  ["A" | "B", italiano, español]
 // quiz:    { q, opts, a }  (opción múltiple, a = índice correcto)
 //          { q, fill: [respuestas válidas] }  (escribir)
+//          añade say: "texto" a cualquier pregunta para que tenga botón de audio
 
 const LEZIONI = [
   {
+    id: "alfabeto",
+    title: "L'alfabeto e la pronuncia",
+    sub: "A, bi, ci… cómo suena cada letra",
+    intro: "El alfabeto italiano tiene solo 21 letras propias. Aquí aprendes cómo se llaman, cómo deletrear tu nombre y las reglas de pronunciación que más confunden a un hispanohablante.",
+    vocab: [
+      ["A", "como la “a” española", "a", "a"],
+      ["B — bi", "", "bi", "bi"],
+      ["C — ci", "", "chi", "ci"],
+      ["D — di", "", "di", "di"],
+      ["E — e", "", "e", "e"],
+      ["F — effe", "", "ÉF-fe", "effe"],
+      ["G — gi", "", "yi (dyi)", "gi"],
+      ["H — acca", "siempre muda", "ÁK-ka", "acca"],
+      ["I — i", "", "i", "i"],
+      ["L — elle", "", "ÉL-le", "elle"],
+      ["M — emme", "", "ÉM-me", "emme"],
+      ["N — enne", "", "ÉN-ne", "enne"],
+      ["O — o", "", "o", "o"],
+      ["P — pi", "", "pi", "pi"],
+      ["Q — cu", "siempre seguida de u", "ku", "cu"],
+      ["R — erre", "vibrante, como “pero/perro”", "ÉR-re", "erre"],
+      ["S — esse", "", "ÉS-se", "esse"],
+      ["T — ti", "", "ti", "ti"],
+      ["U — u", "", "u", "u"],
+      ["V — vu", "con los dientes sobre el labio", "vu", "vu"],
+      ["Z — zeta", "suena “ts” o “dz”", "DZÉ-ta", "zeta"],
+      ["J — i lunga", "solo en palabras extranjeras", "i LÚN-ga", "i lunga"],
+      ["K — cappa", "solo en palabras extranjeras", "CÁP-pa", "cappa"],
+      ["W — doppia vu", "solo en palabras extranjeras", "DÓP-pia vu", "doppia vu"],
+      ["X — ics", "solo en palabras extranjeras", "iks", "ics"],
+      ["Y — ipsilon", "solo en palabras extranjeras", "ÍP-si-lon", "ipsilon"]
+    ],
+    phrases: [
+      ["Come si scrive?", "¿Cómo se escribe?", "La pregunta clave para deletrear"],
+      ["Come si pronuncia?", "¿Cómo se pronuncia?", ""],
+      ["Puoi ripetere, per favore?", "¿Puedes repetir, por favor?", ""],
+      ["Più piano, per favore.", "Más despacio, por favor.", ""],
+      ["Si scrive con due elle.", "Se escribe con doble ele.", "Las dobles se dicen “due + letra”"],
+      ["Mi chiamo Page: pi, a, gi, e.", "Me llamo Page: P, A, G, E.", ""],
+      ["Cosa vuol dire…?", "¿Qué significa…?", "Muy útil en clase"]
+    ],
+    grammar: {
+      title: "Las reglas de pronunciación que tienes que saber",
+      html: `<p>El italiano se lee casi como se escribe, igual que el español. Solo hay que memorizar estos grupos:</p>
+      <table><tr><th>Se escribe</th><th>Suena</th><th>Ejemplo</th></tr>
+      <tr><td>ca, co, cu</td><td>ka, ko, ku</td><td>casa, cotto</td></tr>
+      <tr><td>ce, ci</td><td>che, chi</td><td>cena, ciao</td></tr>
+      <tr><td>che, chi</td><td>ke, ki</td><td>che, chiave</td></tr>
+      <tr><td>ga, go, gu</td><td>ga, go, gu</td><td>gatto, gusto</td></tr>
+      <tr><td>ge, gi</td><td>dye, dyi (como “yo” fuerte)</td><td>gelato, giorno</td></tr>
+      <tr><td>ghe, ghi</td><td>gue, gui</td><td>spaghetti</td></tr>
+      <tr><td>gn</td><td>ñ</td><td>bagno, gnocchi</td></tr>
+      <tr><td>gli</td><td>lli suave</td><td>famiglia, figlio</td></tr>
+      <tr><td>sce, sci</td><td>she, shi</td><td>pesce, sci</td></tr>
+      <tr><td>z, zz</td><td>ts o dz</td><td>pizza, zero</td></tr>
+      <tr><td>h</td><td>muda</td><td>ho, hotel</td></tr></table>
+      <p><strong>Consonantes dobles</strong> (tt, ll, ss, pp…): se mantienen un instante más. <em>Pala</em> (pala) ≠ <em>palla</em> (pelota); <em>nono</em> (noveno) ≠ <em>nonno</em> (abuelo).</p>`
+    },
+    tips: [
+      "<strong>Ojo:</strong> la regla de <em>c/ch</em> es al revés que en español: <em>ci</em> = “chi” y <em>chi</em> = “ki”. Pasa lo mismo con <em>g/gh</em>.",
+      "<strong>Truco:</strong> para deletrear por teléfono, los italianos usan nombres de ciudades: “A come Ancona, B come Bologna, C come Como…”.",
+      "<strong>Acento:</strong> casi siempre va en la penúltima sílaba. Solo se escribe la tilde cuando va en la última: <em>città, caffè, perché</em>."
+    ],
+    dialog: [
+      ["A", "Buongiorno, ho una prenotazione.", "Buenos días, tengo una reserva."],
+      ["B", "A che nome?", "¿A nombre de quién?"],
+      ["A", "Page. Pi, a, gi, e.", "Page. P, A, G, E."],
+      ["B", "E il nome?", "¿Y el nombre?"],
+      ["A", "Jonathan: i lunga, o, enne, a, ti, acca, a, enne.", "Jonathan: J, O, N, A, T, H, A, N."],
+      ["B", "Perfetto, ecco la chiave. Camera dodici.", "Perfecto, aquí está la llave. Habitación doce."]
+    ],
+    quiz: [
+      { q: "¿Cuántas letras propias tiene el alfabeto italiano?", opts: ["21", "26", "27"], a: 0 },
+      { q: "¿Cómo se llama la letra H?", opts: ["hache", "acca", "ache"], a: 1 },
+      { q: "“Ciao” suena…", opts: ["SIAO", "KIAO", "CHAO"], a: 2 },
+      { q: "“Chiave” suena…", opts: ["CHIA-ve", "KIA-ve", "SHIA-ve"], a: 1 },
+      { q: "“Gnocchi” suena…", opts: ["GNO-ki", "ÑO-ki", "NO-chi"], a: 1 },
+      { q: "Escucha y escribe la palabra:", say: "famiglia", fill: ["famiglia"] },
+      { q: "Escucha y escribe la palabra:", say: "pesce", fill: ["pesce"] },
+      { q: "Escribe cómo se llama la letra R:", fill: ["erre"] }
+    ]
+  },
+
+  {
+    id: "numeri",
+    title: "I numeri",
+    sub: "0–20 · decenas · cientos y miles",
+    intro: "Todos los números que necesitas: del 0 al 20 (que hay que memorizar), las decenas y cómo armar cualquier número hasta un millón.",
+    vocab: [
+      ["zero", "0", "DZÉ-ro"],
+      ["uno", "1", "Ú-no"],
+      ["due", "2", "DÚ-e"],
+      ["tre", "3", "TRE"],
+      ["quattro", "4", "CUÁT-tro"],
+      ["cinque", "5", "CHÍN-cue"],
+      ["sei", "6", "SÉI"],
+      ["sette", "7", "SÉT-te"],
+      ["otto", "8", "ÓT-to"],
+      ["nove", "9", "NÓ-ve"],
+      ["dieci", "10", "DIÉ-chi"],
+      ["undici", "11", "ÚN-di-chi"],
+      ["dodici", "12", "DÓ-di-chi"],
+      ["tredici", "13", "TRÉ-di-chi"],
+      ["quattordici", "14", "cuat-TÓR-di-chi"],
+      ["quindici", "15", "CUÍN-di-chi"],
+      ["sedici", "16", "SÉ-di-chi"],
+      ["diciassette", "17", "di-chas-SÉT-te"],
+      ["diciotto", "18", "di-CHÓT-to"],
+      ["diciannove", "19", "di-chan-NÓ-ve"],
+      ["venti", "20", "VÉN-ti"],
+      ["trenta", "30", "TRÉN-ta"],
+      ["quaranta", "40", "cua-RÁN-ta"],
+      ["cinquanta", "50", "chin-CUÁN-ta"],
+      ["sessanta", "60", "ses-SÁN-ta"],
+      ["settanta", "70", "set-TÁN-ta"],
+      ["ottanta", "80", "ot-TÁN-ta"],
+      ["novanta", "90", "no-VÁN-ta"],
+      ["cento", "100", "CHÉN-to"],
+      ["duecento", "200", "due-CHÉN-to"],
+      ["mille", "1.000", "MÍL-le"],
+      ["duemila", "2.000", "due-MÍ-la"],
+      ["un milione", "1.000.000", "un mi-LIÓ-ne"]
+    ],
+    phrases: [
+      ["ventidue", "22", "venti + due, todo junto"],
+      ["ventuno", "21", "venti pierde la -i delante de uno"],
+      ["trentotto", "38", "trenta pierde la -a delante de otto"],
+      ["quarantatré", "43", "los terminados en 3 llevan tilde"],
+      ["centocinquanta", "150", ""],
+      ["milleduecento", "1.200", "mille → mila en plural"],
+      ["duemilaventisei", "2026", "Los años se dicen como un número normal"],
+      ["Il mio numero è tre, quattro, sette…", "Mi número es 3, 4, 7…", "El teléfono se dice cifra por cifra"]
+    ],
+    grammar: {
+      title: "Cómo se arma cualquier número",
+      html: `<p>Los números se escriben <strong>todo junto</strong>, en una sola palabra (sí, aunque sea larguísima):</p>
+      <table><tr><th>Número</th><th>Italiano</th></tr>
+      <tr><td>24</td><td>ventiquattro</td></tr>
+      <tr><td>31</td><td>trentuno</td></tr>
+      <tr><td>58</td><td>cinquantotto</td></tr>
+      <tr><td>73</td><td>settantatré</td></tr>
+      <tr><td>101</td><td>centouno</td></tr>
+      <tr><td>365</td><td>trecentosessantacinque</td></tr>
+      <tr><td>1.999</td><td>millenovecentonovantanove</td></tr></table>
+      <p>Tres reglas:</p>
+      <p>1. Si sigue <strong>uno</strong> u <strong>otto</strong>, la decena pierde su última vocal: <em>ventuno, quarantotto</em> (pero <em>centouno, centootto</em> se mantienen).</p>
+      <p>2. Si termina en <strong>3</strong>, lleva tilde: <em>trentatré</em>.</p>
+      <p>3. <strong>Mille</strong> en singular, <strong>-mila</strong> en plural: <em>mille, duemila, diecimila</em>.</p>`
+    },
+    tips: [
+      "<strong>Ojo:</strong> en Italia el punto separa miles y la coma los decimales, igual que en buena parte de Latinoamérica: 1.500,50 €. Panamá usa la convención contraria (1,500.50), así que fíjate bien en los precios.",
+      "<strong>Truco:</strong> del 11 al 16 terminan en <em>-dici</em> (undici… sedici); del 17 al 19 empiezan con <em>dici-</em> (diciassette, diciotto, diciannove). Igual que en español: once… dieciséis, diecisiete…",
+      "<strong>Edad:</strong> “Tengo 24 años” = <em>Ho ventiquattro anni</em>."
+    ],
+    dialog: [
+      ["A", "Mi dai il tuo numero?", "¿Me das tu número?"],
+      ["B", "Certo: tre, quattro, sette, due, uno, otto, nove, cinque, zero, sei.", "Claro: 3, 4, 7, 2, 1, 8, 9, 5, 0, 6."],
+      ["A", "Aspetta, più piano! Tre, quattro, sette…", "¡Espera, más despacio! 3, 4, 7…"],
+      ["B", "…due, uno, otto.", "…2, 1, 8."],
+      ["A", "Perfetto. Quanti anni hai, a proposito?", "Perfecto. ¿Cuántos años tienes, por cierto?"],
+      ["B", "Ventiquattro. E tu?", "Veinticuatro. ¿Y tú?"]
+    ],
+    quiz: [
+      { q: "¿Cómo se dice 17?", opts: ["diecisette", "diciassette", "settedici"], a: 1 },
+      { q: "¿Cómo se dice 31?", opts: ["trentauno", "trentuno", "trenta e uno"], a: 1 },
+      { q: "¿Cómo se dice 2.000?", opts: ["duemille", "duemila", "due mille"], a: 1 },
+      { q: "Escucha y escribe el número (en cifras):", say: "quarantasette", fill: ["47", "quarantasette"] },
+      { q: "Escucha y escribe el número (en cifras):", say: "diciotto", fill: ["18", "diciotto"] },
+      { q: "Escucha y escribe el número (en cifras):", say: "sessantatré", fill: ["63", "sessantatré", "sessantatre"] },
+      { q: "Escucha y escribe el número (en cifras):", say: "centoventi", fill: ["120", "centoventi"] },
+      { q: "Escribe con letras: 24", fill: ["ventiquattro"] },
+      { q: "Escribe con letras: 15", fill: ["quindici"] },
+      { q: "Escribe con letras: 88", fill: ["ottantotto"] }
+    ]
+  },
+
+  {
+    id: "saluti",
     title: "Ciao! Saludos y presentaciones",
     sub: "Ciao · Buongiorno · Mi chiamo…",
     intro: "Lo básico para no quedarte en blanco: saludar, presentarte y despedirte, tanto con amigos como en situaciones formales.",
@@ -69,6 +249,7 @@ const LEZIONI = [
   },
 
   {
+    id: "essere-avere",
     title: "Essere e avere",
     sub: "Soy, tengo · edad, nacionalidad, profesión",
     intro: "Los dos verbos más importantes. Con ellos ya puedes hablar de ti: quién eres, cuántos años tienes, a qué te dedicas.",
@@ -130,8 +311,9 @@ const LEZIONI = [
   },
 
   {
-    title: "Numeri e orari",
-    sub: "0–100 · ¿qué hora es? · el teléfono",
+    id: "orari",
+    title: "Orari e prezzi",
+    sub: "¿Qué hora es? · precios · quedar con alguien",
     intro: "Números para dar tu número, pagar, decir la hora y quedar con alguien.",
     vocab: [
       ["uno, due, tre", "1, 2, 3", "Ú-no, DÚ-e, TRE"],
@@ -192,6 +374,7 @@ const LEZIONI = [
   },
 
   {
+    id: "bar",
     title: "Al bar",
     sub: "Pedir café, aperitivo y pagar",
     intro: "El bar es el centro de la vida italiana: desayuno de pie, café a cualquier hora y aperitivo antes de cenar.",
@@ -253,6 +436,7 @@ const LEZIONI = [
   },
 
   {
+    id: "giornata",
     title: "La mia giornata",
     sub: "Verbos -are / -ere / -ire · rutina",
     intro: "Aprende el presente de los verbos regulares y describe tu día normal: trabajo, gym, estudio, salir.",
@@ -314,6 +498,7 @@ const LEZIONI = [
   },
 
   {
+    id: "citta",
     title: "In giro per la città",
     sub: "Direcciones, transporte y lugares",
     intro: "Para moverte solo por una ciudad italiana: preguntar dónde está algo, entender la respuesta y comprar un ticket.",
@@ -376,6 +561,7 @@ const LEZIONI = [
   },
 
   {
+    id: "ristorante",
     title: "Al ristorante",
     sub: "Reservar, pedir y gustos",
     intro: "Una cena completa en italiano: reservar mesa, entender el menú, pedir y decir lo que te gusta o no.",
@@ -438,6 +624,7 @@ const LEZIONI = [
   },
 
   {
+    id: "weekend",
     title: "Il weekend: passato prossimo",
     sub: "Contar qué hiciste · ho fatto, sono andato",
     intro: "El pasado más usado en la conversación. Con esto puedes contar tu fin de semana, un viaje o una salida.",

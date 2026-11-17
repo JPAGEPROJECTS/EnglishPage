@@ -108,7 +108,7 @@ h3 { font-size: 1.1rem; margin-bottom: 8px; }
   background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
   padding: 16px; margin-bottom: 12px;
 }
-.vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
 .word {
   background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
   padding: 12px 14px; display: flex; align-items: center; gap: 10px;

@@ -106,9 +106,9 @@
   });
 
   // ---- Vocabulario ----
-  document.getElementById('vocab').innerHTML = L.vocab.map(([it, es, pr]) => `
-    <div class="word">${playBtn(it)}
-      <div class="word-text"><div class="it">${it}</div><div class="pron">/${pr}/</div><div class="es">${es}</div></div>
+  document.getElementById('vocab').innerHTML = L.vocab.map(([it, es, pr, say]) => `
+    <div class="word">${playBtn(say || it)}
+      <div class="word-text"><div class="it">${it}</div><div class="pron">/${pr}/</div>${es ? `<div class="es">${es}</div>` : ''}</div>
     </div>`).join('');
 
   // ---- Frases ----
@@ -144,7 +144,7 @@
   const quiz = document.getElementById('quiz');
   quiz.innerHTML = L.quiz.map((q, i) => `
     <div class="card q" data-i="${i}">
-      <div class="q-text">${i + 1}. ${q.q}</div>
+      <div class="q-text" style="display:flex;align-items:center;gap:10px">${q.say ? playBtn(q.say) : ''}<span>${i + 1}. ${q.q}</span></div>
       ${q.opts
         ? `<div class="opts">${q.opts.map((o, j) => `<button class="opt" data-j="${j}">${o}</button>`).join('')}</div>`
         : `<div class="fill"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Escribe en italiano…"></div>`}
@@ -179,8 +179,8 @@
     const pct = ok / L.quiz.length;
     let scores = {};
     try { scores = JSON.parse(localStorage.getItem('it-scores') || '{}'); } catch (e) {}
-    const prev = scores[n - 1] ? scores[n - 1].best : 0;
-    scores[n - 1] = { best: Math.max(prev, pct), last: pct };
+    const prev = scores[L.id] ? scores[L.id].best : 0;
+    scores[L.id] = { best: Math.max(prev, pct), last: pct };
     try { localStorage.setItem('it-scores', JSON.stringify(scores)); } catch (e) {}
     document.getElementById('score').textContent = `${ok} / ${L.quiz.length}`;
     document.getElementById('score-msg').textContent =
