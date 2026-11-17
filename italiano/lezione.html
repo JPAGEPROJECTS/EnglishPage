@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lezione — Italiano A1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="italiano.css">
+</head>
+<body>
+<div class="flag-strip"><i></i><i></i><i></i></div>
+<div class="top">
+  <a href="index.html">← Clases</a>
+  <span class="brand">Italiano 🇮🇹</span>
+</div>
+
+<div class="wrap">
+  <div class="kicker" id="kicker"></div>
+  <h1 id="title" style="font-size:clamp(1.7rem,5vw,2.3rem)"></h1>
+  <p class="lead" id="intro"></p>
+
+  <div class="tabs" id="tabs">
+    <button data-p="vocab" class="on">Vocabulario</button>
+    <button data-p="phrases">Frases</button>
+    <button data-p="grammar">Gramática</button>
+    <button data-p="dialog">Diálogo</button>
+    <button data-p="quiz">Test</button>
+  </div>
+
+  <div class="panel on" id="p-vocab">
+    <div class="vocab-grid" id="vocab"></div>
+  </div>
+
+  <div class="panel" id="p-phrases">
+    <div class="card" id="phrases"></div>
+  </div>
+
+  <div class="panel" id="p-grammar">
+    <div class="card grammar"><h3 id="g-title"></h3><div id="g-body"></div></div>
+    <div id="tips"></div>
+  </div>
+
+  <div class="panel" id="p-dialog">
+    <div class="card dialog" id="dialog-box">
+      <div style="display:flex; gap:8px; justify-content:flex-end; flex-wrap:wrap;">
+        <button class="small-btn" id="play-all">▶ Escuchar todo</button>
+        <button class="small-btn" id="toggle-es">Mostrar traducción</button>
+      </div>
+      <div id="dialog"></div>
+    </div>
+    <p style="font-size:14px; color:var(--muted)">Consejo: escucha, pausa y repite cada línea en voz alta. Luego intenta hacer el papel de A sin mirar.</p>
+  </div>
+
+  <div class="panel" id="p-quiz">
+    <div id="quiz"></div>
+    <button class="btn" id="check">Corregir</button>
+    <div class="result" id="result">
+      <div class="big" id="score"></div>
+      <div id="score-msg"></div>
+      <button class="btn ghost" style="margin-top:12px" onclick="location.reload()">Repetir</button>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn ghost" id="prev">← Anterior</a>
+    <a class="btn" id="next">Siguiente clase →</a>
+  </div>
+</div>
+
+<script src="lezioni.js"></script>
+<script>
+  const n = Math.min(Math.max(parseInt(new URLSearchParams(location.search).get('n')) || 1, 1), LEZIONI.length);
+  const L = LEZIONI[n - 1];
+  document.title = `${n}. ${L.title} — Italiano A1`;
+  document.getElementById('kicker').textContent = `Lezione ${n} de ${LEZIONI.length}`;
+  document.getElementById('title').textContent = L.title;
+  document.getElementById('intro').textContent = L.intro;
+
+  // ---- Audio (voz italiana del navegador) ----
+  let itVoice = null;
+  function pickVoice() {
+    const vs = speechSynthesis.getVoices();
+    itVoice = vs.find(v => v.lang === 'it-IT') || vs.find(v => v.lang && v.lang.startsWith('it')) || null;
+  }
+  if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+  function speak(text, onend) {
+    if (!('speechSynthesis' in window)) return;
+    const u = new SpeechSynthesisUtterance(text.replace(/\s*\/\s*/g, ', '));
+    u.lang = 'it-IT'; u.rate = 0.85;
+    if (itVoice) u.voice = itVoice;
+    if (onend) u.onend = onend;
+    speechSynthesis.speak(u);
+  }
+  const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+  const playBtn = t => `<button class="play" title="Escuchar" data-say="${esc(t)}">▶</button>`;
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-say]');
+    if (b) { speechSynthesis.cancel(); speak(b.dataset.say); }
+  });
+
+  // ---- Tabs ----
+  document.querySelectorAll('#tabs button').forEach(b => b.onclick = () => {
+    document.querySelectorAll('#tabs button').forEach(x => x.classList.toggle('on', x === b));
+    document.querySelectorAll('.panel').forEach(p => p.classList.toggle('on', p.id === 'p-' + b.dataset.p));
+    if ('speechSynthesis' in window) speechSynthesis.cancel();
+  });
+
+  // ---- Vocabulario ----
+  document.getElementById('vocab').innerHTML = L.vocab.map(([it, es, pr]) => `
+    <div class="word">${playBtn(it)}
+      <div class="word-text"><div class="it">${it}</div><div class="pron">/${pr}/</div><div class="es">${es}</div></div>
+    </div>`).join('');
+
+  // ---- Frases ----
+  document.getElementById('phrases').innerHTML = L.phrases.map(([it, es, note]) => `
+    <div class="phrase">${playBtn(it)}
+      <div><div class="it">${it}</div><div class="es">${es}</div>${note ? `<div class="note">💡 ${note}</div>` : ''}</div>
+    </div>`).join('');
+
+  // ---- Gramática y tips ----
+  document.getElementById('g-title').textContent = L.grammar.title;
+  document.getElementById('g-body').innerHTML = L.grammar.html;
+  document.getElementById('tips').innerHTML = L.tips.map(t =>
+    `<div class="card ${/falso amigo|ojo/i.test(t) ? 'warn' : 'tip'}">${t}</div>`).join('');
+
+  // ---- Diálogo ----
+  document.getElementById('dialog').innerHTML = L.dialog.map(([w, it, es]) => `
+    <div class="line"><div class="who ${w}">${w}</div>
+      <div class="bubble"><div class="it" style="font-weight:600">${it}</div><div class="es">${es}</div></div>
+      ${playBtn(it)}</div>`).join('');
+  const box = document.getElementById('dialog-box');
+  document.getElementById('toggle-es').onclick = e => {
+    box.classList.toggle('show-es');
+    e.target.textContent = box.classList.contains('show-es') ? 'Ocultar traducción' : 'Mostrar traducción';
+  };
+  document.getElementById('play-all').onclick = () => {
+    speechSynthesis.cancel();
+    L.dialog.forEach(([, it]) => speak(it));
+  };
+
+  // ---- Test ----
+  const norm = s => s.toLowerCase().trim()
+    .replace(/[’`]/g, "'").replace(/[¿?¡!.,;]/g, '').replace(/\s+/g, ' ');
+  const quiz = document.getElementById('quiz');
+  quiz.innerHTML = L.quiz.map((q, i) => `
+    <div class="card q" data-i="${i}">
+      <div class="q-text">${i + 1}. ${q.q}</div>
+      ${q.opts
+        ? `<div class="opts">${q.opts.map((o, j) => `<button class="opt" data-j="${j}">${o}</button>`).join('')}</div>`
+        : `<div class="fill"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Escribe en italiano…"></div>`}
+      <div class="feedback"></div>
+    </div>`).join('');
+  const chosen = {};
+  quiz.querySelectorAll('.opt').forEach(b => b.onclick = () => {
+    const card = b.closest('.q');
+    card.querySelectorAll('.opt').forEach(x => x.style.borderColor = '');
+    b.style.borderColor = 'var(--text)';
+    chosen[card.dataset.i] = +b.dataset.j;
+  });
+  document.getElementById('check').onclick = function () {
+    let ok = 0;
+    L.quiz.forEach((q, i) => {
+      const card = quiz.querySelector(`.q[data-i="${i}"]`);
+      const fb = card.querySelector('.feedback');
+      if (q.opts) {
+        const btns = card.querySelectorAll('.opt');
+        btns.forEach(b => { b.disabled = true; b.style.borderColor = ''; });
+        btns[q.a].classList.add('ok');
+        if (chosen[i] === q.a) ok++;
+        else if (chosen[i] !== undefined) btns[chosen[i]].classList.add('bad');
+      } else {
+        const inp = card.querySelector('input');
+        inp.disabled = true;
+        const good = q.fill.map(norm).includes(norm(inp.value));
+        inp.classList.add(good ? 'ok' : 'bad');
+        if (good) ok++; else fb.innerHTML = `Respuesta: <strong>${q.fill[0]}</strong>`;
+      }
+    });
+    const pct = ok / L.quiz.length;
+    let scores = {};
+    try { scores = JSON.parse(localStorage.getItem('it-scores') || '{}'); } catch (e) {}
+    const prev = scores[n - 1] ? scores[n - 1].best : 0;
+    scores[n - 1] = { best: Math.max(prev, pct), last: pct };
+    try { localStorage.setItem('it-scores', JSON.stringify(scores)); } catch (e) {}
+    document.getElementById('score').textContent = `${ok} / ${L.quiz.length}`;
+    document.getElementById('score-msg').textContent =
+      pct === 1 ? 'Perfetto! 🎉 Clase completada.' :
+      pct >= 0.7 ? 'Molto bene! Clase completada. Revisa lo que fallaste.' :
+      'Quasi! Repasa el vocabulario y la gramática y vuelve a intentarlo (necesitas 70%).';
+    document.getElementById('result').classList.add('on');
+    this.style.display = 'none';
+  };
+
+  // ---- Navegación ----
+  const prev = document.getElementById('prev'), next = document.getElementById('next');
+  if (n > 1) prev.href = `lezione.html?n=${n - 1}`; else prev.style.visibility = 'hidden';
+  if (n < LEZIONI.length) next.href = `lezione.html?n=${n + 1}`;
+  else { next.href = 'index.html'; next.textContent = 'Volver al menú'; }
+</script>
+</body>
+</html>

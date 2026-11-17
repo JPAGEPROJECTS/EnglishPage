@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Italiano A1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="italiano.css">
+</head>
+<body>
+<div class="flag-strip"><i></i><i></i><i></i></div>
+<div class="top">
+  <a href="../index.html">← Inicio</a>
+  <span class="brand">Italiano 🇮🇹</span>
+</div>
+
+<div class="wrap">
+  <div class="kicker">Nivel A1 · Curso personal</div>
+  <h1>Impariamo <em>l'italiano</em></h1>
+  <p class="lead">Clases cortas para aprender italiano partiendo del español: vocabulario con audio, gramática explicada, diálogos reales y un test al final de cada clase.</p>
+
+  <div class="progress-box">
+    <div class="progress-top"><span>Tu progreso</span><strong id="prog-label">0 / 0 clases</strong></div>
+    <div class="bar"><div id="prog-bar"></div></div>
+  </div>
+
+  <div class="lesson-list" id="list"></div>
+</div>
+
+<script src="lezioni.js"></script>
+<script>
+  function getScores() {
+    try { return JSON.parse(localStorage.getItem('it-scores') || '{}'); } catch (e) { return {}; }
+  }
+  const scores = getScores();
+  const list = document.getElementById('list');
+  let done = 0;
+  LEZIONI.forEach((l, i) => {
+    const s = scores[i];
+    const passed = s && s.best >= 0.7;
+    if (passed) done++;
+    const a = document.createElement('a');
+    a.className = 'lesson' + (passed ? ' done' : '');
+    a.href = 'lezione.html?n=' + (i + 1);
+    a.innerHTML = `
+      <div class="lesson-num">${passed ? '✓' : i + 1}</div>
+      <div class="lesson-info">
+        <div class="lesson-title">${l.title}</div>
+        <div class="lesson-sub">${l.sub}</div>
+      </div>
+      ${s ? `<div class="lesson-score">${Math.round(s.best * 100)}%</div>` : '<div class="lesson-score" style="color:var(--muted)">›</div>'}`;
+    list.appendChild(a);
+  });
+  document.getElementById('prog-label').textContent = `${done} / ${LEZIONI.length} clases`;
+  document.getElementById('prog-bar').style.width = (done / LEZIONI.length * 100) + '%';
+</script>
+</body>
+</html>
