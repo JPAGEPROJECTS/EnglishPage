@@ -3,179 +3,127 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inglés en Familia</title>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<title>Aprende Idiomas</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Fraunces:ital,wght@0,700;1,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  .level-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 14px;
-    margin-top: 32px;
+  :root {
+    --bg: #faf7f0;
+    --card: #ffffff;
+    --border: #e8e1d2;
+    --text: #1d2022;
+    --muted: #6f7378;
   }
-  .level-card {
-    background: var(--card);
-    border: 2.5px solid var(--border);
-    border-radius: 20px;
-    padding: 24px 22px;
-    cursor: pointer;
-    transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #15181a; --card: #1e2225; --border: #33393d; --text: #eef0f2; --muted: #9aa1a8; }
   }
-  .level-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.10);
-  }
-  .level-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; bottom: 0;
-    width: 5px;
-    border-radius: 20px 0 0 20px;
-  }
-  .level-a1 { border-color: #c8f5e0; } .level-a1::before { background: var(--green); } .level-a1:hover { border-color: var(--green); }
-  .level-a2 { border-color: #c8deff; } .level-a2::before { background: var(--blue); }  .level-a2:hover { border-color: var(--blue); }
-  .level-b1 { border-color: #fff0c8; } .level-b1::before { background: var(--orange); }.level-b1:hover { border-color: var(--orange); }
-  .level-b2 { border-color: #ffd0e8; } .level-b2::before { background: var(--pink); }  .level-b2:hover { border-color: var(--pink); }
-  .level-c1 { border-color: #e0d0ff; } .level-c1::before { background: var(--purple); }.level-c1:hover { border-color: var(--purple); }
-  .level-c2 { border-color: #ffecd0; } .level-c2::before { background: #f5a028; }       .level-c2:hover { border-color: #f5a028; }
-
-  .level-badge {
-    font-family: 'Baloo 2', cursive;
-    font-size: 1.8rem;
-    font-weight: 800;
-    min-width: 56px;
-    height: 56px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    color: white;
-  }
-  .level-a1 .level-badge { background: var(--green); }
-  .level-a2 .level-badge { background: var(--blue); }
-  .level-b1 .level-badge { background: var(--orange); }
-  .level-b2 .level-badge { background: var(--pink); }
-  .level-c1 .level-badge { background: var(--purple); }
-  .level-c2 .level-badge { background: #f5a028; }
-
-  .level-info { flex: 1; }
-  .level-name {
-    font-family: 'Baloo 2', cursive;
-    font-size: 1.1rem;
-    font-weight: 800;
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', system-ui, sans-serif;
+    background: var(--bg);
     color: var(--text);
-    margin-bottom: 3px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
   }
-  .level-desc {
-    font-size: 13px;
-    color: var(--muted);
-    font-weight: 600;
-    line-height: 1.4;
+  .wrap { width: 100%; max-width: 760px; margin: 0 auto; padding: 40px 16px 56px; }
+  .tag {
+    display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--muted);
   }
-  .level-arrow {
-    font-size: 1.2rem;
-    color: var(--border);
-    flex-shrink: 0;
-    transition: color 0.18s, transform 0.18s;
+  h1 {
+    font-family: 'Baloo 2', cursive; font-weight: 800;
+    font-size: clamp(2.2rem, 7vw, 3.2rem); line-height: 1.05; margin-top: 6px;
   }
-  .level-card:hover .level-arrow {
-    color: var(--muted);
-    transform: translateX(3px);
+  .sub { color: var(--muted); font-size: 1.05rem; margin-top: 10px; font-weight: 600; }
+
+  .langs {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px; margin-top: 32px;
+  }
+  .lang {
+    position: relative; overflow: hidden;
+    background: var(--card); border: 2px solid var(--border); border-radius: 22px;
+    padding: 26px 22px 22px; text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; gap: 14px; min-height: 230px;
+    transition: transform .18s, box-shadow .18s, border-color .18s;
+  }
+  .lang:hover { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(0,0,0,.10); }
+  .lang .strip { position: absolute; top: 0; left: 0; right: 0; height: 6px; display: flex; }
+  .lang .strip i { flex: 1; }
+  .flag { font-size: 2.6rem; line-height: 1; }
+  .lang-name { font-size: 1.7rem; line-height: 1.1; }
+  .lang-desc { font-size: 14px; color: var(--muted); font-weight: 600; flex: 1; }
+  .lang-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .pill {
+    font-size: 12px; font-weight: 800; padding: 5px 10px; border-radius: 99px;
+  }
+  .go { font-weight: 800; font-size: 14px; white-space: nowrap; }
+
+  .en .lang-name { font-family: 'Baloo 2', cursive; font-weight: 800; }
+  .en:hover { border-color: #3c8cf4; }
+  .en .strip i:nth-child(1) { background: #f47c3c; }
+  .en .strip i:nth-child(2) { background: #f5c842; }
+  .en .strip i:nth-child(3) { background: #3cb87c; }
+  .en .strip i:nth-child(4) { background: #3c8cf4; }
+  .en .pill { background: #e6f0ff; color: #2a6fd0; }
+  .en .go { color: #3c8cf4; }
+
+  .it .lang-name { font-family: 'Fraunces', Georgia, serif; font-weight: 700; }
+  .it .lang-name em { color: #1f7a4d; }
+  .it:hover { border-color: #1f7a4d; }
+  .it .strip i:nth-child(1) { background: #1f7a4d; }
+  .it .strip i:nth-child(2) { background: #f4f1ea; }
+  .it .strip i:nth-child(3) { background: #c0392b; }
+  .it .pill { background: #e3f1e9; color: #1f7a4d; }
+  .it .go { color: #1f7a4d; }
+
+  @media (prefers-color-scheme: dark) {
+    .en .pill { background: #1f2e45; color: #8bb8ff; }
+    .it .pill { background: #1f3529; color: #6fd29d; }
+    .it .lang-name em, .it .go { color: #4cc285; }
+    .it .strip i:nth-child(2) { background: #d9d4c8; }
   }
 </style>
 </head>
 <body>
+<div class="wrap">
+  <span class="tag">¡Hola! · Hello! · Ciao!</span>
+  <h1>¿Qué idioma vamos<br>a practicar hoy?</h1>
+  <p class="sub">Elige un idioma para entrar a sus clases.</p>
 
-<div class="topbar">
-  <div class="topbar-title">🌟 Inglés en Familia</div>
+  <div class="langs">
+    <a class="lang en" href="ingles.html">
+      <div class="strip"><i></i><i></i><i></i><i></i></div>
+      <div class="flag">🇺🇸</div>
+      <div class="lang-name">Inglés en Familia</div>
+      <div class="lang-desc">Clases para toda la familia, del nivel A1 al C2: saludos, números, juegos y práctica con sonidos.</div>
+      <div class="lang-foot">
+        <span class="pill">Familia · A1 → C2</span>
+        <span class="go">Entrar →</span>
+      </div>
+    </a>
+
+    <a class="lang it" href="italiano/index.html">
+      <div class="strip"><i></i><i></i><i></i></div>
+      <div class="flag">🇮🇹</div>
+      <div class="lang-name">Impariamo <em>l'italiano</em></div>
+      <div class="lang-desc">Mi curso personal: abecedario, números, conversación y gramática, con audio y test en cada clase.</div>
+      <div class="lang-foot">
+        <span class="pill" id="it-progress">Personal · A1</span>
+        <span class="go">Entra →</span>
+      </div>
+    </a>
+  </div>
 </div>
 
-<div style="max-width:700px; margin:0 auto; padding:36px 16px 56px;">
-
-  <div style="text-align:center; margin-bottom:8px;">
-    <span class="hero-tag">Elige tu nivel</span>
-  </div>
-  <h1 class="big" style="text-align:center;">¿Por dónde<br><span>empezamos?</span></h1>
-  <p class="hero-sub">Selecciona el nivel del Marco Común Europeo que mejor se adapte a ti.</p>
-
-  <div class="level-grid">
-
-    <a class="level-card level-a1" href="../EnglishPage/a1/menu.html">
-      <div class="level-badge">A1</div>
-      <div class="level-info">
-        <div class="level-name">Principiante</div>
-        <div class="level-desc">Saludos, números y frases del día a día</div>
-      </div>
-      <div class="level-arrow">›</div>
-    </a>
-
-    <a class="level-card level-a2" href="#">
-      <div class="level-badge">A2</div>
-      <div class="level-info">
-        <div class="level-name">Básico</div>
-        <div class="level-desc">Familia, rutinas y conversaciones simples</div>
-      </div>
-      <div class="level-arrow">›</div>
-    </a>
-
-    <a class="level-card level-b1" href="#">
-      <div class="level-badge">B1</div>
-      <div class="level-info">
-        <div class="level-name">Intermedio</div>
-        <div class="level-desc">Opiniones, planes y situaciones cotidianas</div>
-      </div>
-      <div class="level-arrow">›</div>
-    </a>
-
-    <a class="level-card level-b2" href="#">
-      <div class="level-badge">B2</div>
-      <div class="level-info">
-        <div class="level-name">Intermedio alto</div>
-        <div class="level-desc">Debates, trabajo y temas complejos</div>
-      </div>
-      <div class="level-arrow">›</div>
-    </a>
-
-    <a class="level-card level-c1" href="#">
-      <div class="level-badge">C1</div>
-      <div class="level-info">
-        <div class="level-name">Avanzado</div>
-        <div class="level-desc">Fluidez, matices y expresiones idiomáticas</div>
-      </div>
-      <div class="level-arrow">›</div>
-    </a>
-
-    <a class="level-card level-c2" href="#">
-      <div class="level-badge">C2</div>
-      <div class="level-info">
-        <div class="level-name">Maestría</div>
-        <div class="level-desc">Dominio completo, nivel nativo</div>
-      </div>
-      <div class="level-arrow">›</div>
-    </a>
-
-  </div>
-
-  <div style="margin-top:36px; text-align:center;">
-    <span class="hero-tag">Solo para mí</span>
-  </div>
-  <a class="level-card" href="italiano/index.html" style="margin-top:14px; border-color:#cfe6d9;">
-    <div class="level-badge" style="background:linear-gradient(90deg,#1f7a4d 0 33%,#f4f1ea 33% 66%,#c0392b 66%);">🇮🇹</div>
-    <div class="level-info">
-      <div class="level-name">Italiano A1</div>
-      <div class="level-desc">Mi curso personal · 10 clases con audio y test</div>
-    </div>
-    <div class="level-arrow">›</div>
-  </a>
-</div>
-
+<script src="italiano/lezioni.js"></script>
+<script>
+  // Muestra tu progreso de italiano en la tarjeta
+  try {
+    const scores = JSON.parse(localStorage.getItem('it-scores') || '{}');
+    const done = LEZIONI.filter(l => scores[l.id] && scores[l.id].best >= 0.7).length;
+    document.getElementById('it-progress').textContent = `${done} / ${LEZIONI.length} clases`;
+  } catch (e) {}
+</script>
 </body>
 </html>
