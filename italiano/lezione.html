@@ -119,9 +119,9 @@
     </div>`).join('');
 
   // ---- Frases ----
-  document.getElementById('phrases').innerHTML = L.phrases.map(([it, es, note]) => `
-    <div class="phrase">${playBtn(it)}
-      <div><div class="it">${it}</div><div class="es">${es}</div>${note ? `<div class="note">💡 ${note}</div>` : ''}</div>
+  document.getElementById('phrases').innerHTML = L.phrases.map(([it, es, note, pr, say]) => `
+    <div class="phrase">${playBtn(say || it)}
+      <div><div class="it">${it}</div>${pr ? `<div class="pron">/${pr}/</div>` : ''}<div class="es">${es}</div>${note ? `<div class="note">💡 ${note}</div>` : ''}</div>
     </div>`).join('');
 
   // ---- Gramática y tips ----

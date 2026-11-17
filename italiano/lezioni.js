@@ -2,7 +2,7 @@
 // Para agregar una clase nueva, copia un objeto y cambia el contenido.
 // id:      identificador único (se usa para guardar tu progreso, no lo cambies)
 // vocab:   [italiano, español, pronunciación, texto a leer en voz alta (opcional)]
-// phrases: [italiano, español, nota opcional]
+// phrases: [italiano, español, nota (o ""), pronunciación, texto a leer en voz alta (opcional)]
 // dialog:  ["A" | "B", italiano, español]
 // quiz:    { q, opts, a }  (opción múltiple, a = índice correcto)
 //          { q, fill: [respuestas válidas] }  (escribir)
@@ -43,13 +43,13 @@ const LEZIONI = [
       ["Y — ipsilon", "solo en palabras extranjeras", "ÍP-si-lon", "ipsilon"]
     ],
     phrases: [
-      ["Come si scrive?", "¿Cómo se escribe?", "La pregunta clave para deletrear"],
-      ["Come si pronuncia?", "¿Cómo se pronuncia?", ""],
-      ["Puoi ripetere, per favore?", "¿Puedes repetir, por favor?", ""],
-      ["Più piano, per favore.", "Más despacio, por favor.", ""],
-      ["Si scrive con due elle.", "Se escribe con doble ele.", "Las dobles se dicen “due + letra”"],
-      ["Mi chiamo Page: pi, a, gi, e.", "Me llamo Page: P, A, G, E.", ""],
-      ["Cosa vuol dire…?", "¿Qué significa…?", "Muy útil en clase"]
+      ["Come si scrive?", "¿Cómo se escribe?", "La pregunta clave para deletrear", "CÓ-me si SCRÍ-ve"],
+      ["Come si pronuncia?", "¿Cómo se pronuncia?", "", "CÓ-me si pro-NÚN-cha"],
+      ["Puoi ripetere, per favore?", "¿Puedes repetir, por favor?", "", "puói ri-PÉ-te-re, per fa-VÓ-re"],
+      ["Più piano, per favore.", "Más despacio, por favor.", "", "piú PIÁ-no, per fa-VÓ-re"],
+      ["Si scrive con due elle.", "Se escribe con doble ele.", "Las dobles se dicen “due + letra”", "si SCRÍ-ve con DÚ-e ÉL-le"],
+      ["Mi chiamo Page: pi, a, gi, e.", "Me llamo Page: P, A, G, E.", "", "mi KIÁ-mo PEICH: pi, a, yi, e"],
+      ["Cosa vuol dire…?", "¿Qué significa…?", "Muy útil en clase", "CÓ-sa vuól DÍ-re"]
     ],
     grammar: {
       title: "Las reglas de pronunciación que tienes que saber",
@@ -134,14 +134,14 @@ const LEZIONI = [
       ["un milione", "1.000.000", "un mi-LIÓ-ne"]
     ],
     phrases: [
-      ["ventidue", "22", "venti + due, todo junto"],
-      ["ventuno", "21", "venti pierde la -i delante de uno"],
-      ["trentotto", "38", "trenta pierde la -a delante de otto"],
-      ["quarantatré", "43", "los terminados en 3 llevan tilde"],
-      ["centocinquanta", "150", ""],
-      ["milleduecento", "1.200", "mille → mila en plural"],
-      ["duemilaventisei", "2026", "Los años se dicen como un número normal"],
-      ["Il mio numero è tre, quattro, sette…", "Mi número es 3, 4, 7…", "El teléfono se dice cifra por cifra"]
+      ["ventidue", "22", "venti + due, todo junto", "ven-ti-DÚ-e"],
+      ["ventuno", "21", "venti pierde la -i delante de uno", "ven-TÚ-no"],
+      ["trentotto", "38", "trenta pierde la -a delante de otto", "tren-TÓT-to"],
+      ["quarantatré", "43", "los terminados en 3 llevan tilde", "cua-ran-ta-TRÉ"],
+      ["centocinquanta", "150", "", "chen-to-chin-CUÁN-ta"],
+      ["milleduecento", "1.200", "mille → mila en plural", "mil-le-due-CHÉN-to"],
+      ["duemilaventisei", "2026", "Los años se dicen como un número normal", "due-mi-la-ven-ti-SÉI"],
+      ["Il mio numero è tre, quattro, sette…", "Mi número es 3, 4, 7…", "El teléfono se dice cifra por cifra", "il MÍ-o NÚ-me-ro É tre, CUÁT-tro, SÉT-te"]
     ],
     grammar: {
       title: "Cómo se arma cualquier número",
@@ -206,15 +206,15 @@ const LEZIONI = [
       ["Piacere", "Mucho gusto", "pia-CHÉ-re"]
     ],
     phrases: [
-      ["Come ti chiami?", "¿Cómo te llamas?", "Informal"],
-      ["Mi chiamo Jonathan.", "Me llamo Jonathan.", ""],
-      ["Come stai?", "¿Cómo estás?", "Informal (tú)"],
-      ["Come sta?", "¿Cómo está usted?", "Formal (Lei)"],
-      ["Sto bene, grazie. E tu?", "Estoy bien, gracias. ¿Y tú?", ""],
-      ["Così così.", "Más o menos.", ""],
-      ["Di dove sei?", "¿De dónde eres?", ""],
-      ["Sono di Panama.", "Soy de Panamá.", ""],
-      ["Piacere di conoscerti!", "¡Gusto en conocerte!", ""]
+      ["Come ti chiami?", "¿Cómo te llamas?", "Informal", "CÓ-me ti KIÁ-mi"],
+      ["Mi chiamo Jonathan.", "Me llamo Jonathan.", "", "mi KIÁ-mo YÓ-na-tan"],
+      ["Come stai?", "¿Cómo estás?", "Informal (tú)", "CÓ-me STÁI"],
+      ["Come sta?", "¿Cómo está usted?", "Formal (Lei)", "CÓ-me STA"],
+      ["Sto bene, grazie. E tu?", "Estoy bien, gracias. ¿Y tú?", "", "sto BÉ-ne, GRÁ-tsie. e TU"],
+      ["Così così.", "Más o menos.", "", "co-SÍ co-SÍ"],
+      ["Di dove sei?", "¿De dónde eres?", "", "di DÓ-ve SÉI"],
+      ["Sono di Panama.", "Soy de Panamá.", "", "SÓ-no di PÁ-na-ma"],
+      ["Piacere di conoscerti!", "¡Gusto en conocerte!", "", "pia-CHÉ-re di co-NÓ-sher-ti"]
     ],
     grammar: {
       title: "Tú vs. Lei (usted)",
@@ -268,14 +268,14 @@ const LEZIONI = [
       ["fame / sete", "hambre / sed", "FÁ-me / SÉ-te"]
     ],
     phrases: [
-      ["Ho 24 anni.", "Tengo 24 años.", "¡Con avere, no con essere!"],
-      ["Quanti anni hai?", "¿Cuántos años tienes?", ""],
-      ["Sono panamense.", "Soy panameño.", ""],
-      ["Che lavoro fai?", "¿En qué trabajas?", ""],
-      ["Sono studente.", "Soy estudiante.", "Sin artículo “un”"],
-      ["Ho fame.", "Tengo hambre.", ""],
-      ["Ho un fratello e una sorella.", "Tengo un hermano y una hermana.", ""],
-      ["Sono stanco.", "Estoy cansado.", "Essere = ser y estar"]
+      ["Ho 24 anni.", "Tengo 24 años.", "¡Con avere, no con essere!", "o ven-ti-CUÁT-tro ÁN-ni"],
+      ["Quanti anni hai?", "¿Cuántos años tienes?", "", "CUÁN-ti ÁN-ni ÁI"],
+      ["Sono panamense.", "Soy panameño.", "", "SÓ-no pa-na-MÉN-se"],
+      ["Che lavoro fai?", "¿En qué trabajas?", "", "ke la-VÓ-ro FÁI"],
+      ["Sono studente.", "Soy estudiante.", "Sin artículo “un”", "SÓ-no stu-DÉN-te"],
+      ["Ho fame.", "Tengo hambre.", "", "o FÁ-me"],
+      ["Ho un fratello e una sorella.", "Tengo un hermano y una hermana.", "", "o un fra-TÉL-lo e ú-na so-RÉL-la"],
+      ["Sono stanco.", "Estoy cansado.", "Essere = ser y estar", "SÓ-no STÁN-co"]
     ],
     grammar: {
       title: "Conjugación: essere (ser/estar) y avere (tener)",
@@ -330,14 +330,14 @@ const LEZIONI = [
       ["mezzo / un quarto", "media / un cuarto", "MÉD-dzo"]
     ],
     phrases: [
-      ["Che ore sono?", "¿Qué hora es?", ""],
-      ["Sono le tre e mezza.", "Son las tres y media.", ""],
-      ["È l'una.", "Es la una.", "Singular, como en español"],
-      ["A che ora ci vediamo?", "¿A qué hora nos vemos?", ""],
-      ["Alle otto di sera.", "A las ocho de la noche.", ""],
-      ["Qual è il tuo numero?", "¿Cuál es tu número?", ""],
-      ["Quanto costa?", "¿Cuánto cuesta?", ""],
-      ["Costa dodici euro.", "Cuesta doce euros.", "euro no cambia en plural"]
+      ["Che ore sono?", "¿Qué hora es?", "", "ke Ó-re SÓ-no"],
+      ["Sono le tre e mezza.", "Son las tres y media.", "", "SÓ-no le TRE e MÉD-dza"],
+      ["È l'una.", "Es la una.", "Singular, como en español", "É LÚ-na"],
+      ["A che ora ci vediamo?", "¿A qué hora nos vemos?", "", "a ke Ó-ra chi ve-DIÁ-mo"],
+      ["Alle otto di sera.", "A las ocho de la noche.", "", "ÁL-le ÓT-to di SÉ-ra"],
+      ["Qual è il tuo numero?", "¿Cuál es tu número?", "", "cuál É il TÚ-o NÚ-me-ro"],
+      ["Quanto costa?", "¿Cuánto cuesta?", "", "CUÁN-to CÓS-ta"],
+      ["Costa dodici euro.", "Cuesta doce euros.", "euro no cambia en plural", "CÓS-ta DÓ-di-chi ÉU-ro"]
     ],
     grammar: {
       title: "Cómo se forman los números",
@@ -393,14 +393,14 @@ const LEZIONI = [
       ["lo zucchero", "el azúcar", "DZÚC-ke-ro"]
     ],
     phrases: [
-      ["Vorrei un caffè, per favore.", "Quisiera un café, por favor.", "La forma más educada"],
-      ["Prendo un cappuccino.", "Tomo un capuchino.", ""],
-      ["Per me una birra.", "Para mí una cerveza.", ""],
-      ["Il conto, per favore.", "La cuenta, por favor.", ""],
-      ["Posso pagare con la carta?", "¿Puedo pagar con tarjeta?", ""],
-      ["Quant'è?", "¿Cuánto es?", "Muy común al pagar"],
-      ["Offro io!", "¡Invito yo!", ""],
-      ["Cin cin! / Salute!", "¡Salud!", ""]
+      ["Vorrei un caffè, per favore.", "Quisiera un café, por favor.", "La forma más educada", "vor-RÉI un caf-FÉ, per fa-VÓ-re"],
+      ["Prendo un cappuccino.", "Tomo un capuchino.", "", "PRÉN-do un cap-pu-CHÍ-no"],
+      ["Per me una birra.", "Para mí una cerveza.", "", "per ME ú-na BÍR-ra"],
+      ["Il conto, per favore.", "La cuenta, por favor.", "", "il CÓN-to, per fa-VÓ-re"],
+      ["Posso pagare con la carta?", "¿Puedo pagar con tarjeta?", "", "PÓS-so pa-GÁ-re con la CÁR-ta"],
+      ["Quant'è?", "¿Cuánto es?", "Muy común al pagar", "cuan-TÉ"],
+      ["Offro io!", "¡Invito yo!", "", "ÓF-fro Í-o"],
+      ["Cin cin! / Salute!", "¡Salud!", "", "chin CHIN / sa-LÚ-te"]
     ],
     grammar: {
       title: "Artículos: il, lo, la, l', un, uno, una",
@@ -455,13 +455,13 @@ const LEZIONI = [
       ["mai", "nunca", "MAI"]
     ],
     phrases: [
-      ["Mi sveglio alle sette.", "Me despierto a las siete.", ""],
-      ["Di solito lavoro fino alle cinque.", "Normalmente trabajo hasta las cinco.", ""],
-      ["Il lunedì vado in palestra.", "Los lunes voy al gym.", "il + día = todos los…"],
-      ["Non mangio mai a casa.", "Nunca como en casa.", "Doble negación, como en español"],
-      ["Il weekend esco con gli amici.", "El fin de semana salgo con mis amigos.", ""],
-      ["Cosa fai stasera?", "¿Qué haces esta noche?", ""],
-      ["Guardo una serie su Netflix.", "Veo una serie en Netflix.", ""]
+      ["Mi sveglio alle sette.", "Me despierto a las siete.", "", "mi SVÉ-lio ÁL-le SÉT-te"],
+      ["Di solito lavoro fino alle cinque.", "Normalmente trabajo hasta las cinco.", "", "di SÓ-li-to la-VÓ-ro FÍ-no ÁL-le CHÍN-cue"],
+      ["Il lunedì vado in palestra.", "Los lunes voy al gym.", "il + día = todos los…", "il lu-ne-DÍ VÁ-do in pa-LÉS-tra"],
+      ["Non mangio mai a casa.", "Nunca como en casa.", "Doble negación, como en español", "non MÁN-yo MÁI a CÁ-sa"],
+      ["Il weekend esco con gli amici.", "El fin de semana salgo con mis amigos.", "", "il UÍ-kend ÉS-co con li a-MÍ-chi"],
+      ["Cosa fai stasera?", "¿Qué haces esta noche?", "", "CÓ-sa FÁI sta-SÉ-ra"],
+      ["Guardo una serie su Netflix.", "Veo una serie en Netflix.", "", "GUÁR-do ú-na SÉ-rie su NÉT-flix"]
     ],
     grammar: {
       title: "Presente de los verbos regulares",
@@ -517,14 +517,14 @@ const LEZIONI = [
       ["il semaforo", "el semáforo", "se-MÁ-fo-ro"]
     ],
     phrases: [
-      ["Scusi, dov'è la stazione?", "Disculpe, ¿dónde está la estación?", ""],
-      ["C'è una farmacia qui vicino?", "¿Hay una farmacia cerca?", "c'è = hay (singular)"],
-      ["Vada sempre dritto.", "Siga todo recto.", "Imperativo formal"],
-      ["Giri a destra al semaforo.", "Gire a la derecha en el semáforo.", ""],
-      ["È lontano?", "¿Está lejos?", ""],
-      ["Sono cinque minuti a piedi.", "Son cinco minutos a pie.", ""],
-      ["Un biglietto per Firenze, per favore.", "Un boleto para Florencia, por favor.", ""],
-      ["Mi sono perso.", "Me perdí.", ""]
+      ["Scusi, dov'è la stazione?", "Disculpe, ¿dónde está la estación?", "", "SCÚ-si, do-VÉ la sta-TSIÓ-ne"],
+      ["C'è una farmacia qui vicino?", "¿Hay una farmacia cerca?", "c'è = hay (singular)", "CHÉ ú-na far-ma-CHÍ-a cui vi-CHÍ-no"],
+      ["Vada sempre dritto.", "Siga todo recto.", "Imperativo formal", "VÁ-da SÉM-pre DRÍT-to"],
+      ["Giri a destra al semaforo.", "Gire a la derecha en el semáforo.", "", "YÍ-ri a DÉS-tra al se-MÁ-fo-ro"],
+      ["È lontano?", "¿Está lejos?", "", "É lon-TÁ-no"],
+      ["Sono cinque minuti a piedi.", "Son cinco minutos a pie.", "", "SÓ-no CHÍN-cue mi-NÚ-ti a PIÉ-di"],
+      ["Un biglietto per Firenze, per favore.", "Un boleto para Florencia, por favor.", "", "un bi-LIÉT-to per fi-RÉN-tse, per fa-VÓ-re"],
+      ["Mi sono perso.", "Me perdí.", "", "mi SÓ-no PÉR-so"]
     ],
     grammar: {
       title: "C'è / ci sono y preposiciones con artículo",
@@ -580,14 +580,14 @@ const LEZIONI = [
       ["il cameriere", "el mesero", "ca-me-RIÉ-re"]
     ],
     phrases: [
-      ["Un tavolo per due, per favore.", "Una mesa para dos, por favor.", ""],
-      ["Ho una prenotazione a nome Page.", "Tengo una reserva a nombre de Page.", ""],
-      ["Cosa mi consiglia?", "¿Qué me recomienda?", ""],
-      ["Come primo prendo la carbonara.", "De primero tomo la carbonara.", ""],
-      ["Mi piace la pizza.", "Me gusta la pizza.", ""],
-      ["Mi piacciono i dolci.", "Me gustan los postres.", "Plural → piacciono"],
-      ["Non mi piace il pesce.", "No me gusta el pescado.", ""],
-      ["Era tutto buonissimo!", "¡Todo estaba buenísimo!", ""]
+      ["Un tavolo per due, per favore.", "Una mesa para dos, por favor.", "", "un TÁ-vo-lo per DÚ-e, per fa-VÓ-re"],
+      ["Ho una prenotazione a nome Page.", "Tengo una reserva a nombre de Page.", "", "o ú-na pre-no-ta-TSIÓ-ne a NÓ-me PEICH"],
+      ["Cosa mi consiglia?", "¿Qué me recomienda?", "", "CÓ-sa mi con-SÍ-lia"],
+      ["Come primo prendo la carbonara.", "De primero tomo la carbonara.", "", "CÓ-me PRÍ-mo PRÉN-do la car-bo-NÁ-ra"],
+      ["Mi piace la pizza.", "Me gusta la pizza.", "", "mi PIÁ-che la PÍT-tsa"],
+      ["Mi piacciono i dolci.", "Me gustan los postres.", "Plural → piacciono", "mi PIÁT-cho-no i DÓL-chi"],
+      ["Non mi piace il pesce.", "No me gusta el pescado.", "", "non mi PIÁ-che il PÉ-she"],
+      ["Era tutto buonissimo!", "¡Todo estaba buenísimo!", "", "É-ra TÚT-to buo-NÍS-si-mo"]
     ],
     grammar: {
       title: "Mi piace / mi piacciono",
@@ -643,13 +643,13 @@ const LEZIONI = [
       ["una festa", "una fiesta", "FÉS-ta"]
     ],
     phrases: [
-      ["Cosa hai fatto nel weekend?", "¿Qué hiciste el fin de semana?", ""],
-      ["Sabato sono andato al mare.", "El sábado fui a la playa.", ""],
-      ["Ieri sera ho visto un film.", "Anoche vi una película.", ""],
-      ["Siamo usciti a ballare.", "Salimos a bailar.", "Con essere, concuerda en plural"],
-      ["Ho dormito tutto il giorno.", "Dormí todo el día.", ""],
-      ["Mi sono divertito un sacco!", "¡Me divertí un montón!", ""],
-      ["Com'è andata?", "¿Cómo te fue?", ""]
+      ["Cosa hai fatto nel weekend?", "¿Qué hiciste el fin de semana?", "", "CÓ-sa ÁI FÁT-to nel UÍ-kend"],
+      ["Sabato sono andato al mare.", "El sábado fui a la playa.", "", "SÁ-ba-to SÓ-no an-DÁ-to al MÁ-re"],
+      ["Ieri sera ho visto un film.", "Anoche vi una película.", "", "IÉ-ri SÉ-ra o VÍS-to un FILM"],
+      ["Siamo usciti a ballare.", "Salimos a bailar.", "Con essere, concuerda en plural", "SIÁ-mo u-SHÍ-ti a bal-LÁ-re"],
+      ["Ho dormito tutto il giorno.", "Dormí todo el día.", "", "o dor-MÍ-to TÚT-to il YÓR-no"],
+      ["Mi sono divertito un sacco!", "¡Me divertí un montón!", "", "mi SÓ-no di-ver-TÍ-to un SÁC-co"],
+      ["Com'è andata?", "¿Cómo te fue?", "", "co-MÉ an-DÁ-ta"]
     ],
     grammar: {
       title: "Passato prossimo = avere/essere + participio",
@@ -708,13 +708,13 @@ const LEZIONI = [
       ["timido / vivace", "tímido / inquieto", "TÍ-mi-do / vi-VÁ-che"]
     ],
     phrases: [
-      ["Da bambino giocavo a calcio ogni giorno.", "De niño jugaba fútbol todos los días.", "Acción habitual → imperfetto"],
-      ["Quando ero piccolo vivevo con i nonni.", "Cuando era pequeño vivía con mis abuelos.", ""],
-      ["Ero molto timido.", "Era muy tímido.", "Descripción → imperfetto"],
-      ["Ogni estate andavamo al mare.", "Cada verano íbamos a la playa.", ""],
-      ["Mentre studiavo, è arrivato Marco.", "Mientras estudiaba, llegó Marco.", "Contexto (imperf.) + acción puntual (pass. pross.)"],
-      ["Faceva caldo e c'era tanta gente.", "Hacía calor y había mucha gente.", ""],
-      ["Com'eri da piccolo?", "¿Cómo eras de pequeño?", ""]
+      ["Da bambino giocavo a calcio ogni giorno.", "De niño jugaba fútbol todos los días.", "Acción habitual → imperfetto", "da bam-BÍ-no yo-CÁ-vo a CÁL-cho Ó-ñi YÓR-no"],
+      ["Quando ero piccolo vivevo con i nonni.", "Cuando era pequeño vivía con mis abuelos.", "", "CUÁN-do É-ro PÍC-co-lo vi-VÉ-vo con i NÓN-ni"],
+      ["Ero molto timido.", "Era muy tímido.", "Descripción → imperfetto", "É-ro MÓL-to TÍ-mi-do"],
+      ["Ogni estate andavamo al mare.", "Cada verano íbamos a la playa.", "", "Ó-ñi es-TÁ-te an-da-VÁ-mo al MÁ-re"],
+      ["Mentre studiavo, è arrivato Marco.", "Mientras estudiaba, llegó Marco.", "Contexto (imperf.) + acción puntual (pass. pross.)", "MÉN-tre stu-DIÁ-vo, É ar-ri-VÁ-to MÁR-co"],
+      ["Faceva caldo e c'era tanta gente.", "Hacía calor y había mucha gente.", "", "fa-CHÉ-va CÁL-do e CHÉ-ra TÁN-ta YÉN-te"],
+      ["Com'eri da piccolo?", "¿Cómo eras de pequeño?", "", "co-MÉ-ri da PÍC-co-lo"]
     ],
     grammar: {
       title: "Imperfetto: formación y uso",
@@ -772,13 +772,13 @@ const LEZIONI = [
       ["ho intenzione di…", "tengo la intención de…", "in-ten-TSIÓ-ne"]
     ],
     phrases: [
-      ["L'anno prossimo andrò in Italia.", "El año que viene iré a Italia.", ""],
-      ["Cosa farai questo weekend?", "¿Qué harás este fin de semana?", ""],
-      ["Quando avrò più soldi, viaggerò di più.", "Cuando tenga más dinero, viajaré más.", "En italiano: futuro + futuro"],
-      ["Sarà difficile, ma ce la farò.", "Será difícil, pero lo lograré.", "farcela = lograrlo"],
-      ["Spero di parlare bene italiano.", "Espero hablar bien italiano.", ""],
-      ["Domani studio tutto il giorno.", "Mañana estudio todo el día.", "Para planes cercanos se usa mucho el presente"],
-      ["Che ore saranno?", "¿Qué hora será?", "Futuro de suposición"]
+      ["L'anno prossimo andrò in Italia.", "El año que viene iré a Italia.", "", "LÁN-no PRÓS-si-mo an-DRÓ in i-TÁ-lia"],
+      ["Cosa farai questo weekend?", "¿Qué harás este fin de semana?", "", "CÓ-sa fa-RÁI CUÉS-to UÍ-kend"],
+      ["Quando avrò più soldi, viaggerò di più.", "Cuando tenga más dinero, viajaré más.", "En italiano: futuro + futuro", "CUÁN-do a-VRÓ piú SÓL-di, viad-ye-RÓ di PIÚ"],
+      ["Sarà difficile, ma ce la farò.", "Será difícil, pero lo lograré.", "farcela = lograrlo", "sa-RÁ dif-FÍ-chi-le, ma che la fa-RÓ"],
+      ["Spero di parlare bene italiano.", "Espero hablar bien italiano.", "", "SPÉ-ro di par-LÁ-re BÉ-ne i-ta-LIÁ-no"],
+      ["Domani studio tutto il giorno.", "Mañana estudio todo el día.", "Para planes cercanos se usa mucho el presente", "do-MÁ-ni STÚ-dio TÚT-to il YÓR-no"],
+      ["Che ore saranno?", "¿Qué hora será?", "Futuro de suposición", "ke Ó-re sa-RÁN-no"]
     ],
     grammar: {
       title: "Futuro semplice",
@@ -835,14 +835,14 @@ const LEZIONI = [
       ["la cassa", "la caja (para pagar)", "CÁS-sa"]
     ],
     phrases: [
-      ["Posso provarla?", "¿Me la puedo probar?", ""],
-      ["Che taglia porta?", "¿Qué talla usa?", "Formal"],
-      ["Porto la M.", "Uso la M.", ""],
-      ["Ce l'avete in nero?", "¿La tienen en negro?", "Muy usado: ce l'avete = ¿lo tienen?"],
-      ["Mi sta stretta.", "Me queda apretada.", "stare = quedar (ropa)"],
-      ["Avete una taglia più grande?", "¿Tienen una talla más grande?", ""],
-      ["La prendo!", "¡Me la llevo!", ""],
-      ["Sto solo guardando, grazie.", "Solo estoy mirando, gracias.", ""]
+      ["Posso provarla?", "¿Me la puedo probar?", "", "PÓS-so pro-VÁR-la"],
+      ["Che taglia porta?", "¿Qué talla usa?", "Formal", "ke TÁ-lia PÓR-ta"],
+      ["Porto la M.", "Uso la M.", "", "PÓR-to la ÉM-me"],
+      ["Ce l'avete in nero?", "¿La tienen en negro?", "Muy usado: ce l'avete = ¿lo tienen?", "che la-VÉ-te in NÉ-ro"],
+      ["Mi sta stretta.", "Me queda apretada.", "stare = quedar (ropa)", "mi sta STRÉT-ta"],
+      ["Avete una taglia più grande?", "¿Tienen una talla más grande?", "", "a-VÉ-te ú-na TÁ-lia piú GRÁN-de"],
+      ["La prendo!", "¡Me la llevo!", "", "la PRÉN-do"],
+      ["Sto solo guardando, grazie.", "Solo estoy mirando, gracias.", "", "sto SÓ-lo guar-DÁN-do, GRÁ-tsie"]
     ],
     grammar: {
       title: "Pronombres directos",
@@ -900,14 +900,14 @@ const LEZIONI = [
       ["il pronto soccorso", "urgencias", "PRÓN-to soc-CÓR-so"]
     ],
     phrases: [
-      ["Non mi sento bene.", "No me siento bien.", ""],
-      ["Mi fa male la testa.", "Me duele la cabeza.", "Singular → fa"],
-      ["Mi fanno male i piedi.", "Me duelen los pies.", "Plural → fanno"],
-      ["Ho mal di gola.", "Tengo dolor de garganta.", ""],
-      ["Ho la febbre da ieri.", "Tengo fiebre desde ayer.", ""],
-      ["Sono allergico alla penicillina.", "Soy alérgico a la penicilina.", ""],
-      ["Deve riposare e bere molta acqua.", "Debe descansar y tomar mucha agua.", ""],
-      ["Posso avere qualcosa per il raffreddore?", "¿Me puede dar algo para el resfriado?", "En la farmacia"]
+      ["Non mi sento bene.", "No me siento bien.", "", "non mi SÉN-to BÉ-ne"],
+      ["Mi fa male la testa.", "Me duele la cabeza.", "Singular → fa", "mi fa MÁ-le la TÉS-ta"],
+      ["Mi fanno male i piedi.", "Me duelen los pies.", "Plural → fanno", "mi FÁN-no MÁ-le i PIÉ-di"],
+      ["Ho mal di gola.", "Tengo dolor de garganta.", "", "o mal di GÓ-la"],
+      ["Ho la febbre da ieri.", "Tengo fiebre desde ayer.", "", "o la FÉB-bre da IÉ-ri"],
+      ["Sono allergico alla penicillina.", "Soy alérgico a la penicilina.", "", "SÓ-no al-LÉR-yi-co ÁL-la pe-ni-chil-LÍ-na"],
+      ["Deve riposare e bere molta acqua.", "Debe descansar y tomar mucha agua.", "", "DÉ-ve ri-po-SÁ-re e BÉ-re MÓL-ta ÁC-cua"],
+      ["Posso avere qualcosa per il raffreddore?", "¿Me puede dar algo para el resfriado?", "En la farmacia", "PÓS-so a-VÉ-re cual-CÓ-sa per il raf-fred-DÓ-re"]
     ],
     grammar: {
       title: "Verbos modales: dovere, potere, volere",
@@ -965,14 +965,14 @@ const LEZIONI = [
       ["il trasloco", "la mudanza", "tras-LÓ-co"]
     ],
     phrases: [
-      ["Quanto costa l'affitto al mese?", "¿Cuánto cuesta el alquiler al mes?", ""],
-      ["Le spese sono incluse?", "¿Los gastos están incluidos?", ""],
-      ["Questo è più grande dell'altro.", "Este es más grande que el otro.", ""],
-      ["È meno caro di quanto pensavo.", "Es menos caro de lo que pensaba.", ""],
-      ["È il più luminoso di tutti.", "Es el más luminoso de todos.", ""],
-      ["La zona è tranquillissima.", "La zona es tranquilísima.", ""],
-      ["Quando posso vederlo?", "¿Cuándo lo puedo ver?", ""],
-      ["Cerco una stanza in un appartamento condiviso.", "Busco una habitación en un piso compartido.", ""]
+      ["Quanto costa l'affitto al mese?", "¿Cuánto cuesta el alquiler al mes?", "", "CUÁN-to CÓS-ta laf-FÍT-to al MÉ-se"],
+      ["Le spese sono incluse?", "¿Los gastos están incluidos?", "", "le SPÉ-se SÓ-no in-CLÚ-se"],
+      ["Questo è più grande dell'altro.", "Este es más grande que el otro.", "", "CUÉS-to É piú GRÁN-de del-LÁL-tro"],
+      ["È meno caro di quanto pensavo.", "Es menos caro de lo que pensaba.", "", "É MÉ-no CÁ-ro di CUÁN-to pen-SÁ-vo"],
+      ["È il più luminoso di tutti.", "Es el más luminoso de todos.", "", "É il piú lu-mi-NÓ-so di TÚT-ti"],
+      ["La zona è tranquillissima.", "La zona es tranquilísima.", "", "la DZÓ-na É tran-cuil-LÍS-si-ma"],
+      ["Quando posso vederlo?", "¿Cuándo lo puedo ver?", "", "CUÁN-do PÓS-so ve-DÉR-lo"],
+      ["Cerco una stanza in un appartamento condiviso.", "Busco una habitación en un piso compartido.", "", "CHÉR-co ú-na STÁN-tsa in un ap-par-ta-MÉN-to con-di-VÍ-so"]
     ],
     grammar: {
       title: "Comparar: più, meno, come",
@@ -1030,14 +1030,14 @@ const LEZIONI = [
       ["perdere il treno", "perder el tren", "PÉR-de-re"]
     ],
     phrases: [
-      ["Un biglietto di andata e ritorno per Napoli.", "Un billete de ida y vuelta a Nápoles.", ""],
-      ["Da quale binario parte?", "¿De qué andén sale?", ""],
-      ["Mi può dare la chiave, per favore?", "¿Me puede dar la llave, por favor?", "mi = a mí"],
-      ["Le scrivo una mail per confermare.", "Le escribo un correo para confirmar.", "Le = a usted (formal)"],
-      ["Gli ho mandato un messaggio.", "Le mandé un mensaje (a él).", "gli = a él / a ellos"],
-      ["A che ora è il check-out?", "¿A qué hora es el check-out?", ""],
-      ["Il riscaldamento non funziona.", "La calefacción no funciona.", ""],
-      ["Ho perso la coincidenza.", "Perdí la conexión.", ""]
+      ["Un biglietto di andata e ritorno per Napoli.", "Un billete de ida y vuelta a Nápoles.", "", "un bi-LIÉT-to di an-DÁ-ta e ri-TÓR-no per NÁ-po-li"],
+      ["Da quale binario parte?", "¿De qué andén sale?", "", "da CUÁ-le bi-NÁ-rio PÁR-te"],
+      ["Mi può dare la chiave, per favore?", "¿Me puede dar la llave, por favor?", "mi = a mí", "mi PUÓ DÁ-re la KIÁ-ve, per fa-VÓ-re"],
+      ["Le scrivo una mail per confermare.", "Le escribo un correo para confirmar.", "Le = a usted (formal)", "le SCRÍ-vo ú-na MEIL per con-fer-MÁ-re"],
+      ["Gli ho mandato un messaggio.", "Le mandé un mensaje (a él).", "gli = a él / a ellos", "li o man-DÁ-to un mes-SÁD-yo"],
+      ["A che ora è il check-out?", "¿A qué hora es el check-out?", "", "a ke Ó-ra É il chek-ÁUT"],
+      ["Il riscaldamento non funziona.", "La calefacción no funciona.", "", "il ris-cal-da-MÉN-to non fun-TSIÓ-na"],
+      ["Ho perso la coincidenza.", "Perdí la conexión.", "", "o PÉR-so la coin-chi-DÉN-tsa"]
     ],
     grammar: {
       title: "Pronombres indirectos",
@@ -1095,14 +1095,14 @@ const LEZIONI = [
       ["il punto di forza", "el punto fuerte", "PÚN-to di FÓR-tsa"]
     ],
     phrases: [
-      ["Mi piacerebbe lavorare con voi.", "Me gustaría trabajar con ustedes.", ""],
-      ["Ho due anni di esperienza nel settore.", "Tengo dos años de experiencia en el sector.", ""],
-      ["Parlo spagnolo, inglese e un po' di italiano.", "Hablo español, inglés y un poco de italiano.", ""],
-      ["Il mio punto di forza è la flessibilità.", "Mi punto fuerte es la flexibilidad.", ""],
-      ["Potrebbe ripetere la domanda?", "¿Podría repetir la pregunta?", ""],
-      ["Quando potrei cominciare?", "¿Cuándo podría empezar?", ""],
-      ["Dovresti mandare il curriculum entro venerdì.", "Deberías mandar el CV antes del viernes.", "Consejo → dovresti"],
-      ["Sarei disponibile da subito.", "Estaría disponible de inmediato.", ""]
+      ["Mi piacerebbe lavorare con voi.", "Me gustaría trabajar con ustedes.", "", "mi pia-che-RÉB-be la-vo-RÁ-re con VÓI"],
+      ["Ho due anni di esperienza nel settore.", "Tengo dos años de experiencia en el sector.", "", "o DÚ-e ÁN-ni di es-pe-RIÉN-tsa nel set-TÓ-re"],
+      ["Parlo spagnolo, inglese e un po' di italiano.", "Hablo español, inglés y un poco de italiano.", "", "PÁR-lo spa-ÑÓ-lo, in-GLÉ-se e un PO di i-ta-LIÁ-no"],
+      ["Il mio punto di forza è la flessibilità.", "Mi punto fuerte es la flexibilidad.", "", "il MÍ-o PÚN-to di FÓR-tsa É la fles-si-bi-li-TÁ"],
+      ["Potrebbe ripetere la domanda?", "¿Podría repetir la pregunta?", "", "po-TRÉB-be ri-PÉ-te-re la do-MÁN-da"],
+      ["Quando potrei cominciare?", "¿Cuándo podría empezar?", "", "CUÁN-do po-TRÉI co-min-CHÁ-re"],
+      ["Dovresti mandare il curriculum entro venerdì.", "Deberías mandar el CV antes del viernes.", "Consejo → dovresti", "do-VRÉS-ti man-DÁ-re il cur-RÍ-cu-lum ÉN-tro ve-ner-DÍ"],
+      ["Sarei disponibile da subito.", "Estaría disponible de inmediato.", "", "sa-RÉI dis-po-NÍ-bi-le da SÚ-bi-to"]
     ],
     grammar: {
       title: "Condizionale presente",
@@ -1159,14 +1159,14 @@ const LEZIONI = [
       ["Ci sta", "Tiene sentido / Me parece bien", "chi STA"]
     ],
     phrases: [
-      ["Dimmi tutto!", "¡Cuéntamelo todo!", "di' + mi"],
-      ["Fammi sapere.", "Avísame.", "fa' + mi"],
-      ["Vieni stasera? Dai!", "¿Vienes esta noche? ¡Anda!", ""],
-      ["Non ti preoccupare.", "No te preocupes.", "No + infinitivo"],
-      ["Scrivimi quando arrivi.", "Escríbeme cuando llegues.", ""],
-      ["Cmq nn posso, scs", "Comunque non posso, scusa", "Chat: “igual no puedo, perdón”"],
-      ["Xké nn rispondi?", "Perché non rispondi?", "Chat: ¿por qué no respondes?"],
-      ["Tvb ❤️", "Ti voglio bene", "Te quiero (amigos y familia)"]
+      ["Dimmi tutto!", "¡Cuéntamelo todo!", "di' + mi", "DÍM-mi TÚT-to"],
+      ["Fammi sapere.", "Avísame.", "fa' + mi", "FÁM-mi sa-PÉ-re"],
+      ["Vieni stasera? Dai!", "¿Vienes esta noche? ¡Anda!", "", "VIÉ-ni sta-SÉ-ra? DAI"],
+      ["Non ti preoccupare.", "No te preocupes.", "No + infinitivo", "non ti pre-oc-cu-PÁ-re"],
+      ["Scrivimi quando arrivi.", "Escríbeme cuando llegues.", "", "SCRÍ-vi-mi CUÁN-do ar-RÍ-vi"],
+      ["Cmq nn posso, scs", "Comunque non posso, scusa", "Chat: “igual no puedo, perdón”", "co-MÚN-cue non PÓS-so, SCÚ-sa", "Comunque non posso, scusa"],
+      ["Xké nn rispondi?", "Perché non rispondi?", "Chat: ¿por qué no respondes?", "per-KÉ non ris-PÓN-di", "Perché non rispondi?"],
+      ["Tvb ❤️", "Ti voglio bene", "Te quiero (amigos y familia)", "ti VÓ-lio BÉ-ne", "Ti voglio bene"]
     ],
     grammar: {
       title: "Imperativo informal (tu)",
