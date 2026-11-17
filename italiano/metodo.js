@@ -251,5 +251,113 @@ const METODO = {
     ],
     extra: "Muletillas que te harán sonar natural: “cioè” (o sea), “tipo” (como, en plan), “praticamente”, “niente” (nada, en fin), “eh” al final de frase, “no?” para buscar confirmación.",
     reto: "Elige una serie italiana y mira un episodio con subtítulos en italiano. Anota 5 expresiones que escuches y búscalas."
+  },
+
+  "b1-congiuntivo": {
+    tecnica: "Frases plantilla (sentence mining)",
+    como: `<p>Cuando leas o escuches una frase con congiuntivo que te guste, <strong>cópiala completa</strong> en una libreta o en Anki. Luego cambia una parte para hablar de ti:</p>
+      <p><em>Penso che sia una buona idea</em> → <em>Penso che sia difficile trovare casa a Roma.</em></p>
+      <p>Con 20–30 frases plantilla el congiuntivo empieza a salir solo, sin pensar en tablas.</p>`,
+    errores: [
+      ["Credo che è vero", "Credo che sia vero", "Opinión → congiuntivo (en español sería indicativo)."],
+      ["Penso che io vada", "Penso di andare", "Mismo sujeto → di + infinitivo."],
+      ["Spero che tu stai bene", "Spero che tu stia bene", "Stare → stia."]
+    ],
+    extra: "Expresiones fijas con congiuntivo que oirás mucho: “Che io sappia…” (que yo sepa), “Sia come sia” (sea como sea), “Come vuoi tu… purché tu sia felice” (con tal de que seas feliz).",
+    reto: "Escribe 5 opiniones sobre tu ciudad empezando con “Penso che…”, “Credo che…”, “Mi sembra che…”, “Non credo che…” y “È importante che…”."
+  },
+
+  "b1-ipotesi": {
+    tecnica: "Preguntas de “¿qué harías si…?”",
+    como: `<p>Es la técnica de conversación favorita en tándem: preguntas imposibles que obligan a usar hipótesis.</p>
+      <ul><li><em>Cosa faresti se fossi invisibile per un giorno?</em></li><li><em>Dove vivresti se potessi scegliere?</em></li><li><em>Cosa cambieresti del tuo paese?</em></li></ul>
+      <p>Respóndelas en voz alta o por escrito, y úsalas en tus intercambios: la conversación nunca se acaba.</p>`,
+    errores: [
+      ["Se avrei soldi…", "Se avessi soldi…", "Después de se, nunca condicional."],
+      ["Se sarei in te…", "Se fossi in te…", "Igual: congiuntivo después de se."],
+      ["Magari posso venire!", "Magari potessi venire!", "Deseo irreal → congiuntivo imperfetto."]
+    ],
+    extra: "Para hipótesis en el pasado (lo que habría pasado): “Se avessi studiato, avrei passato l'esame” = Si hubiera estudiado, habría aprobado. Mismo esquema que el español.",
+    reto: "Responde por escrito: “Cosa faresti se vivessi in Italia per un anno?” en 6 frases."
+  },
+
+  "b1-pronomi": {
+    tecnica: "Transformación de frases",
+    como: `<p>Toma una frase completa y reemplaza los objetos por pronombres paso a paso:</p>
+      <p><em>Do il libro a Marco</em> → <em>Lo do a Marco</em> → <em>Gli do il libro</em> → <em>Glielo do</em>.</p>
+      <p>Hazlo con 5 frases al día durante una semana. Es un ejercicio mecánico, pero es exactamente lo que el cerebro necesita para automatizar los pronombres.</p>`,
+    errores: [
+      ["Gli lo do", "Glielo do", "Se escribe junto y con e."],
+      ["Ho due (hermanos)", "Ne ho due", "Con cantidades, ne es obligatorio."],
+      ["Mi lo dici?", "Me lo dici?", "mi + lo → me lo."]
+    ],
+    extra: "Verbos pronominales muy coloquiales: “cavarsela” (arreglárselas), “prendersela” (ofenderse), “farcela” (lograrlo), “andarsene” (irse), “fregarsene” (que te dé igual).",
+    reto: "Escribe 5 frases sobre regalos que has hecho y transfórmalas con glielo / gliela: “Ho regalato un libro a mia madre → Gliel'ho regalato.”"
+  },
+
+  "b1-relazioni": {
+    tecnica: "Escuchar conversaciones reales",
+    como: `<p>A este nivel necesitas oír cómo hablan los italianos de verdad, con interrupciones y muletillas. Busca:</p>
+      <ul><li>Entrevistas callejeras de <strong>Easy Italian</strong> sobre amor y amistad.</li><li>Podcasts de conversación entre dos personas.</li><li>Escenas de series como <strong>Skam Italia</strong> (muy realista sobre relaciones).</li></ul>
+      <p>Escucha 2–3 minutos, transcribe lo que entiendas y compara con los subtítulos.</p>`,
+    errores: [
+      ["Ti manco (queriendo decir “te extraño”)", "Mi manchi", "Mancare funciona como piacere."],
+      ["La persona con che parlo", "La persona con cui parlo", "Después de preposición → cui."],
+      ["Ci siamo conosciuto", "Ci siamo conosciuti", "Con essere, el participio concuerda."]
+    ],
+    extra: "Lenguaje del amor en italiano: “Mi piaci” (me gustas), “Sono cotto/cotta di te” (estoy loco por ti, coloquial), “Stiamo insieme” (estamos juntos), “Ti amo” (solo pareja), “Ti voglio bene” (cariño en general).",
+    reto: "Describe a tu mejor amigo/a en 6 frases usando al menos dos relativos (che, con cui, di cui…)."
+  },
+
+  "b1-racconti": {
+    tecnica: "Resumir en voz alta",
+    como: `<p>Después de ver un episodio o leer un artículo, <strong>cuéntalo en italiano</strong> en 2 minutos, como si se lo contaras a un amigo. Usa conectores: <em>prima, poi, a un certo punto, alla fine</em>.</p>
+      <p>Te obliga a usar pasados distintos (passato prossimo, imperfetto, trapassato) en un contexto real.</p>`,
+    errores: [
+      ["Quando sono arrivato, il film ha già cominciato", "…il film era già cominciato", "Anterior a otro pasado → trapassato."],
+      ["Sto andando a casa adesso (para todo)", "Vado a casa", "El gerundio se usa menos que en español."],
+      ["Dopo mangiare", "Dopo aver mangiato", "Después de + infinitivo compuesto."]
+    ],
+    extra: "Muletillas para contar historias: “Insomma…” (en resumen), “Comunque…” (bueno…), “Pensa che…” (imagínate que…), “E niente…” (y nada…), “Non ci crederai, ma…” (no te lo vas a creer, pero…).",
+    reto: "Cuenta en voz alta la historia más divertida que te pasó en un viaje, usando al menos un trapassato y un “stavo + gerundio”."
+  },
+
+  "b1-notizie": {
+    tecnica: "Leer noticias en italiano fácil",
+    como: `<p>Lee una noticia corta al día. Empieza con fuentes en <strong>italiano fácil</strong> (noticias para estudiantes) y pasa luego a periódicos reales.</p>
+      <ol><li>Lee el titular e intenta adivinar el tema.</li><li>Lee sin diccionario y subraya lo que no entiendas.</li><li>Busca solo 5 palabras clave.</li><li>Resume la noticia en 3 frases.</li></ol>`,
+    errores: [
+      ["La casa ha stata venduta", "La casa è stata venduta", "La pasiva usa essere."],
+      ["Si vende case", "Si vendono case", "Con plural, el verbo va en plural."],
+      ["Il ponte viene stato costruito", "Il ponte è stato costruito", "venire solo en tiempos simples."]
+    ],
+    extra: "Palabras que verás en titulares: “il premier” (primer ministro), “la manovra” (presupuesto del Estado), “il decreto”, “la sentenza” (la sentencia), “l'emergenza”, “il maltempo” (mal tiempo, temporal).",
+    reto: "Lee una noticia italiana de hoy y escribe un resumen de 3 frases usando al menos una pasiva y un “si”."
+  },
+
+  "b1-email": {
+    tecnica: "Copiar modelos (escritura guiada)",
+    como: `<p>No escribas correos formales desde cero: busca <strong>modelos reales</strong> (cartas de universidades, anuncios de trabajo, plantillas) y adapta sus frases.</p>
+      <p>Crea tu propia colección de frases útiles: saludos, frases para pedir, para agradecer y para despedirte. Con 15 frases cubres el 90% de los correos formales.</p>`,
+    errores: [
+      ["Ciao Professore,", "Gentile Professore,", "En contexto formal nunca ciao."],
+      ["Ha detto che verrebbe", "Ha detto che sarebbe venuto", "Futuro en el pasado → condicional compuesto."],
+      ["La ringrazio per tua risposta", "La ringrazio per la Sua risposta", "Formal: Lei / Sua."]
+    ],
+    extra: "Frases formales muy útiles: “Le sarei grato/a se potesse…” (le agradecería si pudiera…), “Mi permetto di contattarLa…” (me permito contactarle…), “Rimango a disposizione per qualsiasi chiarimento” (quedo a disposición para cualquier aclaración).",
+    reto: "Escribe un email formal a una universidad italiana pidiendo información sobre un curso de italiano para extranjeros."
+  },
+
+  "b1-cultura": {
+    tecnica: "Lectura extensiva",
+    como: `<p>Lee mucho y fácil: libros adaptados a tu nivel (<strong>graded readers</strong>) donde entiendes casi todo. No te detengas en cada palabra: si entiendes la historia, sigue.</p>
+      <p>La meta es leer por placer. 15 páginas al día durante un mes te dan más vocabulario que cualquier lista.</p>`,
+    errores: [
+      ["Leonardo è nato nel 1452 (en un texto histórico)", "Leonardo nacque nel 1452", "En textos históricos se usa passato remoto."],
+      ["Il film tratta su…", "Il film tratta di… / parla di…", "Trattare di, no “su”."],
+      ["Il Cinquecento = el siglo XV", "Il Cinquecento = el siglo XVI", "Cinquecento = los años 1500, es decir, el siglo XVI."]
+    ],
+    extra: "Clásicos para conocer (aunque sea de nombre): Dante (Divina Commedia), Boccaccio (Decameron), Manzoni (I promessi sposi), Calvino, Pirandello, Elsa Morante, Umberto Eco, Elena Ferrante. Y cine: Fellini, Sorrentino (“La grande bellezza”), Benigni (“La vita è bella”).",
+    reto: "Mira una película italiana (por ejemplo “La vita è bella”) y escribe una reseña de 5 frases: trama, personajes y si vale la pena."
   }
 };

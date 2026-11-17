@@ -1202,5 +1202,519 @@ const LEZIONI = [
       { q: "A tu mejor amigo le dices…", opts: ["Ti amo", "Ti voglio bene", "Ti piaccio"], a: 1 },
       { q: "Escucha y escribe:", say: "non vedo l'ora", fill: ["non vedo l'ora", "non vedo l'ora!"] }
     ]
+  },
+
+  // ===================== NIVEL B1 =====================
+
+  {
+    id: "b1-congiuntivo",
+    level: "B1",
+    title: "Secondo me: il congiuntivo",
+    sub: "Opiniones, deseos y dudas · penso che sia",
+    intro: "El subjuntivo italiano. Buena noticia: se usa en casi los mismos casos que en español (opinar, desear, dudar). La diferencia: en italiano también va después de “pensar” y “creer”.",
+    vocab: [
+      ["l'opinione", "la opinión", "o-pi-NIÓ-ne"],
+      ["secondo me", "en mi opinión", "se-CÓN-do ME"],
+      ["essere d'accordo", "estar de acuerdo", "d'ac-CÓR-do"],
+      ["avere ragione / torto", "tener razón / no tenerla", "ra-YÓ-ne / TÓR-to"],
+      ["il dubbio", "la duda", "DÚB-bio"],
+      ["sembrare", "parecer", "sem-BRÁ-re"],
+      ["bisogna che", "hace falta que", "bi-SÓ-ña ke"],
+      ["è importante che", "es importante que", "im-por-TÁN-te"],
+      ["sebbene / benché", "aunque", "seb-BÉ-ne / ben-KÉ"],
+      ["prima che", "antes de que", "PRÍ-ma ke"],
+      ["affinché", "para que", "af-fin-KÉ"],
+      ["il punto di vista", "el punto de vista", "PÚN-to di VÍS-ta"]
+    ],
+    phrases: [
+      ["Penso che sia una buona idea.", "Creo que es una buena idea.", "¡En español va indicativo!", "PÉN-so ke SÍ-a ú-na BUÓ-na i-DÉ-a"],
+      ["Credo che abbia ragione lui.", "Creo que él tiene razón.", "", "CRÉ-do ke ÁB-bia ra-YÓ-ne LUI"],
+      ["Spero che tu stia meglio.", "Espero que estés mejor.", "", "SPÉ-ro ke tu STÍ-a MÉ-lio"],
+      ["Non so se sia vero.", "No sé si es verdad.", "", "non SO se SÍ-a VÉ-ro"],
+      ["Voglio che tu venga alla festa.", "Quiero que vengas a la fiesta.", "", "VÓ-lio ke tu VÉN-ga ÁL-la FÉS-ta"],
+      ["Mi sembra che sia troppo caro.", "Me parece que es demasiado caro.", "", "mi SÉM-bra ke SÍ-a TRÓP-po CÁ-ro"],
+      ["Benché piova, usciamo lo stesso.", "Aunque llueva, salimos igual.", "", "ben-KÉ PIÓ-va, u-SHÁ-mo lo STÉS-so"],
+      ["Sono d'accordo con te.", "Estoy de acuerdo contigo.", "", "SÓ-no dac-CÓR-do con TE"]
+    ],
+    grammar: {
+      title: "Congiuntivo presente",
+      html: `<table><tr><th>Persona</th><th>parlare</th><th>prendere</th><th>partire</th></tr>
+      <tr><td>che io</td><td>parli</td><td>prenda</td><td>parta</td></tr>
+      <tr><td>che tu</td><td>parli</td><td>prenda</td><td>parta</td></tr>
+      <tr><td>che lui/lei</td><td>parli</td><td>prenda</td><td>parta</td></tr>
+      <tr><td>che noi</td><td>parliamo</td><td>prendiamo</td><td>partiamo</td></tr>
+      <tr><td>che voi</td><td>parliate</td><td>prendiate</td><td>partiate</td></tr>
+      <tr><td>che loro</td><td>parlino</td><td>prendano</td><td>partano</td></tr></table>
+      <p>Las tres personas del singular son iguales: por eso a veces se añade el pronombre (<em>che tu parli</em>).</p>
+      <p>Irregulares: <strong>essere</strong> → sia, siamo, siate, siano · <strong>avere</strong> → abbia · <strong>fare</strong> → faccia · <strong>andare</strong> → vada · <strong>venire</strong> → venga · <strong>stare</strong> → stia · <strong>potere</strong> → possa · <strong>volere</strong> → voglia.</p>
+      <p><strong>Cuándo:</strong> después de <em>penso/credo/mi sembra che</em> (opinión), <em>spero/voglio che</em> (deseo), <em>non so se, dubito che</em> (duda), <em>è importante/bisogna che</em> y conjunciones como <em>benché, prima che, affinché</em>.</p>`
+    },
+    tips: [
+      "<strong>Ojo:</strong> la gran diferencia con el español: “Creo que <u>es</u> verdad” → <em>Credo che <u>sia</u> vero</em>. Los verbos de opinión piden subjuntivo en italiano.",
+      "<strong>Truco:</strong> si el sujeto es el mismo, no se usa congiuntivo sino <em>di</em> + infinitivo: <em>Penso <u>di</u> partire</em> (pienso irme), no “penso che io parta”.",
+      "<strong>Realidad:</strong> en el habla informal muchos italianos usan el indicativo (<em>penso che è…</em>). Entiéndelo, pero tú usa el congiuntivo: suena más culto."
+    ],
+    dialog: [
+      ["A", "Secondo te, conviene andare a vivere a Milano?", "En tu opinión, ¿conviene irse a vivir a Milán?"],
+      ["B", "Penso che sia una città piena di opportunità.", "Creo que es una ciudad llena de oportunidades."],
+      ["A", "Sì, ma credo che gli affitti siano carissimi.", "Sí, pero creo que los alquileres son carísimos."],
+      ["B", "È vero. Bisogna che tu trovi un buon lavoro prima.", "Es verdad. Hace falta que encuentres un buen trabajo antes."],
+      ["A", "Spero che mi rispondano presto dall'azienda.", "Espero que me respondan pronto de la empresa."],
+      ["B", "Vedrai che andrà tutto bene!", "¡Ya verás que todo saldrá bien!"]
+    ],
+    quiz: [
+      { q: "Penso che Marco ___ stanco.", opts: ["è", "sia", "fosse"], a: 1 },
+      { q: "Spero che voi ___ (venire).", opts: ["venite", "veniate", "vengano"], a: 1 },
+      { q: "“Pienso irme mañana” =", opts: ["Penso che io parta domani", "Penso di partire domani", "Penso partire domani"], a: 1 },
+      { q: "Escribe el congiuntivo de essere, lui:", fill: ["sia", "che lui sia"] },
+      { q: "Escribe el congiuntivo de avere, loro:", fill: ["abbiano", "che loro abbiano"] },
+      { q: "Escucha y escribe:", say: "credo che abbia ragione", fill: ["credo che abbia ragione"] }
+    ]
+  },
+
+  {
+    id: "b1-ipotesi",
+    level: "B1",
+    title: "Se fossi ricco…",
+    sub: "Hipótesis y deseos · se + congiuntivo imperfetto",
+    intro: "Para hablar de lo que harías si las cosas fueran distintas: si tuviera tiempo, si viviera en Italia, si ganara la lotería. Funciona igual que en español.",
+    vocab: [
+      ["vincere la lotteria", "ganar la lotería", "VÍN-che-re la lot-te-RÍ-a"],
+      ["il sogno", "el sueño", "SÓ-ño"],
+      ["realizzare", "cumplir / realizar", "re-a-lid-DZÁ-re"],
+      ["magari", "ojalá", "ma-GÁ-ri"],
+      ["al posto tuo", "en tu lugar", "al PÓS-to TÚ-o"],
+      ["fare il giro del mondo", "dar la vuelta al mundo", "YÍ-ro del MÓN-do"],
+      ["licenziarsi", "renunciar al trabajo", "li-chen-TSIÁR-si"],
+      ["mettersi in proprio", "independizarse (negocio)", "MÉT-ter-si in PRÓ-prio"],
+      ["la possibilità", "la posibilidad", "pos-si-bi-li-TÁ"],
+      ["immaginare", "imaginar", "im-ma-yi-NÁ-re"],
+      ["il rimpianto", "el arrepentimiento", "rim-PIÁN-to"],
+      ["come se", "como si", "CÓ-me se"]
+    ],
+    phrases: [
+      ["Se fossi ricco, viaggerei sempre.", "Si fuera rico, viajaría siempre.", "", "se FÓS-si RÍC-co, viad-ye-RÉI SÉM-pre"],
+      ["Se avessi più tempo, studierei di più.", "Si tuviera más tiempo, estudiaría más.", "", "se a-VÉS-si piú TÉM-po, stu-die-RÉI di PIÚ"],
+      ["Al posto tuo, accetterei.", "En tu lugar, aceptaría.", "", "al PÓS-to TÚ-o, ac-chet-te-RÉI"],
+      ["Magari potessi venire!", "¡Ojalá pudiera ir!", "", "ma-GÁ-ri po-TÉS-si ve-NÍ-re"],
+      ["Se potessi, vivrei a Firenze.", "Si pudiera, viviría en Florencia.", "", "se po-TÉS-si, vi-VRÉI a fi-RÉN-tse"],
+      ["Parla come se fosse il capo.", "Habla como si fuera el jefe.", "", "PÁR-la CÓ-me se FÓS-se il CÁ-po"],
+      ["Cosa faresti se vincessi la lotteria?", "¿Qué harías si ganaras la lotería?", "", "CÓ-sa fa-RÉS-ti se vin-CHÉS-si la lot-te-RÍ-a"],
+      ["Vorrei che tu fossi qui.", "Me gustaría que estuvieras aquí.", "", "vor-RÉI ke tu FÓS-si CUI"]
+    ],
+    grammar: {
+      title: "Congiuntivo imperfetto + condizionale",
+      html: `<p>Estructura: <strong>se + congiuntivo imperfetto, condizionale</strong>. Igual que “si + subjuntivo, condicional”.</p>
+      <table><tr><th>Persona</th><th>parlare</th><th>essere</th><th>avere</th></tr>
+      <tr><td>(se) io</td><td>parlassi</td><td>fossi</td><td>avessi</td></tr>
+      <tr><td>(se) tu</td><td>parlassi</td><td>fossi</td><td>avessi</td></tr>
+      <tr><td>(se) lui/lei</td><td>parlasse</td><td>fosse</td><td>avesse</td></tr>
+      <tr><td>(se) noi</td><td>parlassimo</td><td>fossimo</td><td>avessimo</td></tr>
+      <tr><td>(se) voi</td><td>parlaste</td><td>foste</td><td>aveste</td></tr>
+      <tr><td>(se) loro</td><td>parlassero</td><td>fossero</td><td>avessero</td></tr></table>
+      <p>Irregulares: <strong>fare</strong> → facessi · <strong>dire</strong> → dicessi · <strong>bere</strong> → bevessi · <strong>dare</strong> → dessi · <strong>stare</strong> → stessi.</p>
+      <p>También después de <em>vorrei che, magari, come se</em>.</p>`
+    },
+    tips: [
+      "<strong>Ojo:</strong> nunca uses el condicional después de <em>se</em>: ~~se avrei~~ → <em>se avessi</em>. Es el error más típico (también de los italianos jóvenes).",
+      "<strong>Truco:</strong> el congiuntivo imperfetto se forma casi como el “-ase/-ara” español: habl<u>ase</u> → parl<u>assi</u>."
+    ],
+    dialog: [
+      ["A", "Cosa faresti se vincessi un milione di euro?", "¿Qué harías si ganaras un millón de euros?"],
+      ["B", "Mi licenzierei subito e farei il giro del mondo!", "¡Renunciaría enseguida y daría la vuelta al mundo!"],
+      ["A", "E se dovessi scegliere un solo paese?", "¿Y si tuvieras que elegir un solo país?"],
+      ["B", "Andrei in Italia, ovviamente. Comprerei una casa in Toscana.", "Iría a Italia, obviamente. Compraría una casa en la Toscana."],
+      ["A", "Magari fosse così facile!", "¡Ojalá fuera tan fácil!"],
+      ["B", "Sognare non costa niente.", "Soñar no cuesta nada."]
+    ],
+    quiz: [
+      { q: "Se ___ tempo, verrei.", opts: ["avrei", "avessi", "ho avuto"], a: 1 },
+      { q: "Se fossi in te, ___ .", opts: ["accetterei", "accetto", "accettassi"], a: 0 },
+      { q: "Congiuntivo imperfetto de fare, io:", opts: ["fassi", "facessi", "farei"], a: 1 },
+      { q: "Escribe “si fuera” (essere, io):", fill: ["se fossi", "fossi"] },
+      { q: "Escribe “¡Ojalá!” en italiano:", fill: ["magari", "magari!"] },
+      { q: "Escucha y escribe:", say: "come se fosse facile", fill: ["come se fosse facile"] }
+    ]
+  },
+
+  {
+    id: "b1-pronomi",
+    level: "B1",
+    title: "Te lo dico io",
+    sub: "Pronombres combinados · ci y ne",
+    intro: "Para sonar natural necesitas juntar pronombres (“te lo digo”, “se lo di”) y dominar dos palabritas que los italianos usan sin parar: ci y ne.",
+    vocab: [
+      ["me lo / me la", "me lo / me la", "me lo / me la"],
+      ["te lo / te la", "te lo / te la", "te lo / te la"],
+      ["glielo / gliela", "se lo / se la (a él, ella, usted)", "LIÉ-lo / LIÉ-la"],
+      ["ce lo / ve lo", "nos lo / os lo", "che lo / ve lo"],
+      ["ne", "de eso / de ellos (cantidad)", "ne"],
+      ["ci", "allí / en eso", "chi"],
+      ["prestare", "prestar", "pres-TÁ-re"],
+      ["regalare", "regalar", "re-ga-LÁ-re"],
+      ["restituire", "devolver", "res-ti-tu-Í-re"],
+      ["parlarne", "hablar de ello", "par-LÁR-ne"],
+      ["pensarci", "pensarlo", "pen-SÁR-chi"],
+      ["andarsene", "irse", "an-DÁR-se-ne"]
+    ],
+    phrases: [
+      ["Te lo dico domani.", "Te lo digo mañana.", "", "te lo DÍ-co do-MÁ-ni"],
+      ["Gliel'ho già dato.", "Ya se lo di.", "glielo + ho", "lie-LÓ YA DÁ-to"],
+      ["Me lo puoi prestare?", "¿Me lo puedes prestar?", "", "me lo puói pres-TÁ-re"],
+      ["Quanti fratelli hai? Ne ho due.", "¿Cuántos hermanos tienes? Tengo dos.", "ne = de ellos", "CUÁN-ti fra-TÉL-li ÁI? ne o DÚ-e"],
+      ["Ne parliamo dopo.", "Hablamos de eso después.", "", "ne par-LIÁ-mo DÓ-po"],
+      ["Vai a Roma? Sì, ci vado domani.", "¿Vas a Roma? Sí, voy mañana.", "ci = allí", "vai a RÓ-ma? si, chi VÁ-do do-MÁ-ni"],
+      ["Ci penso io!", "¡Yo me encargo!", "Expresión muy común", "chi PÉN-so Í-o"],
+      ["Me ne vado.", "Me voy.", "andarsene", "me ne VÁ-do"]
+    ],
+    grammar: {
+      title: "Pronombres combinados, ci y ne",
+      html: `<p>Indirecto + directo. Los indirectos <em>mi, ti, ci, vi</em> cambian la i por e:</p>
+      <table><tr><th>Indirecto</th><th>+ lo</th><th>+ la</th><th>+ ne</th></tr>
+      <tr><td>mi</td><td>me lo</td><td>me la</td><td>me ne</td></tr>
+      <tr><td>ti</td><td>te lo</td><td>te la</td><td>te ne</td></tr>
+      <tr><td>gli / le / Le</td><td>glielo</td><td>gliela</td><td>gliene</td></tr>
+      <tr><td>ci</td><td>ce lo</td><td>ce la</td><td>ce ne</td></tr>
+      <tr><td>vi</td><td>ve lo</td><td>ve la</td><td>ve ne</td></tr></table>
+      <p><strong>glie-</strong> sirve para él, ella y usted, y se escribe junto: <em>glielo</em>.</p>
+      <p><strong>ne</strong> = “de eso / de ellos”, sobre todo con cantidades: <em>Quanti caffè bevi? Ne bevo tre.</em></p>
+      <p><strong>ci</strong> = “allí” o “en eso”: <em>Ci vado. Ci penso.</em> Y en expresiones: <em>ci vuole</em> (se necesita), <em>ce l'ho</em> (lo tengo).</p>`
+    },
+    tips: [
+      "<strong>Ojo:</strong> en italiano “ne” es obligatorio con cantidades. “Tengo dos” no se dice ~~ho due~~ sino <em>ne ho due</em>.",
+      "<strong>Expresiones con ci/ne muy usadas:</strong> <em>ce la faccio</em> (lo logro), <em>non ce la faccio più</em> (no puedo más), <em>me ne frego</em> (me da igual, coloquial), <em>ci vuole un'ora</em> (se tarda una hora)."
+    ],
+    dialog: [
+      ["A", "Hai ancora il libro che ti ho prestato?", "¿Todavía tienes el libro que te presté?"],
+      ["B", "Sì, scusa! Te lo restituisco domani.", "¡Sí, perdón! Te lo devuelvo mañana."],
+      ["A", "Tranquillo. E il regalo per Giulia? Gliel'hai dato?", "Tranquilo. ¿Y el regalo para Giulia? ¿Se lo diste?"],
+      ["B", "Non ancora, glielo do stasera alla festa.", "Todavía no, se lo doy esta noche en la fiesta."],
+      ["A", "Vieni anche tu? Quante persone ci saranno?", "¿Vienes tú también? ¿Cuántas personas habrá?"],
+      ["B", "Ne ho invitate venti. Ci vediamo lì!", "Invité a veinte. ¡Nos vemos allí!"]
+    ],
+    quiz: [
+      { q: "Il libro? ___ do a Marco.", opts: ["Glielo", "Gli lo", "Se lo"], a: 0 },
+      { q: "La foto? ___ mandi? (a mí)", opts: ["Mi la", "Me la", "Me lo"], a: 1 },
+      { q: "Quante pizze vuoi? ___ voglio due.", opts: ["Ci", "Ne", "Le"], a: 1 },
+      { q: "Vai al cinema? Sì, ___ vado stasera.", opts: ["ne", "ci", "lo"], a: 1 },
+      { q: "Escribe “te lo digo”:", fill: ["te lo dico"] },
+      { q: "“Non ce la faccio più” significa…", opts: ["No lo encuentro", "No puedo más", "No me importa"], a: 1 }
+    ]
+  },
+
+  {
+    id: "b1-relazioni",
+    level: "B1",
+    title: "Relazioni",
+    sub: "Amor, amistad y conflictos · che, cui, il quale",
+    intro: "Para hablar de personas importantes en tu vida, de pareja y de amistad, y unir frases como un nativo con los pronombres relativos.",
+    vocab: [
+      ["innamorarsi", "enamorarse", "in-na-mo-RÁR-si"],
+      ["fidanzarsi", "hacerse novios / comprometerse", "fi-dan-TSÁR-si"],
+      ["il fidanzato / la fidanzata", "el novio / la novia", "fi-dan-TSÁ-to"],
+      ["lasciarsi", "terminar (una relación)", "la-SHÁR-si"],
+      ["litigare", "pelear / discutir", "li-ti-GÁ-re"],
+      ["fare pace", "reconciliarse", "FÁ-re PÁ-che"],
+      ["fidarsi di", "confiar en", "fi-DÁR-si di"],
+      ["la gelosia", "los celos", "ye-lo-SÍ-a"],
+      ["andare d'accordo", "llevarse bien", "an-DÁ-re dac-CÓR-do"],
+      ["sentire la mancanza", "extrañar", "man-CÁN-tsa"],
+      ["l'amicizia", "la amistad", "a-mi-CHÍ-tsia"],
+      ["il rapporto", "la relación", "rap-PÓR-to"]
+    ],
+    phrases: [
+      ["Ci siamo conosciuti all'università.", "Nos conocimos en la universidad.", "", "chi SIÁ-mo co-no-SHÚ-ti al-lu-ni-ver-si-TÁ"],
+      ["Vado molto d'accordo con mia sorella.", "Me llevo muy bien con mi hermana.", "", "VÁ-do MÓL-to dac-CÓR-do con MÍ-a so-RÉL-la"],
+      ["Mi manchi tanto.", "Te extraño mucho.", "¡Cuidado con el orden!", "mi MÁN-ki TÁN-to"],
+      ["È la persona di cui mi fido di più.", "Es la persona en quien más confío.", "", "É la per-SÓ-na di CUI mi FÍ-do di PIÚ"],
+      ["Il ragazzo con cui esco è romano.", "El chico con el que salgo es romano.", "", "il ra-GÁT-tso con CUI ÉS-co É ro-MÁ-no"],
+      ["Abbiamo litigato, ma poi abbiamo fatto pace.", "Peleamos, pero luego nos reconciliamos.", "", "ab-BIÁ-mo li-ti-GÁ-to, ma POI ab-BIÁ-mo FÁT-to PÁ-che"],
+      ["Si sono lasciati dopo tre anni.", "Terminaron después de tres años.", "", "si SÓ-no la-SHÁ-ti DÓ-po TRE ÁN-ni"],
+      ["Gli amici sono la famiglia che scegli.", "Los amigos son la familia que eliges.", "", "li a-MÍ-chi SÓ-no la fa-MÍ-lia ke SHÉ-li"]
+    ],
+    grammar: {
+      title: "Pronombres relativos: che, cui, il quale",
+      html: `<table><tr><th>Uso</th><th>Italiano</th><th>Ejemplo</th></tr>
+      <tr><td>sujeto u objeto directo</td><td>che</td><td>Il film <u>che</u> ho visto…</td></tr>
+      <tr><td>después de preposición</td><td>cui</td><td>La ragazza <u>con cui</u> esco… / Il motivo <u>per cui</u>…</td></tr>
+      <tr><td>formal / para evitar ambigüedad</td><td>il quale, la quale, i quali, le quali</td><td>Il collega <u>con il quale</u> lavoro…</td></tr>
+      <tr><td>“lo que”</td><td>quello che / ciò che</td><td><u>Quello che</u> dici è vero.</td></tr>
+      <tr><td>“cuyo”</td><td>il cui, la cui…</td><td>Lo scrittore <u>il cui</u> libro…</td></tr></table>
+      <p>Nunca uses <em>che</em> después de una preposición: ~~con che~~ → <em>con cui</em>.</p>`
+    },
+    tips: [
+      "<strong>Ojo — mancare:</strong> funciona al revés que “extrañar”, como <em>piacere</em>. <em>Mi manchi</em> = te extraño (literalmente “me faltas”). <em>Mi manca l'Italia</em> = extraño Italia.",
+      "<strong>Falso amigo:</strong> <em>la fidanzata</em> es la novia (no necesariamente prometida). “Prometida para casarse” también se dice así, o <em>promessa sposa</em>."
+    ],
+    dialog: [
+      ["A", "Come vi siete conosciuti tu e Luca?", "¿Cómo se conocieron tú y Luca?"],
+      ["B", "A una festa di un'amica con cui studiavo.", "En una fiesta de una amiga con la que estudiaba."],
+      ["A", "E andate d'accordo?", "¿Y se llevan bien?"],
+      ["B", "Sì, anche se a volte litighiamo per cose stupide.", "Sí, aunque a veces peleamos por tonterías."],
+      ["A", "È normale! L'importante è fidarsi l'uno dell'altra.", "¡Es normal! Lo importante es confiar el uno en el otro."],
+      ["B", "Esatto. E quando non c'è, mi manca tantissimo.", "Exacto. Y cuando no está, lo extraño muchísimo."]
+    ],
+    quiz: [
+      { q: "La persona con ___ lavoro è simpatica.", opts: ["che", "cui", "quale"], a: 1 },
+      { q: "Il libro ___ leggo è bellissimo.", opts: ["che", "cui", "di cui"], a: 0 },
+      { q: "“Te extraño” =", opts: ["Ti manco", "Mi manchi", "Ti mancano"], a: 1 },
+      { q: "“Llevarse bien” =", opts: ["portarsi bene", "andare d'accordo", "stare bene"], a: 1 },
+      { q: "Escribe “reconciliarse” (fare…):", fill: ["fare pace"] },
+      { q: "Escucha y escribe:", say: "mi fido di te", fill: ["mi fido di te"] }
+    ]
+  },
+
+  {
+    id: "b1-racconti",
+    level: "B1",
+    title: "Raccontare una storia",
+    sub: "Trapassato prossimo · stare + gerundio",
+    intro: "Para contar historias con orden: lo que ya había pasado antes, lo que estaba pasando en ese momento y lo que pasó después.",
+    vocab: [
+      ["all'improvviso", "de repente", "al-lim-prov-VÍ-so"],
+      ["nel frattempo", "mientras tanto", "nel frat-TÉM-po"],
+      ["alla fine", "al final", "ÁL-la FÍ-ne"],
+      ["prima di + inf.", "antes de", "PRÍ-ma di"],
+      ["dopo aver + part.", "después de haber", "DÓ-po a-VÉR"],
+      ["succedere", "suceder", "suc-CHÉ-de-re"],
+      ["accorgersi", "darse cuenta", "ac-CÓR-yer-si"],
+      ["ricordarsi", "acordarse", "ri-cor-DÁR-si"],
+      ["la sorpresa", "la sorpresa", "sor-PRÉ-sa"],
+      ["per fortuna", "por suerte", "per for-TÚ-na"],
+      ["stare per", "estar a punto de", "STÁ-re per"],
+      ["un sacco di", "un montón de", "un SÁC-co di"]
+    ],
+    phrases: [
+      ["Quando sono arrivato, il treno era già partito.", "Cuando llegué, el tren ya había salido.", "Trapassato", "CUÁN-do SÓ-no ar-ri-VÁ-to, il TRÉ-no É-ra YA par-TÍ-to"],
+      ["Non avevo mai visto la neve prima.", "Nunca había visto la nieve antes.", "", "non a-VÉ-vo MAI VÍS-to la NÉ-ve PRÍ-ma"],
+      ["Sto lavorando, ti chiamo dopo.", "Estoy trabajando, te llamo después.", "stare + gerundio", "sto la-vo-RÁN-do, ti KIÁ-mo DÓ-po"],
+      ["Stavo dormendo quando hai chiamato.", "Estaba durmiendo cuando llamaste.", "", "STÁ-vo dor-MÉN-do CUÁN-do ÁI kia-MÁ-to"],
+      ["Sto per uscire.", "Estoy a punto de salir.", "", "sto per u-SHÍ-re"],
+      ["All'improvviso mi sono accorto che avevo perso il portafoglio.", "De repente me di cuenta de que había perdido la billetera.", "", "al-lim-prov-VÍ-so mi SÓ-no ac-CÓR-to ke a-VÉ-vo PÉR-so il por-ta-FÓ-lio"],
+      ["Dopo aver mangiato, siamo andati a ballare.", "Después de comer, fuimos a bailar.", "", "DÓ-po a-VÉR man-YÁ-to, SIÁ-mo an-DÁ-ti a bal-LÁ-re"],
+      ["Per fortuna, alla fine è andato tutto bene.", "Por suerte, al final todo salió bien.", "", "per for-TÚ-na, ÁL-la FÍ-ne É an-DÁ-to TÚT-to BÉ-ne"]
+    ],
+    grammar: {
+      title: "Trapassato prossimo y gerundio",
+      html: `<p><strong>Trapassato prossimo</strong> = imperfetto de avere/essere + participio. Es nuestro “había + participio”.</p>
+      <table><tr><th>Persona</th><th>con avere</th><th>con essere</th></tr>
+      <tr><td>io</td><td>avevo mangiato</td><td>ero partito/a</td></tr>
+      <tr><td>tu</td><td>avevi mangiato</td><td>eri partito/a</td></tr>
+      <tr><td>lui/lei</td><td>aveva mangiato</td><td>era partito/a</td></tr>
+      <tr><td>noi</td><td>avevamo mangiato</td><td>eravamo partiti/e</td></tr>
+      <tr><td>voi</td><td>avevate mangiato</td><td>eravate partiti/e</td></tr>
+      <tr><td>loro</td><td>avevano mangiato</td><td>erano partiti/e</td></tr></table>
+      <p><strong>Gerundio:</strong> -are → <em>-ando</em>, -ere/-ire → <em>-endo</em> (parlando, prendendo, dormendo). Irregulares: <em>facendo, dicendo, bevendo</em>.</p>
+      <p><strong>stare + gerundio</strong> = acción en curso: <em>sto mangiando, stavo leggendo</em>. <strong>stare per</strong> + infinitivo = estar a punto de.</p>`
+    },
+    tips: [
+      "<strong>Ojo:</strong> en italiano “stare + gerundio” se usa menos que en español. “¿Qué haces?” suele ser <em>Cosa fai?</em>, no “cosa stai facendo?” (salvo para remarcar que es justo ahora).",
+      "<strong>Conectores para contar:</strong> <em>prima, poi, dopo, a un certo punto, all'improvviso, nel frattempo, alla fine</em>. Con ellos cualquier historia suena ordenada."
+    ],
+    dialog: [
+      ["A", "Allora, com'è andato il viaggio a Napoli?", "Entonces, ¿cómo te fue el viaje a Nápoles?"],
+      ["B", "Un disastro all'inizio! Quando sono arrivato in stazione, il treno era già partito.", "¡Un desastre al principio! Cuando llegué a la estación, el tren ya había salido."],
+      ["A", "Noo! E cosa hai fatto?", "¡Nooo! ¿Y qué hiciste?"],
+      ["B", "Stavo per tornare a casa, ma poi ho trovato un pullman.", "Estaba a punto de volver a casa, pero luego encontré un bus."],
+      ["A", "Per fortuna! E Napoli?", "¡Menos mal! ¿Y Nápoles?"],
+      ["B", "Bellissima. Non avevo mai mangiato una pizza così buona.", "Bellísima. Nunca había comido una pizza tan buena."]
+    ],
+    quiz: [
+      { q: "Quando sono arrivato, lei ___ già ___ .", opts: ["è / uscita", "era / uscita", "aveva / uscito"], a: 1 },
+      { q: "Gerundio de fare:", opts: ["fando", "facendo", "farendo"], a: 1 },
+      { q: "“Estoy a punto de salir” =", opts: ["Sto uscendo", "Sto per uscire", "Ero uscito"], a: 1 },
+      { q: "Escribe “estaba durmiendo” (io):", fill: ["stavo dormendo", "io stavo dormendo"] },
+      { q: "Escribe “yo había comido”:", fill: ["avevo mangiato", "io avevo mangiato"] },
+      { q: "Escucha y escribe:", say: "all'improvviso", fill: ["all'improvviso"] }
+    ]
+  },
+
+  {
+    id: "b1-notizie",
+    level: "B1",
+    title: "Le notizie",
+    sub: "Actualidad y sociedad · forma pasiva y “si”",
+    intro: "Para entender noticias, leer periódicos y opinar sobre temas de sociedad. Aprendes la voz pasiva y el “si” impersonal, muy usados en textos escritos.",
+    vocab: [
+      ["il governo", "el gobierno", "go-VÉR-no"],
+      ["le elezioni", "las elecciones", "e-le-TSIÓ-ni"],
+      ["la legge", "la ley", "LÉD-ye"],
+      ["lo sciopero", "la huelga", "SHÓ-pe-ro"],
+      ["l'inquinamento", "la contaminación", "in-cui-na-MÉN-to"],
+      ["il cambiamento climatico", "el cambio climático", "cam-bia-MÉN-to cli-MÁ-ti-co"],
+      ["la disoccupazione", "el desempleo", "di-soc-cu-pa-TSIÓ-ne"],
+      ["la crisi", "la crisis", "CRÍ-si"],
+      ["il giornale", "el periódico", "yor-NÁ-le"],
+      ["l'articolo", "el artículo", "ar-TÍ-co-lo"],
+      ["secondo gli esperti", "según los expertos", "es-PÉR-ti"],
+      ["aumentare / diminuire", "aumentar / disminuir", "au-men-TÁ-re / di-mi-nu-Í-re"]
+    ],
+    phrases: [
+      ["Hai letto le notizie di oggi?", "¿Leíste las noticias de hoy?", "", "ÁI LÉT-to le no-TÍ-tsie di ÓD-yi"],
+      ["La legge è stata approvata ieri.", "La ley fue aprobada ayer.", "Pasiva con essere", "la LÉD-ye É STÁ-ta ap-pro-VÁ-ta IÉ-ri"],
+      ["Il ponte viene costruito in due anni.", "El puente se construye en dos años.", "Pasiva con venire", "il PÓN-te VIÉ-ne cos-tru-Í-to in DÚ-e ÁN-ni"],
+      ["In Italia si mangia bene.", "En Italia se come bien.", "si impersonal", "in i-TÁ-lia si MÁN-ya BÉ-ne"],
+      ["Si vendono biglietti online.", "Se venden boletos en línea.", "", "si VÉN-do-no bi-LIÉT-ti on-LÁIN"],
+      ["Domani c'è sciopero dei treni.", "Mañana hay huelga de trenes.", "", "do-MÁ-ni CHÉ SHÓ-pe-ro dei TRÉ-ni"],
+      ["Secondo gli esperti, la disoccupazione è diminuita.", "Según los expertos, el desempleo disminuyó.", "", "se-CÓN-do li es-PÉR-ti, la di-soc-cu-pa-TSIÓ-ne É di-mi-nu-Í-ta"],
+      ["Bisognerebbe fare di più per l'ambiente.", "Habría que hacer más por el medio ambiente.", "", "bi-so-ñe-RÉB-be FÁ-re di PIÚ per lam-BIÉN-te"]
+    ],
+    grammar: {
+      title: "Forma pasiva y si impersonal",
+      html: `<p><strong>Pasiva</strong> = essere (o venire) + participio, que concuerda con el sujeto:</p>
+      <table><tr><th>Activa</th><th>Pasiva</th></tr>
+      <tr><td>Il governo approva la legge.</td><td>La legge <u>è approvata</u> / <u>viene approvata</u> dal governo.</td></tr>
+      <tr><td>Hanno costruito il ponte.</td><td>Il ponte <u>è stato costruito</u>.</td></tr></table>
+      <p><strong>venire</strong> solo en tiempos simples (viene, veniva, verrà) y da sensación de proceso. <strong>andare</strong> + participio = obligación: <em>Il biglietto va convalidato</em> (debe validarse).</p>
+      <p><strong>si</strong> impersonal/pasivo = “se”: <em>si dice, si vive bene, si parla italiano</em>. Con plural, el verbo va en plural: <em>si vendono case</em>.</p>`
+    },
+    tips: [
+      "<strong>Truco:</strong> los titulares italianos casi siempre usan la pasiva o frases sin verbo: <em>“Approvata la nuova legge”</em>, <em>“Sciopero dei treni: i dettagli”</em>.",
+      "<strong>Cultura:</strong> periódicos principales: <em>Corriere della Sera, la Repubblica, La Stampa</em>. Para tu nivel, prueba <em>“Il Post”</em> (lenguaje claro) o noticias en italiano fácil."
+    ],
+    dialog: [
+      ["A", "Hai sentito? Domani c'è sciopero dei mezzi.", "¿Escuchaste? Mañana hay huelga del transporte."],
+      ["B", "Di nuovo? Come si fa ad andare al lavoro?", "¿Otra vez? ¿Cómo se hace para ir al trabajo?"],
+      ["A", "Secondo il giornale, vengono garantiti alcuni treni la mattina.", "Según el periódico, se garantizan algunos trenes en la mañana."],
+      ["B", "Meno male. Comunque bisognerebbe migliorare i trasporti.", "Menos mal. De todas formas habría que mejorar el transporte."],
+      ["A", "Sono d'accordo. E anche ridurre l'inquinamento.", "Estoy de acuerdo. Y también reducir la contaminación."],
+      ["B", "Infatti. In questa città non si respira!", "Exacto. ¡En esta ciudad no se puede respirar!"]
+    ],
+    quiz: [
+      { q: "La casa ___ venduta l'anno scorso.", opts: ["ha stata", "è stata", "è stato"], a: 1 },
+      { q: "In questo negozio ___ vestiti usati.", opts: ["si vende", "si vendono", "vende"], a: 1 },
+      { q: "“Il biglietto va convalidato” significa…", opts: ["El boleto se validó", "El boleto debe validarse", "El boleto va a validarse"], a: 1 },
+      { q: "“Lo sciopero” es…", opts: ["el atasco", "la huelga", "la elección"], a: 1 },
+      { q: "Escribe “la contaminación”:", fill: ["l'inquinamento"] },
+      { q: "Escucha y escribe:", say: "in Italia si mangia bene", fill: ["in italia si mangia bene"] }
+    ]
+  },
+
+  {
+    id: "b1-email",
+    level: "B1",
+    title: "Email e discorso indiretto",
+    sub: "Escribir formal · ha detto che…",
+    intro: "Escribir correos formales (a una universidad, un casero o una empresa) y contar lo que otra persona dijo: el estilo indirecto.",
+    vocab: [
+      ["Gentile Signora / Egregio Signore", "Estimada señora / Estimado señor", "yen-TÍ-le / e-GRÉ-yo"],
+      ["Le scrivo per…", "Le escribo para…", "le SCRÍ-vo per"],
+      ["in allegato", "adjunto", "in al-le-GÁ-to"],
+      ["la richiesta", "la solicitud", "ri-KIÉS-ta"],
+      ["chiedere informazioni", "pedir información", "in-for-ma-TSIÓ-ni"],
+      ["Resto in attesa di un Suo riscontro", "Quedo a la espera de su respuesta", "RÉS-to in at-TÉ-sa di un SÚ-o ris-CÓN-tro"],
+      ["Distinti saluti / Cordiali saluti", "Atentamente / Saludos cordiales", "dis-TÍN-ti sa-LÚ-ti"],
+      ["il modulo", "el formulario", "MÓ-du-lo"],
+      ["la scadenza", "el plazo", "sca-DÉN-tsa"],
+      ["confermare", "confirmar", "con-fer-MÁ-re"],
+      ["riferire", "contar / informar", "ri-fe-RÍ-re"],
+      ["il giorno dopo", "el día siguiente", "il YÓR-no DÓ-po"]
+    ],
+    phrases: [
+      ["Gentile Professoressa Rossi,", "Estimada profesora Rossi:", "Saludo formal", "yen-TÍ-le pro-fes-so-RÉS-sa RÓS-si"],
+      ["Le scrivo per chiedere informazioni sul corso.", "Le escribo para pedir información sobre el curso.", "", "le SCRÍ-vo per KIÉ-de-re in-for-ma-TSIÓ-ni sul CÓR-so"],
+      ["In allegato trova il mio curriculum.", "Adjunto encontrará mi CV.", "", "in al-le-GÁ-to TRÓ-va il MÍ-o cur-RÍ-cu-lum"],
+      ["La ringrazio per l'attenzione.", "Le agradezco su atención.", "", "la rin-GRÁ-tsio per lat-ten-TSIÓ-ne"],
+      ["Cordiali saluti, Jonathan Page", "Saludos cordiales, Jonathan Page", "Cierre", "cor-DIÁ-li sa-LÚ-ti, YÓ-na-tan PEICH"],
+      ["Marco ha detto che è stanco.", "Marco dijo que está cansado.", "", "MÁR-co a DÉT-to ke É STÁN-co"],
+      ["Mi ha detto che sarebbe venuto il giorno dopo.", "Me dijo que vendría al día siguiente.", "Futuro → condizionale passato", "mi a DÉT-to ke sa-RÉB-be ve-NÚ-to il YÓR-no DÓ-po"],
+      ["Mi ha chiesto se volevo uscire.", "Me preguntó si quería salir.", "", "mi a KIÉS-to se vo-LÉ-vo u-SHÍ-re"]
+    ],
+    grammar: {
+      title: "Discorso indiretto",
+      html: `<p>Cuando el verbo introductor está en pasado (<em>ha detto, disse</em>), los tiempos cambian:</p>
+      <table><tr><th>Directo</th><th>Indirecto</th></tr>
+      <tr><td>presente: “Sono stanco.”</td><td>imperfetto: Ha detto che <u>era</u> stanco.</td></tr>
+      <tr><td>pass. prossimo: “Ho finito.”</td><td>trapassato: Ha detto che <u>aveva finito</u>.</td></tr>
+      <tr><td>futuro: “Verrò.”</td><td>cond. passato: Ha detto che <u>sarebbe venuto</u>.</td></tr>
+      <tr><td>imperativo: “Chiamami!”</td><td>di + inf.: Mi ha detto <u>di chiamarlo</u>.</td></tr></table>
+      <p>También cambian: <em>io → lui/lei, qui → lì, oggi → quel giorno, domani → il giorno dopo, ieri → il giorno prima</em>.</p>
+      <p>Ojo: en italiano el futuro en el pasado usa el <strong>condicional compuesto</strong> (<em>sarebbe venuto</em>), donde el español usa el simple (“vendría”).</p>`
+    },
+    tips: [
+      "<strong>Formal:</strong> en un correo formal se trata de <strong>Lei</strong> y los posesivos van en mayúscula por cortesía: <em>la Sua risposta, La ringrazio</em>.",
+      "<strong>Estructura de un email formal:</strong> saludo (<em>Gentile…,</em>) → motivo (<em>Le scrivo per…</em>) → detalles → petición (<em>Le sarei grato se…</em>) → cierre (<em>Cordiali saluti</em>)."
+    ],
+    dialog: [
+      ["A", "Hai sentito Giulia? Cosa ti ha detto?", "¿Hablaste con Giulia? ¿Qué te dijo?"],
+      ["B", "Mi ha detto che aveva trovato un nuovo lavoro.", "Me dijo que había encontrado un trabajo nuevo."],
+      ["A", "Davvero? E quando comincia?", "¿En serio? ¿Y cuándo empieza?"],
+      ["B", "Ha detto che avrebbe cominciato il mese dopo.", "Dijo que empezaría el mes siguiente."],
+      ["A", "Che bello! Le scrivo per farle i complimenti.", "¡Qué bien! Le escribo para felicitarla."],
+      ["B", "Sì, mi ha chiesto di salutarti.", "Sí, me pidió que te saludara."]
+    ],
+    quiz: [
+      { q: "“Estoy cansado”, dijo Paolo → Paolo ha detto che ___ stanco.", opts: ["è stato", "era", "sarà"], a: 1 },
+      { q: "“Verrò domani” → Ha detto che ___ il giorno dopo.", opts: ["verrebbe", "sarebbe venuto", "verrà"], a: 1 },
+      { q: "Cierre correcto de un email formal:", opts: ["Baci", "Ciao ciao", "Cordiali saluti"], a: 2 },
+      { q: "“Chiamami!” → Mi ha detto ___ .", opts: ["di chiamarlo", "che chiamami", "chiamarlo"], a: 0 },
+      { q: "Escribe “adjunto” (en un email):", fill: ["in allegato"] },
+      { q: "Escribe “Le escribo para…”:", fill: ["le scrivo per", "le scrivo per…"] }
+    ]
+  },
+
+  {
+    id: "b1-cultura",
+    level: "B1",
+    title: "Libri, film e storia",
+    sub: "Cultura italiana · reconocer el passato remoto",
+    intro: "Para leer libros, entender documentales y hablar de cultura. Conocerás el passato remoto: un pasado que casi no se usa al hablar en el norte, pero que aparece en todos los libros y en la historia.",
+    vocab: [
+      ["il romanzo", "la novela", "ro-MÁN-dzo"],
+      ["lo scrittore / la scrittrice", "el escritor / la escritora", "scrit-TÓ-re"],
+      ["il regista", "el director (de cine)", "re-YÍS-ta"],
+      ["la trama", "la trama / el argumento", "TRÁ-ma"],
+      ["il personaggio", "el personaje", "per-so-NÁD-yo"],
+      ["la mostra", "la exposición", "MÓS-tra"],
+      ["l'opera", "la ópera / la obra", "Ó-pe-ra"],
+      ["il Rinascimento", "el Renacimiento", "ri-na-shi-MÉN-to"],
+      ["il secolo", "el siglo", "SÉ-co-lo"],
+      ["consigliare", "recomendar", "con-si-LIÁ-re"],
+      ["valere la pena", "valer la pena", "va-LÉ-re la PÉ-na"],
+      ["ambientato a", "ambientado en", "am-bien-TÁ-to"]
+    ],
+    phrases: [
+      ["Mi ha consigliato un romanzo di Elena Ferrante.", "Me recomendó una novela de Elena Ferrante.", "", "mi a con-si-LIÁ-to un ro-MÁN-dzo di É-le-na fer-RÁN-te"],
+      ["Il film è ambientato a Napoli negli anni Cinquanta.", "La película está ambientada en Nápoles en los años cincuenta.", "", "il FILM É am-bien-TÁ-to a NÁ-po-li NÉ-li ÁN-ni chin-CUÁN-ta"],
+      ["Vale la pena vederlo.", "Vale la pena verla.", "", "VÁ-le la PÉ-na ve-DÉR-lo"],
+      ["Dante scrisse la Divina Commedia.", "Dante escribió la Divina Comedia.", "Passato remoto", "DÁN-te SCRÍS-se la di-VÍ-na com-MÉ-dia"],
+      ["Leonardo nacque nel 1452.", "Leonardo nació en 1452.", "", "le-o-NÁR-do NÁC-cue nel mil-le-cuat-tro-chen-to-chin-cuan-ta-DÚ-e"],
+      ["Garibaldi fu un eroe dell'Unità d'Italia.", "Garibaldi fue un héroe de la Unificación de Italia.", "", "ga-ri-BÁL-di FU un e-RÓ-e del-lu-ni-TÁ di-TÁ-lia"],
+      ["Di cosa parla il libro?", "¿De qué trata el libro?", "", "di CÓ-sa PÁR-la il LÍ-bro"],
+      ["Il finale mi ha lasciato senza parole.", "El final me dejó sin palabras.", "", "il fi-NÁ-le mi a la-SHÁ-to SÉN-tsa pa-RÓ-le"]
+    ],
+    grammar: {
+      title: "Passato remoto (para reconocerlo)",
+      html: `<p>Es el pasado de las novelas, los cuentos y la historia. En el sur de Italia también se usa al hablar. A tu nivel basta con <strong>reconocerlo</strong>.</p>
+      <table><tr><th>Persona</th><th>parlare</th><th>credere</th><th>partire</th></tr>
+      <tr><td>io</td><td>parlai</td><td>credei / credetti</td><td>partii</td></tr>
+      <tr><td>tu</td><td>parlasti</td><td>credesti</td><td>partisti</td></tr>
+      <tr><td>lui/lei</td><td>parlò</td><td>credé / credette</td><td>partì</td></tr>
+      <tr><td>noi</td><td>parlammo</td><td>credemmo</td><td>partimmo</td></tr>
+      <tr><td>voi</td><td>parlaste</td><td>credeste</td><td>partiste</td></tr>
+      <tr><td>loro</td><td>parlarono</td><td>crederono / credettero</td><td>partirono</td></tr></table>
+      <p>Irregulares que verás en todas partes: <strong>essere</strong> → fu, furono · <strong>avere</strong> → ebbe, ebbero · <strong>fare</strong> → fece · <strong>dire</strong> → disse · <strong>nascere</strong> → nacque · <strong>vivere</strong> → visse · <strong>scrivere</strong> → scrisse · <strong>vedere</strong> → vide.</p>`
+    },
+    tips: [
+      "<strong>Truco:</strong> el passato remoto se parece mucho al pretérito español: <em>parlò</em> ≈ habló, <em>parlarono</em> ≈ hablaron, <em>fu</em> ≈ fue.",
+      "<strong>Cultura:</strong> para empezar a leer: <em>“Il piccolo principe”</em> (traducido), cuentos de Italo Calvino (<em>“Marcovaldo”</em>) o libros en italiano fácil (graded readers) para tu nivel.",
+      "<strong>Años:</strong> se leen como un número: <em>1492 = millequattrocentonovantadue</em>. Los siglos 1400, 1500… se llaman <em>il Quattrocento, il Cinquecento</em>."
+    ],
+    dialog: [
+      ["A", "Che libro stai leggendo?", "¿Qué libro estás leyendo?"],
+      ["B", "“L'amica geniale”. Me l'ha consigliato la mia insegnante.", "“La amiga estupenda”. Me la recomendó mi profesora."],
+      ["A", "Di cosa parla?", "¿De qué trata?"],
+      ["B", "Di due amiche che crescono a Napoli dopo la guerra.", "De dos amigas que crecen en Nápoles después de la guerra."],
+      ["A", "Ho visto la serie! Vale proprio la pena.", "¡Vi la serie! De verdad vale la pena."],
+      ["B", "Allora dopo il libro la guardo anch'io.", "Entonces después del libro la veo yo también."]
+    ],
+    quiz: [
+      { q: "“Fu” es el passato remoto de…", opts: ["fare", "essere", "andare"], a: 1 },
+      { q: "“Nacque” significa…", opts: ["nadó", "nació", "nevó"], a: 1 },
+      { q: "“Ebbe” es el passato remoto de…", opts: ["avere", "essere", "bere"], a: 0 },
+      { q: "“Il regista” es…", opts: ["el registro", "el director de cine", "el guionista"], a: 1 },
+      { q: "Escribe “vale la pena”:", fill: ["vale la pena"] },
+      { q: "Escribe “la novela”:", fill: ["il romanzo"] }
+    ]
   }
 ];

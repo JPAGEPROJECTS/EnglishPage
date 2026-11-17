@@ -19,6 +19,7 @@
     flex: 1; text-align: center; text-decoration: none; font-weight: 700; padding: 10px;
     border-radius: 10px; border: 1px solid var(--border); background: var(--card);
   }
+  .level-switch small { display: block; font-size: 11px; font-weight: 600; opacity: .8; }
   .level-switch a.on { background: var(--verde); border-color: var(--verde); color: #fff; }
   .search {
     font: inherit; width: 100%; padding: 12px 14px; margin-top: 14px; border-radius: 12px;
@@ -85,11 +86,11 @@
   const data = PAROLE[lv];
   Progreso.contarTiempo();
   const total = data.reduce((n, c) => n + c.words.length, 0);
-  const NOMBRES = { A1: 'Principiante', A2: 'Básico' };
+  const NOMBRES = { A1: 'Principiante', A2: 'Básico', B1: 'Intermedio' };
   document.title = `Vocabulario ${lv} — Italiano`;
   document.getElementById('kicker').textContent = `Nivel ${lv} · ${total} palabras`;
   document.getElementById('switch').innerHTML = levels.map(l =>
-    `<a href="parole.html?l=${l}" class="${l === lv ? 'on' : ''}">${l} · ${NOMBRES[l] || ''}</a>`).join('');
+    `<a href="parole.html?l=${l}" class="${l === lv ? 'on' : ''}">${l}<small>${NOMBRES[l] || ''}</small></a>`).join('');
 
   // ---- Audio ----
   let itVoice = null;
