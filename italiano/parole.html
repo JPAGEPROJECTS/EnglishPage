@@ -42,6 +42,8 @@
   .ex-es { font-size: 14px; color: var(--muted); }
   .hide-es .entry .es, .hide-es .ex-es { filter: blur(5px); cursor: pointer; transition: filter .15s; }
   .hide-es .entry.reveal .es, .hide-es .entry.reveal .ex-es { filter: none; }
+  .add { background: var(--oro-soft); color: var(--oro); font-size: 18px; }
+  .add.on { background: var(--verde); color: #fff; font-size: 15px; cursor: default; }
   .empty { text-align: center; color: var(--muted); padding: 30px 0; display: none; }
 </style>
 </head>
@@ -55,7 +57,7 @@
 <div class="wrap">
   <div class="kicker" id="kicker"></div>
   <h1>Le <em>parole</em></h1>
-  <p class="lead">Vocabulario esencial del nivel, con pronunciación y un ejemplo real de uso. Toca ▶ para escuchar la palabra o la frase.</p>
+  <p class="lead">Vocabulario esencial del nivel, con pronunciación y un ejemplo real de uso. Toca ▶ para escuchar la palabra o la frase, y <strong>＋</strong> para añadirla a tu <a href="repaso.html">repaso diario</a>.</p>
 
   <div class="level-switch" id="switch"></div>
 
@@ -75,11 +77,13 @@
 </div>
 
 <script src="parole.js"></script>
+<script src="progreso.js"></script>
 <script>
   const levels = Object.keys(PAROLE);
   let lv = new URLSearchParams(location.search).get('l');
   if (!PAROLE[lv]) lv = levels[0];
   const data = PAROLE[lv];
+  Progreso.contarTiempo();
   const total = data.reduce((n, c) => n + c.words.length, 0);
   const NOMBRES = { A1: 'Principiante', A2: 'Básico' };
   document.title = `Vocabulario ${lv} — Italiano`;
@@ -105,15 +109,21 @@
   const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
   const playBtn = t => `<button class="play" title="Escuchar" data-say="${esc(t)}">▶</button>`;
 
+  // ---- Botón ＋ (añadir al repaso) ----
+  const addBtn = (it, ci, wi) => Progreso.enRepaso(it)
+    ? `<button class="play add on" title="Ya está en tu repaso" data-add="${ci}-${wi}">✓</button>`
+    : `<button class="play add" title="Añadir a mi repaso" data-add="${ci}-${wi}">＋</button>`;
+
   // ---- Lista ----
   const list = document.getElementById('list');
   list.innerHTML = data.map((c, ci) => `
     <section data-cat="${ci}">
       <div class="cat-title">${c.cat}</div>
-      ${c.words.map(([it, pr, es, ex, exEs]) => `
+      ${c.words.map(([it, pr, es, ex, exEs], wi) => `
         <div class="entry" data-search="${esc([it, es, ex, exEs].join(' ').toLowerCase())}">
           <div class="entry-top">${playBtn(it)}
             <div><div class="it">${it}</div><div class="pron">/${pr}/</div><div class="es">${es}</div></div>
+            ${addBtn(it, ci, wi)}
           </div>
           <div class="ex">${playBtn(ex)}<div><div class="ex-it">${ex}</div><div class="ex-es">${exEs}</div></div></div>
         </div>`).join('')}
@@ -122,6 +132,15 @@
   list.addEventListener('click', e => {
     const b = e.target.closest('[data-say]');
     if (b) return speak(b.dataset.say);
+    const add = e.target.closest('[data-add]');
+    if (add) {
+      if (add.classList.contains('on')) return;
+      const [ci, wi] = add.dataset.add.split('-').map(Number);
+      const [it, pr, es] = data[ci].words[wi];
+      Progreso.agregar({ it, es, pr, say: it });
+      add.classList.add('on'); add.textContent = '✓'; add.title = 'Ya está en tu repaso';
+      return;
+    }
     const entry = e.target.closest('.entry');
     if (entry && document.body.classList.contains('hide-es')) entry.classList.toggle('reveal');
   });

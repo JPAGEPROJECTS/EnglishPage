@@ -80,7 +80,7 @@
 
     <div class="card">
       <h3>Tarjetas de repaso</h3>
-      <p style="font-size:14px;color:var(--muted)">Recuerdo activo: lee el español, <strong>di la respuesta en voz alta</strong> y solo después dale la vuelta. Las que falles vuelven a salir al final.</p>
+      <p style="font-size:14px;color:var(--muted)">Recuerdo activo: lee el español, <strong>di la respuesta en voz alta</strong> y solo después dale la vuelta. Las que falles vuelven a salir al final, y todas pasan a tu <a href="repaso.html">repaso diario</a>.</p>
       <div class="flash" id="flash">
         <div class="flash-count" id="f-count"></div>
         <div class="flash-q" id="f-q"></div>
@@ -110,9 +110,11 @@
 
 <script src="lezioni.js"></script>
 <script src="metodo.js"></script>
+<script src="progreso.js"></script>
 <script>
   const n = Math.min(Math.max(parseInt(new URLSearchParams(location.search).get('n')) || 1, 1), LEZIONI.length);
   const L = LEZIONI[n - 1];
+  Progreso.contarTiempo();
   document.title = `${n}. ${L.title} — Italiano ${L.level || 'A1'}`;
   document.getElementById('kicker').textContent = `Nivel ${L.level || 'A1'} · Lezione ${n} de ${LEZIONI.length}`;
   document.getElementById('title').textContent = L.title;
@@ -154,10 +156,65 @@
     </div>`).join('');
 
   // ---- Frases ----
-  document.getElementById('phrases').innerHTML = L.phrases.map(([it, es, note, pr, say]) => `
-    <div class="phrase">${playBtn(say || it)}
-      <div><div class="it">${it}</div>${pr ? `<div class="pron">/${pr}/</div>` : ''}<div class="es">${es}</div>${note ? `<div class="note">💡 ${note}</div>` : ''}</div>
+  const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const micBtn = t => Rec ? `<button class="play mic" title="Practicar pronunciación" data-mic="${esc(t)}">🎤</button>` : '';
+  document.getElementById('phrases').innerHTML =
+    (Rec ? `<p class="mic-hint">🎤 Toca el micrófono y di la frase en italiano: la app te dice cuánto se entendió.</p>` : '') +
+    L.phrases.map(([it, es, note, pr, say]) => `
+    <div class="phrase"><div class="phrase-btns">${playBtn(say || it)}${micBtn(say || it)}</div>
+      <div style="flex:1"><div class="it">${it}</div>${pr ? `<div class="pron">/${pr}/</div>` : ''}<div class="es">${es}</div>${note ? `<div class="note">💡 ${note}</div>` : ''}<div class="mic-result"></div></div>
     </div>`).join('');
+
+  // ---- Práctica oral (reconocimiento de voz) ----
+  // El reconocimiento a veces devuelve cifras ("7"): se convierten a palabras ("sette")
+  function numIt(n) {
+    const u = ['zero','uno','due','tre','quattro','cinque','sei','sette','otto','nove','dieci','undici','dodici','tredici','quattordici','quindici','sedici','diciassette','diciotto','diciannove'];
+    const d = ['', '', 'venti','trenta','quaranta','cinquanta','sessanta','settanta','ottanta','novanta'];
+    if (n < 20) return u[n];
+    if (n < 100) { const t = d[Math.floor(n / 10)], r = n % 10; return r === 0 ? t : ((r === 1 || r === 8) ? t.slice(0, -1) : t) + (r === 3 ? 'tre' : u[r]); }
+    if (n < 1000) { const c = Math.floor(n / 100), r = n % 100; return (c === 1 ? 'cento' : u[c] + 'cento') + (r ? numIt(r) : ''); }
+    return String(n);
+  }
+  const normV = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9' ]/g, ' ').replace(/'/g, ' ').split(/\s+/).filter(Boolean)
+    .map(w => /^\d+$/.test(w) ? numIt(+w) : w);
+  function parecido(objetivo, dicho) { // % de palabras del objetivo dichas en orden (LCS)
+    const a = normV(objetivo), b = normV(dicho);
+    if (!a.length) return 0;
+    const dp = Array.from({ length: a.length + 1 }, () => new Array(b.length + 1).fill(0));
+    for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++)
+      dp[i][j] = a[i - 1] === b[j - 1] ? dp[i - 1][j - 1] + 1 : Math.max(dp[i - 1][j], dp[i][j - 1]);
+    return Math.round(dp[a.length][b.length] / a.length * 100);
+  }
+  let escuchando = null;
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-mic]');
+    if (!b || !Rec) return;
+    if (escuchando) { escuchando.abort(); return; }
+    if ('speechSynthesis' in window) speechSynthesis.cancel();
+    const out = b.closest('.phrase').querySelector('.mic-result');
+    const rec = new Rec();
+    rec.lang = 'it-IT'; rec.interimResults = false; rec.maxAlternatives = 5;
+    escuchando = rec;
+    b.classList.add('rec'); b.textContent = '●';
+    out.innerHTML = '<span style="color:var(--muted)">Escuchando… habla ahora</span>';
+    rec.onresult = ev => {
+      const alts = Array.from(ev.results[0]).map(r => r.transcript);
+      let mejor = alts[0], pct = 0;
+      alts.forEach(t => { const p = parecido(b.dataset.mic, t); if (p > pct) { pct = p; mejor = t; } });
+      const msg = pct >= 85 ? '✓ Perfetto!' : pct >= 60 ? '≈ Quasi! Inténtalo otra vez' : '✗ Escucha el audio ▶ y repite';
+      out.innerHTML = `<span class="${pct >= 85 ? 'ok' : pct >= 60 ? 'mid' : 'bad'}">${msg} · ${pct}%</span><br><small>Escuché: “${esc(mejor)}”</small>`;
+      Progreso.marcarActividad(0);
+    };
+    rec.onerror = ev => {
+      out.innerHTML = ev.error === 'not-allowed' || ev.error === 'service-not-allowed'
+        ? '<span class="bad">Permite el uso del micrófono en tu navegador para practicar.</span>'
+        : ev.error === 'no-speech' ? '<span class="mid">No te escuché. Toca 🎤 y habla más cerca.</span>'
+        : ev.error === 'aborted' ? '' : '<span class="bad">No se pudo usar el reconocimiento de voz (' + ev.error + ').</span>';
+    };
+    rec.onend = () => { escuchando = null; b.classList.remove('rec'); b.textContent = '🎤'; };
+    try { rec.start(); } catch (err) { escuchando = null; }
+  });
 
   // ---- Gramática y tips ----
   document.getElementById('g-title').textContent = L.grammar.title;
@@ -219,8 +276,9 @@
         a.innerHTML = `<div class="it">${c.a}</div>${c.pr ? `<div class="pron">/${c.pr}/</div>` : ''}`;
         if ('speechSynthesis' in window) { speechSynthesis.cancel(); speak(c.say); }
         btns.innerHTML = '<button class="btn ghost" id="f-bad">✗ Repasar</button><button class="btn" id="f-ok">✓ Lo sabía</button>';
-        document.getElementById('f-ok').onclick = () => { queue.shift(); ok++; show(); };
-        document.getElementById('f-bad').onclick = () => { queue.push(queue.shift()); show(); };
+        const item = { it: c.a, es: c.q, pr: c.pr, say: c.say };
+        document.getElementById('f-ok').onclick = () => { Progreso.responder(item, true); queue.shift(); ok++; show(); };
+        document.getElementById('f-bad').onclick = () => { Progreso.responder(item, false); queue.push(queue.shift()); show(); };
       };
     }
     show();
@@ -261,10 +319,15 @@
         inp.disabled = true;
         const good = q.fill.map(norm).includes(norm(inp.value));
         inp.classList.add(good ? 'ok' : 'bad');
-        if (good) ok++; else fb.innerHTML = `Respuesta: <strong>${q.fill[0]}</strong>`;
+        if (good) ok++;
+        else {
+          fb.innerHTML = `Respuesta: <strong>${q.fill[0]}</strong>${q.say ? '' : ' · <small>añadida a tu repaso</small>'}`;
+          if (!q.say) Progreso.responder({ it: q.fill[0], es: q.q.replace(/^Escribe[^:]*:\s*/i, '') || q.q, say: q.fill[0] }, false);
+        }
       }
     });
     const pct = ok / L.quiz.length;
+    Progreso.marcarActividad(0);
     let scores = {};
     try { scores = JSON.parse(localStorage.getItem('it-scores') || '{}'); } catch (e) {}
     const prev = scores[L.id] ? scores[L.id].best : 0;

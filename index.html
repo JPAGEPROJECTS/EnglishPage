@@ -128,9 +128,9 @@
       <div class="strip"><i></i><i></i><i></i></div>
       <div class="flag">🇮🇹</div>
       <div class="lang-name">Impariamo <em>l'italiano</em></div>
-      <div class="lang-desc">Mi curso personal, niveles A1 y A2: conversación, gramática y vida real en Italia, con audio y test en cada clase.</div>
+      <div class="lang-desc">Mi curso personal del A1 al B1: conversación, gramática y vida real en Italia, con audio, repaso diario y práctica de pronunciación.</div>
       <div class="lang-foot">
-        <span class="pill" id="it-progress">Personal · A1 + A2</span>
+        <span class="pill" id="it-progress">Personal · A1 → B1</span>
         <span class="go">Entra →</span>
       </div>
     </a>
@@ -190,12 +190,14 @@
   })();
 </script>
 <script src="italiano/lezioni.js"></script>
+<script src="italiano/progreso.js"></script>
 <script>
   // Muestra tu progreso de italiano en la tarjeta
   try {
     const scores = JSON.parse(localStorage.getItem('it-scores') || '{}');
     const done = LEZIONI.filter(l => scores[l.id] && scores[l.id].best >= 0.7).length;
-    document.getElementById('it-progress').textContent = `${done} / ${LEZIONI.length} clases`;
+    const r = Progreso.racha();
+    document.getElementById('it-progress').textContent = `${done} / ${LEZIONI.length} clases` + (r ? ` · 🔥 ${r}` : '');
   } catch (e) {}
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});</script>

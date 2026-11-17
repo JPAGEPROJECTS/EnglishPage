@@ -22,14 +22,17 @@
 </div>
 
 <div class="wrap">
-  <div class="kicker">Niveles A1 y A2 · Curso personal</div>
+  <div class="kicker" id="kicker">Curso personal</div>
   <h1>Impariamo <em>l'italiano</em></h1>
-  <p class="lead">Clases cortas para aprender italiano partiendo del español: vocabulario con audio, gramática explicada, diálogos reales, técnicas de estudio, tarjetas de repaso y un test al final de cada clase.</p>
+  <p class="lead">Clases cortas para aprender italiano partiendo del español: vocabulario con audio, gramática explicada, diálogos reales, técnicas de estudio, repaso diario, práctica de pronunciación con micrófono, un test en cada clase y un examen final por nivel.</p>
 
   <div class="progress-box">
     <div class="progress-top"><span>Tu progreso</span><strong id="prog-label">0 / 0 clases</strong></div>
     <div class="bar"><div id="prog-bar"></div></div>
   </div>
+
+  <div class="stats" id="stats"></div>
+  <a class="review-btn" id="review" href="repaso.html"></a>
 
   <a class="card guide-link" href="guia.html" style="margin-top:12px">📘 <span><strong>Cómo aprender italiano</strong><br><small>Plan semanal, técnicas de estudio y recursos</small></span> ›</a>
 
@@ -38,53 +41,61 @@
 
 <script src="lezioni.js"></script>
 <script src="parole.js"></script>
+<script src="progreso.js"></script>
 <script>
-  function getScores() {
-    try { return JSON.parse(localStorage.getItem('it-scores') || '{}'); } catch (e) { return {}; }
-  }
-  const scores = getScores();
+  Progreso.contarTiempo();
+  const leer = k => { try { return JSON.parse(localStorage.getItem(k) || '{}'); } catch (e) { return {}; } };
+  const scores = leer('it-scores'), exams = leer('it-exams');
+  const NOMBRES = { A1: 'Principiante', A2: 'Básico', B1: 'Intermedio' };
+  const niveles = [...new Set(LEZIONI.map(l => l.level || 'A1'))];
+  document.getElementById('kicker').textContent = `Niveles ${niveles.join(', ').replace(/, ([^,]*)$/, ' y $1')} · Curso personal`;
+
+  // ---- Racha, minutos y repaso ----
+  const semana = Progreso.ultimos7();
+  const max = Math.max(10, ...semana.map(d => d.min));
+  document.getElementById('stats').innerHTML = `
+    <div class="stat"><b>🔥 ${Progreso.racha()}</b><span>días seguidos</span></div>
+    <div class="stat"><b>⏱️ ${Progreso.minutosHoy()}</b><span>min hoy</span></div>
+    <div class="stat"><b>⌛ ${Progreso.minutosTotales()}</b><span>min en total</span></div>
+    <div class="week">${semana.map(d => `<div class="day ${d.hoy ? 'today' : ''}" title="${d.min} min">
+      <i style="height:${Math.max(4, d.min / max * 100)}%; opacity:${d.min ? 1 : .25}"></i><small>${d.dia}</small></div>`).join('')}</div>`;
+  const pend = Progreso.pendientes().length;
+  const rb = document.getElementById('review');
+  rb.classList.toggle('empty', !pend);
+  rb.innerHTML = pend
+    ? `🧠 <span>Repaso de hoy<small>${pend} ${pend === 1 ? 'tarjeta pendiente' : 'tarjetas pendientes'}</small></span> ›`
+    : `🧠 <span>Repaso de hoy<small>${Progreso.totalRepaso() ? 'Todo al día ✓' : 'Aún vacío: usa las tarjetas de las clases'}</small></span> ›`;
+
+  // ---- Lista por nivel ----
   const list = document.getElementById('list');
-  const NIVELES = { A1: 'Principiante', A2: 'Básico' };
-  let done = 0, nivel = null, head = null, doneNivel = 0, totNivel = 0;
-  function cerrarNivel() { if (head) head.querySelector('span').textContent = `${doneNivel} / ${totNivel}`; }
-  LEZIONI.forEach((l, i) => {
-    const lv = l.level || 'A1';
-    if (lv !== nivel) {
-      cerrarNivel();
-      nivel = lv; doneNivel = 0; totNivel = 0;
-      head = document.createElement('div');
-      head.className = 'level-head';
-      head.innerHTML = `<b>${lv}</b> ${NIVELES[lv] || ''} <span></span>`;
-      list.appendChild(head);
-      if (typeof PAROLE !== 'undefined' && PAROLE[lv]) {
-        const n = PAROLE[lv].reduce((t, c) => t + c.words.length, 0);
-        const v = document.createElement('a');
-        v.className = 'lesson vocab-link';
-        v.href = 'parole.html?l=' + lv;
-        v.innerHTML = `<div class="lesson-num">📖</div>
-          <div class="lesson-info"><div class="lesson-title">Vocabulario ${lv}</div>
-          <div class="lesson-sub">${n} palabras con pronunciación y ejemplos</div></div>
-          <div class="lesson-score" style="color:var(--muted)">›</div>`;
-        list.appendChild(v);
-      }
+  const add = html => list.insertAdjacentHTML('beforeend', html);
+  let done = 0;
+  niveles.forEach(lv => {
+    const clases = LEZIONI.map((l, i) => ({ l, i })).filter(x => (x.l.level || 'A1') === lv);
+    const hechas = clases.filter(x => scores[x.l.id] && scores[x.l.id].best >= 0.7).length;
+    done += hechas;
+    add(`<div class="level-head"><b>${lv}</b> ${NOMBRES[lv] || ''} <span>${hechas} / ${clases.length}</span></div>`);
+    if (PAROLE[lv]) {
+      const n = PAROLE[lv].reduce((t, c) => t + c.words.length, 0);
+      add(`<a class="lesson vocab-link" href="parole.html?l=${lv}"><div class="lesson-num">📖</div>
+        <div class="lesson-info"><div class="lesson-title">Vocabulario ${lv}</div>
+        <div class="lesson-sub">${n} palabras con pronunciación y ejemplos</div></div>
+        <div class="lesson-score" style="color:var(--muted)">›</div></a>`);
     }
-    totNivel++;
-    const s = scores[l.id];
-    const passed = s && s.best >= 0.7;
-    if (passed) { done++; doneNivel++; }
-    const a = document.createElement('a');
-    a.className = 'lesson' + (passed ? ' done' : '');
-    a.href = 'lezione.html?n=' + (i + 1);
-    a.innerHTML = `
-      <div class="lesson-num">${passed ? '✓' : i + 1}</div>
-      <div class="lesson-info">
-        <div class="lesson-title">${l.title}</div>
-        <div class="lesson-sub">${l.sub}</div>
-      </div>
-      ${s ? `<div class="lesson-score">${Math.round(s.best * 100)}%</div>` : '<div class="lesson-score" style="color:var(--muted)">›</div>'}`;
-    list.appendChild(a);
+    clases.forEach(({ l, i }) => {
+      const s = scores[l.id], passed = s && s.best >= 0.7;
+      add(`<a class="lesson${passed ? ' done' : ''}" href="lezione.html?n=${i + 1}">
+        <div class="lesson-num">${passed ? '✓' : i + 1}</div>
+        <div class="lesson-info"><div class="lesson-title">${l.title}</div><div class="lesson-sub">${l.sub}</div></div>
+        ${s ? `<div class="lesson-score">${Math.round(s.best * 100)}%</div>` : '<div class="lesson-score" style="color:var(--muted)">›</div>'}</a>`);
+    });
+    const e = exams[lv], aprobado = e && e.best >= 0.8;
+    add(`<a class="lesson exam-link${aprobado ? ' done' : ''}" href="esame.html?l=${lv}">
+      <div class="lesson-num">${aprobado ? '🎓' : '📝'}</div>
+      <div class="lesson-info"><div class="lesson-title">Examen final ${lv}</div>
+      <div class="lesson-sub">${aprobado ? '¡Nivel aprobado!' : '20 preguntas de todo el nivel · aprueba con 80%'}</div></div>
+      ${e ? `<div class="lesson-score">${Math.round(e.best * 100)}%</div>` : '<div class="lesson-score" style="color:var(--muted)">›</div>'}</a>`);
   });
-  cerrarNivel();
   document.getElementById('prog-label').textContent = `${done} / ${LEZIONI.length} clases`;
   document.getElementById('prog-bar').style.width = (done / LEZIONI.length * 100) + '%';
 </script>
