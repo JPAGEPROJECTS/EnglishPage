@@ -37,6 +37,7 @@
 </div>
 
 <script src="lezioni.js"></script>
+<script src="parole.js"></script>
 <script>
   function getScores() {
     try { return JSON.parse(localStorage.getItem('it-scores') || '{}'); } catch (e) { return {}; }
@@ -55,6 +56,17 @@
       head.className = 'level-head';
       head.innerHTML = `<b>${lv}</b> ${NIVELES[lv] || ''} <span></span>`;
       list.appendChild(head);
+      if (typeof PAROLE !== 'undefined' && PAROLE[lv]) {
+        const n = PAROLE[lv].reduce((t, c) => t + c.words.length, 0);
+        const v = document.createElement('a');
+        v.className = 'lesson vocab-link';
+        v.href = 'parole.html?l=' + lv;
+        v.innerHTML = `<div class="lesson-num">📖</div>
+          <div class="lesson-info"><div class="lesson-title">Vocabulario ${lv}</div>
+          <div class="lesson-sub">${n} palabras con pronunciación y ejemplos</div></div>
+          <div class="lesson-score" style="color:var(--muted)">›</div>`;
+        list.appendChild(v);
+      }
     }
     totNivel++;
     const s = scores[l.id];

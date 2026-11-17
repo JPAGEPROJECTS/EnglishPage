@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#1d2730">
+<link rel="icon" type="image/png" href="../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Idiomas">
+<title>Vocabulario — Italiano</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="italiano.css">
+<style>
+  .level-switch { display: flex; gap: 8px; margin-top: 18px; }
+  .level-switch a {
+    flex: 1; text-align: center; text-decoration: none; font-weight: 700; padding: 10px;
+    border-radius: 10px; border: 1px solid var(--border); background: var(--card);
+  }
+  .level-switch a.on { background: var(--verde); border-color: var(--verde); color: #fff; }
+  .search {
+    font: inherit; width: 100%; padding: 12px 14px; margin-top: 14px; border-radius: 12px;
+    border: 1px solid var(--border); background: var(--card); color: var(--text);
+  }
+  .tools { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; align-items: center; }
+  .tools .count { margin-left: auto; font-size: 13px; color: var(--muted); font-weight: 600; }
+  .cats { display: flex; gap: 6px; overflow-x: auto; margin-top: 12px; padding-bottom: 4px; scrollbar-width: none; }
+  .cats button {
+    flex-shrink: 0; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
+    border: 1px solid var(--border); background: var(--card); color: var(--text); border-radius: 99px; padding: 7px 12px;
+  }
+  .cats button.on { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .cat-title { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 700; margin: 26px 0 10px; }
+  .entry { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 10px; }
+  .entry-top { display: flex; align-items: center; gap: 12px; }
+  .entry-top > div { flex: 1; min-width: 0; }
+  .ex { margin-top: 10px; padding: 10px 12px; border-radius: 10px; background: var(--bg); display: flex; gap: 10px; align-items: flex-start; }
+  .ex .play { width: 30px; height: 30px; font-size: 12px; }
+  .ex-it { font-style: italic; font-weight: 600; }
+  .ex-es { font-size: 14px; color: var(--muted); }
+  .hide-es .entry .es, .hide-es .ex-es { filter: blur(5px); cursor: pointer; transition: filter .15s; }
+  .hide-es .entry.reveal .es, .hide-es .entry.reveal .ex-es { filter: none; }
+  .empty { text-align: center; color: var(--muted); padding: 30px 0; display: none; }
+</style>
+</head>
+<body>
+<div class="flag-strip"><i></i><i></i><i></i></div>
+<div class="top">
+  <a href="index.html">← Clases</a>
+  <span class="brand">Italiano 🇮🇹</span>
+</div>
+
+<div class="wrap">
+  <div class="kicker" id="kicker"></div>
+  <h1>Le <em>parole</em></h1>
+  <p class="lead">Vocabulario esencial del nivel, con pronunciación y un ejemplo real de uso. Toca ▶ para escuchar la palabra o la frase.</p>
+
+  <div class="level-switch" id="switch"></div>
+
+  <input class="search" id="search" type="search" placeholder="Buscar en italiano o español…" autocomplete="off">
+  <div class="tools">
+    <button class="small-btn" id="toggle-es">🙈 Ocultar traducción</button>
+    <span class="count" id="count"></span>
+  </div>
+  <div class="cats" id="cats"></div>
+
+  <div id="list"></div>
+  <div class="empty" id="empty">No hay palabras que coincidan con tu búsqueda.</div>
+
+  <div class="card tip" style="margin-top:24px">
+    <strong>💡 Cómo estudiar esta lista:</strong> no intentes aprenderla toda de una vez. Elige 10 palabras al día, léelas en voz alta con su ejemplo y luego activa <em>“Ocultar traducción”</em> para ver si recuerdas su significado. Repite las del día anterior antes de empezar las nuevas.
+  </div>
+</div>
+
+<script src="parole.js"></script>
+<script>
+  const levels = Object.keys(PAROLE);
+  let lv = new URLSearchParams(location.search).get('l');
+  if (!PAROLE[lv]) lv = levels[0];
+  const data = PAROLE[lv];
+  const total = data.reduce((n, c) => n + c.words.length, 0);
+  const NOMBRES = { A1: 'Principiante', A2: 'Básico' };
+  document.title = `Vocabulario ${lv} — Italiano`;
+  document.getElementById('kicker').textContent = `Nivel ${lv} · ${total} palabras`;
+  document.getElementById('switch').innerHTML = levels.map(l =>
+    `<a href="parole.html?l=${l}" class="${l === lv ? 'on' : ''}">${l} · ${NOMBRES[l] || ''}</a>`).join('');
+
+  // ---- Audio ----
+  let itVoice = null;
+  function pickVoice() {
+    const vs = speechSynthesis.getVoices();
+    itVoice = vs.find(v => v.lang === 'it-IT') || vs.find(v => v.lang && v.lang.startsWith('it')) || null;
+  }
+  if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+  function speak(text) {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text.replace(/\s*\/\s*/g, ', ').replace(/…/g, ', '));
+    u.lang = 'it-IT'; u.rate = 0.85;
+    if (itVoice) u.voice = itVoice;
+    speechSynthesis.speak(u);
+  }
+  const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+  const playBtn = t => `<button class="play" title="Escuchar" data-say="${esc(t)}">▶</button>`;
+
+  // ---- Lista ----
+  const list = document.getElementById('list');
+  list.innerHTML = data.map((c, ci) => `
+    <section data-cat="${ci}">
+      <div class="cat-title">${c.cat}</div>
+      ${c.words.map(([it, pr, es, ex, exEs]) => `
+        <div class="entry" data-search="${esc([it, es, ex, exEs].join(' ').toLowerCase())}">
+          <div class="entry-top">${playBtn(it)}
+            <div><div class="it">${it}</div><div class="pron">/${pr}/</div><div class="es">${es}</div></div>
+          </div>
+          <div class="ex">${playBtn(ex)}<div><div class="ex-it">${ex}</div><div class="ex-es">${exEs}</div></div></div>
+        </div>`).join('')}
+    </section>`).join('');
+
+  list.addEventListener('click', e => {
+    const b = e.target.closest('[data-say]');
+    if (b) return speak(b.dataset.say);
+    const entry = e.target.closest('.entry');
+    if (entry && document.body.classList.contains('hide-es')) entry.classList.toggle('reveal');
+  });
+
+  // ---- Filtros ----
+  let cat = -1;
+  const cats = document.getElementById('cats');
+  cats.innerHTML = `<button class="on" data-c="-1">Todas</button>` +
+    data.map((c, i) => `<button data-c="${i}">${c.cat}</button>`).join('');
+  cats.onclick = e => {
+    const b = e.target.closest('button'); if (!b) return;
+    cat = +b.dataset.c;
+    cats.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+    filter();
+  };
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const search = document.getElementById('search');
+  search.oninput = filter;
+  function filter() {
+    const q = norm(search.value.trim());
+    let shown = 0;
+    list.querySelectorAll('section').forEach(sec => {
+      const okCat = cat === -1 || +sec.dataset.cat === cat;
+      let any = false;
+      sec.querySelectorAll('.entry').forEach(en => {
+        const ok = okCat && (!q || norm(en.dataset.search).includes(q));
+        en.style.display = ok ? '' : 'none';
+        if (ok) { any = true; shown++; }
+      });
+      sec.style.display = any ? '' : 'none';
+    });
+    document.getElementById('count').textContent = `${shown} de ${total} palabras`;
+    document.getElementById('empty').style.display = shown ? 'none' : 'block';
+  }
+  filter();
+
+  document.getElementById('toggle-es').onclick = e => {
+    const on = document.body.classList.toggle('hide-es');
+    list.querySelectorAll('.reveal').forEach(x => x.classList.remove('reveal'));
+    e.target.textContent = on ? '👀 Mostrar traducción' : '🙈 Ocultar traducción';
+  };
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js').catch(() => {});</script>
+</body>
+</html>

@@ -95,6 +95,8 @@ h3 { font-size: 1.1rem; margin-bottom: 8px; }
   font-family: 'Fraunces', serif; font-weight: 700; background: var(--verde-soft); color: var(--verde);
 }
 .lesson.done .lesson-num { background: var(--verde); color: #fff; }
+.vocab-link { background: var(--oro-soft); border-color: transparent; }
+.vocab-link .lesson-num { background: var(--card); font-size: 18px; }
 .lesson-info { flex: 1; min-width: 0; }
 .lesson-title { font-weight: 700; }
 .lesson-sub { font-size: 13px; color: var(--muted); }
