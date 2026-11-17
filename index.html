@@ -3,6 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1d2730">
+<link rel="icon" type="image/png" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Idiomas">
 <title>Aprende Idiomas</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Fraunces:ital,wght@0,700;1,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -77,6 +84,20 @@
   .it .pill { background: #e3f1e9; color: #1f7a4d; }
   .it .go { color: #1f7a4d; }
 
+  .install {
+    display: none; margin-top: 22px; background: #1d2730; color: #fff;
+    border-radius: 18px; padding: 16px 18px; align-items: center; gap: 14px;
+  }
+  .install.on { display: flex; }
+  .install img { width: 44px; height: 44px; border-radius: 11px; flex-shrink: 0; }
+  .install-text { flex: 1; font-size: 14px; font-weight: 600; color: #c9d1d8; }
+  .install-text strong { display: block; color: #fff; font-size: 15px; }
+  .install button {
+    font: inherit; font-weight: 800; font-size: 14px; border: none; border-radius: 10px;
+    padding: 10px 16px; background: #fff; color: #1d2730; cursor: pointer; flex-shrink: 0;
+  }
+  .install .close { background: none; color: #c9d1d8; padding: 6px; font-size: 18px; }
+
   @media (prefers-color-scheme: dark) {
     .en .pill { background: #1f2e45; color: #8bb8ff; }
     .it .pill { background: #1f3529; color: #6fd29d; }
@@ -114,8 +135,60 @@
       </div>
     </a>
   </div>
+
+  <div class="install" id="install">
+    <img src="icons/icon-192.png" alt="">
+    <div class="install-text" id="install-text">
+      <strong>Instala la app</strong>
+      Ábrela desde tu pantalla de inicio y úsala sin internet.
+    </div>
+    <button id="install-btn">Instalar</button>
+    <button class="close" id="install-close" aria-label="Cerrar">✕</button>
+  </div>
 </div>
 
+<script>
+  // Botón "Instalar app"
+  (function () {
+    const box = document.getElementById('install');
+    const btn = document.getElementById('install-btn');
+    const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+    let closed = false;
+    try { closed = localStorage.getItem('install-closed') === '1'; } catch (e) {}
+    if (standalone || closed) return;
+
+    let promptEvent = null;
+    // Android, Chrome y Edge: el navegador permite mostrar su propio diálogo de instalación
+    addEventListener('beforeinstallprompt', e => {
+      e.preventDefault();
+      promptEvent = e;
+      box.classList.add('on');
+    });
+    btn.onclick = async () => {
+      if (!promptEvent) return;
+      promptEvent.prompt();
+      await promptEvent.userChoice;
+      promptEvent = null;
+      box.classList.remove('on');
+    };
+    addEventListener('appinstalled', () => box.classList.remove('on'));
+
+    // iPhone / iPad: Safari no tiene botón, hay que hacerlo desde "Compartir"
+    const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    if (ios) {
+      document.getElementById('install-text').innerHTML =
+        '<strong>Instala la app</strong>En Safari toca <b>Compartir</b> (⬆️) y luego <b>“Agregar a inicio”</b>.';
+      btn.style.display = 'none';
+      box.classList.add('on');
+    }
+
+    document.getElementById('install-close').onclick = () => {
+      box.classList.remove('on');
+      try { localStorage.setItem('install-closed', '1'); } catch (e) {}
+    };
+  })();
+</script>
 <script src="italiano/lezioni.js"></script>
 <script>
   // Muestra tu progreso de italiano en la tarjeta
@@ -125,5 +198,6 @@
     document.getElementById('it-progress').textContent = `${done} / ${LEZIONI.length} clases`;
   } catch (e) {}
 </script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');</script>
 </body>
 </html>
