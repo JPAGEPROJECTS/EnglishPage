@@ -1,7 +1,8 @@
 // Service worker: guarda la app para que funcione sin internet.
-// Estrategia: muestra lo guardado al instante y, en segundo plano, descarga la versión nueva
-// para la próxima vez. Si agregas páginas nuevas, añádelas a ARCHIVOS y sube VERSION.
-const VERSION = 'v2';
+// Estrategia: con internet, siempre descarga la versión más nueva (y la guarda);
+// sin internet, usa la copia guardada. Las fuentes de Google se sirven desde la copia.
+// Si agregas páginas nuevas, añádelas a ARCHIVOS y sube VERSION.
+const VERSION = 'v3';
 const CACHE = 'idiomas-' + VERSION;
 const ARCHIVOS = [
   './',
@@ -45,13 +46,22 @@ self.addEventListener('fetch', e => {
     // ignoreSearch: lezione.html?n=3 usa la misma página guardada que lezione.html
     const ruta = url.pathname.endsWith('/') ? url.pathname + 'index.html' : url.pathname;
     const clave = propio ? url.origin + ruta : req;
-    const guardado = await cache.match(clave, { ignoreSearch: propio });
-    const red = fetch(req).then(res => {
-      if (res && (res.ok || res.type === 'opaque')) {
-        cache.put(clave, res.clone());
-      }
+    const guardado = () => cache.match(clave, { ignoreSearch: propio });
+
+    if (fuentes) {
+      // Las fuentes no cambian: primero la copia, si no existe se descarga.
+      const g = await guardado();
+      if (g) return g;
+    }
+
+    try {
+      // 'no-cache' obliga a preguntar al servidor si hay algo nuevo (no usa la caché del navegador)
+      const res = await fetch(req, propio ? { cache: 'no-cache' } : undefined);
+      if (res && (res.ok || res.type === 'opaque')) cache.put(clave, res.clone());
       return res;
-    }).catch(() => guardado || (req.mode === 'navigate' ? cache.match('./index.html') : Response.error()));
-    return guardado || red;
+    } catch (err) {
+      return (await guardado()) ||
+        (req.mode === 'navigate' ? await cache.match('./index.html') : Response.error());
+    }
   }));
 });
