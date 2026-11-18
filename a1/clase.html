@@ -37,6 +37,21 @@
   .quiz-opts button.ok { border-color: var(--green); background: #f0fff8; }
   .quiz-opts button.bad { border-color: var(--pink); background: #fff0f6; }
   .quiz-result { text-align: center; font-family: 'Baloo 2', cursive; font-size: 1.4rem; font-weight: 800; margin: 10px 0; display: none; }
+  .grammar-box { background: var(--card); border: 2px solid var(--border); border-radius: 16px; padding: 16px; font-size: 14px; line-height: 1.6; margin-bottom: 18px; }
+  .grammar-box p { margin: 8px 0; }
+  .grammar-box table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 14px; }
+  .grammar-box th, .grammar-box td { text-align: left; padding: 7px 6px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .grammar-box th { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  .grammar-box b { color: var(--blue); }
+  .sub-h { font-family: 'Baloo 2', cursive; font-size: 1.15rem; font-weight: 800; margin: 18px 0 10px; }
+  .err-card { background: var(--card); border: 2px solid var(--border); border-radius: 14px; padding: 12px 14px; margin-bottom: 8px; font-size: 14px; }
+  .err-card .mal { color: var(--pink); text-decoration: line-through; font-weight: 700; }
+  .err-card .bien { color: var(--green); font-weight: 800; }
+  .err-card .why { color: var(--muted); font-size: 13px; margin-top: 3px; }
+  .age-grid { display: grid; gap: 8px; }
+  .age-card { background: var(--card); border: 2px solid var(--border); border-radius: 14px; padding: 12px 14px; font-size: 14px; line-height: 1.5; }
+  .age-card b { display: block; font-family: 'Baloo 2', cursive; font-size: 1rem; margin-bottom: 2px; }
+  .fact-box { background: #f0f4ff; border: 2px solid #c8deff; border-radius: 16px; padding: 14px 16px; font-size: 14px; line-height: 1.6; margin: 18px 0; }
   .back-menu { display: inline-flex; gap: 6px; font-size: 13px; font-weight: 800; color: var(--muted); text-decoration: none; margin: 16px 16px 0; }
 </style>
 </head>
@@ -46,7 +61,7 @@
   <div class="nav-title" id="nav-title"></div>
   <div class="nav-steps" id="nav-steps"></div>
 </nav>
-<a class="back-menu" href="menu.html">← Clases del A1</a>
+<a class="back-menu" id="back-menu" href="menu.html">← Clases del A1</a>
 
 <!-- 0: BIENVENIDA -->
 <div class="section active" id="sec0">
@@ -84,27 +99,46 @@
   <div class="tip-box" id="tip"></div>
   <div class="btn-row">
     <button class="btn btn-ghost" onclick="goTo(1)">← Atrás</button>
-    <button class="btn btn-primary" onclick="goTo(3)">Siguiente: ¡Juegos! 🎮 →</button>
+    <button class="btn btn-primary" onclick="goTo(3)">Siguiente: Gramática y más →</button>
   </div>
 </div>
 
-<!-- 3: JUEGOS -->
+<!-- 3: GRAMÁTICA Y MÁS -->
 <div class="section" id="sec3">
+  <div class="timer-bar"><div class="timer-fill" style="width:45%"></div></div>
+  <div class="section-label">Parte 3 · Gramática y más</div>
+  <h2 class="section-h" id="g-title">Gramática fácil 🧩</h2>
+  <div class="grammar-box" id="g-body"></div>
+  <h3 class="sub-h">⭐ Palabras extra</h3>
+  <div class="vocab-grid" id="more"></div>
+  <h3 class="sub-h">🚫 Errores típicos</h3>
+  <div id="errores"></div>
+  <h3 class="sub-h">👨‍👩‍👦‍👦 Cómo practicar según la edad</h3>
+  <div class="age-grid" id="ages"></div>
+  <div class="fact-box" id="fact"></div>
+  <div class="btn-row">
+    <button class="btn btn-ghost" onclick="goTo(2)">← Atrás</button>
+    <button class="btn btn-primary" onclick="goTo(4)">Siguiente: ¡Juegos! 🎮 →</button>
+  </div>
+</div>
+
+<!-- 4: JUEGOS -->
+<div class="section" id="sec4">
   <div class="timer-bar"><div class="timer-fill" style="width:60%"></div></div>
-  <div class="section-label">Parte 3 · Juegos</div>
+  <div class="section-label">Parte 4 · Juegos</div>
   <h2 class="section-h">🎮 ¡Juego familiar!</h2>
   <p class="section-desc">Practiquen jugando. El que ría más aprende más.</p>
   <div id="games"></div>
   <div class="btn-row">
-    <button class="btn btn-ghost" onclick="goTo(2)">← Atrás</button>
-    <button class="btn btn-primary" onclick="goTo(4)">Siguiente: Práctica y test →</button>
+    <button class="btn btn-ghost" onclick="goTo(3)">← Atrás</button>
+    <button class="btn btn-primary" onclick="goTo(5)">Siguiente: Práctica y test →</button>
   </div>
 </div>
 
-<!-- 4: PRÁCTICA + TEST -->
-<div class="section" id="sec4">
+<!-- 5: PRÁCTICA + TEST -->
+<div class="section" id="sec5">
   <div class="timer-bar"><div class="timer-fill" style="width:80%"></div></div>
-  <div class="section-label">Parte 4 · Práctica</div>
+  <div class="section-label">Parte 5 · Práctica</div>
   <h2 class="section-h">Role play + mini test 📝</h2>
   <div class="practice-card" style="border-color:var(--purple); margin-bottom:20px;">
     <h4 id="rp-title"></h4>
@@ -115,14 +149,14 @@
   <div id="quiz"></div>
   <div class="quiz-result" id="quiz-result"></div>
   <div class="btn-row">
-    <button class="btn btn-ghost" onclick="goTo(3)">← Atrás</button>
+    <button class="btn btn-ghost" onclick="goTo(4)">← Atrás</button>
     <button class="btn btn-accent" id="check">Corregir test</button>
-    <button class="btn btn-primary" onclick="goTo(5)">Siguiente: Tarea →</button>
+    <button class="btn btn-primary" onclick="goTo(6)">Siguiente: Tarea →</button>
   </div>
 </div>
 
-<!-- 5: TAREA -->
-<div class="section" id="sec5">
+<!-- 6: TAREA -->
+<div class="section" id="sec6">
   <div class="timer-bar"><div class="timer-fill" style="width:100%"></div></div>
   <div class="section-label">Cierre</div>
   <h2 class="section-h">Tarea de la semana 🏠</h2>
@@ -133,18 +167,27 @@
     <p style="font-size:14px;color:var(--muted);max-width:400px;margin:0 auto;line-height:1.6" id="c-text"></p>
   </div>
   <div class="btn-row">
-    <button class="btn btn-ghost" onclick="goTo(4)">← Atrás</button>
+    <button class="btn btn-ghost" onclick="goTo(5)">← Atrás</button>
     <a class="btn btn-accent" id="next-class" style="text-decoration:none"></a>
   </div>
 </div>
 
 <script src="clases.js"></script>
+<script src="extra.js"></script>
+<script src="../a2/clases.js"></script>
 <script>
-  const num = parseInt(new URLSearchParams(location.search).get('n')) || 2;
-  const C = CLASES_A1.find(c => c.n === num) || CLASES_A1[0];
+  const params = new URLSearchParams(location.search);
+  const LV = params.get('l') === 'A2' ? 'A2' : 'A1';
+  const LISTA = LV === 'A2' ? CLASES_A2 : CLASES_A1;
+  const num = parseInt(params.get('n')) || LISTA[0].n;
+  const C = LISTA.find(c => c.n === num) || LISTA[0];
+  const X = EXTRA[`${LV}-${C.n}`];
+  const MENU = LV === 'A2' ? '../a2/menu.html' : 'menu.html';
+  document.getElementById('back-menu').href = MENU;
+  document.getElementById('back-menu').textContent = `← Clases del ${LV}`;
   document.title = `Clase ${C.n} — ${C.title}`;
   document.getElementById('nav-title').textContent = `${C.emoji} Clase ${C.n} — ${C.title}`;
-  document.getElementById('nav-steps').innerHTML = [0, 1, 2, 3, 4, 5].map(i =>
+  document.getElementById('nav-steps').innerHTML = [0, 1, 2, 3, 4, 5, 6].map(i =>
     `<div class="nav-step${i === 0 ? ' active' : ''}" id="step${i}" onclick="goTo(${i})">${i + 1}</div>`).join('');
 
   // ---- Audio en inglés ----
@@ -173,7 +216,7 @@
   // ---- Contenido ----
   const colores = ['var(--orange)', 'var(--blue)', 'var(--green)', 'var(--pink)', 'var(--purple)', 'var(--yellow)'];
   document.getElementById('h-emoji').textContent = C.emoji;
-  document.getElementById('h-tag').textContent = `Clase ${C.n} · Nivel A1`;
+  document.getElementById('h-tag').textContent = `Clase ${C.n} · Nivel ${LV}`;
   document.getElementById('h-title').innerHTML = C.title.replace(/ (\S+)$/, '<br><span>$1</span>');
   document.getElementById('h-intro').textContent = C.intro;
   document.getElementById('agenda').innerHTML = C.agenda.map(([t, time], i) => `
@@ -224,16 +267,30 @@
 
   document.getElementById('homework').innerHTML = C.homework.map(([ic, t, d]) => `
     <div class="hw-item"><div class="hw-icon">${ic}</div><div class="hw-text"><strong>${t}</strong>${d}</div></div>`).join('');
-  document.getElementById('c-title').textContent = C.n === 8 ? '¡Nivel A1 completado! 🏆' : `¡Clase ${C.n} completada!`;
+  document.getElementById('c-title').textContent = C.n === LISTA[LISTA.length - 1].n ? `¡Nivel ${LV} completado! 🏆` : `¡Clase ${C.n} completada!`;
   document.getElementById('c-text').textContent = C.summary;
-  const sig = CLASES_A1.find(c => c.n === C.n + 1);
+  const sig = LISTA.find(c => c.n === C.n + 1);
   const nx = document.getElementById('next-class');
-  nx.href = sig ? `clase.html?n=${sig.n}` : 'menu.html';
-  nx.textContent = sig ? `Clase ${sig.n}: ${sig.title} →` : 'Volver al menú A1';
+  nx.href = sig ? `clase.html?l=${LV}&n=${sig.n}` : MENU;
+  nx.textContent = sig ? `Clase ${sig.n}: ${sig.title} →` : `Volver al menú ${LV}`;
+
+  // ---- Gramática y más ----
+  if (X) {
+    document.getElementById('g-title').textContent = '🧩 ' + X.grammar.title;
+    document.getElementById('g-body').innerHTML = X.grammar.html;
+    document.getElementById('more').innerHTML = X.more.map(([emo, en, pr, es]) => `
+      <div class="vocab-card" data-en="${esc(en)}">${sayBtn(en)}<span class="vocab-emoji">${emo}</span>
+        <div class="vocab-en">${en}</div><div class="vocab-pron">/${pr}/</div><div class="vocab-es">${es}</div></div>`).join('');
+    document.getElementById('errores').innerHTML = X.errores.map(([mal, bien, why]) => `
+      <div class="err-card"><div><span class="mal">✗ ${mal}</span> <span class="bien">✓ ${bien}</span></div><div class="why">${why}</div></div>`).join('');
+    document.getElementById('ages').innerHTML = [['🧒', 'Para el pequeño', X.kids], ['🧑', 'Para el adolescente', X.teens], ['👨‍👩', 'Para papá y mamá', X.adults]]
+      .map(([ic, t, d]) => `<div class="age-card"><b>${ic} ${t}</b>${d}</div>`).join('');
+    document.getElementById('fact').innerHTML = '🤓 <strong>¿Sabías que…?</strong> ' + X.fact;
+  }
 
   // ---- Progreso ----
   function marcarHecha() {
-    try { const d = JSON.parse(localStorage.getItem('en-a1') || '{}'); d[C.n] = true; localStorage.setItem('en-a1', JSON.stringify(d)); } catch (e) {}
+    try { const k = 'en-' + LV.toLowerCase(); const d = JSON.parse(localStorage.getItem(k) || '{}'); d[C.n] = true; localStorage.setItem(k, JSON.stringify(d)); } catch (e) {}
   }
 
   // ---- Navegación ----
@@ -246,7 +303,7 @@
       s.classList.toggle('active', i === n);
       s.classList.toggle('done', i < n);
     });
-    if (n === 5) marcarHecha();
+    if (n === 6) marcarHecha();
     if ('speechSynthesis' in window) speechSynthesis.cancel();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }

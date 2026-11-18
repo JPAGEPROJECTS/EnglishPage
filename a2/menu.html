@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#1d2730">
+<link rel="icon" type="image/png" href="../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Idiomas">
+<title>Nivel A2 — Inglés en Familia</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  /* Color del nivel — cambia solo esta variable para adaptar la página */
+  :root { --nivel: var(--blue); --nivel-soft: #c8deff; }
+
+  .clase-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 28px;
+  }
+
+  .clase-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .clase-card:hover {
+    transform: translateX(4px);
+    border-color: var(--nivel);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+  }
+  .clase-card.done {
+    background: #f2f7ff;
+    border-color: var(--nivel);
+  }
+
+  .clase-num {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1rem;
+    font-weight: 800;
+    color: white;
+    background: var(--nivel);
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .clase-card.locked .clase-num {
+    background: var(--border);
+    color: var(--muted);
+  }
+
+  .clase-info { flex: 1; }
+  .clase-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .clase-sub {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .clase-card.locked .clase-title,
+  .clase-card.locked .clase-sub { color: var(--muted); }
+
+  .clase-status {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  /* Barra de progreso del nivel */
+  .nivel-progress {
+    margin-top: 20px;
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 18px;
+  }
+  .nivel-progress-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .nivel-progress-top span { color: var(--muted); }
+  .nivel-progress-top strong { color: var(--nivel); font-family: 'Baloo 2', cursive; font-size: 1rem; }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-title">🌟 Inglés en Familia</div>
+  <!-- Puedes agregar member-pills aquí si lo necesitas -->
+</div>
+
+<div style="max-width:640px; margin:0 auto; padding:32px 16px 56px;">
+
+  <!-- Encabezado del nivel -->
+  <a href="../ingles.html" style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:800; color:var(--muted); text-decoration:none; margin-bottom:20px;">
+    ← Todos los niveles
+  </a>
+
+  <div style="display:flex; align-items:center; gap:14px; margin-bottom:6px;">
+    <span style="font-family:'Baloo 2',cursive; font-size:2rem; font-weight:800; background:var(--nivel); color:white; width:56px; height:56px; border-radius:16px; display:flex; align-items:center; justify-content:center;">A2</span>
+    <div>
+      <div style="font-size:11px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--muted);">Nivel</div>
+      <h1 style="font-family:'Baloo 2',cursive; font-size:1.8rem; font-weight:800; line-height:1.1;">Básico</h1>
+    </div>
+  </div>
+  <p class="hero-sub" style="margin-bottom:0;">Rutinas, comida, compras, trabajos, la ciudad, hobbies, el pasado y los planes.</p>
+
+  <!-- Barra de progreso -->
+  <div class="nivel-progress">
+    <div class="nivel-progress-top">
+      <span>Progreso del nivel</span>
+      <strong id="prog-label">0 / 8 clases</strong>
+    </div>
+    <div class="timer-bar" style="margin-bottom:0;">
+      <div class="timer-fill" id="prog-bar" style="width: 0%;"></div>
+    </div>
+  </div>
+
+  <!-- Lista de clases -->
+  <div class="clase-list" id="lista"></div>
+</div>
+
+<script src="../a1/extra.js"></script>
+<script src="clases.js"></script>
+<script>
+  // Una clase se marca como completada al terminarla (llegar a la tarea) o al aprobar su mini test.
+  let hechas = {};
+  try { hechas = JSON.parse(localStorage.getItem('en-a2') || '{}'); } catch (e) {}
+  const clases = CLASES_A2.map(c => ({ n: c.n, href: `../a1/clase.html?l=A2&n=${c.n}`, title: c.title, sub: c.sub }));
+  let total = 0, done = 0;
+  document.getElementById('lista').innerHTML = clases.map(c => {
+    const ok = !c.practica && hechas[c.n];
+    if (!c.practica) { total++; if (ok) done++; }
+    return `<a class="clase-card${ok ? ' done' : ''}" href="${c.href}">
+      <div class="clase-num">${c.n}</div>
+      <div class="clase-info"><div class="clase-title">${c.title}</div><div class="clase-sub">${c.sub}</div></div>
+      <div class="clase-status">${ok ? '✅' : c.practica ? '✏️' : '📖'}</div></a>`;
+  }).join('');
+  document.getElementById('prog-label').textContent = `${done} / ${total} clases`;
+  document.getElementById('prog-bar').style.width = (done / total * 100) + '%';
+</script>
+</body>
+</html>
