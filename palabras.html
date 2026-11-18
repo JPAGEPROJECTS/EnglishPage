@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1d2730">
+<link rel="icon" type="image/png" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Idiomas">
+<title>Vocabulario — Inglés en Familia</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .wrap { max-width: 700px; margin: 0 auto; padding: 24px 16px 56px; }
+  .back { display: inline-flex; font-size: 13px; font-weight: 800; color: var(--muted); text-decoration: none; margin-bottom: 18px; }
+  .lv-switch { display: flex; gap: 8px; margin: 20px 0 12px; }
+  .lv-switch a {
+    flex: 1; text-align: center; padding: 10px; border-radius: 14px; text-decoration: none; color: var(--text);
+    background: var(--card); border: 2.5px solid var(--border); font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 1.1rem;
+  }
+  .lv-switch a small { display: block; font-family: 'Nunito', sans-serif; font-size: 12px; color: var(--muted); }
+  .lv-switch a.on { border-color: var(--green); background: #f0fff8; }
+  .lv-switch a.on.a2 { border-color: var(--blue); background: #f2f7ff; }
+  .search {
+    font: inherit; font-weight: 600; width: 100%; padding: 12px 16px; border-radius: 14px;
+    border: 2.5px solid var(--border); background: var(--card); color: var(--text);
+  }
+  .tools { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+  .tools button { font: inherit; font-size: 13px; font-weight: 800; padding: 7px 12px; border-radius: 99px; border: 2px solid var(--border); background: var(--card); cursor: pointer; color: var(--text); }
+  .tools span { margin-left: auto; font-size: 13px; font-weight: 700; color: var(--muted); }
+  .cats { display: flex; gap: 6px; overflow-x: auto; margin-top: 12px; padding-bottom: 4px; scrollbar-width: none; }
+  .cats button { flex-shrink: 0; font: inherit; font-size: 13px; font-weight: 800; padding: 7px 12px; border-radius: 99px; border: 2px solid var(--border); background: var(--card); cursor: pointer; color: var(--text); }
+  .cats button.on { background: var(--text); color: #fff; border-color: var(--text); }
+  .cat-title { font-family: 'Baloo 2', cursive; font-size: 1.3rem; font-weight: 800; margin: 26px 0 10px; }
+  .w { background: var(--card); border: 2.5px solid var(--border); border-radius: 18px; padding: 14px; margin-bottom: 10px; }
+  .w-top { display: flex; align-items: center; gap: 12px; }
+  .w-top > div { flex: 1; min-width: 0; }
+  .w-en { font-family: 'Baloo 2', cursive; font-size: 1.15rem; font-weight: 800; }
+  .w-pron { font-size: 12px; font-weight: 700; color: var(--blue); }
+  .w-es { font-size: 14px; color: var(--muted); font-weight: 700; }
+  .ex { margin-top: 10px; background: var(--bg); border-radius: 12px; padding: 10px 12px; display: flex; gap: 10px; align-items: flex-start; }
+  .ex-en { font-weight: 800; font-style: italic; }
+  .ex-es { font-size: 13px; color: var(--muted); font-weight: 600; }
+  .say { border: none; background: #e6f0ff; color: var(--blue); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 13px; flex-shrink: 0; }
+  .ex .say { width: 30px; height: 30px; font-size: 11px; }
+  .say:hover { background: var(--blue); color: #fff; }
+  .hide-es .w-es, .hide-es .ex-es { filter: blur(5px); cursor: pointer; }
+  .hide-es .w.reveal .w-es, .hide-es .w.reveal .ex-es { filter: none; }
+  .tip { background: #fff8e8; border: 2px solid #f5dfa0; border-radius: 16px; padding: 14px 16px; font-size: 14px; line-height: 1.6; margin-top: 24px; }
+  .empty { display: none; text-align: center; color: var(--muted); padding: 30px 0; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topbar-title">🌟 Inglés en Familia</div></div>
+<div class="wrap">
+  <a class="back" href="ingles.html">← Niveles de inglés</a>
+  <div style="text-align:center"><span class="hero-tag" id="tag"></span></div>
+  <h1 class="big" style="text-align:center">Our <span>words</span> 📖</h1>
+  <p class="hero-sub">Las palabras más útiles del nivel, cada una con su pronunciación y un ejemplo para usarla. Toquen ▶ para escuchar.</p>
+
+  <div class="lv-switch" id="switch"></div>
+  <input class="search" id="search" type="search" placeholder="🔍 Buscar en inglés o español…" autocomplete="off">
+  <div class="tools"><button id="toggle">🙈 Ocultar español</button><span id="count"></span></div>
+  <div class="cats" id="cats"></div>
+
+  <div id="list"></div>
+  <div class="empty" id="empty">No encontramos esa palabra 🤔</div>
+
+  <div class="tip"><strong>💡 Cómo usar esta lista en familia:</strong> cada día elijan una categoría. Lean las palabras en voz alta, repitan los ejemplos y luego activen <em>“Ocultar español”</em> para ver quién se acuerda de más. Toquen una palabra para revelar su traducción.</div>
+</div>
+
+<script src="palabras.js"></script>
+<script>
+  const levels = Object.keys(WORDS);
+  let lv = new URLSearchParams(location.search).get('l');
+  if (!WORDS[lv]) lv = levels[0];
+  const data = WORDS[lv];
+  const total = data.reduce((n, c) => n + c.words.length, 0);
+  const NOMBRES = { A1: 'Principiante', A2: 'Básico' };
+  document.title = `Vocabulario ${lv} — Inglés en Familia`;
+  document.getElementById('tag').textContent = `Nivel ${lv} · ${total} palabras`;
+  document.getElementById('switch').innerHTML = levels.map(l =>
+    `<a href="palabras.html?l=${l}" class="${l === lv ? 'on' : ''} ${l.toLowerCase()}">${l}<small>${NOMBRES[l]}</small></a>`).join('');
+
+  let enVoice = null;
+  function pickVoice() { const vs = speechSynthesis.getVoices(); enVoice = vs.find(v => v.lang === 'en-US') || vs.find(v => v.lang && v.lang.startsWith('en')) || null; }
+  if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+  function speak(t) {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(t.replace(/\s*\/\s*/g, ', ').replace(/→/g, ', ').replace(/\(.*?\)/g, ''));
+    u.lang = 'en-US'; u.rate = 0.85; if (enVoice) u.voice = enVoice;
+    speechSynthesis.speak(u);
+  }
+  const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+  const say = t => `<button class="say" data-say="${esc(t)}" title="Escuchar">▶</button>`;
+
+  const list = document.getElementById('list');
+  list.innerHTML = data.map((c, ci) => `
+    <section data-cat="${ci}"><div class="cat-title">${c.cat}</div>
+    ${c.words.map(([en, pr, es, ex, exEs]) => `
+      <div class="w" data-s="${esc([en, es, ex, exEs].join(' '))}">
+        <div class="w-top">${say(en)}<div><div class="w-en">${en}</div><div class="w-pron">/${pr}/</div><div class="w-es">${es}</div></div></div>
+        <div class="ex">${say(ex)}<div><div class="ex-en">${ex}</div><div class="ex-es">${exEs}</div></div></div>
+      </div>`).join('')}</section>`).join('');
+
+  list.addEventListener('click', e => {
+    const b = e.target.closest('[data-say]');
+    if (b) return speak(b.dataset.say);
+    const w = e.target.closest('.w');
+    if (w && document.body.classList.contains('hide-es')) w.classList.toggle('reveal');
+  });
+
+  let cat = -1;
+  const cats = document.getElementById('cats');
+  cats.innerHTML = `<button class="on" data-c="-1">Todas</button>` + data.map((c, i) => `<button data-c="${i}">${c.cat}</button>`).join('');
+  cats.onclick = e => {
+    const b = e.target.closest('button'); if (!b) return;
+    cat = +b.dataset.c;
+    cats.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+    filtrar();
+  };
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const search = document.getElementById('search');
+  search.oninput = filtrar;
+  function filtrar() {
+    const q = norm(search.value.trim());
+    let n = 0;
+    list.querySelectorAll('section').forEach(sec => {
+      let any = false;
+      sec.querySelectorAll('.w').forEach(w => {
+        const ok = (cat === -1 || +sec.dataset.cat === cat) && (!q || norm(w.dataset.s).includes(q));
+        w.style.display = ok ? '' : 'none';
+        if (ok) { any = true; n++; }
+      });
+      sec.style.display = any ? '' : 'none';
+    });
+    document.getElementById('count').textContent = `${n} de ${total}`;
+    document.getElementById('empty').style.display = n ? 'none' : 'block';
+  }
+  filtrar();
+
+  document.getElementById('toggle').onclick = e => {
+    const on = document.body.classList.toggle('hide-es');
+    list.querySelectorAll('.reveal').forEach(x => x.classList.remove('reveal'));
+    e.target.textContent = on ? '👀 Mostrar español' : '🙈 Ocultar español';
+  };
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});</script>
+</body>
+</html>

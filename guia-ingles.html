@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1d2730">
+<link rel="icon" type="image/png" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Idiomas">
+<title>Guía de inglés en familia</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .wrap { max-width: 720px; margin: 0 auto; padding: 24px 16px 56px; }
+  .back { display: inline-flex; font-size: 13px; font-weight: 800; color: var(--muted); text-decoration: none; margin-bottom: 18px; }
+  h2.g { font-family: 'Baloo 2', cursive; font-size: 1.5rem; font-weight: 800; margin: 32px 0 12px; }
+  .box { background: var(--card); border: 2.5px solid var(--border); border-radius: 18px; padding: 16px 18px; font-size: 15px; line-height: 1.65; margin-bottom: 12px; }
+  .box p + p, .box p + ul, .box ul + p { margin-top: 8px; }
+  .box ul, .box ol { padding-left: 20px; }
+  .box li { margin: 5px 0; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+  .age { border-radius: 18px; padding: 16px; border: 2.5px solid; background: var(--card); font-size: 14px; line-height: 1.6; }
+  .age h3 { font-family: 'Baloo 2', cursive; font-size: 1.15rem; margin-bottom: 6px; }
+  .age ul { padding-left: 18px; }
+  table.t { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.t th, table.t td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  table.t th { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  table.t td:first-child { font-weight: 800; white-space: nowrap; }
+  .res li { list-style: none; margin-left: -20px; padding: 8px 0; border-top: 1px solid var(--border); }
+  .res li:first-child { border-top: none; }
+  .res small { display: block; color: var(--muted); font-weight: 600; }
+  .say { border: none; background: #e6f0ff; color: var(--blue); width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 11px; vertical-align: middle; margin-left: 4px; }
+  .yellow { background: #fff8e8; border-color: #f5dfa0; }
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topbar-title">🌟 Inglés en Familia</div></div>
+<div class="wrap">
+  <a class="back" href="ingles.html">← Niveles de inglés</a>
+  <div style="text-align:center"><span class="hero-tag">Guía para la familia</span></div>
+  <h1 class="big" style="text-align:center">¿Cómo aprendemos<br><span>inglés juntos?</span></h1>
+  <p class="hero-sub">Consejos prácticos para que toda la familia aprenda inglés en casa, cada uno a su ritmo y sin aburrirse.</p>
+
+  <h2 class="g">🔑 Las 5 reglas de la familia</h2>
+  <div class="box">
+    <ol>
+      <li><strong>Un poquito cada día.</strong> 15 minutos diarios valen más que 2 horas el domingo.</li>
+      <li><strong>Hablar desde el primer día.</strong> Aunque sea con errores. Nadie se ríe del que se equivoca; aplaudimos al que lo intenta.</li>
+      <li><strong>Jugar es estudiar.</strong> Los juegos, canciones y series en inglés cuentan como clase.</li>
+      <li><strong>Repetir lo de antes.</strong> Antes de algo nuevo, 5 minutos de repaso de la clase anterior.</li>
+      <li><strong>Todos enseñan.</strong> El que aprende algo se lo enseña a otro: así se aprende el doble.</li>
+    </ol>
+  </div>
+
+  <h2 class="g">📅 Rutina semanal en casa</h2>
+  <div class="box">
+    <table class="t">
+      <tr><th>Día</th><th>Actividad (15–30 min)</th></tr>
+      <tr><td>Lunes</td><td>Clase nueva: vocabulario y frases, con audio.</td></tr>
+      <tr><td>Martes</td><td>Gramática y más + palabras extra. Cada uno dice 3 frases.</td></tr>
+      <tr><td>Miércoles</td><td>Juegos de la clase.</td></tr>
+      <tr><td>Jueves</td><td>Role play y mini test. Repasar lo que fallaron.</td></tr>
+      <tr><td>Viernes</td><td>Noche de cine o caricaturas en inglés 🍿.</td></tr>
+      <tr><td>Sábado</td><td>Cocinar algo diciendo los ingredientes en inglés, o una salida nombrando lo que ven.</td></tr>
+      <tr><td>Domingo</td><td>Descanso o repaso libre con la página de vocabulario.</td></tr>
+    </table>
+    <p style="color:var(--muted);font-size:14px;margin-top:10px">Todos los días: saludo de la mañana en inglés (“Good morning! How are you?”) y post-its en la casa.</p>
+  </div>
+
+  <h2 class="g">👨‍👩‍👦‍👦 Qué funciona según la edad</h2>
+  <div class="grid">
+    <div class="age" style="border-color:var(--green)"><h3>🧒 Niños (9 años)</h3><ul>
+      <li>Canciones con movimiento (Super Simple Songs).</li>
+      <li>Caricaturas cortas en inglés: Bluey, Peppa Pig.</li>
+      <li>Juegos: veo-veo, mímica, bingo, búsqueda del tesoro.</li>
+      <li>“Enseñarle” a un peluche o a los papás.</li>
+      <li>Premios pequeños por la racha de días.</li></ul></div>
+    <div class="age" style="border-color:var(--blue)"><h3>🧑 Adolescentes (17 años)</h3><ul>
+      <li>Series y YouTube con subtítulos en inglés.</li>
+      <li>Música: buscar la letra (“lyrics”) y cantarla.</li>
+      <li>Videojuegos y celular en inglés.</li>
+      <li>Duolingo o apps con racha diaria.</li>
+      <li>Grabarse en video hablando 1 minuto.</li></ul></div>
+    <div class="age" style="border-color:var(--purple)"><h3>👨‍👩 Papá y mamá</h3><ul>
+      <li>Frases útiles para el trabajo y la vida diaria.</li>
+      <li>Cocinar, limpiar o manejar nombrando cosas en inglés.</li>
+      <li>Podcasts sencillos mientras hacen otras cosas.</li>
+      <li>Dar las órdenes de la casa en inglés.</li>
+      <li>Ser el ejemplo: si ustedes practican, ellos también.</li></ul></div>
+  </div>
+
+  <h2 class="g">🗣️ Pronunciación: lo difícil para nosotros</h2>
+  <div class="box">
+    <table class="t">
+      <tr><th>Sonido</th><th>Cómo hacerlo</th><th>Practica</th></tr>
+      <tr><td>th</td><td>La lengua entre los dientes y soplar suave.</td><td>three, think, thank you <button class="say" data-say="three, think, thank you">▶</button></td></tr>
+      <tr><td>v ≠ b</td><td>En la “v” los dientes de arriba tocan el labio de abajo.</td><td>very, video, van <button class="say" data-say="very, video, van">▶</button></td></tr>
+      <tr><td>i corta / larga</td><td>Cambian el significado: ship ≠ sheep, live ≠ leave.</td><td>ship, sheep <button class="say" data-say="ship, sheep">▶</button></td></tr>
+      <tr><td>s + consonante</td><td>No digas “e” antes: “school”, no “eschool”.</td><td>school, Spain, stop <button class="say" data-say="school, Spain, stop">▶</button></td></tr>
+      <tr><td>Finales</td><td>Pronuncia la última consonante: “dog”, no “do”.</td><td>dog, cat, bed <button class="say" data-say="dog, cat, bed">▶</button></td></tr>
+      <tr><td>h</td><td>Suena como una “j” suave (aspirada).</td><td>hello, house, happy <button class="say" data-say="hello, house, happy">▶</button></td></tr>
+      <tr><td>-ed</td><td>Casi nunca suena “ed”: worked = “workt”.</td><td>worked, played, wanted <button class="say" data-say="worked, played, wanted">▶</button></td></tr>
+    </table>
+  </div>
+
+  <h2 class="g">⚠️ Falsos amigos que confunden</h2>
+  <div class="box">
+    <ul>
+      <li><strong>actually</strong> = en realidad (no “actualmente”, que es <em>currently</em>).</li>
+      <li><strong>embarrassed</strong> = avergonzado (no embarazada, que es <em>pregnant</em>).</li>
+      <li><strong>library</strong> = biblioteca (librería es <em>bookstore</em>).</li>
+      <li><strong>parents</strong> = papá y mamá (parientes es <em>relatives</em>).</li>
+      <li><strong>exit</strong> = salida (éxito es <em>success</em>).</li>
+      <li><strong>carpet</strong> = alfombra (carpeta es <em>folder</em>).</li>
+      <li><strong>sensible</strong> = sensato (sensible es <em>sensitive</em>).</li>
+      <li><strong>assist</strong> = ayudar (asistir a un lugar es <em>attend</em>).</li>
+    </ul>
+  </div>
+
+  <h2 class="g">🇵🇦 Inglés útil en Panamá</h2>
+  <div class="box">
+    <p>En Panamá el inglés abre puertas: turismo, el Canal, bancos, hoteles, call centers y empresas internacionales. Frases que sirven en el día a día:</p>
+    <ul>
+      <li>“Welcome to Panama!” <button class="say" data-say="Welcome to Panama!">▶</button> — ¡Bienvenido a Panamá!</li>
+      <li>“Can I help you?” <button class="say" data-say="Can I help you?">▶</button> — ¿Le puedo ayudar?</li>
+      <li>“May I see your ID, please?” <button class="say" data-say="May I see your ID, please?">▶</button> — ¿Me permite su identificación? (muy útil para seguridad)</li>
+      <li>“The entrance is on the left.” <button class="say" data-say="The entrance is on the left.">▶</button> — La entrada está a la izquierda.</li>
+      <li>“Please wait here a moment.” <button class="say" data-say="Please wait here a moment.">▶</button> — Por favor espere aquí un momento.</li>
+      <li>“Have a nice day!” <button class="say" data-say="Have a nice day!">▶</button> — ¡Que tenga un buen día!</li>
+    </ul>
+  </div>
+
+  <h2 class="g">📺 Recursos recomendados (gratis)</h2>
+  <div class="box">
+    <ul class="res">
+      <li><b>🎵 Super Simple Songs</b> (YouTube)<small>Canciones para niños: días, colores, números, rutinas.</small></li>
+      <li><b>🐶 Bluey / Peppa Pig</b><small>Caricaturas cortas con inglés claro. Ideales para el pequeño y para toda la familia.</small></li>
+      <li><b>📻 BBC Learning English</b><small>Videos y audios cortos por niveles, para adultos y adolescentes.</small></li>
+      <li><b>👩‍🏫 English with Lucy / Speak English with Vanessa</b><small>Clases en YouTube de pronunciación y vocabulario.</small></li>
+      <li><b>🦉 Duolingo</b><small>5–10 minutos al día; la racha motiva mucho a los adolescentes.</small></li>
+      <li><b>🎬 Netflix o YouTube con subtítulos en inglés</b><small>Primero con subtítulos en español, luego en inglés.</small></li>
+      <li><b>📖 Cambridge Dictionary</b><small>Diccionario con audio de la pronunciación americana y británica.</small></li>
+    </ul>
+  </div>
+
+  <h2 class="g">💪 Cuando baja la motivación</h2>
+  <div class="box yellow">
+    <ul>
+      <li>Bajen la meta a <strong>5 minutos</strong>: lo importante es no perder la costumbre.</li>
+      <li>Hagan un “mural de logros” con cada clase terminada y cada palabra nueva.</li>
+      <li>Pongan una meta familiar con premio: terminar el A1 = salida a comer o al cine.</li>
+      <li>Vuelvan a los juegos favoritos: aprender tiene que ser divertido.</li>
+      <li>Recuerden por qué empezaron: mejores trabajos, viajar, ayudar a los hijos en la escuela.</li>
+    </ul>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn btn-ghost" href="ingles.html" style="text-decoration:none">← Niveles</a>
+    <a class="btn btn-primary" href="palabras.html" style="text-decoration:none">📖 Ver vocabulario →</a>
+  </div>
+</div>
+<script>
+  let enVoice = null;
+  function pickVoice() { const vs = speechSynthesis.getVoices(); enVoice = vs.find(v => v.lang === 'en-US') || vs.find(v => v.lang && v.lang.startsWith('en')) || null; }
+  if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-say]'); if (!b || !('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(b.dataset.say); u.lang = 'en-US'; u.rate = 0.8; if (enVoice) u.voice = enVoice;
+    speechSynthesis.speak(u);
+  });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});</script>
+</body>
+</html>
