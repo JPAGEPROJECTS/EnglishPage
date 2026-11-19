@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#1d2730">
+<link rel="icon" type="image/png" href="../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Idiomas">
+<title>Parolacce — Italiano</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="italiano.css">
+<style>
+  .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .lvl { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 99px; white-space: nowrap; }
+  .l1 { background: var(--verde-soft); color: var(--verde); }
+  .l2 { background: var(--oro-soft); color: var(--oro); }
+  .l3 { background: var(--rosso-soft); color: var(--rosso); }
+  .filters { display: flex; gap: 6px; overflow-x: auto; margin-top: 14px; padding-bottom: 4px; scrollbar-width: none; }
+  .filters button {
+    flex-shrink: 0; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; border-radius: 99px;
+    padding: 7px 12px; border: 1px solid var(--border); background: var(--card); color: var(--text);
+  }
+  .filters button.on { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .cat-title { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 700; margin: 26px 0 4px; }
+  .cat-desc { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+  .entry { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 10px; }
+  .entry-top { display: flex; align-items: flex-start; gap: 12px; }
+  .entry-top > div { flex: 1; min-width: 0; }
+  .entry .it { font-size: 1.1rem; }
+  .meaning { font-size: 14px; margin-top: 4px; }
+  .literal { font-size: 13px; color: var(--muted); }
+  .ex { margin-top: 10px; padding: 10px 12px; border-radius: 10px; background: var(--bg); display: flex; gap: 10px; align-items: flex-start; }
+  .ex .play { width: 30px; height: 30px; font-size: 12px; }
+  .ex-it { font-style: italic; font-weight: 600; }
+  .ex-es { font-size: 14px; color: var(--muted); }
+  .note { font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .note b { color: var(--text); }
+</style>
+</head>
+<body>
+<div class="flag-strip"><i></i><i></i><i></i></div>
+<div class="top">
+  <a href="index.html">← Clases</a>
+  <span class="brand">Italiano 🇮🇹</span>
+</div>
+
+<div class="wrap">
+  <div class="kicker">Italiano de la calle · +18</div>
+  <h1>Le <em>parolacce</em></h1>
+  <p class="lead">Insultos, groserías y expresiones fuertes que vas a escuchar en series, películas, el fútbol y la calle. El objetivo es <strong>entenderlas</strong> y saber qué tan fuertes son, no ofender a nadie.</p>
+
+  <div class="card warn" style="margin-top:16px">
+    <strong>⚠️ Antes de usarlas:</strong> una grosería dicha con acento extranjero suena mucho más fuerte de lo que crees. Con amigos de confianza puede ser divertido; con desconocidos, en el trabajo o con gente mayor, evítalas. Cuando dudes, usa la <strong>versión suave</strong> que aparece en cada una.
+  </div>
+
+  <div class="legend">
+    <span class="lvl l1">🟢 Suave · se oye en familia</span>
+    <span class="lvl l2">🟡 Media · solo con confianza</span>
+    <span class="lvl l3">🔴 Fuerte · ofende de verdad</span>
+  </div>
+
+  <div class="filters" id="filters"></div>
+  <div id="list"></div>
+
+  <h2 class="cat-title">🤌 Gestos que acompañan</h2>
+  <div class="card">
+    <ul style="padding-left:20px;line-height:1.7">
+      <li><strong>Mano a pigna</strong> (dedos juntos hacia arriba, moviendo la mano): “¿Pero qué dices?” / “¿Qué quieres?”. Molestia, no insulto.</li>
+      <li><strong>Gesto dell'ombrello</strong> (golpear el bíceps con la otra mano y levantar el antebrazo): equivale a una grosería fuerte, como “¡vete a…!”.</li>
+      <li><strong>Morderse el dedo índice doblado</strong>: rabia contenida, “me las vas a pagar”.</li>
+      <li><strong>Las corna</strong> (índice y meñique levantados): apuntadas a alguien insinúan que su pareja le es infiel. Hacia abajo, en cambio, son para espantar la mala suerte.</li>
+    </ul>
+  </div>
+
+  <h2 class="cat-title">🚫 Lo que no incluimos</h2>
+  <div class="card tip">
+    <p>En italiano existen también <strong>insultos racistas, homófobos o machistas</strong>. No los ponemos aquí: no hay situación en la que convenga usarlos, y si alguien te los dice no es un chiste, es una agresión.</p>
+    <p style="margin-top:8px">Ojo también con las <strong>bestemmie</strong> (blasfemias contra Dios o la Virgen). En algunas zonas del norte se oyen mucho, pero para gran parte de los italianos son de lo más ofensivo que se puede decir. Nunca las uses.</p>
+  </div>
+
+  <div class="card tip">
+    <strong>💡 Para responder si te insultan en broma:</strong> <em>“Senti chi parla!”</em> (¡Mira quién habla!), <em>“Ma va'!”</em> (¡Anda ya!), <em>“Anche tu!”</em> (¡Tú también!), o simplemente reírte: en Italia muchas groserías entre amigos son señal de confianza.
+  </div>
+
+  <div class="btn-row">
+    <a class="btn ghost" href="index.html">← Volver a las clases</a>
+    <a class="btn" href="lezione.html?n=18">Clase: Parlare come un italiano →</a>
+  </div>
+</div>
+
+<script src="progreso.js"></script>
+<script>
+  Progreso.contarTiempo();
+
+  // [italiano, pronunciación, nivel (1-3), significado real, literal (o ""), ejemplo it, ejemplo es, versión suave / nota]
+  const DATA = [
+    { cat: "😤 Exclamaciones", desc: "Para cuando algo sale mal: se te cae el café, pierdes el bus o te golpeas el pie.", items: [
+      ["Mannaggia!", "man-NÁD-ya", 1, "¡Maldición! / ¡Rayos!", "", "Mannaggia, ho perso il treno!", "¡Rayos, perdí el tren!", "Muy común en el sur. La versión completa “mannaggia la miseria” también es suave."],
+      ["Accidenti!", "at-chi-DÉN-ti", 1, "¡Caramba! / ¡Rayos!", "“accidentes”", "Accidenti, è tardissimo!", "¡Caramba, es tardísimo!", "La forma educada de quejarse. Sirve en cualquier contexto."],
+      ["Cavolo!", "CÁ-vo-lo", 1, "¡Caray! / ¡Diablos!", "“repollo”", "Cavolo, che caldo!", "¡Caray, qué calor!", "Es la versión suave de “cazzo”. También: “Col cavolo!” = ¡ni de broma!"],
+      ["Porca miseria!", "PÓR-ca mi-SÉ-ria", 1, "¡Maldita sea!", "“cerda miseria”", "Porca miseria, si è rotto il telefono!", "¡Maldita sea, se rompió el teléfono!", "Muy usada y aceptable incluso delante de padres."],
+      ["Che palle!", "ke PÁL-le", 2, "¡Qué fastidio! / ¡Qué aburrido!", "“¡qué bolas!”", "Che palle, devo lavorare anche sabato.", "Qué fastidio, tengo que trabajar también el sábado.", "Entre jóvenes es comunísima. Versión suave: “Che noia!” o “Che barba!”."],
+      ["Merda!", "MÉR-da", 2, "¡Mierda!", "", "Merda, ho dimenticato le chiavi!", "¡Mierda, olvidé las llaves!", "Igual de fuerte que en español."],
+      ["Cazzo!", "CÁT-tso", 3, "¡Carajo! / ¡Mierda!", "órgano masculino", "Cazzo, che freddo!", "¡Carajo, qué frío!", "La grosería más usada del italiano. Mejor: “cavolo”. También “Che cazzo dici?” = ¿qué carajo dices?"],
+      ["Porca puttana!", "PÓR-ca put-TÁ-na", 3, "¡Me cago en…! / ¡Puta madre!", "", "Porca puttana, abbiamo perso!", "¡Puta madre, perdimos!", "Muy vulgar. Usa “porca miseria” en su lugar."]
+    ]},
+    { cat: "🙄 Insultos suaves", desc: "Los que se usan entre hermanos, amigos o en broma. Ofenden poco.", items: [
+      ["scemo / scema", "SHÉ-mo", 1, "tonto / tonta", "", "Non fare lo scemo!", "¡No te hagas el tonto!", "Entre amigos es casi cariñoso."],
+      ["stupido", "STÚ-pi-do", 1, "estúpido", "", "Che domanda stupida!", "¡Qué pregunta tan estúpida!", "Más suave referido a cosas que a personas."],
+      ["cretino", "cre-TÍ-no", 2, "cretino / idiota", "", "Quel cretino mi ha tagliato la strada.", "Ese cretino se me cruzó en la calle.", "Típico del tráfico."],
+      ["imbecille", "im-be-CHÍL-le", 2, "imbécil", "", "Sei proprio un imbecille!", "¡Eres un imbécil de verdad!", ""],
+      ["deficiente", "de-fi-CHÉN-te", 2, "idiota", "“deficiente”", "Ma sei deficiente? Guarda dove vai!", "¿Eres idiota? ¡Mira por dónde vas!", "Muy usado por adolescentes."],
+      ["babbeo / sciocco", "bab-BÉ-o / SHÓC-co", 1, "bobo", "", "Non essere sciocco, ti aiuto io.", "No seas bobo, yo te ayudo.", "Suenan un poco anticuados: los dicen los abuelos."],
+      ["rompiscatole", "rom-pi-SCÁ-to-le", 1, "pesado / fastidioso", "“rompecajas”", "Mio fratello è un rompiscatole.", "Mi hermano es un pesado.", "Es la versión suave de “rompicoglioni”."],
+      ["sfigato", "sfi-GÁ-to", 2, "perdedor / pringado", "", "Che sfigato, ha perso il treno di nuovo.", "Qué pringado, perdió el tren otra vez.", "“Che sfiga!” = ¡qué mala suerte!"],
+      ["cafone", "ca-FÓ-ne", 2, "maleducado / naco", "", "Che cafone, non ha nemmeno salutato.", "Qué maleducado, ni siquiera saludó.", ""],
+      ["tamarro / coatto", "ta-MÁR-ro / co-ÁT-to", 2, "corriente / chabacano", "", "Guarda quel tamarro con la macchina rumorosa.", "Mira ese chabacano con el carro ruidoso.", "“Coatto” es típico de Roma."]
+    ]},
+    { cat: "😠 Insultos fuertes", desc: "Ofenden de verdad. Entiéndelos, pero piensa dos veces antes de decirlos.", items: [
+      ["stronzo / stronza", "STRÓN-tso", 3, "cabrón / imbécil (persona mala)", "“zurullo”", "Che stronzo, mi ha mentito!", "¡Qué cabrón, me mintió!", "Muy común. Entre amigos, con tono de broma, a veces se suaviza."],
+      ["coglione", "co-LIÓ-ne", 3, "pendejo / idiota", "“testículo”", "Non fare il coglione!", "¡No seas pendejo!", "Muy frecuente en el centro y norte."],
+      ["testa di cazzo", "TÉS-ta di CÁT-tso", 3, "imbécil (muy fuerte)", "“cabeza de…”", "Quel testa di cazzo non paga mai.", "Ese imbécil nunca paga.", ""],
+      ["rompicoglioni / rompipalle", "rom-pi-co-LIÓ-ni", 3, "pesado insoportable", "“rompebolas”", "Smettila, sei un rompipalle!", "¡Basta, eres un pesado!", "Versión suave: rompiscatole."],
+      ["faccia da culo", "FÁT-cha da CÚ-lo", 3, "caradura / descarado", "“cara de culo”", "Ha una faccia da culo incredibile.", "Tiene una caradura increíble.", "Se dice de quien miente o pide favores sin vergüenza."],
+      ["leccaculo", "lec-ca-CÚ-lo", 3, "lameculos / chupamedias", "", "È il leccaculo del capo.", "Es el chupamedias del jefe.", ""],
+      ["paraculo", "pa-ra-CÚ-lo", 2, "listillo / el que siempre se salva", "", "Che paraculo, ha dato la colpa a me!", "¡Qué listillo, me echó la culpa a mí!", "A veces se dice con cierta admiración."],
+      ["bastardo", "bas-TÁR-do", 3, "desgraciado", "", "Quel bastardo mi ha rubato la bici!", "¡Ese desgraciado me robó la bici!", ""],
+      ["figlio di puttana", "FÍ-lio di put-TÁ-na", 3, "hijo de puta", "", "—", "—", "Igual de grave que en español. Sin ejemplo: no lo uses."]
+    ]},
+    { cat: "🗣️ Frases para mandar a alguien lejos", desc: "Desde “déjame en paz” hasta el insulto directo.", items: [
+      ["Lasciami in pace!", "LÁ-sha-mi in PÁ-che", 1, "¡Déjame en paz!", "", "Lasciami in pace, sto studiando!", "¡Déjame en paz, estoy estudiando!", "Siempre aceptable."],
+      ["Non rompere!", "non RÓM-pe-re", 2, "¡No molestes!", "“no rompas”", "Dai, non rompere!", "¡Anda, no molestes!", "Se sobreentiende “le scatole” (suave) o “le palle” (fuerte)."],
+      ["Va' a quel paese!", "va a cuel pa-É-se", 1, "¡Vete a freír espárragos!", "“vete a ese pueblo”", "Ma va' a quel paese!", "¡Vete a freír espárragos!", "Es la versión educada de “vaffanculo”."],
+      ["Mi stai sulle palle", "mi STAI SÚL-le PÁL-le", 3, "Me caes muy mal", "“me estás sobre las bolas”", "Sinceramente, mi stai sulle palle.", "Sinceramente, me caes fatal.", "Suave: “Mi stai antipatico”."],
+      ["Chi se ne frega!", "ki se ne FRÉ-ga", 2, "¡A quién le importa!", "", "Ha vinto la Juve? Chi se ne frega!", "¿Ganó la Juve? ¡A quién le importa!", "Fuerte: “chi se ne fotte”."],
+      ["Levati dalle palle!", "LÉ-va-ti DÁL-le PÁL-le", 3, "¡Quítate de en medio! / ¡Lárgate!", "", "Levati dalle palle, ho fretta!", "¡Lárgate, tengo prisa!", "Suave: “Levati di mezzo!”."],
+      ["Vaffanculo!", "vaf-fan-CÚ-lo", 3, "¡Vete a la mierda! / ¡Vete al carajo!", "", "—", "—", "El insulto más famoso. Entre amigos íntimos a veces se acorta a “Vaffa!” en broma. Suave: “va' a quel paese”."]
+    ]},
+    { cat: "🗺️ Regionales", desc: "Cada región tiene los suyos. Te ayudan a reconocer de dónde es alguien.", items: [
+      ["pirla", "PÍR-la", 2, "idiota (Milán, Lombardía)", "", "Ma che pirla che sei!", "¡Pero qué idiota eres!", "Típico de Milán; suena casi simpático."],
+      ["bischero", "BÍS-ke-ro", 1, "tonto / ingenuo (Toscana)", "", "Non fare il bischero!", "¡No hagas el tonto!", "Florentino puro."],
+      ["mona", "MÓ-na", 2, "tonto (Venecia, Véneto)", "", "No sta far el mona!", "¡No hagas el tonto!", "Frase típica en dialecto véneto."],
+      ["li mortacci tua!", "li mor-TÁT-chi TÚ-a", 3, "¡maldita sea tu familia! (Roma)", "“tus malditos muertos”", "Li mortacci tua, m'hai fatto paura!", "¡Maldita sea, me asustaste!", "Muy romano. A veces se dice con sorpresa y casi cariño, pero ofende a los muertos de la familia."],
+      ["strunz'", "STRUNTS", 3, "cabrón (Nápoles)", "", "Uè, strunz'!", "¡Oye, cabrón!", "Versión napolitana de “stronzo”."],
+      ["cacacazzi", "ca-ca-CÁT-tsi", 3, "pesado quisquilloso (muy coloquial)", "", "Il mio capo è un cacacazzi.", "Mi jefe es un pesado quisquilloso.", ""]
+    ]}
+  ];
+
+  // ---- Audio ----
+  let itVoice = null;
+  function pickVoice() { const vs = speechSynthesis.getVoices(); itVoice = vs.find(v => v.lang === 'it-IT') || vs.find(v => v.lang && v.lang.startsWith('it')) || null; }
+  if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+  function speak(t) {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(t.replace(/\s*\/\s*/g, ', ')); u.lang = 'it-IT'; u.rate = 0.85; if (itVoice) u.voice = itVoice;
+    speechSynthesis.speak(u);
+  }
+  const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+  const play = t => `<button class="play" data-say="${esc(t)}" title="Escuchar">▶</button>`;
+  const NIVEL = { 1: ['l1', '🟢 Suave'], 2: ['l2', '🟡 Media'], 3: ['l3', '🔴 Fuerte'] };
+
+  const list = document.getElementById('list');
+  list.innerHTML = DATA.map((c, ci) => `
+    <section data-cat="${ci}">
+      <div class="cat-title">${c.cat}</div><div class="cat-desc">${c.desc}</div>
+      ${c.items.map(([it, pr, lv, es, lit, ex, exEs, nota]) => `
+        <div class="entry" data-lv="${lv}">
+          <div class="entry-top">${play(it)}
+            <div><div class="it">${it}</div><div class="pron">/${pr}/</div>
+              <div class="meaning">${es}</div>${lit ? `<div class="literal">Literalmente: ${lit}</div>` : ''}</div>
+            <span class="lvl ${NIVEL[lv][0]}">${NIVEL[lv][1]}</span>
+          </div>
+          ${ex !== '—' ? `<div class="ex">${play(ex)}<div><div class="ex-it">${ex}</div><div class="ex-es">${exEs}</div></div></div>` : ''}
+          ${nota ? `<div class="note"><b>💬</b> ${nota}</div>` : ''}
+        </div>`).join('')}
+    </section>`).join('');
+  list.addEventListener('click', e => { const b = e.target.closest('[data-say]'); if (b) speak(b.dataset.say); });
+
+  // ---- Filtros por nivel ----
+  const filters = document.getElementById('filters');
+  filters.innerHTML = [['0', 'Todas'], ['1', '🟢 Suaves'], ['2', '🟡 Medias'], ['3', '🔴 Fuertes']]
+    .map(([v, t], i) => `<button data-f="${v}" class="${i ? '' : 'on'}">${t}</button>`).join('');
+  filters.onclick = e => {
+    const b = e.target.closest('button'); if (!b) return;
+    filters.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+    const f = b.dataset.f;
+    list.querySelectorAll('section').forEach(sec => {
+      let any = false;
+      sec.querySelectorAll('.entry').forEach(en => { const ok = f === '0' || en.dataset.lv === f; en.style.display = ok ? '' : 'none'; if (ok) any = true; });
+      sec.style.display = any ? '' : 'none';
+    });
+  };
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js').catch(() => {});</script>
+</body>
+</html>
