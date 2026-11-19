@@ -112,7 +112,9 @@
 <script src="metodo.js"></script>
 <script src="progreso.js"></script>
 <script>
-  const n = Math.min(Math.max(parseInt(new URLSearchParams(location.search).get('n')) || 1, 1), LEZIONI.length);
+  const qp = new URLSearchParams(location.search);
+  const porId = LEZIONI.findIndex(l => l.id === qp.get('id')) + 1;
+  const n = porId || Math.min(Math.max(parseInt(qp.get('n')) || 1, 1), LEZIONI.length);
   const L = LEZIONI[n - 1];
   Progreso.contarTiempo();
   document.title = `${n}. ${L.title} — Italiano ${L.level || 'A1'}`;

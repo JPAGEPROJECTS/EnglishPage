@@ -3,6 +3,56 @@
 // errores: [lo que se suele decir (mal), lo correcto, explicación]
 
 const METODO = {
+  "plurali-possessivi": {
+    tecnica: "Etiquetar tu casa (en plural)",
+    como: `<p>Pon notas adhesivas en objetos de tu casa con el <strong>singular y el plural</strong>: <em>la sedia → le sedie</em>, <em>il libro → i libri</em>.</p>
+      <p>Cada vez que pases, di en voz alta los dos y un posesivo: <em>la mia sedia, le mie sedie</em>. En una semana el plural sale solo.</p>`,
+    errores: [
+      ["I caffès", "I caffè", "Las palabras con acento final no cambian."],
+      ["La mia madre", "Mia madre", "Familiar en singular: sin artículo."],
+      ["I zaini", "Gli zaini", "Ante z, s+consonante y vocal: gli."]
+    ],
+    extra: "Algunos plurales son irregulares y muy usados: l'uovo → le uova (huevos), il braccio → le braccia (brazos), il dito → le dita (dedos), la mano → le mani (manos), l'uomo → gli uomini.",
+    reto: "Describe 5 cosas de tu cuarto en plural con posesivos: “I miei libri sono sul tavolo…”."
+  },
+  "descrivere-meteo": {
+    tecnica: "Describir fotos",
+    como: `<p>Toma una foto cualquiera (de tu galería o de Instagram) y descríbela en italiano en 1 minuto: quién aparece, cómo es, qué tiempo hace y en qué estación parece estar.</p>
+      <p><em>In questa foto c'è mia sorella. È bassa, ha i capelli lunghi. Fa caldo, è estate.</em></p>
+      <p>Es un ejercicio de los exámenes oficiales y te obliga a usar adjetivos con concordancia.</p>`,
+    errores: [
+      ["È gli occhi verdi", "Ha gli occhi verdi", "Ojos y pelo con avere."],
+      ["È caldo oggi", "Fa caldo oggi", "El clima va con fare."],
+      ["Il uno marzo", "Il primo marzo", "El día 1 es “primo”."]
+    ],
+    extra: "Refranes sobre el clima: “Rosso di sera, bel tempo si spera” (cielo rojo de tarde, buen tiempo mañana) y “Marzo pazzerello” (marzo loquito: un día sol, otro lluvia).",
+    reto: "Describe físicamente y de carácter a 3 personas de tu familia y di cuándo es su cumpleaños."
+  },
+  "a2-riflessivi": {
+    tecnica: "Narrar tu mañana en directo",
+    como: `<p>Mientras te arreglas, narra en voz baja con reflexivos y <em>stare + gerundio</em>: <em>Mi sto lavando i denti… adesso mi vesto… mi sto pettinando…</em></p>
+      <p>Por la noche cuéntalo en pasado: <em>Stamattina mi sono svegliato alle sei, mi sono vestito…</em> Así practicas presente y pasado con los mismos verbos.</p>`,
+    errores: [
+      ["Mi ho svegliato", "Mi sono svegliato", "Reflexivos en pasado → essere."],
+      ["Sveglio alle sette", "Mi sveglio alle sette", "No olvides el pronombre."],
+      ["Sto andare", "Sto andando", "stare + gerundio, no infinitivo."]
+    ],
+    extra: "Con partes del cuerpo se usa el reflexivo y el artículo, no el posesivo: “Mi lavo le mani” (me lavo las manos), igual que en español.",
+    reto: "Mañana, narra tu rutina en voz alta con 8 verbos reflexivos y, en la noche, cuéntala en pasado."
+  },
+  "a2-preposizioni": {
+    tecnica: "Mapa personal de lugares",
+    como: `<p>Haz una lista de los 15 lugares a los que vas en tu vida real (trabajo, gym, casa de tu mamá, el súper…) y escribe al lado la preposición correcta: <em>in palestra, al supermercato, da mia madre</em>.</p>
+      <p>Apréndete <strong>tu</strong> lista: es mucho más útil que memorizar reglas abstractas.</p>`,
+    errores: [
+      ["Vado in Roma", "Vado a Roma", "Ciudades → a."],
+      ["Vado al medico", "Vado dal medico", "Personas y profesionales → da."],
+      ["Sono stato a Venezia? Sì, sono stato", "Sì, ci sono stato", "Para no repetir el lugar, ci."]
+    ],
+    extra: "Con islas grandes se usa in (in Sicilia, in Sardegna) y con islas pequeñas a (a Capri, a Cuba, a Ischia).",
+    reto: "Escribe 10 frases sobre a dónde vas en una semana normal, usando a, in, al y da."
+  },
+
   "alfabeto": {
     tecnica: "Shadowing (hacer de sombra)",
     como: `<p>Pones un audio corto y repites <strong>al mismo tiempo</strong> que la voz, como una sombra, imitando el ritmo y la entonación, no solo las palabras.</p>

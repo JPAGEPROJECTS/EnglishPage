@@ -311,6 +311,77 @@ const LEZIONI = [
   },
 
   {
+    id: "plurali-possessivi",
+    title: "Plurali e possessivi",
+    sub: "i libri, le case · mio, tuo, suo…",
+    intro: "Dos bases del italiano: cómo se forma el plural (que cambia la vocal final, no añade -s) y cómo decir “mi, tu, su”, con una regla curiosa para la familia.",
+    vocab: [
+      ["il libro → i libri", "el libro → los libros", "LÍ-bro → LÍ-bri"],
+      ["la casa → le case", "la casa → las casas", "CÁ-sa → CÁ-se"],
+      ["il cane → i cani", "el perro → los perros", "CÁ-ne → CÁ-ni"],
+      ["la chiave → le chiavi", "la llave → las llaves", "KIÁ-ve → KIÁ-vi"],
+      ["lo zaino → gli zaini", "la mochila → las mochilas", "DZÁI-no → li DZÁI-ni"],
+      ["l'amico → gli amici", "el amigo → los amigos", "a-MÍ-co → li a-MÍ-chi"],
+      ["l'amica → le amiche", "la amiga → las amigas", "a-MÍ-ca → a-MÍ-ke"],
+      ["il caffè → i caffè", "el café → los cafés", "caf-FÉ (no cambia)"],
+      ["la città → le città", "la ciudad → las ciudades", "chit-TÁ (no cambia)"],
+      ["l'uomo → gli uomini", "el hombre → los hombres", "UÓ-mo → UÓ-mi-ni"],
+      ["mio / mia / miei / mie", "mi / mis", "MÍ-o / MÍ-a / MIÉI / MÍ-e"],
+      ["tuo / suo / nostro / vostro / loro", "tu / su / nuestro / vuestro / su (de ellos)", "TÚ-o / SÚ-o / NÓS-tro"]
+    ],
+    phrases: [
+      ["Ho due cani e tre gatti.", "Tengo dos perros y tres gatos.", "", "o DÚ-e CÁ-ni e TRE GÁT-ti"],
+      ["Gli studenti sono in classe.", "Los estudiantes están en clase.", "gli ante s+consonante y vocal", "li stu-DÉN-ti SÓ-no in CLÁS-se"],
+      ["Mia madre si chiama Ana.", "Mi madre se llama Ana.", "Familiar en singular: sin artículo", "MÍ-a MÁ-dre si KIÁ-ma Á-na"],
+      ["I miei genitori sono di Panama.", "Mis padres son de Panamá.", "Familiar en plural: con artículo", "i MIÉI ye-ni-TÓ-ri SÓ-no di PÁ-na-ma"],
+      ["La mia macchina è rossa.", "Mi carro es rojo.", "Cosas: siempre con artículo", "la MÍ-a MÁC-ki-na É RÓS-sa"],
+      ["Questo è il tuo telefono?", "¿Este es tu teléfono?", "", "CUÉS-to É il TÚ-o te-LÉ-fo-no"],
+      ["Suo fratello lavora a Milano.", "Su hermano trabaja en Milán.", "suo = de él o de ella", "SÚ-o fra-TÉL-lo la-VÓ-ra a mi-LÁ-no"],
+      ["Le loro case sono grandi.", "Sus casas son grandes.", "loro no cambia nunca", "le LÓ-ro CÁ-se SÓ-no GRÁN-di"]
+    ],
+    grammar: {
+      title: "Plurales, artículos y posesivos",
+      html: `<p><strong>Plural:</strong> se cambia la última vocal.</p>
+      <table><tr><th>Singular</th><th>Plural</th><th>Ejemplo</th></tr>
+      <tr><td>-o (masc.)</td><td>-i</td><td>libro → libri</td></tr>
+      <tr><td>-a (fem.)</td><td>-e</td><td>casa → case</td></tr>
+      <tr><td>-e (masc. o fem.)</td><td>-i</td><td>cane → cani, chiave → chiavi</td></tr>
+      <tr><td>acento final / extranjeras</td><td>no cambia</td><td>caffè, città, film, bar</td></tr></table>
+      <p><strong>Artículos en plural:</strong> il → <b>i</b> · lo / l' (masc.) → <b>gli</b> · la / l' (fem.) → <b>le</b>.</p>
+      <p><strong>Posesivos:</strong> concuerdan con la cosa poseída y llevan artículo: <em>il mio libro, la mia casa, i miei libri, le mie case</em>.</p>
+      <table><tr><th>Persona</th><th>masc. sing.</th><th>fem. sing.</th><th>masc. pl.</th><th>fem. pl.</th></tr>
+      <tr><td>io</td><td>mio</td><td>mia</td><td>miei</td><td>mie</td></tr>
+      <tr><td>tu</td><td>tuo</td><td>tua</td><td>tuoi</td><td>tue</td></tr>
+      <tr><td>lui / lei</td><td>suo</td><td>sua</td><td>suoi</td><td>sue</td></tr>
+      <tr><td>noi</td><td>nostro</td><td>nostra</td><td>nostri</td><td>nostre</td></tr>
+      <tr><td>voi</td><td>vostro</td><td>vostra</td><td>vostri</td><td>vostre</td></tr>
+      <tr><td>loro</td><td colspan="4">loro (no cambia)</td></tr></table>
+      <p><strong>Regla de la familia:</strong> con un familiar en singular <u>no</u> se pone artículo (<em>mia madre, tuo fratello</em>). Sí se pone en plural (<em>i miei fratelli</em>), con <em>loro</em> (<em>il loro padre</em>) y con <em>mamma / papà</em> (<em>la mia mamma</em>).</p>`
+    },
+    tips: [
+      "<strong>Ojo:</strong> el italiano casi nunca pone -s para el plural. “Los cafés” = <em>i caffè</em>, no “i caffès”.",
+      "<strong>Truco:</strong> <em>suo</em> sirve para “de él”, “de ella” y “de usted”, igual que nuestro “su”. Concuerda con la cosa, no con el dueño: <em>la sua macchina</em> puede ser el carro de Marco.",
+      "<strong>Cambios de sonido:</strong> <em>amico → amici</em> (ki → chi), pero <em>amica → amiche</em> (mantiene el sonido k con h)."
+    ],
+    dialog: [
+      ["A", "Questa è una foto della mia famiglia.", "Esta es una foto de mi familia."],
+      ["B", "Che bella! Chi sono questi ragazzi?", "¡Qué bonita! ¿Quiénes son estos chicos?"],
+      ["A", "Sono i miei fratelli. E questa è mia sorella.", "Son mis hermanos. Y esta es mi hermana."],
+      ["B", "E i vostri genitori?", "¿Y sus padres?"],
+      ["A", "Mio padre è qui, mia madre ha fatto la foto.", "Mi padre está aquí, mi madre tomó la foto."],
+      ["B", "Avete anche dei cani?", "¿También tienen perros?"]
+    ],
+    quiz: [
+      { q: "Plural de “la chiave”:", opts: ["le chiave", "le chiavi", "i chiavi"], a: 1 },
+      { q: "Plural de “lo zaino”:", opts: ["i zaini", "gli zaini", "le zaini"], a: 1 },
+      { q: "“Mi madre” =", opts: ["la mia madre", "mia madre", "mio madre"], a: 1 },
+      { q: "“Mis amigos” =", opts: ["i mii amici", "i miei amici", "miei amici"], a: 1 },
+      { q: "Escribe el plural de “la città”:", fill: ["le città", "le citta"] },
+      { q: "Escribe “nuestra casa” (con artículo):", fill: ["la nostra casa"] }
+    ]
+  },
+
+  {
     id: "orari",
     title: "Orari e prezzi",
     sub: "¿Qué hora es? · precios · quedar con alguien",
@@ -370,6 +441,69 @@ const LEZIONI = [
       { q: "Escribe el número 100:", fill: ["cento"] },
       { q: "“Alle venti” es…", opts: ["las 2 p. m.", "las 8 p. m.", "las 10 p. m."], a: 1 },
       { q: "¿Cómo preguntas el precio?", opts: ["Che ore sono?", "Quanto costa?", "Quanti anni hai?"], a: 1 }
+    ]
+  },
+
+  {
+    id: "descrivere-meteo",
+    title: "Com'è? Persone, date e tempo",
+    sub: "Describir personas · meses, fechas y clima",
+    intro: "Describe a la gente (cómo es por fuera y por dentro), di fechas y cumpleaños, y habla del clima: los temas de conversación más comunes con alguien nuevo.",
+    vocab: [
+      ["alto / basso", "alto / bajo", "ÁL-to / BÁS-so"],
+      ["magro / robusto", "delgado / corpulento", "MÁ-gro / ro-BÚS-to"],
+      ["i capelli lunghi / corti", "el cabello largo / corto", "ca-PÉL-li LÚN-gui / CÓR-ti"],
+      ["gli occhi azzurri / castani", "los ojos azules / marrones", "ÓC-ki ad-DZÚR-ri / cas-TÁ-ni"],
+      ["simpatico / antipatico", "simpático / antipático", "sim-PÁ-ti-co"],
+      ["gentile / timido", "amable / tímido", "yen-TÍ-le / TÍ-mi-do"],
+      ["gennaio, febbraio, marzo…", "enero, febrero, marzo…", "yen-NÁ-io, feb-BRÁ-io, MÁR-tso"],
+      ["la primavera / l'estate", "la primavera / el verano", "pri-ma-VÉ-ra / es-TÁ-te"],
+      ["l'autunno / l'inverno", "el otoño / el invierno", "au-TÚN-no / in-VÉR-no"],
+      ["fa caldo / fa freddo", "hace calor / hace frío", "fa CÁL-do / fa FRÉD-do"],
+      ["piove / nevica", "llueve / nieva", "PIÓ-ve / NÉ-vi-ca"],
+      ["c'è il sole / c'è vento", "hace sol / hace viento", "CHÉ il SÓ-le / CHÉ VÉN-to"]
+    ],
+    phrases: [
+      ["Com'è il tuo ragazzo?", "¿Cómo es tu novio?", "", "co-MÉ il TÚ-o ra-GÁT-tso"],
+      ["È alto, ha i capelli neri e gli occhi verdi.", "Es alto, tiene el cabello negro y los ojos verdes.", "Pelo y ojos van con avere", "É ÁL-to, a i ca-PÉL-li NÉ-ri e li ÓC-ki VÉR-di"],
+      ["È una persona molto simpatica.", "Es una persona muy simpática.", "", "É ú-na per-SÓ-na MÓL-to sim-PÁ-ti-ca"],
+      ["Quando è il tuo compleanno?", "¿Cuándo es tu cumpleaños?", "", "CUÁN-do É il TÚ-o com-ple-ÁN-no"],
+      ["Il mio compleanno è il tre marzo.", "Mi cumpleaños es el tres de marzo.", "Número normal, sin “de”", "il MÍ-o com-ple-ÁN-no É il TRE MÁR-tso"],
+      ["Oggi è il primo giugno.", "Hoy es el primero de junio.", "El día 1 se dice “primo”", "ÓD-yi É il PRÍ-mo YÚ-ño"],
+      ["Che tempo fa oggi?", "¿Qué tiempo hace hoy?", "", "ke TÉM-po fa ÓD-yi"],
+      ["Fa bel tempo, ma domani piove.", "Hace buen tiempo, pero mañana llueve.", "", "fa BEL TÉM-po, ma do-MÁ-ni PIÓ-ve"]
+    ],
+    grammar: {
+      title: "Adjetivos, fechas y el clima",
+      html: `<p><strong>Adjetivos:</strong> concuerdan en género y número, como en español.</p>
+      <table><tr><th>Tipo</th><th>masc. sing.</th><th>fem. sing.</th><th>masc. pl.</th><th>fem. pl.</th></tr>
+      <tr><td>-o / -a</td><td>alto</td><td>alta</td><td>alti</td><td>alte</td></tr>
+      <tr><td>-e</td><td>gentile</td><td>gentile</td><td>gentili</td><td>gentili</td></tr></table>
+      <p><strong>Pelo y ojos:</strong> con <em>avere</em>: <em>Ha gli occhi azzurri</em> (tiene ojos azules). Pero altura y carácter con <em>essere</em>: <em>È alta e simpatica</em>.</p>
+      <p><strong>Meses:</strong> gennaio, febbraio, marzo, aprile, maggio, giugno, luglio, agosto, settembre, ottobre, novembre, dicembre (con minúscula).</p>
+      <p><strong>Fechas:</strong> <em>il</em> + número + mes: <em>il 15 agosto</em>. Excepción: el día 1 es <em>il primo</em>. Y “en marzo” = <em>a marzo</em> o <em>in marzo</em>.</p>
+      <p><strong>Clima:</strong> casi todo va con <em>fare</em> (<em>fa caldo, fa freddo, fa bel / brutto tempo</em>) o con <em>c'è</em> (<em>c'è il sole, c'è nebbia</em>).</p>`
+    },
+    tips: [
+      "<strong>Falso amigo:</strong> <em>castano</em> es marrón para el pelo y los ojos (no “castaño” solo). Y <em>bruno</em> se usa para pelo oscuro.",
+      "<strong>Ojo:</strong> en italiano “tener calor” es <em>avere caldo</em> (ho caldo), pero “hace calor” es <em>fa caldo</em>. Igual que en español, pero con verbos distintos.",
+      "<strong>Cultura:</strong> el 15 de agosto es <em>Ferragosto</em>, la gran fiesta del verano: medio país está de vacaciones y las ciudades se vacían."
+    ],
+    dialog: [
+      ["A", "Allora, com'è la tua nuova coinquilina?", "Entonces, ¿cómo es tu nueva compañera de piso?"],
+      ["B", "È bassa, ha i capelli ricci ed è simpaticissima.", "Es bajita, tiene el pelo rizado y es simpatiquísima."],
+      ["A", "Di dov'è?", "¿De dónde es?"],
+      ["B", "È di Palermo. Dice che a Milano fa troppo freddo!", "Es de Palermo. ¡Dice que en Milán hace demasiado frío!"],
+      ["A", "Ha ragione, oggi nevica! Quando è il suo compleanno?", "¡Tiene razón, hoy nieva! ¿Cuándo es su cumpleaños?"],
+      ["B", "Il venti dicembre. Facciamo una festa!", "El veinte de diciembre. ¡Hacemos una fiesta!"]
+    ],
+    quiz: [
+      { q: "“Tiene los ojos verdes” =", opts: ["È gli occhi verdi", "Ha gli occhi verdi", "Ha occhi verdi è"], a: 1 },
+      { q: "Femenino plural de “simpatico”:", opts: ["simpatiche", "simpatice", "simpatici"], a: 0 },
+      { q: "“El 1 de mayo” =", opts: ["l'uno maggio", "il primo maggio", "il uno di maggio"], a: 1 },
+      { q: "“Hace frío” =", opts: ["È freddo", "Ha freddo", "Fa freddo"], a: 2 },
+      { q: "Escribe el mes “julio”:", fill: ["luglio"] },
+      { q: "Escucha y escribe:", say: "che tempo fa oggi", fill: ["che tempo fa oggi", "che tempo fa oggi?"] }
     ]
   },
 
@@ -686,6 +820,72 @@ const LEZIONI = [
   },
 
   // ===================== NIVEL A2 =====================
+
+  {
+    id: "a2-riflessivi",
+    level: "A2",
+    title: "Mi sveglio, mi vesto…",
+    sub: "Verbos reflexivos · stare + gerundio",
+    intro: "Los verbos reflexivos (despertarse, vestirse, divertirse) son de los más usados en la vida diaria. Y con “stare + gerundio” dices lo que estás haciendo justo ahora.",
+    vocab: [
+      ["svegliarsi", "despertarse", "sve-LIÁR-si"],
+      ["alzarsi", "levantarse", "al-TSÁR-si"],
+      ["lavarsi", "lavarse", "la-VÁR-si"],
+      ["vestirsi", "vestirse", "ves-TÍR-si"],
+      ["prepararsi", "arreglarse / prepararse", "pre-pa-RÁR-si"],
+      ["sentirsi", "sentirse", "sen-TÍR-si"],
+      ["divertirsi", "divertirse", "di-ver-TÍR-si"],
+      ["annoiarsi", "aburrirse", "an-no-IÁR-si"],
+      ["arrabbiarsi", "enojarse", "ar-rab-BIÁR-si"],
+      ["riposarsi", "descansar", "ri-po-SÁR-si"],
+      ["addormentarsi", "dormirse", "ad-dor-men-TÁR-si"],
+      ["sbrigarsi", "darse prisa", "sbri-GÁR-si"]
+    ],
+    phrases: [
+      ["Mi sveglio alle sette e mi alzo subito.", "Me despierto a las siete y me levanto enseguida.", "", "mi SVÉ-lio ÁL-le SÉT-te e mi ÁL-tso SÚ-bi-to"],
+      ["Come ti senti oggi?", "¿Cómo te sientes hoy?", "", "CÓ-me ti SÉN-ti ÓD-yi"],
+      ["Ci divertiamo un sacco insieme.", "Nos divertimos un montón juntos.", "", "chi di-ver-TIÁ-mo un SÁC-co in-SIÉ-me"],
+      ["Ieri mi sono addormentato tardi.", "Ayer me dormí tarde.", "Pasado: siempre con essere", "IÉ-ri mi SÓ-no ad-dor-men-TÁ-to TÁR-di"],
+      ["Sbrigati, siamo in ritardo!", "¡Date prisa, vamos tarde!", "Imperativo: pronombre al final", "SBRÍ-ga-ti, SIÁ-mo in ri-TÁR-do"],
+      ["Sto cucinando, ti chiamo dopo.", "Estoy cocinando, te llamo después.", "stare + gerundio", "sto cu-chi-NÁN-do, ti KIÁ-mo DÓ-po"],
+      ["Cosa stai facendo?", "¿Qué estás haciendo?", "", "CÓ-sa STAI fa-CHÉN-do"],
+      ["Mi sto preparando per uscire.", "Me estoy arreglando para salir.", "", "mi sto pre-pa-RÁN-do per u-SHÍ-re"]
+    ],
+    grammar: {
+      title: "Reflexivos y stare + gerundio",
+      html: `<p><strong>Reflexivos:</strong> pronombre + verbo conjugado, igual que “me levanto”.</p>
+      <table><tr><th>Persona</th><th>Presente</th><th>Passato prossimo</th></tr>
+      <tr><td>io</td><td><b>mi</b> sveglio</td><td>mi sono svegliato/a</td></tr>
+      <tr><td>tu</td><td><b>ti</b> svegli</td><td>ti sei svegliato/a</td></tr>
+      <tr><td>lui / lei</td><td><b>si</b> sveglia</td><td>si è svegliato/a</td></tr>
+      <tr><td>noi</td><td><b>ci</b> svegliamo</td><td>ci siamo svegliati/e</td></tr>
+      <tr><td>voi</td><td><b>vi</b> svegliate</td><td>vi siete svegliati/e</td></tr>
+      <tr><td>loro</td><td><b>si</b> svegliano</td><td>si sono svegliati/e</td></tr></table>
+      <p>En pasado, los reflexivos <strong>siempre</strong> usan <em>essere</em>, y el participio concuerda.</p>
+      <p>Con infinitivo, el pronombre se pega al final: <em>Devo alzar<u>mi</u> presto</em> (o <em><u>Mi</u> devo alzare</em>).</p>
+      <p><strong>stare + gerundio</strong> = estar haciendo algo ahora. Gerundio: <em>-are → -ando</em>, <em>-ere / -ire → -endo</em>. Irregulares: <em>fare → facendo, dire → dicendo, bere → bevendo</em>.</p>`
+    },
+    tips: [
+      "<strong>Ojo:</strong> algunos verbos son reflexivos en italiano y no en español, y al revés: <em>ricordarsi</em> (acordarse) sí, pero <em>riposare</em> (descansar) se usa con y sin <em>si</em>.",
+      "<strong>Truco:</strong> en italiano se usa el presente normal donde en español usaríamos a veces el gerundio. “¿Qué haces?” = <em>Cosa fai?</em>. Usa <em>stare + gerundio</em> solo para remarcar “justo ahora”."
+    ],
+    dialog: [
+      ["A", "Pronto? Cosa stai facendo?", "¿Aló? ¿Qué estás haciendo?"],
+      ["B", "Mi sto preparando, tra mezz'ora esco con Luca.", "Me estoy arreglando, en media hora salgo con Luca."],
+      ["A", "Dove andate?", "¿A dónde van?"],
+      ["B", "A ballare. L'ultima volta ci siamo divertiti tantissimo!", "A bailar. ¡La última vez nos divertimos muchísimo!"],
+      ["A", "Beati voi! Io sono stanchissimo, mi riposo.", "¡Qué suerte! Yo estoy cansadísimo, descanso."],
+      ["B", "Allora riposati e ci sentiamo domani!", "¡Entonces descansa y hablamos mañana!"]
+    ],
+    quiz: [
+      { q: "Io ___ alle sette. (svegliarsi)", opts: ["sveglio", "mi sveglio", "si sveglio"], a: 1 },
+      { q: "Ieri Giulia ___ tardi. (alzarsi)", opts: ["ha alzato", "si è alzata", "si ha alzata"], a: 1 },
+      { q: "“¿Qué estás haciendo?” =", opts: ["Cosa stai facendo?", "Cosa sei facendo?", "Cosa stai fare?"], a: 0 },
+      { q: "Gerundio de “bere”:", opts: ["berendo", "bevendo", "beviendo"], a: 1 },
+      { q: "Escribe “nos divertimos” (presente):", fill: ["ci divertiamo", "noi ci divertiamo"] },
+      { q: "Escribe “estoy comiendo” (mangiare):", fill: ["sto mangiando", "io sto mangiando"] }
+    ]
+  },
 
   {
     id: "a2-imperfetto",
@@ -1006,6 +1206,71 @@ const LEZIONI = [
       { q: "Superlativo de “bello” (-ísimo):", opts: ["bellisimo", "bellissimo", "molto bellissimo"], a: 1 },
       { q: "Escribe “mejor” (adjetivo, il … ristorante):", fill: ["migliore", "il migliore"] },
       { q: "Escucha y escribe:", say: "le spese sono incluse", fill: ["le spese sono incluse"] }
+    ]
+  },
+
+  {
+    id: "a2-preposizioni",
+    level: "A2",
+    title: "A Roma, in Italia, dal medico",
+    sub: "Preposiciones de lugar · ci y ne básicos",
+    intro: "¿“A” o “in”? ¿Y cuándo “da”? Las preposiciones con lugares son el error más típico de los hispanohablantes. Además, empiezas a usar ci y ne, dos palabritas que los italianos dicen todo el tiempo.",
+    vocab: [
+      ["a Roma / a casa", "en/a Roma / en/a casa", "a RÓ-ma / a CÁ-sa"],
+      ["in Italia / in Toscana", "en/a Italia / en/a la Toscana", "in i-TÁ-lia / in tos-CÁ-na"],
+      ["in centro / in ufficio", "en/al centro / en/a la oficina", "in CHÉN-tro / in uf-FÍ-cho"],
+      ["al mare / al cinema", "en/a la playa / en/al cine", "al MÁ-re / al CHÍ-ne-ma"],
+      ["in montagna / in palestra", "en/a la montaña / en/al gym", "in mon-TÁ-ña / in pa-LÉS-tra"],
+      ["dal medico / da Marco", "en/a lo del médico / en casa de Marco", "dal MÉ-di-co / da MÁR-co"],
+      ["in treno / in macchina", "en tren / en carro", "in TRÉ-no / in MÁC-ki-na"],
+      ["a piedi / in bici", "a pie / en bici", "a PIÉ-di / in BÍ-chi"],
+      ["vengo da Panama", "vengo de Panamá", "VÉN-go da PÁ-na-ma"],
+      ["ci (= allí)", "allí / ahí", "chi"],
+      ["ne (= de eso)", "de eso / de ellos", "ne"],
+      ["ce l'ho / non ce l'ho", "lo tengo / no lo tengo", "che LO / non che LO"]
+    ],
+    phrases: [
+      ["Abito a Panama ma vorrei vivere in Italia.", "Vivo en Panamá pero quisiera vivir en Italia.", "Ciudad/país pequeño → a; país grande → in", "Á-bi-to a PÁ-na-ma ma vor-RÉI VÍ-ve-re in i-TÁ-lia"],
+      ["Stasera vado da Giulia.", "Esta noche voy a casa de Giulia.", "Persona → da", "sta-SÉ-ra VÁ-do da YÚ-lia"],
+      ["Domani devo andare dal dentista.", "Mañana tengo que ir al dentista.", "", "do-MÁ-ni DÉ-vo an-DÁ-re dal den-TÍS-ta"],
+      ["Andiamo al mare o in montagna?", "¿Vamos a la playa o a la montaña?", "", "an-DIÁ-mo al MÁ-re o in mon-TÁ-ña"],
+      ["Sei mai stato a Venezia? Sì, ci sono stato l'anno scorso.", "¿Has estado en Venecia? Sí, estuve el año pasado.", "ci = allí", "SÉI MAI STÁ-to a ve-NÉ-tsia? si, chi SÓ-no STÁ-to LÁN-no SCÓR-so"],
+      ["Quanti caffè bevi? Ne bevo tre al giorno.", "¿Cuántos cafés tomas? Tomo tres al día.", "ne = de ellos", "CUÁN-ti caf-FÉ BÉ-vi? ne BÉ-vo TRE al YÓR-no"],
+      ["Hai le chiavi? Sì, ce l'ho.", "¿Tienes las llaves? Sí, las tengo.", "", "ÁI le KIÁ-vi? si, che LO"],
+      ["Ci vuole un'ora in treno.", "Se tarda una hora en tren.", "ci vuole = hace falta / se tarda", "chi VUÓ-le u-NÓ-ra in TRÉ-no"]
+    ],
+    grammar: {
+      title: "a, in, da + ci y ne",
+      html: `<table><tr><th>Preposición</th><th>Se usa con…</th><th>Ejemplos</th></tr>
+      <tr><td><b>a</b></td><td>ciudades, islas pequeñas, casa, escuela, teatro</td><td>a Roma, a Cuba, a casa, a scuola, a teatro</td></tr>
+      <tr><td><b>in</b></td><td>países, regiones, muchos lugares y medios de transporte</td><td>in Italia, in Sicilia, in banca, in farmacia, in centro, in treno</td></tr>
+      <tr><td><b>al / alla</b></td><td>algunos lugares con artículo</td><td>al mare, al cinema, al bar, alla stazione</td></tr>
+      <tr><td><b>da</b></td><td>personas y profesionales (a casa de / a lo de)</td><td>da Marco, dal medico, dalla nonna</td></tr>
+      <tr><td><b>da</b></td><td>origen (desde)</td><td>vengo da Panama, il treno da Milano</td></tr></table>
+      <p>Para “estar” y “ir” se usa la misma preposición: <em>Sono <u>a</u> Roma / Vado <u>a</u> Roma</em>.</p>
+      <p><strong>ci</strong> = “allí” (un lugar ya mencionado): <em>Vai in palestra? Sì, ci vado ogni giorno.</em></p>
+      <p><strong>ne</strong> = “de eso / de ellos”, sobre todo con cantidades: <em>Quanti anni hai? Ne ho 24.</em></p>`
+    },
+    tips: [
+      "<strong>Ojo:</strong> los hispanohablantes dicen “vado in Roma” o “sono in casa di Marco”. Lo correcto: <em>vado <u>a</u> Roma</em>, <em>sono <u>da</u> Marco</em>.",
+      "<strong>Truco:</strong> si en español dirías “a casa de…” o “al doctor”, en italiano casi siempre va <em>da</em>.",
+      "<strong>Expresiones con ci:</strong> <em>ci vuole</em> (hace falta), <em>ci metto</em> (tardo), <em>c'è / ci sono</em> (hay), <em>ce l'ho</em> (lo tengo). Ya las conoces sin saberlo."
+    ],
+    dialog: [
+      ["A", "Dove vai in vacanza quest'estate?", "¿A dónde vas de vacaciones este verano?"],
+      ["B", "Vado in Puglia, da mia cugina. E tu?", "Voy a Apulia, a casa de mi prima. ¿Y tú?"],
+      ["A", "Io resto a Milano, ma nel weekend vado al lago.", "Yo me quedo en Milán, pero el fin de semana voy al lago."],
+      ["B", "Al lago di Como? Ci sono stato, è bellissimo!", "¿Al lago de Como? Estuve allí, ¡es bellísimo!"],
+      ["A", "Quanto ci vuole in treno?", "¿Cuánto se tarda en tren?"],
+      ["B", "Più o meno un'ora. Ne vale la pena!", "Más o menos una hora. ¡Vale la pena!"]
+    ],
+    quiz: [
+      { q: "Abito ___ Roma.", opts: ["in", "a", "da"], a: 1 },
+      { q: "Vorrei vivere ___ Spagna.", opts: ["in", "a", "al"], a: 0 },
+      { q: "Stasera vado ___ Paolo.", opts: ["a", "in", "da"], a: 2 },
+      { q: "Vai al cinema? Sì, ___ vado stasera.", opts: ["ne", "ci", "lo"], a: 1 },
+      { q: "Quante sorelle hai? ___ ho due.", opts: ["Ci", "Ne", "Le"], a: 1 },
+      { q: "Escribe “voy al médico”:", fill: ["vado dal medico", "io vado dal medico"] }
     ]
   },
 
