@@ -2,7 +2,7 @@
 // Estrategia: con internet, siempre descarga la versión más nueva (y la guarda);
 // sin internet, usa la copia guardada. Las fuentes de Google se sirven desde la copia.
 // Si agregas páginas nuevas, añádelas a ARCHIVOS y sube VERSION.
-const VERSION = 'v12';
+const VERSION = 'v13';
 const CACHE = 'idiomas-' + VERSION;
 const ARCHIVOS = [
   './',
@@ -29,6 +29,10 @@ const ARCHIVOS = [
   './italiano/metodo.js',
   './italiano/guia.html',
   './italiano/parolacce.html',
+  './italiano/letture.html',
+  './italiano/letture.js',
+  './italiano/coniuga.html',
+  './italiano/verbi.js',
   './italiano/parole.html',
   './italiano/parole.js',
   './italiano/progreso.js',

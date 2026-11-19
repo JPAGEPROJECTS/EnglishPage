@@ -35,6 +35,7 @@
   <a class="review-btn" id="review" href="repaso.html"></a>
 
   <a class="card guide-link" href="guia.html" style="margin-top:12px">📘 <span><strong>Cómo aprender italiano</strong><br><small>Plan semanal, técnicas de estudio y recursos</small></span> ›</a>
+  <a class="card guide-link" href="coniuga.html">🔁 <span><strong>Practicar verbos</strong><br><small>45 verbos · presente, pasado, imperfetto, futuro y condicional</small></span> ›</a>
   <a class="card guide-link" href="parolacce.html">🤬 <span><strong>Parolacce: insultos y groserías</strong><br><small>Italiano de la calle, con nivel de fuerza y alternativas suaves</small></span> ›</a>
 
   <div class="lesson-list" id="list"></div>
@@ -42,6 +43,7 @@
 
 <script src="lezioni.js"></script>
 <script src="parole.js"></script>
+<script src="letture.js"></script>
 <script src="progreso.js"></script>
 <script>
   Progreso.contarTiempo();
@@ -82,6 +84,14 @@
         <div class="lesson-info"><div class="lesson-title">Vocabulario ${lv}</div>
         <div class="lesson-sub">${n} palabras con pronunciación y ejemplos</div></div>
         <div class="lesson-score" style="color:var(--muted)">›</div></a>`);
+    }
+    const lect = LETTURE.filter(r => r.level === lv);
+    if (lect.length) {
+      const hl = leer('it-letture'), hechasL = lect.filter(r => hl[r.id] && hl[r.id].best >= 0.75).length;
+      add(`<a class="lesson vocab-link" href="letture.html?l=${lv}"><div class="lesson-num">📰</div>
+        <div class="lesson-info"><div class="lesson-title">Lecturas ${lv}</div>
+        <div class="lesson-sub">${lect.length} textos con audio y preguntas de comprensión</div></div>
+        <div class="lesson-score" style="color:var(--muted)">${hechasL ? hechasL + '/' + lect.length : '›'}</div></a>`);
     }
     clases.forEach(({ l, i }) => {
       const s = scores[l.id], passed = s && s.best >= 0.7;
