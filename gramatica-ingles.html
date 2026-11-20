@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1d2730">
+<link rel="icon" type="image/png" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Idiomas">
+<title>Gramática básica — Inglés en Familia</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .wrap { max-width: 720px; margin: 0 auto; padding: 24px 16px 56px; }
+  .back { display: inline-flex; font-size: 13px; font-weight: 800; color: var(--muted); text-decoration: none; margin-bottom: 18px; }
+  .toc { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; justify-content: center; }
+  .toc a { font-size: 13px; font-weight: 800; text-decoration: none; color: var(--text); padding: 7px 11px; border-radius: 99px; border: 2px solid var(--border); background: var(--card); }
+  .toc a:hover { border-color: var(--blue); }
+  .g-sec { scroll-margin-top: 12px; margin-top: 30px; }
+  .g-sec h2 { font-family: 'Baloo 2', cursive; font-size: 1.45rem; font-weight: 800; margin-bottom: 10px; }
+  .g-sec h2 small { font-family: 'Nunito', sans-serif; font-size: 13px; color: var(--muted); font-weight: 700; }
+  .box { background: var(--card); border: 2.5px solid var(--border); border-radius: 18px; padding: 16px; font-size: 15px; line-height: 1.6; }
+  .box p { margin: 8px 0; }
+  .box ul { padding-left: 20px; margin: 6px 0; }
+  .box li { margin: 4px 0; }
+  .scroll { overflow-x: auto; }
+  .box table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 8px 0; }
+  .box th, .box td { text-align: left; padding: 7px 6px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .box th { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  .box td b { color: var(--blue); }
+  .exs { display: grid; gap: 6px; margin-top: 10px; }
+  .exl { display: flex; align-items: center; gap: 10px; background: var(--bg); border-radius: 12px; padding: 8px 10px; font-size: 14px; }
+  .exl i { font-weight: 800; font-style: italic; }
+  .exl span { color: var(--muted); font-weight: 600; }
+  .say { border: none; background: #e6f0ff; color: var(--blue); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 12px; flex-shrink: 0; }
+  .say:hover { background: var(--blue); color: #fff; }
+  .mini { margin-top: 12px; border-top: 2px dashed var(--border); padding-top: 10px; }
+  .mini p { font-weight: 800; font-size: 14px; margin-bottom: 8px; }
+  .mini .opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 6px; }
+  .mini button { font: inherit; font-weight: 700; font-size: 14px; padding: 8px 10px; border-radius: 12px; cursor: pointer; border: 2px solid var(--border); background: #fff; color: var(--text); text-align: left; }
+  .mini button.ok { border-color: var(--green); background: #f0fff8; }
+  .mini button.bad { border-color: var(--pink); background: #fff0f6; }
+  .kids { background: #f0fff8; border-radius: 12px; padding: 10px 12px; font-size: 14px; margin-top: 10px; }
+  .see { font-size: 13px; margin-top: 8px; font-weight: 700; }
+  .see a { color: var(--blue); }
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topbar-title">🌟 Inglés en Familia</div></div>
+<div class="wrap" id="inicio">
+  <a class="back" href="ingles.html">← Niveles de inglés</a>
+  <div style="text-align:center"><span class="hero-tag">Chuleta para toda la familia</span></div>
+  <h1 class="big" style="text-align:center">Grammar <span>made easy</span> 🧩</h1>
+  <p class="hero-sub">Toda la gramática básica del inglés en una sola página, explicada en español. Escuchen los ejemplos ▶ y hagan el mini ejercicio de cada tema.</p>
+  <div class="toc" id="toc"></div>
+
+  <section class="g-sec" id="pronouns">
+    <h2>1. Pronombres personales <small>I, you, he…</small></h2>
+    <div class="box">
+      <div class="scroll"><table>
+        <tr><th>Español</th><th>Inglés</th><th>Notas</th></tr>
+        <tr><td>yo</td><td><b>I</b></td><td>¡siempre con mayúscula!</td></tr>
+        <tr><td>tú / usted</td><td><b>you</b></td><td>no hay diferencia formal/informal</td></tr>
+        <tr><td>él</td><td><b>he</b></td><td>personas (y a veces mascotas)</td></tr>
+        <tr><td>ella</td><td><b>she</b></td><td></td></tr>
+        <tr><td>eso (cosa / animal)</td><td><b>it</b></td><td>no existe en español</td></tr>
+        <tr><td>nosotros/as</td><td><b>we</b></td><td></td></tr>
+        <tr><td>ustedes</td><td><b>you</b></td><td>igual que “tú”</td></tr>
+        <tr><td>ellos / ellas</td><td><b>they</b></td><td>personas y cosas</td></tr>
+      </table></div>
+      <p><strong>La gran diferencia:</strong> en inglés el pronombre <u>nunca</u> se omite. “Soy de Panamá” = <em>I am from Panama</em> (no “am from Panama”). “Llueve” = <em>It is raining</em>.</p>
+      <div class="exs">
+        <div class="exl"><button class="say" data-say="It is hot today. It is a big house.">▶</button><div><i>It is hot today. It is a big house.</i><br><span>Hace calor hoy. Es una casa grande.</span></div></div>
+      </div>
+      <div class="mini" data-a="1"><p>“Llueve” =</p><div class="opts"><button>Rains</button><button>It's raining</button><button>Is raining</button></div></div>
+      <div class="kids">🧒 <strong>Para el pequeño:</strong> señalen a cada uno y digan el pronombre: “I! You! He! She! We!”.</div>
+    </div>
+  </section>
+
+  <section class="g-sec" id="tobe">
+    <h2>2. Ser y estar: to be <small>am, is, are</small></h2>
+    <div class="box">
+      <p>En inglés <strong>to be</strong> es a la vez “ser” y “estar”. ¡Un verbo para los dos!</p>
+      <div class="scroll"><table>
+        <tr><th>Afirmativo</th><th>Contracción</th><th>Negativo</th><th>Pregunta</th></tr>
+        <tr><td>I <b>am</b></td><td>I'm</td><td>I'm not</td><td>Am I…?</td></tr>
+        <tr><td>you <b>are</b></td><td>you're</td><td>you aren't</td><td>Are you…?</td></tr>
+        <tr><td>he / she / it <b>is</b></td><td>he's, she's, it's</td><td>he isn't</td><td>Is he…?</td></tr>
+        <tr><td>we / they <b>are</b></td><td>we're, they're</td><td>we aren't</td><td>Are they…?</td></tr>
+      </table></div>
+      <p><strong>Usos donde el español NO usa ser/estar:</strong></p>
+      <ul>
+        <li>Edad: <em>I <b>am</b> 24 years old</em> (tengo 24 años).</li>
+        <li>Hambre, sed, frío, calor, miedo: <em>I <b>am</b> hungry, I'm cold, I'm scared</em>.</li>
+        <li>Razón: <em>You <b>are</b> right</em> (tienes razón).</li>
+      </ul>
+      <div class="exs">
+        <div class="exl"><button class="say" data-say="I am tired but I am happy.">▶</button><div><i>I am tired but I am happy.</i><br><span>Estoy cansado pero estoy feliz.</span></div></div>
+        <div class="exl"><button class="say" data-say="She is a nurse. She is at the hospital.">▶</button><div><i>She is a nurse. She is at the hospital.</i><br><span>Ella es enfermera. Está en el hospital.</span></div></div>
+      </div>
+      <div class="mini" data-a="2"><p>“Tengo hambre” =</p><div class="opts"><button>I have hungry</button><button>I have hunger</button><button>I am hungry</button></div></div>
+      <div class="see">Ver clase: <a href="a1/clase.html?l=A1&n=8">A1 · Clase 8</a></div>
+    </div>
+  </section>
+
+  <section class="g-sec" id="articles">
+    <h2>3. Artículos <small>a, an, the</small></h2>
+    <div class="box">
+      <div class="scroll"><table>
+        <tr><th>Inglés</th><th>Español</th><th>Uso</th></tr>
+        <tr><td><b>a</b></td><td>un / una</td><td>antes de sonido de consonante: a dog, a house, a university</td></tr>
+        <tr><td><b>an</b></td><td>un / una</td><td>antes de sonido de vocal: an apple, an hour, an engineer</td></tr>
+        <tr><td><b>the</b></td><td>el, la, los, las</td><td>una sola palabra para todo: the dog, the dogs</td></tr>
+      </table></div>
+      <p><strong>Sin artículo</strong> cuando hablas en general: <em>I like dogs</em> (me gustan <u>los</u> perros), <em>Life is beautiful</em>. Y con profesiones <u>sí</u> va: <em>I am <b>a</b> teacher</em>.</p>
+      <div class="mini" data-a="1"><p>“Soy ingeniero” =</p><div class="opts"><button>I am engineer</button><button>I am an engineer</button><button>I am the engineer</button></div></div>
+    </div>
+  </section>
+
+  <section class="g-sec" id="plurals">
+    <h2>4. Plurales y adjetivos <small>dogs, children, a red car</small></h2>
+    <div class="box">
+      <div class="scroll"><table>
+        <tr><th>Regla</th><th>Ejemplo</th></tr>
+        <tr><td>+ s</td><td>dog → dogs, book → books</td></tr>
+        <tr><td>s, x, ch, sh, o + es</td><td>bus → buses, box → boxes, potato → potatoes</td></tr>
+        <tr><td>consonante + y → ies</td><td>baby → babies, city → cities</td></tr>
+        <tr><td>irregulares</td><td>man → men, woman → women, child → children, person → people, foot → feet, tooth → teeth, mouse → mice</td></tr>
+      </table></div>
+      <p><strong>Adjetivos:</strong> van <u>antes</u> del sustantivo y <u>nunca</u> cambian: <em>a <b>big</b> house, two <b>big</b> houses</em>.</p>
+      <p><strong>Comparar:</strong> palabras cortas + <em>-er / -est</em> (<em>big → bigger → the biggest</em>); largas con <em>more / the most</em> (<em>more beautiful</em>). Irregulares: <em>good → better → the best</em>, <em>bad → worse → the worst</em>.</p>
+      <div class="mini" data-a="2"><p>Plural de “child”:</p><div class="opts"><button>childs</button><button>childes</button><button>children</button></div></div>
+      <div class="mini" data-a="0"><p>“Mi hermano es más alto que yo” =</p><div class="opts"><button>My brother is taller than me</button><button>My brother is more tall than me</button><button>My brother is taller that me</button></div></div>
+    </div>
+  </section>
+
+  <section class="g-sec" id="possessives">
+    <h2>5. Posesivos <small>my / mine, 's</small></h2>
+    <div class="box">
+      <div class="scroll"><table>
+        <tr><th>Persona</th><th>Adjetivo (+ cosa)</th><th>Pronombre (solo)</th></tr>
+        <tr><td>I</td><td><b>my</b> book (mi libro)</td><td>it's <b>mine</b> (es mío)</td></tr>
+        <tr><td>you</td><td><b>your</b> book</td><td><b>yours</b></td></tr>
+        <tr><td>he</td><td><b>his</b> book (de él)</td><td><b>his</b></td></tr>
+        <tr><td>she</td><td><b>her</b> book (de ella)</td><td><b>hers</b></td></tr>
+        <tr><td>it</td><td><b>its</b> tail</td><td>—</td></tr>
+        <tr><td>we</td><td><b>our</b> house</td><td><b>ours</b></td></tr>
+        <tr><td>they</td><td><b>their</b> house</td><td><b>theirs</b></td></tr>
+      </table></div>
+      <p><strong>Para personas: 's</strong> → <em>Ana<b>'s</b> car</em> (el carro de Ana), <em>my dad<b>'s</b> job</em>. En plural terminado en s: <em>my parents<b>'</b> house</em>.</p>
+      <p><strong>Ojo:</strong> <em>its</em> (de eso) ≠ <em>it's</em> (it is). <em>Their</em> ≠ <em>there</em> ≠ <em>they're</em>: suenan igual.</p>
+      <div class="exs">
+        <div class="exl"><button class="say" data-say="Is this your phone? No, it's not mine. It's my sister's.">▶</button><div><i>Is this your phone? No, it's not mine. It's my sister's.</i><br><span>¿Es tu teléfono? No, no es mío. Es de mi hermana.</span></div></div>
+      </div>
+      <div class="mini" data-a="1"><p>“La mochila de mi hermano” =</p><div class="opts"><button>the backpack of my brother</button><button>my brother's backpack</button><button>my brothers backpack</button></div></div>
+      <div class="see">Ver clase: <a href="a1/clase.html?l=A1&n=4">A1 · My family</a></div>
+    </div>
+  </section>
+
+  <section class="g-sec" id="object">
+    <h2>6. Pronombres de objeto <small>me, him, her…</small></h2>
+    <div class="box">
+      <div class="scroll"><table>
+        <tr><th>Sujeto</th><th>Objeto</th><th>Ejemplo</th></tr>
+        <tr><td>I</td><td><b>me</b></td><td>Call <b>me</b>! / Come with <b>me</b>.</td></tr>
+        <tr><td>you</td><td><b>you</b></td><td>I love <b>you</b>.</td></tr>
+        <tr><td>he</td><td><b>him</b></td><td>I see <b>him</b> every day.</td></tr>
+        <tr><td>she</td><td><b>her</b></td><td>Tell <b>her</b>.</td></tr>
+        <tr><td>it</td><td><b>it</b></td><td>I like <b>it</b>.</td></tr>
+        <tr><td>we</td><td><b>us</b></td><td>Help <b>us</b>, please.</td></tr>
+        <tr><td>they</td><td><b>them</b></td><td>I miss <b>them</b>.</td></tr>
+      </table></div>
+      <p>Van <u>después</u> del verbo o de la preposición (al revés que en español: “te quiero” = <em>I love you</em>). Y “conmigo / contigo” = <em>with me / with you</em>.</p>
+      <div class="mini" data-a="2"><p>“¿Lo conoces?” (a él) =</p><div class="opts"><button>Do you know he?</button><button>Do you him know?</button><button>Do you know him?</button></div></div>
+    </div>
+  </section>
+
+  <section class="g-sec" id="demonstratives">
+    <h2>7. Demostrativos <small>this, that, these, those</small></h2>
+    <div class="box">
+      <div class="scroll"><table>
+        <tr><th></th><th>Cerca (aquí)</th><th>Lejos (allí)</th></tr>
+        <tr><td>Uno</td><td><b>this</b> (este/esta/esto)</td><td><b>that</b> (ese/esa/aquel)</td></tr>
+        <tr><td>Varios</td><td><b>these</b> (estos/estas)</td><td><b>those</b> (esos/aquellos)</td></tr>
+      </table></div>
+      <p>Para presentar: <em>This is my mom</em> (esta es mi mamá). Por teléfono: <em>Hi, this is Jonathan</em> (hola, habla Jonathan).</p>
+      <div class="mini" data-a="1"><p>“Estos zapatos son nuevos” =</p><div class="opts"><button>This shoes are new</button><button>These shoes are new</button><button>Those shoe is new</button></div></div>
+      <div class="see">Ver clase: <a href="a1/clase.html?l=A2&n=3">A2 · Clothes and shopping</a></div>
+    </div>
+  </section>
+
+  <section class="g-sec" id="therebe">
+    <h2>8. Hay: there is / there are</h2>
+    <div class="box">
+      <div class="scroll"><table>
+        <tr><th></th><th>Uno</th><th>Varios</th></tr>
+        <tr><td>Afirmativo</td><td><b>There is</b> a park.</td><td><b>There are</b> two parks.</td></tr>
+        <tr><td>Negativo</td><td>There <b>isn't</b> a park.</td><td>There <b>aren't</b> any parks.</td></tr>
+        <tr><td>Pregunta</td><td><b>Is there</b> a park?</td><td><b>Are there</b> any parks?</td></tr>
+        <tr><td>Pasado</td><td>There <b>was</b>…</td><td>There <b>were</b>…</td></tr>
+      </table></div>
+      <div class="mini" data-a="0"><p>“Hay tres dormitorios” =</p><div class="opts"><button>There are three bedrooms</button><button>There is three bedrooms</button><button>Have three bedrooms</button></div></div>
+    </div>
+  </section>
+
+  <section class="g-sec" id="prepositions">
+    <h2>9. Preposiciones de lugar y tiempo <small>in, on, at</small></h2>
+    <div class="box">
+      <div class="scroll"><table>
+        <tr><th></th><th>Tiempo</th><th>Lugar</th></tr>
+        <tr><td><b>in</b></td><td>meses, años, partes del día: in May, in 2026, in the morning</td><td>dentro de, ciudades y países: in the box, in Panama</td></tr>
+        <tr><td><b>on</b></td><td>días y fechas: on Monday, on May 5th</td><td>sobre una superficie: on the table, on the wall</td></tr>
+        <tr><td><b>at</b></td><td>horas: at 7 o'clock, at night</td><td>puntos concretos: at home, at school, at work</td></tr>
+      </table></div>
+      <p>Otras de lugar: <em>under</em> (debajo), <em>next to</em> (al lado), <em>behind</em> (detrás), <em>in front of</em> (delante), <em>between</em> (entre), <em>across from</em> (frente a).</p>
+      <div class="mini" data-a="2"><p>“Te veo el lunes a las 8” =</p><div class="opts"><button>See you in Monday on 8</button><button>See you at Monday in 8</button><button>See you on Monday at 8</button></div></div>
+      <div class="see">Ver clases: <a href="a1/clase.html?l=A1&n=7">A1 · Days and months</a> · <a href="a1/clase.html?l=A2&n=5">A2 · My town</a></div>
+    </div>
+  </section>
+
+  <section class="g-sec" id="questions">
+    <h2>10. Preguntas y negaciones <small>do, does, did</small></h2>
+    <div class="box">
+      <p>Con <em>to be</em> y <em>can</em> se invierte el orden: <em>Are you ready? Can you swim?</em> Con los demás verbos se usa un ayudante:</p>
+      <div class="scroll"><table>
+        <tr><th></th><th>Pregunta</th><th>Negativo</th></tr>
+        <tr><td>Presente (I/you/we/they)</td><td><b>Do</b> you like it?</td><td>I <b>don't</b> like it.</td></tr>
+        <tr><td>Presente (he/she/it)</td><td><b>Does</b> she like it?</td><td>She <b>doesn't</b> like it.</td></tr>
+        <tr><td>Pasado (todos)</td><td><b>Did</b> you like it?</td><td>I <b>didn't</b> like it.</td></tr>
+      </table></div>
+      <p>Después de <em>do / does / did</em> el verbo va en su forma básica: <em>Does she <u>work</u>?</em> (no “works”), <em>Did you <u>go</u>?</em> (no “went”).</p>
+      <div class="scroll"><table>
+        <tr><th>Palabra</th><th>Significa</th><th>Ejemplo</th></tr>
+        <tr><td><b>what</b></td><td>qué / cuál</td><td>What's your name?</td></tr>
+        <tr><td><b>who</b></td><td>quién</td><td>Who is she?</td></tr>
+        <tr><td><b>where</b></td><td>dónde</td><td>Where do you live?</td></tr>
+        <tr><td><b>when</b></td><td>cuándo</td><td>When is your birthday?</td></tr>
+        <tr><td><b>why</b></td><td>por qué</td><td>Why are you sad?</td></tr>
+        <tr><td><b>how</b></td><td>cómo</td><td>How are you? How old? How much? How many?</td></tr>
+        <tr><td><b>which</b></td><td>cuál (opciones)</td><td>Which one do you want?</td></tr>
+      </table></div>
+      <div class="mini" data-a="0"><p>“¿Tu papá trabaja de noche?” =</p><div class="opts"><button>Does your dad work at night?</button><button>Do your dad works at night?</button><button>Your dad work at night?</button></div></div>
+    </div>
+  </section>
+
+  <section class="g-sec" id="tenses">
+    <h2>11. Los tiempos verbales de un vistazo <small>work</small></h2>
+    <div class="box">
+      <div class="scroll"><table>
+        <tr><th>Tiempo</th><th>Ejemplo</th><th>Español</th><th>Uso</th></tr>
+        <tr><td><b>Present simple</b></td><td>I work / he work<b>s</b></td><td>trabajo</td><td>costumbres, verdades</td></tr>
+        <tr><td><b>Present continuous</b></td><td>I'm working</td><td>estoy trabajando</td><td>ahora mismo</td></tr>
+        <tr><td><b>Past simple</b></td><td>I worked / I went</td><td>trabajé / fui</td><td>pasado terminado</td></tr>
+        <tr><td><b>Past continuous</b></td><td>I was working</td><td>estaba trabajando</td><td>acción en curso en el pasado</td></tr>
+        <tr><td><b>Present perfect</b></td><td>I have worked</td><td>he trabajado</td><td>experiencias, algo que sigue</td></tr>
+        <tr><td><b>Going to</b></td><td>I'm going to work</td><td>voy a trabajar</td><td>planes</td></tr>
+        <tr><td><b>Will</b></td><td>I will work</td><td>trabajaré</td><td>promesas, predicciones</td></tr>
+        <tr><td><b>Can</b></td><td>I can work</td><td>puedo / sé</td><td>habilidad, permiso</td></tr>
+        <tr><td><b>Would</b></td><td>I would like</td><td>me gustaría</td><td>cortesía</td></tr>
+      </table></div>
+      <div class="see">Ver clases A2: <a href="a1/clase.html?l=A2&n=1">Rutina (presente)</a> · <a href="a1/clase.html?l=A2&n=6">Hobbies (-ing)</a> · <a href="a1/clase.html?l=A2&n=7">Pasado</a> · <a href="a1/clase.html?l=A2&n=8">Futuro</a></div>
+    </div>
+  </section>
+
+  <div class="box" style="margin-top:24px;background:#fff8e8;border-color:#f5dfa0">
+    <strong>💡 Cómo usar esta página en familia:</strong> elijan un tema por semana. Lean la tabla juntos, escuchen los ejemplos, hagan el mini ejercicio y luego cada uno inventa 3 frases con esa regla.
+  </div>
+  <div class="btn-row">
+    <a class="btn btn-ghost" href="ingles.html" style="text-decoration:none">← Niveles</a>
+    <a class="btn btn-primary" href="#inicio" style="text-decoration:none">↑ Arriba</a>
+  </div>
+</div>
+
+<script>
+  document.getElementById('toc').innerHTML = [...document.querySelectorAll('.g-sec')]
+    .map(s => `<a href="#${s.id}">${s.querySelector('h2').childNodes[0].textContent.trim()}</a>`).join('');
+  let enVoice = null;
+  function pickVoice() { const vs = speechSynthesis.getVoices(); enVoice = vs.find(v => v.lang === 'en-US') || vs.find(v => v.lang && v.lang.startsWith('en')) || null; }
+  if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-say]');
+    if (b && 'speechSynthesis' in window) {
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(b.dataset.say); u.lang = 'en-US'; u.rate = 0.85; if (enVoice) u.voice = enVoice;
+      speechSynthesis.speak(u);
+      return;
+    }
+    const o = e.target.closest('.mini button');
+    if (!o || o.disabled) return;
+    const box = o.closest('.mini'), btns = [...box.querySelectorAll('button')], ok = +box.dataset.a;
+    btns.forEach(x => x.disabled = true);
+    btns[ok].classList.add('ok');
+    if (btns.indexOf(o) !== ok) o.classList.add('bad');
+  });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});</script>
+</body>
+</html>
