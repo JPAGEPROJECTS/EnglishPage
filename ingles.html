@@ -14,196 +14,114 @@
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-  .level-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 14px;
-    margin-top: 32px;
-  }
-  .level-card {
-    background: var(--card);
-    border: 2.5px solid var(--border);
-    border-radius: 20px;
-    padding: 24px 22px;
-    cursor: pointer;
-    transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-  }
-  .level-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.10);
-  }
-  .level-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; bottom: 0;
-    width: 5px;
-    border-radius: 20px 0 0 20px;
-  }
-  .level-a1 { border-color: #c8f5e0; } .level-a1::before { background: var(--green); } .level-a1:hover { border-color: var(--green); }
-  .level-a2 { border-color: #c8deff; } .level-a2::before { background: var(--blue); }  .level-a2:hover { border-color: var(--blue); }
-  .level-b1 { border-color: #fff0c8; } .level-b1::before { background: var(--orange); }.level-b1:hover { border-color: var(--orange); }
-  .level-b2 { border-color: #ffd0e8; } .level-b2::before { background: var(--pink); }  .level-b2:hover { border-color: var(--pink); }
-  .level-c1 { border-color: #e0d0ff; } .level-c1::before { background: var(--purple); }.level-c1:hover { border-color: var(--purple); }
-  .level-c2 { border-color: #ffecd0; } .level-c2::before { background: #f5a028; }       .level-c2:hover { border-color: #f5a028; }
-
-  .level-badge {
-    font-family: 'Baloo 2', cursive;
-    font-size: 1.8rem;
-    font-weight: 800;
-    min-width: 56px;
-    height: 56px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    color: white;
-  }
-  .level-a1 .level-badge { background: var(--green); }
-  .level-a2 .level-badge { background: var(--blue); }
-  .level-b1 .level-badge { background: var(--orange); }
-  .level-b2 .level-badge { background: var(--pink); }
-  .level-c1 .level-badge { background: var(--purple); }
-  .level-c2 .level-badge { background: #f5a028; }
-
-  .level-info { flex: 1; }
-  .level-name {
-    font-family: 'Baloo 2', cursive;
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: var(--text);
-    margin-bottom: 3px;
-  }
-  .level-desc {
-    font-size: 13px;
-    color: var(--muted);
-    font-weight: 600;
-    line-height: 1.4;
-  }
-  .level-arrow {
-    font-size: 1.2rem;
-    color: var(--border);
-    flex-shrink: 0;
-    transition: color 0.18s, transform 0.18s;
-  }
-  .level-card:hover .level-arrow {
-    color: var(--muted);
-    transform: translateX(3px);
-  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 24px 16px 56px; }
+  .back { display: inline-flex; font-size: 13px; font-weight: 800; color: var(--muted); text-decoration: none; margin-bottom: 18px; }
+  .continue { display: flex; align-items: center; gap: 14px; margin-top: 22px; padding: 16px 18px; border-radius: 18px; text-decoration: none; color: #fff; background: var(--text); }
+  .continue .ic { font-size: 1.8rem; }
+  .continue div { flex: 1; }
+  .continue small { display: block; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--yellow); }
+  .continue strong { font-family: 'Baloo 2', cursive; font-size: 1.2rem; }
+  .continue em { display: block; font-style: normal; font-size: 13px; opacity: .75; font-weight: 600; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
+  .step { background: var(--card); border: 2px solid var(--border); border-radius: 14px; padding: 10px; text-align: center; font-size: 12px; font-weight: 700; color: var(--muted); line-height: 1.35; }
+  .step b { display: block; font-size: 1.4rem; margin-bottom: 2px; }
+  h2.sec { font-family: 'Baloo 2', cursive; font-size: 1.35rem; font-weight: 800; margin: 30px 0 10px; }
+  .list { display: flex; flex-direction: column; gap: 10px; }
+  .lvl { display: flex; align-items: center; gap: 16px; padding: 18px; border-radius: 20px; background: var(--card); border: 2.5px solid var(--border); text-decoration: none; color: inherit; position: relative; overflow: hidden; transition: transform .18s, box-shadow .18s; }
+  .lvl:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,.08); }
+  .lvl::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--c); }
+  .lvl .bdg { font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 1.5rem; color: #fff; background: var(--c); width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .lvl .info { flex: 1; min-width: 0; }
+  .lvl .name { font-family: 'Baloo 2', cursive; font-size: 1.15rem; font-weight: 800; }
+  .lvl .d { font-size: 13px; color: var(--muted); font-weight: 600; line-height: 1.4; }
+  .lvl .pbar { height: 6px; border-radius: 99px; background: var(--border); margin-top: 8px; overflow: hidden; }
+  .lvl .pbar i { display: block; height: 100%; background: var(--c); }
+  .lvl .pl { font-size: 12px; font-weight: 800; color: var(--c); margin-top: 4px; }
+  .tool { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 16px; background: var(--card); border: 2px solid var(--border); text-decoration: none; color: inherit; }
+  .tool:hover { border-color: var(--blue); }
+  .tool .ti { font-size: 1.5rem; width: 44px; height: 44px; border-radius: 12px; background: #fff8e8; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .tool .info { flex: 1; }
+  .tool .name { font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 1.05rem; }
+  .tool .d { font-size: 12px; color: var(--muted); font-weight: 600; }
+  .soon { display: flex; flex-wrap: wrap; gap: 8px; }
+  .soon span { flex: 1; min-width: 120px; padding: 10px 12px; border-radius: 14px; border: 2px dashed var(--border); color: var(--muted); font-size: 13px; font-weight: 700; }
+  .soon b { font-family: 'Baloo 2', cursive; font-size: 1.05rem; color: var(--text); margin-right: 4px; }
 </style>
 </head>
 <body>
+<div class="topbar"><div class="topbar-title">🌟 Inglés en Familia</div></div>
 
-<div class="topbar">
-  <div class="topbar-title">🌟 Inglés en Familia</div>
+<div class="wrap">
+  <a class="back" href="index.html">← Cambiar idioma</a>
+
+  <div style="text-align:center"><span class="hero-tag">Para toda la familia</span></div>
+  <h1 class="big" style="text-align:center">Inglés en<br><span>Familia</span></h1>
+  <p class="hero-sub">Clases semanales para aprender juntos, con juegos, audio y tareas para cada uno: papá, mamá y los hermanos.</p>
+
+  <a class="continue" id="continue"></a>
+
+  <div class="steps">
+    <div class="step"><b>📅</b>1 clase por semana</div>
+    <div class="step"><b>🎮</b>Juegos y tareas en familia</div>
+    <div class="step"><b>⏱️</b>15 min de repaso diario</div>
+  </div>
+
+  <h2 class="sec">📚 Niveles</h2>
+  <div class="list" id="niveles"></div>
+
+  <h2 class="sec">🧰 Herramientas</h2>
+  <div class="list">
+    <a class="tool" href="palabras.html"><div class="ti">📖</div><div class="info"><div class="name">Vocabulario</div><div class="d">220 palabras de A1 y A2 con pronunciación, audio y ejemplos</div></div>›</a>
+    <a class="tool" href="gramatica-ingles.html"><div class="ti">🧩</div><div class="info"><div class="name">Gramática básica</div><div class="d">Pronombres, to be, posesivos, preguntas… todo en una página</div></div>›</a>
+    <a class="tool" href="guia-ingles.html"><div class="ti">💡</div><div class="info"><div class="name">Guía para la familia</div><div class="d">Rutina semanal, consejos por edad, pronunciación y recursos</div></div>›</a>
+  </div>
+
+  <h2 class="sec">🔜 Próximamente</h2>
+  <div class="soon">
+    <span><b>B1</b>Intermedio</span>
+    <span><b>B2</b>Intermedio alto</span>
+    <span><b>C1</b>Avanzado</span>
+    <span><b>C2</b>Maestría</span>
+  </div>
 </div>
 
-<div style="max-width:700px; margin:0 auto; padding:36px 16px 56px;">
+<script src="a1/clases.js"></script>
+<script>const EXTRA = {};</script>
+<script src="a2/clases.js"></script>
+<script>
+  const leer = k => { try { return JSON.parse(localStorage.getItem(k) || '{}'); } catch (e) { return {}; } };
+  const NIV = [
+    { lv: 'A1', name: 'Principiante', c: 'var(--green)', d: 'Saludos, números, colores, familia, casa y calendario', clases: CLASES_A1, h: leer('en-a1') },
+    { lv: 'A2', name: 'Básico', c: 'var(--blue)', d: 'Rutinas, comida, compras, trabajos, ciudad, pasado y futuro', clases: CLASES_A2, h: leer('en-a2') }
+  ];
 
-  <a href="index.html" style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:800; color:var(--muted); text-decoration:none; margin-bottom:20px;">
-    ← Cambiar idioma
-  </a>
+  document.getElementById('niveles').innerHTML = NIV.map(n => {
+    const done = n.clases.filter(c => n.h[c.n]).length, tot = n.clases.length;
+    return `<a class="lvl" href="a1/menu.html?l=${n.lv}" style="--c:${n.c}">
+      <div class="bdg">${n.lv}</div>
+      <div class="info"><div class="name">${n.name}</div><div class="d">${n.d}</div>
+        <div class="pbar"><i style="width:${done / tot * 100}%"></i></div>
+        <div class="pl">${done ? `${done} de ${tot} clases` : `${tot} clases`}</div></div>
+      <span style="color:var(--muted);font-size:1.3rem">›</span></a>`;
+  }).join('');
 
-  <div style="text-align:center; margin-bottom:8px;">
-    <span class="hero-tag">Elige tu nivel</span>
-  </div>
-  <h1 class="big" style="text-align:center;">¿Por dónde<br><span>empezamos?</span></h1>
-  <p class="hero-sub">Selecciona el nivel del Marco Común Europeo que mejor se adapte a ti.</p>
-
-  <div class="level-grid">
-
-    <a class="level-card level-a1" href="a1/menu.html">
-      <div class="level-badge">A1</div>
-      <div class="level-info">
-        <div class="level-name">Principiante</div>
-        <div class="level-desc">Saludos, números y frases del día a día</div>
-      </div>
-      <div class="level-arrow">›</div>
-    </a>
-
-    <a class="level-card level-a2" href="a2/menu.html">
-      <div class="level-badge">A2</div>
-      <div class="level-info">
-        <div class="level-name">Básico</div>
-        <div class="level-desc">Familia, rutinas y conversaciones simples</div>
-      </div>
-      <div class="level-arrow">›</div>
-    </a>
-
-    <a class="level-card level-b1" href="#" onclick="return false" style="opacity:.55;cursor:default">
-      <div class="level-badge">B1</div>
-      <div class="level-info">
-        <div class="level-name">Intermedio</div>
-        <div class="level-desc">Opiniones, planes y situaciones cotidianas · <strong>Próximamente</strong></div>
-      </div>
-      <div class="level-arrow">›</div>
-    </a>
-
-    <a class="level-card level-b2" href="#" onclick="return false" style="opacity:.55;cursor:default">
-      <div class="level-badge">B2</div>
-      <div class="level-info">
-        <div class="level-name">Intermedio alto</div>
-        <div class="level-desc">Debates, trabajo y temas complejos · <strong>Próximamente</strong></div>
-      </div>
-      <div class="level-arrow">›</div>
-    </a>
-
-    <a class="level-card level-c1" href="#" onclick="return false" style="opacity:.55;cursor:default">
-      <div class="level-badge">C1</div>
-      <div class="level-info">
-        <div class="level-name">Avanzado</div>
-        <div class="level-desc">Fluidez, matices y expresiones idiomáticas · <strong>Próximamente</strong></div>
-      </div>
-      <div class="level-arrow">›</div>
-    </a>
-
-    <a class="level-card level-c2" href="#" onclick="return false" style="opacity:.55;cursor:default">
-      <div class="level-badge">C2</div>
-      <div class="level-info">
-        <div class="level-name">Maestría</div>
-        <div class="level-desc">Dominio completo, nivel nativo · <strong>Próximamente</strong></div>
-      </div>
-      <div class="level-arrow">›</div>
-    </a>
-
-  </div>
-
-  <div class="level-grid" style="margin-top:22px">
-    <a class="level-card" href="palabras.html" style="border-color:#ffe5b4">
-      <div class="level-badge" style="background:var(--yellow);color:var(--text)">📖</div>
-      <div class="level-info">
-        <div class="level-name">Vocabulario</div>
-        <div class="level-desc">220 palabras con pronunciación, audio y ejemplos (A1 y A2)</div>
-      </div>
-      <div class="level-arrow">›</div>
-    </a>
-    <a class="level-card" href="gramatica-ingles.html" style="border-color:#c8deff">
-      <div class="level-badge" style="background:var(--blue)">🧩</div>
-      <div class="level-info">
-        <div class="level-name">Gramática básica</div>
-        <div class="level-desc">Pronombres, to be, posesivos, artículos… todo en una página</div>
-      </div>
-      <div class="level-arrow">›</div>
-    </a>
-    <a class="level-card" href="guia-ingles.html" style="border-color:#e0d0ff">
-      <div class="level-badge" style="background:var(--purple)">💡</div>
-      <div class="level-info">
-        <div class="level-name">Guía para la familia</div>
-        <div class="level-desc">Rutina, consejos por edad, pronunciación y recursos</div>
-      </div>
-      <div class="level-arrow">›</div>
-    </a>
-  </div>
-
-</div>
-
+  // Botón “continuar”: la primera clase no terminada, empezando por el A1
+  const cont = document.getElementById('continue');
+  let destino = null;
+  for (const n of NIV) {
+    const c = n.clases.find(x => !n.h[x.n]);
+    if (c) { destino = { n, c }; break; }
+  }
+  const empezado = NIV.some(n => Object.keys(n.h).length);
+  if (destino) {
+    cont.href = `a1/clase.html?l=${destino.n.lv}&n=${destino.c.n}`;
+    cont.innerHTML = `<span class="ic">${empezado ? '▶' : '🚀'}</span><div><small>${empezado ? 'Continuar donde lo dejaron' : 'Empiecen aquí'}</small>
+      <strong>${destino.n.lv} · Clase ${destino.c.n}: ${destino.c.title}</strong><em>${destino.c.sub}</em></div><span>›</span>`;
+  } else {
+    cont.href = 'palabras.html?l=A2';
+    cont.innerHTML = `<span class="ic">🏆</span><div><small>¡Terminaron A1 y A2!</small><strong>Sigan repasando el vocabulario</strong></div><span>›</span>`;
+  }
+</script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});</script>
 </body>
 </html>

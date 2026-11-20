@@ -4,6 +4,21 @@
 // fact: dato curioso. La clave es "nivel-número de clase".
 
 const EXTRA = {
+  "A1-1": {
+    grammar: { title: "Presentarse: I am, you are, my, your", html: `
+      <table><tr><th>Español</th><th>Inglés</th><th>Ejemplo</th></tr>
+      <tr><td>yo soy / estoy</td><td><b>I am</b> (I'm)</td><td>I'm Jonathan. I'm from Panama.</td></tr>
+      <tr><td>tú eres / estás</td><td><b>you are</b> (you're)</td><td>You are my brother.</td></tr>
+      <tr><td>mi / tu</td><td><b>my / your</b></td><td>My name is Ana. What's your name?</td></tr></table>
+      <p><strong>Formal e informal:</strong> en inglés <em>you</em> sirve para “tú” y para “usted”. La cortesía se nota en el saludo: <em>Hello, Good morning</em> (formal) / <em>Hi, Hey</em> (informal).</p>
+      <p><strong>Contracciones:</strong> al hablar casi siempre se juntan: <em>I am → I'm</em>, <em>What is → What's</em>, <em>Name is → Name's</em>.</p>` },
+    more: [["😃", "Hey!", "JEI", "¡Hola! (muy informal)"], ["🌞", "Have a good day!", "jav a gud DEI", "¡Que tengas buen día!"], ["🤗", "You're welcome", "iur UÉL-kam", "de nada"], ["🙋", "Excuse me", "ex-KIÚS mi", "disculpe"], ["🔁", "Again, please", "a-GUÉN, pliis", "otra vez, por favor"], ["🐢", "Slowly, please", "SLÓU-li, pliis", "más despacio, por favor"]],
+    errores: [["Good night! (al llegar a una fiesta)", "Good evening!", "Good night es solo para despedirse."], ["My name are…", "My name is…", "My name (uno) → is."], ["i am from Panama", "I am from Panama", "“I” siempre con mayúscula."]],
+    kids: "Que salude a cada persona que llegue a casa en inglés y diga su nombre: “Hello! My name is…”",
+    teens: "Graba un video de 30 segundos presentándote en inglés como si fuera para un intercambio escolar.",
+    adults: "Practiquen saludos formales para el trabajo: “Good morning, sir. How can I help you?”",
+    fact: "“Hello” se volvió común gracias al teléfono: Thomas Edison lo propuso como la forma de contestar las llamadas."
+  },
   "A1-2": {
     grammar: { title: "Singular y plural: one apple, two apples", html: `
       <p>Para hablar de más de una cosa, casi siempre se agrega <strong>-s</strong> al final:</p>

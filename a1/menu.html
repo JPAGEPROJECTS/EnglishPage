@@ -10,165 +10,144 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Idiomas">
-<title>Nivel A1 — Inglés en Familia</title>
+<title>Nivel — Inglés en Familia</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
 <style>
-  /* Color del nivel — cambia solo esta variable para adaptar la página */
-  :root { --nivel: var(--green); --nivel-soft: #c8f5e0; }
-
-  .clase-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 28px;
-  }
-
-  .clase-card {
-    background: var(--card);
-    border: 2px solid var(--border);
-    border-radius: 16px;
-    padding: 16px 18px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
-  }
-  .clase-card:hover {
-    transform: translateX(4px);
-    border-color: var(--nivel);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.07);
-  }
-  .clase-card.done {
-    background: #f4fff9;
-    border-color: var(--nivel);
-  }
-
-  .clase-num {
-    font-family: 'Baloo 2', cursive;
-    font-size: 1rem;
-    font-weight: 800;
-    color: white;
-    background: var(--nivel);
-    width: 40px; height: 40px;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .clase-card.locked .clase-num {
-    background: var(--border);
-    color: var(--muted);
-  }
-
-  .clase-info { flex: 1; }
-  .clase-title {
-    font-family: 'Baloo 2', cursive;
-    font-size: 1rem;
-    font-weight: 800;
-    color: var(--text);
-    margin-bottom: 2px;
-  }
-  .clase-sub {
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 600;
-  }
-  .clase-card.locked .clase-title,
-  .clase-card.locked .clase-sub { color: var(--muted); }
-
-  .clase-status {
-    font-size: 1.1rem;
-    flex-shrink: 0;
-  }
-
-  /* Barra de progreso del nivel */
-  .nivel-progress {
-    margin-top: 20px;
-    background: var(--card);
-    border: 2px solid var(--border);
-    border-radius: 14px;
-    padding: 14px 18px;
-  }
-  .nivel-progress-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    font-size: 13px;
-    font-weight: 700;
-  }
-  .nivel-progress-top span { color: var(--muted); }
-  .nivel-progress-top strong { color: var(--nivel); font-family: 'Baloo 2', cursive; font-size: 1rem; }
+  :root { --nivel: var(--green); --nivel-soft: #e6f8ef; --nivel-border: #c8f5e0; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 24px 16px 56px; }
+  .back { display: inline-flex; font-size: 13px; font-weight: 800; color: var(--muted); text-decoration: none; margin-bottom: 18px; }
+  .head { display: flex; align-items: center; gap: 14px; }
+  .badge { font-family: 'Baloo 2', cursive; font-size: 2rem; font-weight: 800; background: var(--nivel); color: #fff; width: 60px; height: 60px; border-radius: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .kick { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+  .head h1 { font-family: 'Baloo 2', cursive; font-size: 1.9rem; font-weight: 800; line-height: 1.05; }
+  .desc { color: var(--muted); font-weight: 600; margin-top: 10px; line-height: 1.5; }
+  .progress { margin-top: 18px; background: var(--card); border: 2.5px solid var(--border); border-radius: 18px; padding: 16px; }
+  .progress-top { display: flex; justify-content: space-between; font-size: 13px; font-weight: 800; color: var(--muted); margin-bottom: 8px; }
+  .progress-top b { color: var(--nivel); font-family: 'Baloo 2', cursive; font-size: 1rem; }
+  .bar { height: 10px; border-radius: 99px; background: var(--border); overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--nivel); border-radius: 99px; transition: width .4s; }
+  .continue { display: flex; align-items: center; gap: 12px; margin-top: 14px; padding: 14px 16px; border-radius: 14px; background: var(--nivel); color: #fff; text-decoration: none; }
+  .continue .ic { font-size: 1.6rem; }
+  .continue div { flex: 1; }
+  .continue small { display: block; font-size: 12px; font-weight: 700; opacity: .85; text-transform: uppercase; letter-spacing: 1px; }
+  .continue strong { font-family: 'Baloo 2', cursive; font-size: 1.15rem; }
+  h2.sec { font-family: 'Baloo 2', cursive; font-size: 1.3rem; font-weight: 800; margin: 28px 0 10px; display: flex; align-items: center; gap: 8px; }
+  h2.sec small { font-family: 'Nunito', sans-serif; font-size: 13px; color: var(--muted); font-weight: 700; margin-left: auto; }
+  .list { display: flex; flex-direction: column; gap: 10px; }
+  .item { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 16px; background: var(--card); border: 2px solid var(--border); text-decoration: none; color: inherit; transition: transform .15s, border-color .15s; }
+  .item:hover { transform: translateX(4px); border-color: var(--nivel); }
+  .num { font-family: 'Baloo 2', cursive; font-weight: 800; width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--nivel-soft); color: var(--nivel); font-size: 1.05rem; }
+  .item.done { background: var(--nivel-soft); border-color: var(--nivel-border); }
+  .item.done .num { background: var(--nivel); color: #fff; }
+  .item.next { border-color: var(--nivel); box-shadow: 0 6px 18px rgba(0,0,0,.06); }
+  .info { flex: 1; min-width: 0; }
+  .title { font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 1.05rem; }
+  .sub { font-size: 12px; color: var(--muted); font-weight: 600; }
+  .status { font-size: 1.1rem; flex-shrink: 0; }
+  .tag-next { font-size: 11px; font-weight: 800; color: #fff; background: var(--nivel); padding: 3px 8px; border-radius: 99px; }
+  .tools .num { background: #fff8e8; font-size: 1.3rem; }
+  .how { margin-top: 26px; background: #fff8e8; border: 2px solid #f5dfa0; border-radius: 16px; padding: 14px 16px; font-size: 14px; line-height: 1.6; }
+  .how ol { padding-left: 20px; margin-top: 6px; }
 </style>
 </head>
 <body>
+<div class="topbar"><div class="topbar-title">🌟 Inglés en Familia</div></div>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="topbar-title">🌟 Inglés en Familia</div>
-  <!-- Puedes agregar member-pills aquí si lo necesitas -->
-</div>
+<div class="wrap">
+  <a class="back" href="../ingles.html">← Inglés en Familia</a>
 
-<div style="max-width:640px; margin:0 auto; padding:32px 16px 56px;">
-
-  <!-- Encabezado del nivel -->
-  <a href="../ingles.html" style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:800; color:var(--muted); text-decoration:none; margin-bottom:20px;">
-    ← Todos los niveles
-  </a>
-
-  <div style="display:flex; align-items:center; gap:14px; margin-bottom:6px;">
-    <span style="font-family:'Baloo 2',cursive; font-size:2rem; font-weight:800; background:var(--nivel); color:white; width:56px; height:56px; border-radius:16px; display:flex; align-items:center; justify-content:center;">A1</span>
-    <div>
-      <div style="font-size:11px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--muted);">Nivel</div>
-      <h1 style="font-family:'Baloo 2',cursive; font-size:1.8rem; font-weight:800; line-height:1.1;">Principiante</h1>
-    </div>
+  <div class="head">
+    <div class="badge" id="badge"></div>
+    <div><div class="kick">Nivel</div><h1 id="name"></h1></div>
   </div>
-  <p class="hero-sub" style="margin-bottom:0;">Saludos, números, colores y las primeras frases del día a día.</p>
+  <p class="desc" id="desc"></p>
 
-  <!-- Barra de progreso -->
-  <div class="nivel-progress">
-    <div class="nivel-progress-top">
-      <span>Progreso del nivel</span>
-      <strong id="prog-label">0 / 8 clases</strong>
-    </div>
-    <div class="timer-bar" style="margin-bottom:0;">
-      <div class="timer-fill" id="prog-bar" style="width: 0%;"></div>
-    </div>
+  <div class="progress">
+    <div class="progress-top"><span>Progreso del nivel</span><b id="prog-label"></b></div>
+    <div class="bar"><i id="prog-bar"></i></div>
+    <a class="continue" id="continue"></a>
   </div>
 
-  <!-- Lista de clases -->
-  <a class="clase-card" href="../palabras.html?l=A1" style="margin-top:20px;background:#fff8e8;border-color:#f5dfa0">
-    <div class="clase-num" style="background:var(--yellow);color:var(--text)">📖</div>
-    <div class="clase-info"><div class="clase-title">Vocabulario A1</div><div class="clase-sub">115 palabras con pronunciación y ejemplos</div></div>
-    <div class="clase-status">›</div>
-  </a>
-  <div class="clase-list" id="lista"></div>
+  <h2 class="sec">📚 Clases <small id="count"></small></h2>
+  <div class="list" id="lista"></div>
+
+  <h2 class="sec">🧰 Para practicar más</h2>
+  <div class="list tools" id="tools"></div>
+
+  <div id="nextlevel"></div>
+
+  <div class="how">
+    <strong>💡 Cómo seguir el curso:</strong>
+    <ol>
+      <li>Hagan <strong>una clase por semana</strong>, en orden. Cada clase tiene 7 pasos: bienvenida, vocabulario, frases, gramática, juegos, práctica y tarea.</li>
+      <li>Durante la semana, repasen con el <strong>vocabulario</strong> y hagan la tarea.</li>
+      <li>Si algo no queda claro, búsquenlo en la <strong>gramática básica</strong>.</li>
+      <li>La clase se marca ✅ al aprobar su mini test o al llegar a la tarea.</li>
+    </ol>
+  </div>
 </div>
 
 <script src="clases.js"></script>
+<script src="extra.js"></script>
+<script src="../a2/clases.js"></script>
+<script src="../palabras.js"></script>
 <script>
-  // Una clase se marca como completada al terminarla (llegar a la tarea) o al aprobar su mini test.
+  const NIVELES = {
+    A1: { name: 'Principiante', color: 'var(--green)', soft: '#e6f8ef', border: '#c8f5e0',
+          desc: 'Saludos, números, colores, la familia, la casa y el calendario: las bases para hablar en inglés.', clases: CLASES_A1 },
+    A2: { name: 'Básico', color: 'var(--blue)', soft: '#eaf2ff', border: '#c8deff',
+          desc: 'Rutinas, comida, compras, trabajos, la ciudad, hobbies, el pasado y los planes.', clases: CLASES_A2 }
+  };
+  const LV = new URLSearchParams(location.search).get('l') === 'A2' ? 'A2' : 'A1';
+  const N = NIVELES[LV];
+  document.title = `Nivel ${LV} — Inglés en Familia`;
+  const root = document.documentElement.style;
+  root.setProperty('--nivel', N.color); root.setProperty('--nivel-soft', N.soft); root.setProperty('--nivel-border', N.border);
+  document.getElementById('badge').textContent = LV;
+  document.getElementById('name').textContent = N.name;
+  document.getElementById('desc').textContent = N.desc;
+
   let hechas = {};
-  try { hechas = JSON.parse(localStorage.getItem('en-a1') || '{}'); } catch (e) {}
-  const clases = [
-    { n: 1, href: 'clase1_saludos.html', title: 'Saludos y presentaciones', sub: 'Hello · Good morning · My name is…' },
-    { n: '1.1', href: 'practica1.html', title: 'Práctica 1', sub: 'Tarea de la semana 1 con sonidos', practica: true },
-    ...CLASES_A1.map(c => ({ n: c.n, href: `clase.html?n=${c.n}`, title: c.title, sub: c.sub }))
-  ];
-  let total = 0, done = 0;
-  document.getElementById('lista').innerHTML = clases.map(c => {
-    const ok = !c.practica && hechas[c.n];
-    if (!c.practica) { total++; if (ok) done++; }
-    return `<a class="clase-card${ok ? ' done' : ''}" href="${c.href}">
-      <div class="clase-num">${c.n}</div>
-      <div class="clase-info"><div class="clase-title">${c.title}</div><div class="clase-sub">${c.sub}</div></div>
-      <div class="clase-status">${ok ? '✅' : c.practica ? '✏️' : '📖'}</div></a>`;
-  }).join('');
+  try { hechas = JSON.parse(localStorage.getItem('en-' + LV.toLowerCase()) || '{}'); } catch (e) {}
+  const total = N.clases.length;
+  const done = N.clases.filter(c => hechas[c.n]).length;
+  const sig = N.clases.find(c => !hechas[c.n]);
   document.getElementById('prog-label').textContent = `${done} / ${total} clases`;
   document.getElementById('prog-bar').style.width = (done / total * 100) + '%';
+  document.getElementById('count').textContent = `${total} clases`;
+
+  const cont = document.getElementById('continue');
+  if (sig) {
+    cont.href = `clase.html?l=${LV}&n=${sig.n}`;
+    cont.innerHTML = `<span class="ic">▶</span><div><small>${done ? 'Continuar' : 'Empezar'}</small><strong>Clase ${sig.n}: ${sig.title}</strong></div><span>›</span>`;
+  } else {
+    cont.href = LV === 'A1' ? 'menu.html?l=A2' : '../palabras.html?l=A2';
+    cont.innerHTML = `<span class="ic">🏆</span><div><small>¡Nivel completado!</small><strong>${LV === 'A1' ? 'Pasar al nivel A2' : 'Repasar el vocabulario A2'}</strong></div><span>›</span>`;
+  }
+
+  document.getElementById('lista').innerHTML = N.clases.map(c => {
+    const ok = hechas[c.n], esSig = sig && sig.n === c.n;
+    return `<a class="item${ok ? ' done' : ''}${esSig ? ' next' : ''}" href="clase.html?l=${LV}&n=${c.n}">
+      <div class="num">${ok ? '✓' : c.n}</div>
+      <div class="info"><div class="title">${c.emoji} ${c.title}</div><div class="sub">${c.sub}</div></div>
+      <div class="status">${ok ? '✅' : esSig ? '<span class="tag-next">Siguiente</span>' : '›'}</div></a>`;
+  }).join('');
+
+  const nPal = (WORDS[LV] || []).reduce((t, c) => t + c.words.length, 0);
+  const tools = [
+    ['📖', `Vocabulario ${LV}`, `${nPal} palabras con pronunciación, audio y ejemplos`, `../palabras.html?l=${LV}`],
+    ['🧩', 'Gramática básica', 'Pronombres, to be, posesivos, preguntas… en una página', '../gramatica-ingles.html'],
+    ['💡', 'Guía para la familia', 'Rutina semanal, consejos por edad y recursos', '../guia-ingles.html']
+  ];
+  if (LV === 'A1') tools.push(['✏️', 'Práctica por persona', 'Ejercicios con sonido de la clase 1 para cada miembro', 'practica1.html']);
+  document.getElementById('tools').innerHTML = tools.map(([ic, t, d, h]) => `
+    <a class="item" href="${h}"><div class="num">${ic}</div><div class="info"><div class="title">${t}</div><div class="sub">${d}</div></div><div class="status">›</div></a>`).join('');
+
+  document.getElementById('nextlevel').innerHTML = LV === 'A1'
+    ? `<h2 class="sec">⏭️ Siguiente nivel</h2><div class="list"><a class="item" href="menu.html?l=A2"><div class="num" style="background:#eaf2ff;color:var(--blue)">A2</div><div class="info"><div class="title">Básico</div><div class="sub">Cuando terminen el A1: rutinas, comida, pasado y futuro</div></div><div class="status">›</div></a></div>`
+    : `<h2 class="sec">⏮️ Nivel anterior</h2><div class="list"><a class="item" href="menu.html?l=A1"><div class="num" style="background:#e6f8ef;color:var(--green)">A1</div><div class="info"><div class="title">Principiante</div><div class="sub">Para repasar las bases</div></div><div class="status">›</div></a></div>`;
 </script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js').catch(() => {});</script>
 </body>
 </html>

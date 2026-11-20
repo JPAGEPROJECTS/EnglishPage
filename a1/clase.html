@@ -52,6 +52,14 @@
   .age-card { background: var(--card); border: 2px solid var(--border); border-radius: 14px; padding: 12px 14px; font-size: 14px; line-height: 1.5; }
   .age-card b { display: block; font-family: 'Baloo 2', cursive; font-size: 1rem; margin-bottom: 2px; }
   .fact-box { background: #f0f4ff; border: 2px solid #c8deff; border-radius: 16px; padding: 14px 16px; font-size: 14px; line-height: 1.6; margin: 18px 0; }
+  .practica-link { display: flex; align-items: center; gap: 12px; margin: 14px 0 0; padding: 14px 16px; border-radius: 16px;
+    background: #f0f4ff; border: 2px solid #c8deff; text-decoration: none; color: var(--text); }
+  .practica-link span { font-size: 1.5rem; }
+  .practica-link div { flex: 1; }
+  .practica-link small { display: block; color: var(--muted); font-weight: 600; }
+  .links-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 14px 0 4px; }
+  .links-row a { flex: 1; min-width: 100px; text-align: center; font-size: 13px; font-weight: 800; padding: 10px; border-radius: 12px;
+    border: 2px solid var(--border); background: var(--card); color: var(--text); text-decoration: none; }
   .back-menu { display: inline-flex; gap: 6px; font-size: 13px; font-weight: 800; color: var(--muted); text-decoration: none; margin: 16px 16px 0; }
 </style>
 </head>
@@ -161,6 +169,12 @@
   <div class="section-label">Cierre</div>
   <h2 class="section-h">Tarea de la semana 🏠</h2>
   <div class="hw-grid" id="homework"></div>
+  <a class="practica-link" id="practica" style="display:none"></a>
+  <div class="links-row">
+    <a href="../palabras.html" id="lk-vocab">📖 Vocabulario</a>
+    <a href="../gramatica-ingles.html">🧩 Gramática</a>
+    <a href="../guia-ingles.html">💡 Guía</a>
+  </div>
   <div class="congrats">
     <div style="margin-bottom:12px">🎉 <span class="confetti-emoji">⭐</span> 🎉</div>
     <div style="font-family:'Baloo 2',cursive;font-size:1.6rem;font-weight:800;margin-bottom:6px" id="c-title"></div>
@@ -182,7 +196,7 @@
   const num = parseInt(params.get('n')) || LISTA[0].n;
   const C = LISTA.find(c => c.n === num) || LISTA[0];
   const X = EXTRA[`${LV}-${C.n}`];
-  const MENU = LV === 'A2' ? '../a2/menu.html' : 'menu.html';
+  const MENU = `menu.html?l=${LV}`;
   document.getElementById('back-menu').href = MENU;
   document.getElementById('back-menu').textContent = `← Clases del ${LV}`;
   document.title = `Clase ${C.n} — ${C.title}`;
@@ -271,8 +285,15 @@
   document.getElementById('c-text').textContent = C.summary;
   const sig = LISTA.find(c => c.n === C.n + 1);
   const nx = document.getElementById('next-class');
-  nx.href = sig ? `clase.html?l=${LV}&n=${sig.n}` : MENU;
-  nx.textContent = sig ? `Clase ${sig.n}: ${sig.title} →` : `Volver al menú ${LV}`;
+  if (sig) { nx.href = `clase.html?l=${LV}&n=${sig.n}`; nx.textContent = `Clase ${sig.n}: ${sig.title} →`; }
+  else if (LV === 'A1') { nx.href = 'menu.html?l=A2'; nx.textContent = '¡Empezar el nivel A2! →'; }
+  else { nx.href = MENU; nx.textContent = `Volver al menú ${LV}`; }
+  document.getElementById('lk-vocab').href = `../palabras.html?l=${LV}`;
+  if (C.practica) {
+    const pr = document.getElementById('practica');
+    pr.href = C.practica.href; pr.style.display = 'flex';
+    pr.innerHTML = `<span>✏️</span><div><strong>${C.practica.title}</strong><small>${C.practica.desc}</small></div><b>›</b>`;
+  }
 
   // ---- Gramática y más ----
   if (X) {

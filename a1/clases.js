@@ -5,6 +5,45 @@
 
 const CLASES_A1 = [
   {
+    n: 1, emoji: "👋", title: "Hello, Family!", sub: "Hello · Good morning · My name is…",
+    practica: { href: "practica1.html", title: "Práctica por persona", desc: "Ejercicios con sonido para papá, mamá y cada hermano" },
+    intro: "Hoy empezamos juntos: aprendemos a saludar según la hora, a presentarnos y a tener nuestra primera conversación en inglés.",
+    agenda: [["Saludos del día", "20 min"], ["Presentaciones: My name is…", "25 min"], ["Gramática y palabras extra", "15 min"], ["🎮 Juegos de saludos", "25 min"], ["Role play y mini test", "15 min"], ["Tarea de la semana", "10 min"]],
+    vocab: [
+      ["☀️", "Good morning", "gud MÓR-ning", "buenos días"], ["🌤️", "Good afternoon", "gud af-ter-NUUN", "buenas tardes"], ["🌆", "Good evening", "gud ÍIV-ning", "buenas noches (al llegar)"], ["🌙", "Good night", "gud NAIT", "buenas noches (al despedirse)"],
+      ["😊", "Hello / Hi", "je-LÓU / JAI", "hola"], ["👋", "Goodbye / Bye", "gud-BÁI / BAI", "adiós / chao"], ["🔜", "See you later", "SII iu LÉI-ter", "hasta luego"], ["🙏", "Thank you", "ZENK iu", "gracias"],
+      ["🙂", "Please", "PLIIS", "por favor"], ["😅", "Sorry", "SÓ-rri", "perdón"], ["🤝", "Nice to meet you", "NAIS tu MIIT iu", "mucho gusto"], ["❤️", "Welcome", "UÉL-kam", "bienvenido"]
+    ],
+    phrases: [
+      ["🤝", "How are you?", "jau ar IU", "¿Cómo estás?"],
+      ["😎", "I'm fine, thanks. And you?", "aim FAIN, zenks. and IU", "Estoy bien, gracias. ¿Y tú?"],
+      ["❓", "What is your name?", "uat iz ior NEIM", "¿Cómo te llamas?"],
+      ["🗣️", "My name is ___.", "mai NEIM iz", "Me llamo ___."],
+      ["🌍", "I am from Panama.", "ai am from PÁ-na-ma", "Soy de Panamá."],
+      ["💼", "I am a security guard.", "ai am a se-KIÚ-ri-ti gard", "Soy guardia de seguridad.", "Papá"],
+      ["🏠", "I take care of my home.", "ai teik KER ov mai JOUM", "Me encargo de mi hogar.", "Mamá"],
+      ["📚", "I am a student.", "ai am a STÚ-dent", "Soy estudiante.", "Hermanos"]
+    ],
+    tip: "<strong>Good evening vs. Good night:</strong> <em>Good evening</em> se dice al <u>llegar</u> en la noche (saludo). <em>Good night</em> solo al <u>irse</u> o antes de dormir (despedida).",
+    games: [
+      { title: "🏐 La pelota de nombres", color: "var(--orange)", desc: "Pásense un cojín o una pelota. Quien la recibe debe saludar y presentarse en inglés antes de lanzarla.",
+        steps: ["El que lanza dice: “Hello! What is your name?”", "El que recibe: “Hi! My name is ___. I am from Panama.”", "Luego lanza al siguiente y pregunta lo mismo.", "3 rondas completas. Si alguien se equivoca, ¡todos aplauden!"] },
+      { title: "🕐 ¿Qué hora es?", color: "var(--blue)", desc: "Practiquen el saludo correcto según la hora del día.",
+        steps: ["El “maestro” dice una hora: “It's 8 in the morning!”", "Todos responden con el saludo: “Good morning!”", "“It's 3 in the afternoon!” → “Good afternoon!”", "Ronda difícil: “It's 10 at night and you're going to bed!” → “Good night!”"] }
+    ],
+    roleplay: { title: "🎭 Conociéndonos", lines: [["A", "Good morning! How are you?"], ["B", "I'm fine, thanks! What is your name?"], ["A", "My name is ___. Nice to meet you!"], ["B", "Nice to meet you too! I am from Panama."], ["A", "Goodbye! Have a good day!"]] },
+    homework: [["📝", "Post-its en la casa", "Pongan 5 post-its con palabras en inglés: door, window, table, chair, kitchen."], ["🗣️", "Saludo diario", "Cada mañana salúdense en inglés: “Good morning! How are you?” — “I'm fine, thanks!”"], ["🙋", "Mi presentación", "Cada uno aprende de memoria su presentación: nombre, edad, de dónde es y qué hace."], ["📱", "App opcional", "Duolingo, lección “Basics 1”: solo 5–10 minutos al día."]],
+    quiz: [
+      { q: "A las 9 de la mañana dices…", opts: ["Good night", "Good morning", "Good evening"], a: 1 },
+      { q: "“Nice to meet you” =", opts: ["Mucho gusto", "Hasta luego", "Buenos días"], a: 0 },
+      { q: "“¿Cómo te llamas?” =", opts: ["How are you?", "What is your name?", "Where are you from?"], a: 1 },
+      { q: "Al irte a dormir dices…", opts: ["Good evening", "Good afternoon", "Good night"], a: 2 },
+      { q: "“I am from Panama” significa…", opts: ["Vivo en Panamá", "Soy de Panamá", "Me gusta Panamá"], a: 1 }
+    ],
+    summary: "Aprendieron: 12 saludos y despedidas, a presentarse (nombre, origen, trabajo) y la diferencia entre good evening y good night."
+  },
+
+  {
     n: 2, emoji: "🔢", title: "Numbers 1–20", sub: "One, two, three… pronunciación y escritura",
     intro: "Hoy dominamos los números del 0 al 20: decirlos, escribirlos y usarlos para la edad, el teléfono y para contar cosas de la casa.",
     agenda: [["Repaso rápido de saludos", "10 min"], ["Números 0–20 con audio", "25 min"], ["How many? How old?", "20 min"], ["🎮 Juegos de números", "25 min"], ["Mini test", "10 min"], ["Tarea de la semana", "10 min"]],

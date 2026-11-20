@@ -317,17 +317,26 @@ body {
 }
 .back-btn:hover { background: #4f46e5; }
 </style>
+<style>
+  .back-links { display: flex; justify-content: space-between; gap: 10px; max-width: 700px; margin: 14px auto 0; padding: 0 16px; }
+  .back-links a { font-size: 13px; font-weight: 800; color: #7a7a9a; text-decoration: none; }
+</style>
 </head>
 <body>
 
 <div class="topbar">
-  <div class="topbar-title">📚 Tarea Semana 1</div>
+  <div class="topbar-title">✏️ Práctica · Clase 1</div>
   <div class="member-pills">
     <div class="member-pill pill-papa" onclick="show('papa')">👨 <span>Papá</span></div>
     <div class="member-pill pill-mama" onclick="show('mama')">👩 <span>Mamá</span></div>
     <div class="member-pill pill-h9"   onclick="show('h9')">🧒 <span>9 años</span></div>
     <div class="member-pill pill-h17"  onclick="show('h17')">🧑 <span>17 años</span></div>
   </div>
+</div>
+
+<div class="back-links">
+  <a href="menu.html?l=A1">← Clases del A1</a>
+  <a href="clase.html?l=A1&n=1">Ver la clase 1 →</a>
 </div>
 
 <!-- ══════════════════════════════════════ HOME -->
