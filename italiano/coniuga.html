@@ -10,13 +10,55 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Idiomas">
-<title>Practicar verbos — Italiano</title>
+<title>I verbi — Italiano</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="italiano.css">
 <style>
+  .mode { display: flex; gap: 6px; margin: 18px 0 14px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 5px; }
+  .mode button { flex: 1; font: inherit; font-weight: 700; padding: 11px; border-radius: 10px; border: none; cursor: pointer; background: transparent; color: var(--text); }
+  .mode button.on { background: var(--verde); color: #fff; }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
   .chips button { font: inherit; font-size: 13px; font-weight: 600; padding: 7px 12px; border-radius: 99px; cursor: pointer; border: 1px solid var(--border); background: var(--card); color: var(--text); }
   .chips button.on { background: var(--verde); border-color: var(--verde); color: #fff; }
+  .search { font: inherit; width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--card); color: var(--text); }
+
+  /* Lista de verbos */
+  .vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin-top: 12px; }
+  .vcard { text-align: left; font: inherit; cursor: pointer; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; color: var(--text); }
+  .vcard:hover { border-color: var(--verde); }
+  .vcard b { display: block; font-size: 1.05rem; }
+  .vcard span { font-size: 13px; color: var(--muted); }
+  .vcard i { font-style: normal; font-size: 11px; font-weight: 700; margin-top: 4px; display: inline-block; padding: 2px 7px; border-radius: 99px; }
+  .t-are { background: var(--verde-soft); color: var(--verde); }
+  .t-ere { background: #e5eefb; color: #2d64b3; }
+  .t-ire { background: var(--oro-soft); color: var(--oro); }
+  .t-irr { background: var(--rosso-soft); color: var(--rosso); }
+  @media (prefers-color-scheme: dark) { .t-ere { background: #1e2c40; color: #8ab4f0; } }
+  .models { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+  .models .vcard { text-align: center; }
+
+  /* Ficha de un verbo */
+  .vhead { display: flex; align-items: center; gap: 12px; }
+  .vhead h2 { font-size: 2rem; margin: 0; }
+  .vmeta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
+  .vmeta div { background: var(--bg); border-radius: 10px; padding: 8px 10px; font-size: 12px; color: var(--muted); font-weight: 600; }
+  .vmeta b { display: block; font-size: 15px; color: var(--text); }
+  .notes { margin-top: 12px; font-size: 14px; }
+  .notes p { margin: 6px 0; padding-left: 10px; border-left: 3px solid var(--oro); }
+  .tense-tabs { display: flex; gap: 6px; overflow-x: auto; margin: 16px 0 6px; scrollbar-width: none; }
+  .tense-tabs button { flex-shrink: 0; font: inherit; font-size: 13px; font-weight: 600; padding: 7px 12px; border-radius: 99px; cursor: pointer; border: 1px solid var(--border); background: var(--card); color: var(--text); }
+  .tense-tabs button.on { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .conj { width: 100%; border-collapse: collapse; font-size: 16px; }
+  .conj td { padding: 9px 8px; border-bottom: 1px solid var(--border); }
+  .conj td:first-child { color: var(--muted); width: 80px; font-size: 14px; }
+  .conj td:nth-child(2) { font-weight: 700; }
+  .conj td:last-child { width: 40px; text-align: right; }
+  .conj .play { width: 30px; height: 30px; font-size: 11px; }
+  .tense-use { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+  .all-tenses .conj { font-size: 14px; }
+  .all-tenses h3 { margin-top: 16px; font-size: 1rem; }
+
+  /* Práctica */
   .drill { text-align: center; padding: 22px 16px; }
   .d-tempo { display: inline-block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; background: var(--oro-soft); color: var(--oro); padding: 4px 10px; border-radius: 99px; }
   .d-verb { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 700; margin-top: 10px; }
@@ -27,6 +69,7 @@
   .d-input.bad { border-color: var(--rosso); background: var(--rosso-soft); }
   .d-fb { min-height: 24px; margin-top: 10px; font-weight: 600; }
   .d-fb .ok { color: var(--verde); } .d-fb .bad { color: var(--rosso); }
+  .d-fb a { color: var(--verde); font-size: 13px; }
   .score { display: flex; justify-content: center; gap: 18px; font-size: 14px; color: var(--muted); font-weight: 600; margin-top: 12px; }
   .score b { color: var(--text); }
   .tabla { margin-top: 14px; text-align: left; display: none; }
@@ -35,6 +78,9 @@
   .tabla td { padding: 6px 8px; border-bottom: 1px solid var(--border); }
   .tabla td:first-child { color: var(--muted); width: 90px; }
   .tabla tr.hl td { background: var(--oro-soft); font-weight: 700; }
+  .solo { display: none; align-items: center; gap: 8px; margin-top: 10px; font-size: 14px; background: var(--verde-soft); border-radius: 10px; padding: 8px 12px; }
+  .solo.on { display: flex; }
+  .solo button { margin-left: auto; font: inherit; font-size: 13px; border: none; background: none; color: var(--verde); font-weight: 700; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -45,38 +91,87 @@
 </div>
 
 <div class="wrap">
-  <div class="kicker">Práctica de verbos</div>
-  <h1>Coniuga <em>i verbi</em></h1>
-  <p class="lead">Un verbo, una persona y un tiempo al azar: escribe la forma correcta. Es la mejor forma de que los verbos salgan solos al hablar.</p>
+  <div class="kicker">45 verbos · 5 tiempos</div>
+  <h1>I <em>verbi</em></h1>
+  <p class="lead">Primero <strong>mira</strong> cómo se conjuga cada verbo y luego <strong>practica</strong> escribiéndolos. Así los verbos salen solos al hablar.</p>
 
-  <div class="card" style="margin-top:16px">
-    <strong>Tiempos</strong>
-    <div class="chips" id="tempi"></div>
-    <strong style="display:block;margin-top:12px">Verbos</strong>
-    <div class="chips" id="tipo">
-      <button data-t="todos" class="on">Todos (45)</button>
-      <button data-t="reg">Solo regulares</button>
-      <button data-t="irr">Solo irregulares</button>
+  <div class="mode" id="mode">
+    <button data-m="ver" class="on">📖 Ver verbos</button>
+    <button data-m="practicar">🔁 Practicar</button>
+  </div>
+
+  <!-- ===== VER: lista ===== -->
+  <div id="v-lista">
+    <div class="card">
+      <strong>⭐ Empieza por los 3 modelos</strong>
+      <p style="font-size:14px;color:var(--muted);margin-top:4px">Casi todos los verbos regulares se conjugan como uno de estos tres. Apréndelos primero.</p>
+      <div class="models" id="models"></div>
+    </div>
+    <input class="search" id="search" type="search" placeholder="🔍 Buscar verbo en italiano o español…" autocomplete="off">
+    <div class="chips" id="filtro">
+      <button data-f="todos" class="on">Todos</button>
+      <button data-f="are">-are</button>
+      <button data-f="ere">-ere</button>
+      <button data-f="ire">-ire</button>
+      <button data-f="irr">Irregulares</button>
+    </div>
+    <div class="vgrid" id="vgrid"></div>
+  </div>
+
+  <!-- ===== VER: ficha de un verbo ===== -->
+  <div id="v-ficha" style="display:none">
+    <button class="small-btn" id="volver">← Todos los verbos</button>
+    <div class="card" style="margin-top:12px">
+      <div class="vhead"><button class="play" id="f-play">▶</button><h2 id="f-inf"></h2></div>
+      <div style="color:var(--muted);margin-top:4px"><span id="f-es"></span> · <span id="f-tipo"></span></div>
+      <div class="vmeta">
+        <div>Participio<b id="f-pp"></b></div>
+        <div>Gerundio<b id="f-ger"></b></div>
+        <div>Auxiliar<b id="f-aux"></b></div>
+      </div>
+      <div class="notes" id="f-notes"></div>
+      <div class="tense-tabs" id="f-tabs"></div>
+      <div id="f-tabla"></div>
+      <div class="btn-row">
+        <button class="btn ghost" id="f-prev">←</button>
+        <button class="btn" id="f-practicar" style="flex:1">🔁 Practicar este verbo</button>
+        <button class="btn ghost" id="f-next">→</button>
+      </div>
     </div>
   </div>
 
-  <div class="card drill">
-    <span class="d-tempo" id="d-tempo"></span>
-    <div class="d-verb" id="d-verb"></div>
-    <div class="d-es" id="d-es"></div>
-    <div class="d-person" id="d-person"></div>
-    <input class="d-input" id="answer" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Escribe la forma…">
-    <div class="d-fb" id="fb"></div>
-    <div class="btn-row" style="justify-content:center">
-      <button class="btn ghost" id="skip">Saltar</button>
-      <button class="btn" id="go">Comprobar</button>
+  <!-- ===== PRACTICAR ===== -->
+  <div id="v-practicar" style="display:none">
+    <div class="card">
+      <strong>Tiempos</strong>
+      <div class="chips" id="tempi"></div>
+      <strong style="display:block;margin-top:12px">Verbos</strong>
+      <div class="chips" id="tipo">
+        <button data-t="todos" class="on">Todos (45)</button>
+        <button data-t="reg">Solo regulares</button>
+        <button data-t="irr">Solo irregulares</button>
+      </div>
+      <div class="solo" id="solo"><span>Practicando solo: <b id="solo-v"></b></span><button id="solo-x">✕ Quitar</button></div>
     </div>
-    <div class="score"><span>✓ <b id="s-ok">0</b> bien</span><span>✗ <b id="s-ko">0</b> mal</span><span>🔥 racha <b id="s-streak">0</b></span></div>
-    <div class="tabla" id="tabla"></div>
-  </div>
 
-  <div class="card tip">
-    <strong>💡 Consejos:</strong> no hace falta escribir el pronombre. Las tildes cuentan (<em>parlerò</em>, <em>è</em>), pero si las olvidas te lo marcamos como casi correcto. En el passato prossimo con <em>essere</em>, “lei” va en femenino (<em>è andata</em>) y para io/tu/noi/voi/loro se aceptan las dos formas.
+    <div class="card drill">
+      <span class="d-tempo" id="d-tempo"></span>
+      <div class="d-verb" id="d-verb"></div>
+      <div class="d-es" id="d-es"></div>
+      <div class="d-person" id="d-person"></div>
+      <input class="d-input" id="answer" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Escribe la forma…">
+      <div class="d-fb" id="fb"></div>
+      <div class="btn-row" style="justify-content:center">
+        <button class="btn ghost" id="skip">Saltar</button>
+        <button class="btn" id="go">Comprobar</button>
+      </div>
+      <div class="score"><span>✓ <b id="s-ok">0</b> bien</span><span>✗ <b id="s-ko">0</b> mal</span><span>🔥 racha <b id="s-streak">0</b></span></div>
+      <div class="tabla" id="tabla"></div>
+    </div>
+
+    <div class="card tip">
+      <strong>💡 Consejos:</strong> no hace falta escribir el pronombre. Las tildes cuentan (<em>parlerò</em>, <em>è</em>), pero si las olvidas te lo marcamos como casi correcto. En el passato prossimo con <em>essere</em>, “lei” va en femenino (<em>è andata</em>) y para io/tu/noi/voi/loro se aceptan las dos formas.
+    </div>
   </div>
 </div>
 
@@ -85,32 +180,124 @@
 <script>
   Progreso.contarTiempo();
   const $ = id => document.getElementById(id);
-  let tempiOn = ['presente'];
-  let tipo = 'todos';
-  let actual = null, respondida = false, ok = 0, ko = 0, racha = 0;
+  const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+  const TIPOS = { are: 'regular -are', ere: 'regular -ere', ire: 'regular -ire', irr: 'irregular' };
+  const USOS = {
+    presente: 'Ahora, costumbres y futuro cercano: parlo = hablo.',
+    passato: 'Acción terminada (el pasado más usado): ho parlato = hablé / he hablado.',
+    imperfetto: 'Descripciones y costumbres del pasado: parlavo = hablaba.',
+    futuro: 'Planes y suposiciones: parlerò = hablaré.',
+    condizionale: 'Cortesía, deseos y consejos: parlerei = hablaría.'
+  };
 
+  // ---------- Audio ----------
+  let itVoice = null;
+  function pickVoice() { const vs = speechSynthesis.getVoices(); itVoice = vs.find(v => v.lang === 'it-IT') || vs.find(v => v.lang && v.lang.startsWith('it')) || null; }
+  if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+  function speak(t) {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(t.replace(/\s*\/\s*/g, ', ')); u.lang = 'it-IT'; u.rate = 0.85; if (itVoice) u.voice = itVoice;
+    speechSynthesis.speak(u);
+  }
+  document.addEventListener('click', e => { const b = e.target.closest('[data-say]'); if (b) speak(b.dataset.say); });
+
+  // ---------- Modos ----------
+  function modo(m) {
+    $('mode').querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.m === m));
+    $('v-lista').style.display = m === 'ver' && !fichaActual ? '' : 'none';
+    $('v-ficha').style.display = m === 'ver' && fichaActual ? '' : 'none';
+    $('v-practicar').style.display = m === 'practicar' ? '' : 'none';
+    if (m === 'practicar' && !actual) nueva();
+    if ('speechSynthesis' in window) speechSynthesis.cancel();
+  }
+  $('mode').onclick = e => { const b = e.target.closest('button'); if (b) modo(b.dataset.m); };
+
+  // ---------- Ver: lista ----------
+  const card = (inf, es) => { const t = tipoVerbo(inf); return `<button class="vcard" data-v="${inf}"><b>${inf}</b><span>${es}</span><br><i class="t-${t}">${TIPOS[t]}</i></button>`; };
+  $('models').innerHTML = ['parlare', 'prendere', 'dormire'].map(v => card(v, infoVerbo(v).es)).join('');
+  let filtro = 'todos';
+  function pintarLista() {
+    const q = $('search').value.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
+    const lista = VERBI.filter(([inf, es]) => (filtro === 'todos' || tipoVerbo(inf) === filtro) &&
+      (!q || (inf + ' ' + es).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().includes(q)));
+    $('vgrid').innerHTML = lista.length ? lista.map(([inf, es]) => card(inf, es)).join('') : '<p style="color:var(--muted)">No hay verbos con esa búsqueda.</p>';
+  }
+  $('search').oninput = pintarLista;
+  $('filtro').onclick = e => {
+    const b = e.target.closest('button'); if (!b) return;
+    filtro = b.dataset.f;
+    $('filtro').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+    pintarLista();
+  };
+  pintarLista();
+  document.addEventListener('click', e => { const b = e.target.closest('.vcard'); if (b) abrirFicha(b.dataset.v); });
+
+  // ---------- Ver: ficha ----------
+  let fichaActual = null, tempoFicha = 'presente';
+  const ORDEN = VERBI.map(v => v[0]);
+  function abrirFicha(inf) {
+    fichaActual = inf;
+    const V = infoVerbo(inf), t = tipoVerbo(inf);
+    $('f-inf').textContent = inf;
+    $('f-play').dataset.say = inf;
+    $('f-es').textContent = V.es;
+    $('f-tipo').innerHTML = `<i class="t-${t}" style="font-style:normal;font-size:12px;font-weight:700;padding:2px 8px;border-radius:99px">${TIPOS[t]}</i>`;
+    $('f-pp').textContent = participio(V);
+    $('f-ger').textContent = gerundio(inf);
+    $('f-aux').textContent = V.aux === 'essere' ? 'essere' : 'avere';
+    $('f-notes').innerHTML = notaVerbo(inf).map(n => `<p>${n}</p>`).join('');
+    pintarTabla();
+    modo('ver');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  $('f-tabs').innerHTML = Object.entries(TEMPI).map(([k, t]) => `<button data-k="${k}">${t}</button>`).join('') + '<button data-k="todos">Todos</button>';
+  $('f-tabs').onclick = e => { const b = e.target.closest('button'); if (b) { tempoFicha = b.dataset.k; pintarTabla(); } };
+  function tablaHTML(inf, tempo) {
+    const f = coniuga(inf, tempo);
+    return `<table class="conj">${f.map((x, i) => `<tr><td>${PERSONE[i]}</td><td>${x}</td><td><button class="play" data-say="${esc(PERSONE[i].replace(' / lei', '') + ' ' + x)}">▶</button></td></tr>`).join('')}</table>`;
+  }
+  function pintarTabla() {
+    $('f-tabs').querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === tempoFicha));
+    $('f-tabla').innerHTML = tempoFicha === 'todos'
+      ? `<div class="all-tenses">${Object.entries(TEMPI).map(([k, t]) => `<h3>${t}</h3>${tablaHTML(fichaActual, k)}`).join('')}</div>`
+      : `<p class="tense-use">${USOS[tempoFicha]}</p>${tablaHTML(fichaActual, tempoFicha)}`;
+  }
+  $('volver').onclick = () => { fichaActual = null; modo('ver'); };
+  $('f-prev').onclick = () => { const i = ORDEN.indexOf(fichaActual); abrirFicha(ORDEN[(i - 1 + ORDEN.length) % ORDEN.length]); };
+  $('f-next').onclick = () => { const i = ORDEN.indexOf(fichaActual); abrirFicha(ORDEN[(i + 1) % ORDEN.length]); };
+  $('f-practicar').onclick = () => { soloVerbo = fichaActual; actualizarSolo(); modo('practicar'); nueva(); };
+
+  // ---------- Practicar ----------
+  let tempiOn = ['presente'], tipo = 'todos', soloVerbo = null;
+  let actual = null, respondida = false, ok = 0, ko = 0, racha = 0;
   $('tempi').innerHTML = Object.entries(TEMPI).map(([k, t]) => `<button data-k="${k}" class="${tempiOn.includes(k) ? 'on' : ''}">${t}</button>`).join('');
   $('tempi').onclick = e => {
     const b = e.target.closest('button'); if (!b) return;
     const k = b.dataset.k;
-    if (tempiOn.includes(k)) { if (tempiOn.length > 1) tempiOn = tempiOn.filter(x => x !== k); }
-    else tempiOn.push(k);
+    if (tempiOn.includes(k)) { if (tempiOn.length > 1) tempiOn = tempiOn.filter(x => x !== k); } else tempiOn.push(k);
     $('tempi').querySelectorAll('button').forEach(x => x.classList.toggle('on', tempiOn.includes(x.dataset.k)));
     nueva();
   };
   $('tipo').onclick = e => {
     const b = e.target.closest('button'); if (!b) return;
-    tipo = b.dataset.t;
+    tipo = b.dataset.t; soloVerbo = null; actualizarSolo();
     $('tipo').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
     nueva();
   };
+  function actualizarSolo() {
+    $('solo').classList.toggle('on', !!soloVerbo);
+    $('solo-v').textContent = soloVerbo || '';
+    if (soloVerbo) $('tipo').querySelectorAll('button').forEach(x => x.classList.remove('on'));
+    else if (!$('tipo').querySelector('.on')) $('tipo').querySelector('[data-t="todos"]').classList.add('on');
+  }
+  $('solo-x').onclick = () => { soloVerbo = null; tipo = 'todos'; actualizarSolo(); nueva(); };
 
   const azar = a => a[Math.floor(Math.random() * a.length)];
-  // Personas mostradas: lui y lei por separado (importa para la concordancia)
   const MOSTRAR = [['io', 0], ['tu', 1], ['lui', 2], ['lei', 2], ['noi', 3], ['voi', 4], ['loro', 5]];
-
   function nueva() {
-    const pool = VERBI.filter(v => tipo === 'todos' || (tipo === 'irr') === !!(v[2] && v[2].irr));
+    const pool = soloVerbo ? VERBI.filter(v => v[0] === soloVerbo)
+      : VERBI.filter(v => tipo === 'todos' || (tipo === 'irr') === !!(v[2] && v[2].irr));
     const v = azar(pool), tempo = azar(tempiOn), [label, p] = azar(MOSTRAR);
     actual = { inf: v[0], es: v[1], tempo, label, p };
     respondida = false;
@@ -121,27 +308,22 @@
     $('answer').value = ''; $('answer').className = 'd-input'; $('answer').disabled = false;
     $('fb').innerHTML = ''; $('tabla').classList.remove('on');
     $('go').textContent = 'Comprobar';
-    $('answer').focus({ preventScroll: true });
+    if ($('v-practicar').style.display !== 'none') $('answer').focus({ preventScroll: true });
   }
-
-  const limpiar = s => s.toLowerCase().trim().replace(/[’`]/g, "'").replace(/\s+/g, ' ')
-    .replace(/^(io|tu|lui|lei|noi|voi|loro) /, '');
+  const limpiar = s => s.toLowerCase().trim().replace(/[’`]/g, "'").replace(/\s+/g, ' ').replace(/^(io|tu|lui|lei|noi|voi|loro) /, '');
   const sinTildes = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '');
-
   function validas() {
     const { inf, tempo, label, p } = actual;
     let v = risposteValide(inf, tempo, p);
     if (tempo === 'passato' && infoVerbo(inf).aux === 'essere' && p === 2) v = [label === 'lei' ? v[1] : v[0]];
     return v;
   }
-
   function comprobar() {
     if (respondida) return nueva();
     const r = limpiar($('answer').value);
     if (!r) return;
     const v = validas();
-    const exacta = v.includes(r);
-    const casi = !exacta && v.map(sinTildes).includes(sinTildes(r));
+    const exacta = v.includes(r), casi = !exacta && v.map(sinTildes).includes(sinTildes(r));
     respondida = true;
     $('answer').disabled = true;
     if (exacta || casi) {
@@ -151,7 +333,8 @@
     } else {
       ko++; racha = 0;
       $('answer').classList.add('bad');
-      $('fb').innerHTML = `<span class="bad">✗ Era: <b>${v.join(' / ')}</b></span>`;
+      $('fb').innerHTML = `<span class="bad">✗ Era: <b>${v.join(' / ')}</b></span><br><a href="#" id="ver-este">📖 Ver todo el verbo ${actual.inf}</a>`;
+      $('ver-este').onclick = ev => { ev.preventDefault(); tempoFicha = actual.tempo; abrirFicha(actual.inf); };
     }
     Progreso.marcarActividad(0);
     $('s-ok').textContent = ok; $('s-ko').textContent = ko; $('s-streak').textContent = racha;
@@ -161,12 +344,13 @@
     $('go').textContent = 'Siguiente →';
     $('go').focus({ preventScroll: true });
   }
-
   $('go').onclick = comprobar;
   $('skip').onclick = nueva;
   $('answer').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); comprobar(); } });
-  document.addEventListener('keydown', e => { if (e.key === 'Enter' && respondida && document.activeElement !== $('answer')) { e.preventDefault(); nueva(); } });
-  nueva();
+  document.addEventListener('keydown', e => { if (e.key === 'Enter' && respondida && $('v-practicar').style.display !== 'none' && document.activeElement !== $('answer')) { e.preventDefault(); nueva(); } });
+
+  // Abrir directo en práctica con ?modo=practicar
+  if (new URLSearchParams(location.search).get('modo') === 'practicar') modo('practicar'); else modo('ver');
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js').catch(() => {});</script>
 </body>

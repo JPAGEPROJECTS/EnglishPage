@@ -109,3 +109,28 @@ function risposteValide(inf, tempo, p) {
   if (tempo === 'passato' && infoVerbo(inf).aux === 'essere') out.push(f.replace(/o$/, 'a').replace(/i$/, 'e'));
   return out;
 }
+
+// ---- Datos extra para la vista "Ver verbos" ----
+function gerundio(inf) {
+  const irr = { fare: 'facendo', dire: 'dicendo', bere: 'bevendo' };
+  if (irr[inf]) return irr[inf];
+  return inf.slice(0, -3) + (inf.endsWith('are') ? 'ando' : 'endo');
+}
+function tipoVerbo(inf) {
+  const V = infoVerbo(inf);
+  if (V.irr) return 'irr';
+  return inf.slice(-3);                // 'are' | 'ere' | 'ire'
+}
+function notaVerbo(inf) {
+  const V = infoVerbo(inf), notas = [];
+  if (V.irr) notas.push('Verbo irregular: el presente no sigue las reglas, apréndelo de memoria.');
+  else if (V.isc) notas.push(`Verbo en -ire con <b>-isc-</b>: lo añade en io, tu, lui/lei y loro (<b>${coniuga(inf, 'presente')[0]}, ${coniuga(inf, 'presente')[1]}</b>…), pero no en noi y voi.`);
+  else if (/[cg]are$/.test(inf)) notas.push('Añade una <b>h</b> antes de i / e para mantener el sonido duro: tu <b>cerchi</b>, noi <b>cerchiamo</b>, io <b>cercherò</b>.'.replace(/cerch/g, inf.slice(0, -3) + 'h'));
+  else if (/[cg]iare$/.test(inf)) notas.push(`Pierde la <b>i</b> antes de otra i o de e: tu <b>${coniuga(inf, 'presente')[1]}</b>, io <b>${coniuga(inf, 'futuro')[0]}</b>.`);
+  else if (/iare$/.test(inf)) notas.push(`Una sola i en tu y noi: tu <b>${coniuga(inf, 'presente')[1]}</b>, noi <b>${coniuga(inf, 'presente')[3]}</b>.`);
+  else notas.push(`Regular: sigue el modelo de <b>${{ are: 'parlare', ere: 'prendere', ire: 'dormire' }[inf.slice(-3)]}</b>.`);
+  if (V.pp && !V.irr) notas.push(`Participio irregular: <b>${V.pp}</b>.`);
+  if (V.fut && !V.irr) notas.push(`Futuro y condicional con raíz corta: <b>${V.fut}ò</b>, <b>${V.fut}ei</b>.`);
+  if (V.aux === 'essere') { const b = participio(V).slice(0, -1); notas.push(`En pasado usa <b>essere</b> y el participio concuerda: ${b}o / ${b}a / ${b}i / ${b}e.`); }
+  return notas;
+}
