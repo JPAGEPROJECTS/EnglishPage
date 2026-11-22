@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#1d2730">
+<link rel="icon" type="image/png" href="../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Idiomas">
+<title>Le basi — Italiano</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="italiano.css">
+<style>
+  .toc { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+  .toc a { font-size: 13px; font-weight: 600; text-decoration: none; padding: 7px 11px; border-radius: 99px; border: 1px solid var(--border); background: var(--card); }
+  .toc a:hover { border-color: var(--verde); }
+  .b-sec { scroll-margin-top: 12px; margin-top: 30px; }
+  .b-sec h2 { display: flex; align-items: center; gap: 10px; }
+  .b-sec h2 .small-btn { margin-left: auto; }
+  .b-sec p { margin: 8px 0; }
+  .b-sec ul { padding-left: 20px; margin: 6px 0; }
+  .b-sec li { margin: 4px 0; }
+  .items { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin: 10px 0; }
+  .it-card { display: flex; align-items: center; gap: 10px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; }
+  .it-card .play { width: 32px; height: 32px; font-size: 12px; }
+  .it-card b { display: block; }
+  .it-card span { font-size: 13px; color: var(--muted); }
+  .it-card small { display: block; font-size: 11px; color: var(--oro); font-weight: 600; }
+  .sw { width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0; border: 1px solid rgba(0,0,0,.15); }
+  .exs { display: grid; gap: 6px; margin-top: 10px; }
+  .exl { display: flex; align-items: center; gap: 10px; background: var(--bg); border-radius: 10px; padding: 8px 10px; font-size: 14px; }
+  .exl .play { width: 30px; height: 30px; font-size: 12px; }
+  .exl i { font-weight: 600; font-style: italic; }
+  .exl span { color: var(--muted); }
+  table.t { width: 100%; border-collapse: collapse; font-size: 14px; margin: 8px 0; }
+  table.t th, table.t td { text-align: left; padding: 7px 6px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  table.t th { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  table.t td b { color: var(--verde); }
+  .scroll { overflow-x: auto; }
+  .quiz-mini { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 10px; }
+  .quiz-mini .q-text { font-size: 14px; }
+  .quiz-mini .opts { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); }
+  .quiz-mini .opt { padding: 8px 10px; font-size: 14px; }
+  .clock { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 700; color: var(--verde); min-width: 62px; }
+</style>
+</head>
+<body>
+<div class="flag-strip"><i></i><i></i><i></i></div>
+<div class="top">
+  <a href="index.html">← Clases</a>
+  <span class="brand">Italiano 🇮🇹</span>
+</div>
+
+<div class="wrap" id="inicio">
+  <div class="kicker">Lo esencial del día a día</div>
+  <h1>Le <em>basi</em></h1>
+  <p class="lead">Días de la semana, meses, estaciones, fechas, la hora, colores y números ordinales: todo lo que se usa a diario, con audio ▶ y un mini ejercicio en cada tema.</p>
+  <div class="toc" id="toc"></div>
+  <div id="contenido"></div>
+
+  <div class="card tip" style="margin-top:24px">
+    <strong>💡 Para memorizarlos:</strong> di la fecha y la hora en italiano cada mañana (<em>Oggi è lunedì 23 novembre, sono le sette</em>) y nombra en italiano el color de tu ropa al vestirte. En una semana ya no tendrás que pensarlo.
+  </div>
+  <div class="btn-row">
+    <a class="btn ghost" href="index.html">← Volver a las clases</a>
+    <a class="btn" href="#inicio">↑ Arriba</a>
+  </div>
+</div>
+
+<script src="progreso.js"></script>
+<script>
+  Progreso.contarTiempo();
+  const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+  const play = t => `<button class="play" data-say="${esc(t)}" title="Escuchar">▶</button>`;
+  const ex = (it, es) => `<div class="exl">${play(it)}<div><i>${it}</i><br><span>${es}</span></div></div>`;
+  const quiz = (q, opts, a) => `<div class="quiz-mini" data-a="${a}"><div class="q-text">${q}</div><div class="opts">${opts.map(o => `<button class="opt">${o}</button>`).join('')}</div></div>`;
+  // items: [italiano, español, pronunciación, color css opcional]
+  const items = (lista) => `<div class="items">${lista.map(([it, es, pr, col]) => `
+    <div class="it-card">${col ? `<span class="sw" style="background:${col}"></span>` : play(it)}
+      <div><b>${it}</b><span>${es}</span>${pr ? `<small>/${pr}/</small>` : ''}</div>${col ? play(it) : ''}</div>`).join('')}</div>`;
+  const todos = lista => `<button class="small-btn" data-say="${esc(lista.map(x => x[0]).join(', '))}">▶ Escuchar todos</button>`;
+
+  const GIORNI = [["lunedì", "lunes", "lu-ne-DÍ"], ["martedì", "martes", "mar-te-DÍ"], ["mercoledì", "miércoles", "mer-co-le-DÍ"], ["giovedì", "jueves", "yo-ve-DÍ"], ["venerdì", "viernes", "ve-ner-DÍ"], ["sabato", "sábado", "SÁ-ba-to"], ["domenica", "domingo", "do-MÉ-ni-ca"]];
+  const TEMPO = [["oggi", "hoy", "ÓD-yi"], ["domani", "mañana", "do-MÁ-ni"], ["dopodomani", "pasado mañana", "do-po-do-MÁ-ni"], ["ieri", "ayer", "IÉ-ri"], ["l'altro ieri", "anteayer", "LÁL-tro IÉ-ri"], ["la settimana", "la semana", "set-ti-MÁ-na"], ["il fine settimana", "el fin de semana", "FÍ-ne set-ti-MÁ-na"], ["il giorno feriale / festivo", "día laborable / festivo", "fe-RIÁ-le / fes-TÍ-vo"]];
+  const MESI = [["gennaio", "enero", "yen-NÁ-io"], ["febbraio", "febrero", "feb-BRÁ-io"], ["marzo", "marzo", "MÁR-tso"], ["aprile", "abril", "a-PRÍ-le"], ["maggio", "mayo", "MÁD-yo"], ["giugno", "junio", "YÚ-ño"], ["luglio", "julio", "LÚ-lio"], ["agosto", "agosto", "a-GÓS-to"], ["settembre", "septiembre", "set-TÉM-bre"], ["ottobre", "octubre", "ot-TÓ-bre"], ["novembre", "noviembre", "no-VÉM-bre"], ["dicembre", "diciembre", "di-CHÉM-bre"]];
+  const STAGIONI = [["la primavera", "la primavera 🌸", "pri-ma-VÉ-ra"], ["l'estate", "el verano ☀️", "es-TÁ-te"], ["l'autunno", "el otoño 🍂", "au-TÚN-no"], ["l'inverno", "el invierno ❄️", "in-VÉR-no"]];
+  const MOMENTI = [["la mattina", "la mañana", "mat-TÍ-na"], ["il mezzogiorno", "el mediodía", "med-dzo-YÓR-no"], ["il pomeriggio", "la tarde", "po-me-RÍD-yo"], ["la sera", "la tarde-noche", "SÉ-ra"], ["la notte", "la noche", "NÓT-te"], ["la mezzanotte", "la medianoche", "med-dza-NÓT-te"], ["stamattina", "esta mañana", "sta-mat-TÍ-na"], ["stasera", "esta noche", "sta-SÉ-ra"], ["stanotte", "esta noche / anoche", "sta-NÓT-te"]];
+  const COLORI = [["rosso", "rojo", "RÓS-so", "#d93025"], ["arancione", "anaranjado", "a-ran-CHÓ-ne", "#f28c28"], ["giallo", "amarillo", "YÁL-lo", "#f5c400"], ["verde", "verde", "VÉR-de", "#2e9e4f"], ["azzurro", "azul claro / celeste", "ad-DZÚR-ro", "#4aa3e8"], ["blu", "azul (oscuro)", "BLU", "#1f3fa8"], ["viola", "morado / violeta", "VIÓ-la", "#7b3fb3"], ["rosa", "rosado", "RÓ-sa", "#f19cbb"], ["marrone", "marrón / café", "mar-RÓ-ne", "#7a4a26"], ["nero", "negro", "NÉ-ro", "#111"], ["bianco", "blanco", "BIÁN-co", "#fff"], ["grigio", "gris", "GRÍ-yo", "#8a8a8a"], ["beige", "beige", "BESH", "#e4d3b0"], ["oro / dorato", "dorado", "Ó-ro / do-RÁ-to", "#c9a227"], ["argento / argentato", "plateado", "ar-YÉN-to", "#c0c0c0"]];
+  const ORDINALI = [["primo", "1º", "PRÍ-mo"], ["secondo", "2º", "se-CÓN-do"], ["terzo", "3º", "TÉR-tso"], ["quarto", "4º", "CUÁR-to"], ["quinto", "5º", "CUÍN-to"], ["sesto", "6º", "SÉS-to"], ["settimo", "7º", "SÉT-ti-mo"], ["ottavo", "8º", "ot-TÁ-vo"], ["nono", "9º", "NÓ-no"], ["decimo", "10º", "DÉ-chi-mo"], ["undicesimo", "11º", "un-di-CHÉ-si-mo"], ["ventesimo", "20º", "ven-TÉ-si-mo"]];
+
+  const SEC = [
+    { id: 'giorni', t: '📅 Días de la semana', html: () => `
+      <div class="card">
+        ${items(GIORNI)}
+        <ul>
+          <li>Se escriben con <strong>minúscula</strong>, como en español.</li>
+          <li>Todos son masculinos menos <strong>la domenica</strong>.</li>
+          <li><strong>lunedì</strong> = este lunes · <strong>il lunedì</strong> = todos los lunes (costumbre).</li>
+          <li>Los que terminan en <em>-dì</em> llevan tilde: la fuerza va al final (lu-ne-DÍ).</li>
+        </ul>
+        <h3 style="margin-top:14px">Palabras para hablar de los días</h3>
+        ${items(TEMPO)}
+        <div class="exs">
+          ${ex('Che giorno è oggi? Oggi è venerdì.', '¿Qué día es hoy? Hoy es viernes.')}
+          ${ex('Il sabato vado in palestra.', 'Los sábados voy al gym.')}
+          ${ex('Ci vediamo dopodomani!', '¡Nos vemos pasado mañana!')}
+        </div>
+        ${quiz('“Los domingos como con mi familia” =', ['Domenica mangio con la mia famiglia', 'La domenica mangio con la mia famiglia', 'Il domenica mangio…'], 1)}
+        ${quiz('¿Qué día va después de mercoledì?', ['martedì', 'giovedì', 'venerdì'], 1)}
+      </div>`, all: GIORNI },
+
+    { id: 'mesi', t: '🗓️ Meses y estaciones', html: () => `
+      <div class="card">
+        ${items(MESI)}
+        <p>También con <strong>minúscula</strong>. “En marzo” se dice <em>a marzo</em> o <em>in marzo</em> (las dos están bien).</p>
+        <h3 style="margin-top:14px">Le stagioni</h3>
+        ${items(STAGIONI)}
+        <p>“En verano” = <em>in estate</em> o <em>d'estate</em>; “en invierno” = <em>in inverno</em> o <em>d'inverno</em>.</p>
+        <div class="exs">
+          ${ex('Il mio compleanno è a maggio.', 'Mi cumpleaños es en mayo.')}
+          ${ex("D'estate andiamo sempre al mare.", 'En verano siempre vamos a la playa.')}
+        </div>
+        ${quiz('“Julio” =', ['giugno', 'luglio', 'giulio'], 1)}
+        ${quiz('“En otoño” =', ["in autunno", "nel autunno", "a autunno"], 0)}
+      </div>`, all: MESI },
+
+    { id: 'date', t: '📆 Fechas', html: () => `
+      <div class="card">
+        <p><strong>Fórmula:</strong> <em>il</em> + número + mes (+ año). Sin “de”: <em>il 15 agosto 2026</em>.</p>
+        <div class="scroll"><table class="t">
+          <tr><th>Español</th><th>Italiano</th></tr>
+          <tr><td>el 1 de mayo</td><td><b>il primo maggio</b> (el día 1 es <em>primo</em>)</td></tr>
+          <tr><td>el 8 de marzo</td><td><b>l'otto marzo</b> (ante vocal: l')</td></tr>
+          <tr><td>el 11 de junio</td><td><b>l'undici giugno</b></td></tr>
+          <tr><td>lunes 23 de noviembre</td><td><b>lunedì 23 novembre</b></td></tr>
+          <tr><td>en 2026</td><td><b>nel 2026</b> (duemilaventisei)</td></tr>
+          <tr><td>en los años 90</td><td><b>negli anni Novanta</b></td></tr>
+          <tr><td>14/03/2002</td><td>se escribe día/mes/año, igual que en Panamá</td></tr>
+        </table></div>
+        <p><strong>Preguntar la fecha:</strong> <em>Che giorno è oggi?</em> o, muy italiano, <em>Quanti ne abbiamo oggi?</em> → <em>Ne abbiamo 23</em> (estamos a 23).</p>
+        <p><strong>Siglos:</strong> los italianos nombran los siglos por centenas: <em>il Duecento</em> (1200s), <em>il Quattrocento</em> (1400s), <em>il Novecento</em> (1900s, siglo XX).</p>
+        <h3 style="margin-top:14px">🎉 Fechas importantes en Italia</h3>
+        <div class="scroll"><table class="t">
+          <tr><td><b>Capodanno</b></td><td>1 de enero</td></tr>
+          <tr><td><b>la Befana</b></td><td>6 de enero (Reyes: una bruja trae dulces)</td></tr>
+          <tr><td><b>Pasqua / Pasquetta</b></td><td>Pascua / lunes de Pascua</td></tr>
+          <tr><td><b>Festa della Liberazione</b></td><td>25 de abril</td></tr>
+          <tr><td><b>Festa della Repubblica</b></td><td>2 de junio</td></tr>
+          <tr><td><b>Ferragosto</b></td><td>15 de agosto (todo el país de vacaciones)</td></tr>
+          <tr><td><b>Natale / Santo Stefano</b></td><td>25 / 26 de diciembre</td></tr>
+        </table></div>
+        <div class="exs">
+          ${ex('Sono nato il quattordici marzo duemiladue.', 'Nací el 14 de marzo de 2002.')}
+          ${ex('Quanti ne abbiamo oggi? Ne abbiamo venti.', '¿A cuántos estamos hoy? Estamos a 20.')}
+        </div>
+        ${quiz('“El 1 de enero” =', ["l'uno gennaio", 'il primo gennaio', 'il uno di gennaio'], 1)}
+        ${quiz('“Nací en 2002” =', ['Sono nato in 2002', 'Sono nato nel 2002', 'Sono nato a 2002'], 1)}
+      </div>` },
+
+    { id: 'ore', t: '🕐 La hora', html: () => `
+      <div class="card">
+        <p><strong>Che ore sono?</strong> / <strong>Che ora è?</strong> = ¿Qué hora es? Se responde con <em>sono le</em> + número (plural), excepto la una, el mediodía y la medianoche (<em>è</em>).</p>
+        <div class="exs">
+          ${[['1:00', "È l'una.", 'Es la una.'], ['3:00', 'Sono le tre.', 'Son las tres.'], ['3:10', 'Sono le tre e dieci.', 'Son las tres y diez.'], ['3:15', 'Sono le tre e un quarto.', 'Son las tres y cuarto.'], ['3:30', 'Sono le tre e mezza.', 'Son las tres y media.'], ['3:45', 'Sono le quattro meno un quarto.', 'Son las cuatro menos cuarto.'], ['3:50', 'Sono le quattro meno dieci.', 'Son las cuatro menos diez.'], ['12:00', 'È mezzogiorno.', 'Es mediodía.'], ['00:00', 'È mezzanotte.', 'Es medianoche.']]
+            .map(([h, it, es]) => `<div class="exl"><span class="clock">${h}</span>${play(it)}<div><i>${it}</i><br><span>${es}</span></div></div>`).join('')}
+        </div>
+        <p><strong>¿A qué hora?</strong> = <em>A che ora?</em> → <em>alle</em> + hora: <em>alle otto</em>, <em>all'una</em>, <em>a mezzogiorno</em>.</p>
+        <p><strong>De la mañana / tarde / noche:</strong> <em>le otto di mattina, le tre del pomeriggio, le nove di sera</em>. En horarios oficiales (trenes, tiendas, TV) se usa el formato de 24 horas: <em>il treno parte alle venti e quindici</em> (20:15).</p>
+        <h3 style="margin-top:14px">Momentos del día</h3>
+        ${items(MOMENTI)}
+        ${quiz('“Son las dos y media” =', ['Sono le due e mezza', 'È le due e mezza', 'Sono due e media'], 0)}
+        ${quiz('“A la una” =', ["alle una", "all'una", "a l'una"], 1)}
+      </div>`, all: MOMENTI },
+
+    { id: 'colori', t: '🎨 Colores', html: () => `
+      <div class="card">
+        ${items(COLORI.map(([it, es, pr, c]) => [it, es, pr, c]))}
+        <p><strong>Concordancia:</strong> los colores son adjetivos y van <u>después</u> del sustantivo. Hay tres grupos:</p>
+        <div class="scroll"><table class="t">
+          <tr><th>Grupo</th><th>Ejemplo</th><th>Formas</th></tr>
+          <tr><td>-o (4 formas)</td><td>rosso, nero, bianco, giallo, azzurro, grigio</td><td>una macchina ross<b>a</b>, due libri ross<b>i</b>, le scarpe ross<b>e</b></td></tr>
+          <tr><td>-e (2 formas)</td><td>verde, arancione, marrone</td><td>un fiore verd<b>e</b>, due case verd<b>i</b></td></tr>
+          <tr><td>no cambian</td><td>blu, rosa, viola, beige</td><td>una maglietta <b>blu</b>, due magliette <b>blu</b></td></tr>
+        </table></div>
+        <p><strong>Claro / oscuro:</strong> <em>verde chiaro, blu scuro</em>. Así combinados no cambian nunca: <em>due camicie verde chiaro</em>.</p>
+        <p><strong>Azzurro o blu:</strong> <em>azzurro</em> es el azul del cielo (y el color de la selección: <em>gli Azzurri</em>); <em>blu</em> es el azul oscuro.</p>
+        <p><strong>Preguntar:</strong> <em>Di che colore è?</em> = ¿De qué color es?</p>
+        <div class="exs">
+          ${ex('Di che colore è la tua macchina? È grigia.', '¿De qué color es tu carro? Es gris.')}
+          ${ex('Ho comprato due magliette blu e una camicia bianca.', 'Compré dos camisetas azules y una camisa blanca.')}
+        </div>
+        ${quiz('“Unas flores amarillas” =', ['dei fiori giallo', 'dei fiori gialli', 'dei fiori gialle'], 1)}
+        ${quiz('“Dos bolsos rosados” =', ['due borse rose', 'due borse rosa', 'due borse rosi'], 1)}
+      </div>`, all: COLORI },
+
+    { id: 'ordinali', t: '🥇 Números ordinales', html: () => `
+      <div class="card">
+        ${items(ORDINALI)}
+        <p>Del 1º al 10º hay que aprenderlos. Desde el 11º se forman quitando la última vocal y añadiendo <strong>-esimo</strong>: <em>undici → undicesimo, venti → ventesimo, cento → centesimo</em>.</p>
+        <p>Concuerdan como adjetivos: <em>la prima volta</em> (la primera vez), <em>il terzo piano</em> (el tercer piso), <em>le prime case</em>.</p>
+        <p>Se usan para pisos, siglos y reyes/papas: <em>il secondo piano, il ventunesimo secolo, Papa Giovanni Paolo Secondo</em>. Pero <u>no</u> en las fechas, salvo el día 1 (<em>il primo maggio</em>).</p>
+        <div class="exs">
+          ${ex('Abito al terzo piano.', 'Vivo en el tercer piso.')}
+          ${ex('È la prima volta che vengo in Italia.', 'Es la primera vez que vengo a Italia.')}
+        </div>
+        ${quiz('“El quinto piso” =', ['il cinque piano', 'il quinto piano', 'il cinquesimo piano'], 1)}
+      </div>`, all: ORDINALI }
+  ];
+
+  document.getElementById('contenido').innerHTML = SEC.map(s => `
+    <section class="b-sec" id="${s.id}"><h2>${s.t}${s.all ? todos(s.all) : ''}</h2>${s.html()}</section>`).join('');
+  document.getElementById('toc').innerHTML = SEC.map(s => `<a href="#${s.id}">${s.t}</a>`).join('');
+
+  // ---- Audio y mini ejercicios ----
+  let itVoice = null;
+  function pickVoice() { const vs = speechSynthesis.getVoices(); itVoice = vs.find(v => v.lang === 'it-IT') || vs.find(v => v.lang && v.lang.startsWith('it')) || null; }
+  if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-say]');
+    if (b && 'speechSynthesis' in window) {
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(b.dataset.say.replace(/\s*\/\s*/g, ', ')); u.lang = 'it-IT'; u.rate = 0.85; if (itVoice) u.voice = itVoice;
+      speechSynthesis.speak(u);
+      return;
+    }
+    const o = e.target.closest('.quiz-mini .opt');
+    if (!o || o.disabled) return;
+    const box = o.closest('.quiz-mini'), btns = [...box.querySelectorAll('.opt')], ok = +box.dataset.a;
+    btns.forEach(x => x.disabled = true);
+    btns[ok].classList.add('ok');
+    if (btns.indexOf(o) !== ok) o.classList.add('bad');
+    Progreso.marcarActividad(0);
+  });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js').catch(() => {});</script>
+</body>
+</html>
