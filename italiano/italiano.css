@@ -233,6 +233,10 @@ h3 { font-size: 1.1rem; margin-bottom: 8px; }
 .day i { width: 100%; max-width: 26px; background: var(--verde); border-radius: 5px 5px 2px 2px; }
 .day small { font-size: 10px; color: var(--muted); font-weight: 700; }
 .day.today small { color: var(--verde); }
+.day em { font-style: normal; font-size: 18px; line-height: 1; margin-bottom: auto; margin-top: auto; }
+.streak-msg { grid-column: 1 / -1; background: #e8f3ff; color: #1f4f8a; border-radius: var(--radius); padding: 10px 12px; font-size: 14px; }
+.streak-best { grid-column: 1 / -1; font-size: 12px; color: var(--muted); text-align: center; }
+@media (prefers-color-scheme: dark) { .streak-msg { background: #1d2c40; color: #a9cdf5; } }
 .review-btn { display: flex; align-items: center; gap: 12px; margin-top: 10px; text-decoration: none;
   background: var(--verde); color: #fff; border-radius: var(--radius); padding: 14px 16px; font-weight: 700; }
 .review-btn span { flex: 1; }

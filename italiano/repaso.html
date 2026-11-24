@@ -52,14 +52,8 @@
   Progreso.contarTiempo();
 
   function pintarStats() {
-    const semana = Progreso.ultimos7();
-    const max = Math.max(10, ...semana.map(d => d.min));
-    document.getElementById('stats').innerHTML = `
-      <div class="stat"><b>🔥 ${Progreso.racha()}</b><span>días seguidos</span></div>
-      <div class="stat"><b>⏱️ ${Progreso.minutosHoy()}</b><span>min hoy</span></div>
-      <div class="stat"><b>🧠 ${Progreso.dominadas()}/${Progreso.totalRepaso()}</b><span>dominadas</span></div>
-      <div class="week">${semana.map(d => `<div class="day ${d.hoy ? 'today' : ''}" title="${d.min} min">
-        <i style="height:${Math.max(4, d.min / max * 100)}%; opacity:${d.min ? 1 : .25}"></i><small>${d.dia}</small></div>`).join('')}</div>`;
+    document.getElementById('stats').innerHTML = Progreso.htmlStats() +
+      `<div class="streak-best">🧠 ${Progreso.dominadas()} de ${Progreso.totalRepaso()} tarjetas dominadas</div>`;
   }
 
   // ---- Audio ----
