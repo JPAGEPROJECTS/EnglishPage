@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#1d2730">
+<link rel="icon" type="image/png" href="../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Idiomas">
+<title>Writing lab — English</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="english.css">
+<style>
+  .tabs2 { display: flex; gap: 6px; overflow-x: auto; margin: 16px 0 12px; scrollbar-width: none; }
+  .tabs2 button { flex-shrink: 0; font: inherit; font-size: 13px; font-weight: 600; padding: 8px 12px; border-radius: 99px; cursor: pointer; border: 1px solid var(--border); background: var(--card); color: var(--text); }
+  .tabs2 button.on { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .steps { counter-reset: s; list-style: none; padding: 0; }
+  .steps li { counter-increment: s; display: flex; gap: 10px; padding: 8px 0; border-top: 1px solid var(--border); font-size: 14px; }
+  .steps li:first-child { border-top: none; }
+  .steps li::before { content: counter(s); width: 24px; height: 24px; border-radius: 50%; background: var(--verde); color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .model { background: var(--bg); border-radius: 10px; padding: 14px; font-size: 15px; line-height: 1.7; white-space: pre-line; }
+  .model mark { background: var(--oro-soft); color: inherit; padding: 0 2px; border-radius: 3px; }
+  .ph { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .ph td { padding: 7px 6px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .ph td:first-child { color: var(--muted); width: 32%; font-size: 13px; font-weight: 600; }
+  .check li { list-style: none; margin: 4px 0; font-size: 14px; }
+  .check input { margin-right: 8px; transform: scale(1.15); }
+  textarea { font: inherit; font-size: 15px; width: 100%; min-height: 260px; padding: 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--card); color: var(--text); line-height: 1.6; resize: vertical; }
+  select { font: inherit; width: 100%; padding: 10px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--text); }
+  .meter { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); font-weight: 600; margin: 8px 0; gap: 8px; flex-wrap: wrap; }
+  .meter b { color: var(--text); }
+  .prompt { background: var(--verde-soft); border-radius: 10px; padding: 12px; font-size: 14px; margin: 10px 0; }
+</style>
+</head>
+<body>
+<div class="flag-strip"><i></i><i></i><i></i></div>
+<div class="top">
+  <a href="index.html">← Curso</a>
+  <span class="brand">English B1→C1 🇬🇧</span>
+</div>
+
+<div class="wrap">
+  <div class="kicker">Escritura B2–C1</div>
+  <h1>Writing <em>lab</em></h1>
+  <p class="lead">Cómo escribir emails, ensayos, informes y reseñas como piden los exámenes (FCE, CAE, IELTS) y el trabajo real: estructura, modelo comentado, frases útiles y un espacio para practicar.</p>
+
+  <div class="card tip" style="margin-top:14px">
+    <strong>🎯 Qué evalúan en B2–C1:</strong> (1) cumplir la tarea completa, (2) organización y conectores, (3) variedad y precisión de vocabulario, (4) variedad y corrección gramatical, (5) registro adecuado. Un texto claro con buena estructura puntúa más que uno lleno de palabras difíciles.
+  </div>
+
+  <div class="tabs2" id="tipos"></div>
+  <div id="tipo"></div>
+
+  <h2 style="margin-top:28px">✍️ Practica ahora</h2>
+  <div class="card">
+    <label style="font-size:13px;font-weight:700;color:var(--muted)">Elige una tarea</label>
+    <select id="tarea"></select>
+    <div class="prompt" id="prompt"></div>
+    <textarea id="texto" placeholder="Escribe aquí tu texto en inglés…"></textarea>
+    <div class="meter"><span>Palabras: <b id="wc">0</b> / <span id="wtarget"></span></span><span>⏱️ <b id="timer">00:00</b> <button class="small-btn" id="tbtn">▶ Cronómetro</button></span></div>
+    <p style="font-size:13px;color:var(--muted)">Tu borrador se guarda automáticamente en este dispositivo.</p>
+    <h3 style="margin-top:12px">✅ Revisa antes de terminar</h3>
+    <ul class="check" id="check"></ul>
+    <div class="card tip" style="margin-top:10px">
+      <strong>💡 Para recibir corrección:</strong> copia tu texto y pídele a un asistente de IA: <em>“Correct my text, explain my mistakes in Spanish and give me a B2/C1 band score with suggestions to improve.”</em> Después reescribe la versión corregida a mano: así se fija.
+    </div>
+  </div>
+
+  <h2 style="margin-top:28px">🔼 Sube el nivel de tu vocabulario</h2>
+  <div class="card"><table class="ph" id="upgrade"></table></div>
+
+  <div class="btn-row"><a class="btn ghost" href="index.html">← Volver al curso</a><a class="btn" href="speaking.html">🎤 Speaking lab →</a></div>
+</div>
+
+<script src="progress.js"></script>
+<script>
+  Progreso.contarTiempo();
+  const TIPOS = [
+    { id: 'formal', t: '📧 Email formal', pasos: ['Saludo: <em>Dear Mr Smith</em> (sabes el nombre) o <em>Dear Sir or Madam</em> (no lo sabes).', 'Motivo en la primera línea: <em>I am writing to enquire about / complain about / apply for…</em>', 'Desarrollo: un párrafo por punto, con detalles concretos.', 'Petición o acción esperada: <em>I would be grateful if you could…</em>', 'Cierre: <em>I look forward to hearing from you.</em> + <em>Yours sincerely</em> (con nombre) / <em>Yours faithfully</em> (sin nombre).'],
+      model: `Dear Sir or Madam,
+
+<mark>I am writing to enquire about</mark> the evening English course advertised on your website.
+
+I am currently at B2 level and <mark>would like to</mark> prepare for the Cambridge C1 Advanced exam. <mark>Could you please let me know</mark> whether the course includes exam practice and how many hours of tuition are offered per week?
+
+<mark>In addition</mark>, I work full-time, so I would need classes after 6 p.m. <mark>I would be grateful if you could</mark> also confirm the total cost and any payment options.
+
+<mark>I look forward to hearing from you.</mark>
+
+<mark>Yours faithfully,</mark>
+Jonathan Page`,
+      frases: [['Abrir', 'I am writing with regard to… / in response to your advertisement…'], ['Pedir', 'Could you please let me know… / I would appreciate it if…'], ['Quejarse', 'I was disappointed to find that… / Unfortunately, …'], ['Adjuntar', 'Please find attached… / I have attached…'], ['Cerrar', 'Should you require any further information, please do not hesitate to contact me.']] },
+    { id: 'informal', t: '💬 Email informal', pasos: ['Saludo: <em>Hi Anna, / Hey Tom,</em>', 'Conecta: <em>Thanks for your email! / It was great to hear from you.</em>', 'Responde a todo lo que te preguntaron, un párrafo por tema.', 'Usa contracciones, phrasal verbs y expresiones naturales.', 'Cierre: <em>Can\'t wait to see you! / Write back soon. / Take care,</em> + <em>Best / Cheers / Love</em>.'],
+      model: `Hi Laura,
+
+<mark>Thanks so much for your email</mark> — it was great to hear your news! <mark>Congrats on</mark> the new job, you totally deserve it.
+
+<mark>As for</mark> me, things have been pretty busy. I've just started preparing for the C1 exam, so I'm <mark>hitting the books</mark> most evenings. <mark>To be honest</mark>, it's harder than I expected, but I'm getting the hang of it.
+
+<mark>Anyway</mark>, you asked about visiting Panama in March. That would be amazing! You could stay with us, and we could <mark>head to</mark> Boquete for a weekend.
+
+<mark>Let me know</mark> what you think. <mark>Can't wait to see you!</mark>
+
+<mark>Take care,</mark>
+Jonathan`,
+      frases: [['Abrir', 'Sorry it\'s taken me so long to get back to you! / Great to hear from you!'], ['Cambiar de tema', 'Anyway, … / By the way, … / As for…'], ['Proponer', 'Why don\'t we…? / How about…? / Fancy…?'], ['Cerrar', 'Give my love to… / Keep in touch! / Speak soon!']] },
+    { id: 'essay', t: '📝 Opinion essay', pasos: ['Introducción: presenta el tema (paráfrasis de la pregunta) y tu postura (thesis).', 'Párrafo 1: primer argumento (PEEL: Point, Explanation, Example, Link).', 'Párrafo 2: segundo argumento con ejemplo.', 'Párrafo 3 (C1): reconoce la otra postura y rebátela (<em>Admittedly… However…</em>).', 'Conclusión: resume y reafirma tu postura sin ideas nuevas.'],
+      model: `<mark>It is often argued that</mark> working from home is more productive than working in an office. <mark>While</mark> this arrangement has clear advantages, <mark>I would argue that</mark> a hybrid model is the most effective option.
+
+<mark>Firstly</mark>, remote work eliminates commuting, <mark>which</mark> saves employees time and money. <mark>For instance</mark>, in large cities a daily journey can take up to two hours. <mark>As a result</mark>, staff often feel less stressed and more motivated.
+
+<mark>On the other hand</mark>, working exclusively from home can lead to isolation and weaker teamwork. <mark>Many</mark> companies have found that creativity <mark>tends to</mark> suffer when colleagues never meet face to face.
+
+<mark>Admittedly</mark>, some roles can be performed entirely remotely. <mark>Nevertheless</mark>, for most teams, combining both approaches offers the best of both worlds.
+
+<mark>In conclusion</mark>, <mark>although</mark> working from home brings undeniable benefits, a balance between remote and office work is likely to be the most productive solution.`,
+      frases: [['Introducir', 'It is often argued that… / There is an ongoing debate about…'], ['Opinar', 'I would argue that… / In my view, … / I firmly believe that…'], ['Añadir', 'Furthermore, … / Moreover, … / In addition, …'], ['Contrastar', 'However, … / Nevertheless, … / On the other hand, … / Admittedly, …'], ['Ejemplificar', 'For instance, … / A case in point is… / This is illustrated by…'], ['Concluir', 'In conclusion, … / All things considered, … / On balance, …']] },
+    { id: 'report', t: '📊 Report', pasos: ['Título y destinatario claros.', 'Introduction: propósito del informe (<em>The aim of this report is to…</em>).', 'Secciones con subtítulos (Findings, Problems, Options…).', 'Lenguaje impersonal y pasiva: <em>It was found that… / Most staff said…</em>', 'Recommendations: propuestas concretas (<em>It is recommended that… / I would suggest…</em>).'],
+      model: `<mark>Report on</mark> staff satisfaction with the new office
+
+<mark>Introduction</mark>
+<mark>The aim of this report is to</mark> assess how satisfied staff are with the new office and to <mark>make recommendations</mark> for improvement.
+
+<mark>Findings</mark>
+<mark>The majority of</mark> employees said that the open-plan space was bright and modern. <mark>However</mark>, <mark>over half</mark> reported that noise levels made it difficult to concentrate. <mark>It was also found that</mark> there were not enough meeting rooms.
+
+<mark>Recommendations</mark>
+<mark>It is recommended that</mark> quiet zones be created and that two additional meeting rooms be built. <mark>In addition</mark>, staff could be offered noise-cancelling headphones.
+
+<mark>Conclusion</mark>
+<mark>Overall</mark>, the new office is popular, but these changes would significantly improve productivity.`,
+      frases: [['Propósito', 'The aim / purpose of this report is to…'], ['Datos', 'The majority of… / Just over half… / A significant number of…'], ['Impersonal', 'It was found that… / It appears that… / According to…'], ['Recomendar', 'It is recommended that… / It would be advisable to… / I would suggest…']] },
+    { id: 'review', t: '⭐ Review / Article', pasos: ['Título atractivo.', 'Gancho inicial: una pregunta o dato llamativo para el lector.', 'Describe lo principal (sin contar todo).', 'Valora lo bueno y lo malo con adjetivos precisos.', 'Recomendación final: ¿a quién se lo recomiendas?'],
+      model: `<mark>A hidden gem</mark> in Casco Viejo
+
+<mark>Are you looking for</mark> somewhere special for dinner? <mark>Look no further.</mark>
+
+Tucked away in a quiet street, this small restaurant serves <mark>mouth-watering</mark> Panamanian dishes with a modern twist. The ceviche was <mark>outstanding</mark>, and the service was <mark>attentive without being intrusive</mark>.
+
+<mark>That said</mark>, it's not cheap, and you'll need to book <mark>well in advance</mark> at weekends.
+
+<mark>All in all</mark>, <mark>I'd highly recommend it</mark> to anyone who wants to <mark>treat themselves</mark> to a memorable night out.`,
+      frases: [['Enganchar', 'Have you ever wondered…? / Imagine… / Picture this: …'], ['Valorar', 'outstanding, breathtaking, disappointing, overrated, a must-see'], ['Matizar', 'That said, … / The only downside is… / Mind you, …'], ['Recomendar', 'I\'d highly recommend it to… / It\'s well worth a visit. / Give it a miss.']] }
+  ];
+  const TAREAS = [
+    { t: 'Formal email (B2) · 140–190 palabras', w: 190, p: 'You saw an advert for a part-time English teaching assistant job at a language school. Write an email applying for the job, describing your experience and explaining why you are suitable.' },
+    { t: 'Informal email (B2) · 140–190 palabras', w: 190, p: 'A British friend is coming to Panama for a week and asks what they should see and do. Write back with suggestions and offer to meet up.' },
+    { t: 'Opinion essay (B2) · 140–190 palabras', w: 190, p: '“Social media does more harm than good.” Do you agree? Give reasons and examples.' },
+    { t: 'Essay (C1) · 220–260 palabras', w: 260, p: 'Your class has discussed how governments can encourage people to live healthier lives. Write an essay discussing two of these methods (taxes on unhealthy food, free sports facilities, education campaigns), explaining which is more effective.' },
+    { t: 'Report (C1) · 220–260 palabras', w: 260, p: 'Your manager wants to improve communication between departments. Write a report describing the current problems and recommending improvements.' },
+    { t: 'Review (B2/C1) · 200–250 palabras', w: 250, p: 'Write a review of a series or film you have watched recently for an English-language website, saying what you liked and disliked and whether you would recommend it.' },
+    { t: 'IELTS Task 2 · 250+ palabras (40 min)', w: 250, p: 'Some people think that learning a foreign language should be compulsory at all levels of education. To what extent do you agree or disagree?' }
+  ];
+  const CHECK = ['¿Respondí a TODOS los puntos de la tarea?', '¿Tiene introducción, párrafos claros y conclusión?', '¿Usé conectores variados (no solo and / but / because)?', '¿El registro es el adecuado (formal / informal)?', '¿Usé al menos 3 estructuras de nivel (condicional, pasiva, relativo, inversión…)?', '¿Revisé la -s de 3ª persona, los tiempos verbales y los artículos?', '¿Evité repetir palabras (usé sinónimos)?', '¿Estoy dentro del número de palabras?'];
+  const UPG = [['good', 'beneficial, valuable, outstanding, effective'], ['bad', 'detrimental, harmful, poor, disappointing'], ['big', 'significant, substantial, considerable, vast'], ['small', 'minor, slight, marginal, negligible'], ['important', 'crucial, essential, vital, key'], ['very', 'extremely, highly, remarkably, particularly'], ['a lot of', 'a great deal of, numerous, a wide range of'], ['think', 'believe, argue, maintain, consider'], ['show', 'demonstrate, illustrate, reveal, indicate'], ['get', 'obtain, acquire, gain, receive'], ['help', 'assist, support, facilitate, contribute to'], ['problem', 'issue, challenge, drawback, concern'], ['also', 'furthermore, moreover, in addition'], ['so', 'therefore, consequently, as a result'], ['but', 'however, nevertheless, whereas']];
+
+  // ---- Tipos de texto ----
+  const tiposEl = document.getElementById('tipos');
+  tiposEl.innerHTML = TIPOS.map((t, i) => `<button data-i="${i}" class="${i ? '' : 'on'}">${t.t}</button>`).join('');
+  function pintarTipo(i) {
+    const T = TIPOS[i];
+    tiposEl.querySelectorAll('button').forEach((b, j) => b.classList.toggle('on', j === i));
+    document.getElementById('tipo').innerHTML = `
+      <div class="card"><h3>Estructura</h3><ol class="steps">${T.pasos.map(p => `<li>${p}</li>`).join('')}</ol></div>
+      <div class="card"><h3>Modelo comentado <small style="font-weight:400;color:var(--muted)">(lo resaltado es lo que debes copiar)</small></h3><div class="model">${T.model}</div></div>
+      <div class="card"><h3>Frases útiles</h3><table class="ph">${T.frases.map(([a, b]) => `<tr><td>${a}</td><td>${b}</td></tr>`).join('')}</table></div>`;
+  }
+  tiposEl.onclick = e => { const b = e.target.closest('button'); if (b) pintarTipo(+b.dataset.i); };
+  pintarTipo(0);
+
+  // ---- Práctica ----
+  const sel = document.getElementById('tarea'), ta = document.getElementById('texto');
+  sel.innerHTML = TAREAS.map((t, i) => `<option value="${i}">${t.t}</option>`).join('');
+  const K = i => 'eng-writing-' + i;
+  function cargar() {
+    const T = TAREAS[sel.value];
+    document.getElementById('prompt').innerHTML = `<strong>Task:</strong> ${T.p}`;
+    document.getElementById('wtarget').textContent = T.w;
+    try { ta.value = localStorage.getItem(K(sel.value)) || ''; } catch (e) { ta.value = ''; }
+    contar();
+  }
+  function contar() {
+    const n = (ta.value.trim().match(/\S+/g) || []).length;
+    document.getElementById('wc').textContent = n;
+    document.getElementById('wc').style.color = n > TAREAS[sel.value].w ? 'var(--rosso)' : '';
+  }
+  sel.onchange = cargar;
+  let escrito = false;
+  ta.oninput = () => { contar(); try { localStorage.setItem(K(sel.value), ta.value); } catch (e) {} if (!escrito) { escrito = true; Progreso.marcarActividad(0); } };
+  cargar();
+  document.getElementById('check').innerHTML = CHECK.map(c => `<li><label><input type="checkbox">${c}</label></li>`).join('');
+  document.getElementById('upgrade').innerHTML = '<tr><td><b>En vez de…</b></td><td><b>Prueba…</b></td></tr>' + UPG.map(([a, b]) => `<tr><td>${a}</td><td>${b}</td></tr>`).join('');
+
+  let t0 = null, iv = null;
+  document.getElementById('tbtn').onclick = e => {
+    if (iv) { clearInterval(iv); iv = null; e.target.textContent = '▶ Cronómetro'; return; }
+    t0 = Date.now(); e.target.textContent = '⏹ Parar';
+    iv = setInterval(() => { const s = Math.floor((Date.now() - t0) / 1000); document.getElementById('timer').textContent = `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`; }, 1000);
+  };
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js').catch(() => {});</script>
+</body>
+</html>

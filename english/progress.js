@@ -31,7 +31,7 @@ const Progreso = (() => {
     const fechas = Object.keys(dias).sort();
     const hoyK = hoy();
     const e = { racha: 0, mejor: 0, congeladores: MAX_CONG, max: MAX_CONG, congelados: [], hoyActivo: hoyK in dias,
-                paraRecargar: DIAS_RECARGA, perdida: false };
+                paraRecargar: 0, perdida: false };
     if (!fechas.length) return e;
     let racha = 0, cong = MAX_CONG, cuenta = 0, mejor = 0, perdida = false;
     const d = aFecha(fechas[0]);

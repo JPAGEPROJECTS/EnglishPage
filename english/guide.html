@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#1d2730">
+<link rel="icon" type="image/png" href="../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Idiomas">
+<title>Ruta a C1 — English</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="english.css">
+<style>
+  .guia h2 { margin-top: 30px; }
+  .guia .card p + p, .guia .card p + ul, .guia .card ul + p { margin-top: 8px; }
+  .guia ul, .guia ol { padding-left: 20px; }
+  .guia li { margin: 5px 0; }
+  .t { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .t th, .t td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .t th { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .t td:first-child { font-weight: 700; }
+  .scroll { overflow-x: auto; }
+  .self li { list-style: none; margin-left: -20px; padding: 6px 0; border-top: 1px solid var(--border); font-size: 14px; }
+  .self li:first-child { border-top: none; }
+  .self input { margin-right: 8px; transform: scale(1.15); }
+  .lvtabs { display: flex; gap: 6px; margin-bottom: 8px; }
+  .lvtabs button { font: inherit; font-weight: 700; font-size: 13px; padding: 7px 14px; border-radius: 99px; cursor: pointer; border: 1px solid var(--border); background: var(--card); color: var(--text); }
+  .lvtabs button.on { background: var(--verde); color: #fff; border-color: var(--verde); }
+  .score { font-size: 14px; font-weight: 700; color: var(--verde); margin-top: 8px; }
+  .skill { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+  .skill .card { margin: 0; }
+  .skill h3 { font-size: 1.05rem; }
+  .skill ul { font-size: 14px; }
+  .res li { list-style: none; margin-left: -20px; padding: 8px 0; border-top: 1px solid var(--border); font-size: 14px; }
+  .res li:first-child { border-top: none; }
+  .res small { display: block; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="flag-strip"><i></i><i></i><i></i></div>
+<div class="top">
+  <a href="index.html">← Curso</a>
+  <span class="brand">English B1→C1 🇬🇧</span>
+</div>
+
+<div class="wrap guia">
+  <div class="kicker">Guía de estudio</div>
+  <h1>Your route <em>to C1</em></h1>
+  <p class="lead">Todo lo que necesitas saber para pasar de B1 a C1: qué significa cada nivel, cuánto tiempo lleva, cómo organizar tu semana, qué técnica usar para cada habilidad y con qué recursos.</p>
+
+  <h2>📍 ¿Dónde estás realmente?</h2>
+  <div class="card">
+    <p>Marca lo que ya puedes hacer <strong>con comodidad</strong>. Se guarda en tu dispositivo, así puedes volver cada mes y ver tu avance.</p>
+    <div class="lvtabs" id="lvtabs"><button data-l="B1" class="on">B1</button><button data-l="B2">B2</button><button data-l="C1">C1</button></div>
+    <ul class="self" id="self"></ul>
+    <div class="score" id="selfscore"></div>
+  </div>
+
+  <h2>⏳ ¿Cuánto tiempo lleva?</h2>
+  <div class="card">
+    <div class="scroll"><table class="t">
+      <tr><th>Paso</th><th>Horas de estudio (aprox.)</th><th>Con 1 h al día</th></tr>
+      <tr><td>B1 → B2</td><td>≈ 180–200 horas guiadas</td><td>7–9 meses</td></tr>
+      <tr><td>B2 → C1</td><td>≈ 200–250 horas guiadas</td><td>8–12 meses</td></tr>
+    </table></div>
+    <p style="font-size:13px;color:var(--muted)">Son estimaciones de referencia (Cambridge English). Las horas guiadas no incluyen todo el inglés que escuchas y lees por placer, que acelera muchísimo el proceso.</p>
+    <p><strong>La clave:</strong> de B2 a C1 no se avanza con más gramática, sino con <strong>mucho input real</strong> (series, podcasts, libros) y <strong>mucha producción corregida</strong> (escribir y hablar con feedback).</p>
+  </div>
+
+  <h2>📅 Tu semana tipo (≈ 1 hora al día)</h2>
+  <div class="card">
+    <div class="scroll"><table class="t">
+      <tr><th>Día</th><th>Qué hacer</th></tr>
+      <tr><td>Lunes</td><td>Clase nueva del curso (vocabulario, frases, gramática) + 10 min de repaso.</td></tr>
+      <tr><td>Martes</td><td>Diálogo y Método de la clase + 20 min de podcast (escucha activa).</td></tr>
+      <tr><td>Miércoles</td><td>Writing lab: un texto con cronómetro + corrección.</td></tr>
+      <tr><td>Jueves</td><td>Speaking lab: 3 preguntas grabadas + shadowing de 5 min.</td></tr>
+      <tr><td>Viernes</td><td>Test de la clase + una lectura del curso.</td></tr>
+      <tr><td>Sábado</td><td>Input por placer: un episodio de serie con subtítulos en inglés.</td></tr>
+      <tr><td>Domingo</td><td>Repaso ligero (tarjetas) o descanso. Planifica la semana en inglés.</td></tr>
+    </table></div>
+    <p><strong>Todos los días:</strong> 10 minutos de repaso de tarjetas (aparecen solas en “Repaso de hoy”) y pensar o hablar solo en inglés en algún momento del día.</p>
+  </div>
+
+  <h2>🧠 Técnicas por habilidad</h2>
+  <div class="skill">
+    <div class="card"><h3>👂 Listening</h3><ul>
+      <li><b>Escucha activa:</b> 10 min, transcribe un fragmento y compara.</li>
+      <li><b>Escucha extensiva:</b> podcasts mientras caminas o manejas.</li>
+      <li>Usa velocidad 0.9 al principio y sube a 1.25 cuando entiendas.</li>
+      <li>Mezcla acentos: americano, británico, australiano.</li></ul></div>
+    <div class="card"><h3>📖 Reading</h3><ul>
+      <li><b>Lectura extensiva:</b> 15–20 páginas al día de algo que te guste.</li>
+      <li>No busques cada palabra: solo las que se repiten o bloquean.</li>
+      <li>Noticias cortas (BBC) para vocabulario de actualidad.</li>
+      <li>De B2 a C1: artículos de opinión y no ficción.</li></ul></div>
+    <div class="card"><h3>🎤 Speaking</h3><ul>
+      <li><b>Shadowing</b> 5 min al día para pronunciación y ritmo.</li>
+      <li><b>Hablar solo</b>: narra lo que haces o resume lo que viste.</li>
+      <li><b>4-3-2</b>: la misma respuesta en 4, 3 y 2 minutos.</li>
+      <li>Clases con tutor o tándem 1–2 veces por semana.</li></ul></div>
+    <div class="card"><h3>✍️ Writing</h3><ul>
+      <li>1–2 textos por semana con tiempo y número de palabras.</li>
+      <li>Pide corrección (tutor o IA) y <b>reescribe</b> la versión corregida.</li>
+      <li>Copia estructuras de modelos (Writing lab).</li>
+      <li>Lleva un registro de tus errores repetidos.</li></ul></div>
+    <div class="card"><h3>🔤 Vocabulary</h3><ul>
+      <li>Aprende <b>chunks y collocations</b>, no palabras sueltas.</li>
+      <li><b>Repetición espaciada</b> (tarjetas del curso o Anki).</li>
+      <li><b>Sentence mining</b>: guarda frases reales que te gusten.</li>
+      <li>Usa cada palabra nueva en 3 frases propias.</li></ul></div>
+    <div class="card"><h3>🧩 Grammar</h3><ul>
+      <li>Estudia la regla una vez y luego <b>úsala</b> en speaking y writing.</li>
+      <li>Haz ejercicios de transformación (estilo Cambridge).</li>
+      <li>Revisa la página Grammar B1→C1 cuando dudes.</li>
+      <li>Céntrate en tus errores, no en reglas que ya dominas.</li></ul></div>
+  </div>
+
+  <h2>🧗 Romper el “estancamiento intermedio”</h2>
+  <div class="card">
+    <p>Es normal sentir que en B1–B2 ya no avanzas: entiendes y te comunicas, así que el cerebro deja de esforzarse. Para salir:</p>
+    <ul>
+      <li><strong>Sal de tu zona cómoda:</strong> contenido sin subtítulos en español, temas que no dominas.</li>
+      <li><strong>Exige precisión:</strong> en vez de “very good”, busca la palabra exacta (outstanding, impressive, decent).</li>
+      <li><strong>Pide feedback concreto:</strong> “¿qué tres errores repito?” vale más que “¿hablo bien?”.</li>
+      <li><strong>Ponte una meta con fecha:</strong> un examen oficial es la mejor motivación.</li>
+    </ul>
+  </div>
+
+  <h2>🎓 Exámenes oficiales</h2>
+  <div class="card">
+    <div class="scroll"><table class="t">
+      <tr><th>Examen</th><th>B2</th><th>C1</th><th>Para qué</th></tr>
+      <tr><td>Cambridge</td><td>B2 First (FCE)</td><td>C1 Advanced (CAE)</td><td>Certificado sin caducidad, muy valorado en empresas</td></tr>
+      <tr><td>IELTS Academic / General</td><td>banda 5.5–6.5</td><td>banda 7.0–8.0</td><td>Estudios y migración (Reino Unido, Canadá, Australia)</td></tr>
+      <tr><td>TOEFL iBT</td><td>72–94</td><td>95–113</td><td>Universidades, sobre todo en EE. UU.</td></tr>
+      <tr><td>Duolingo English Test</td><td>≈ 100–115</td><td>≈ 120–140</td><td>Rápido, en línea; aceptado por muchas universidades</td></tr>
+    </table></div>
+    <p style="font-size:13px;color:var(--muted)">Las equivalencias son aproximadas; consulta la tabla oficial del examen que elijas. IELTS y TOEFL caducan a los 2 años para trámites oficiales.</p>
+  </div>
+
+  <h2>🛠️ Recursos recomendados</h2>
+  <div class="card">
+    <ul class="res">
+      <li><b>🎧 BBC Learning English — 6 Minute English / The English We Speak</b><small>Episodios cortos con transcripción. Ideal B1–B2.</small></li>
+      <li><b>🎧 Luke's English Podcast / All Ears English</b><small>Inglés natural y largo para B2–C1.</small></li>
+      <li><b>▶️ English with Lucy · Rachel's English</b><small>Vocabulario avanzado y pronunciación (británico y americano).</small></li>
+      <li><b>📰 BBC News · The Guardian · News in Levels</b><small>Actualidad: empieza con News in Levels y sube a prensa real.</small></li>
+      <li><b>🎬 Netflix + Language Reactor</b><small>Subtítulos dobles, diccionario y guardado de frases.</small></li>
+      <li><b>🔍 YouGlish</b><small>Escucha cómo pronuncian cualquier palabra en miles de videos reales.</small></li>
+      <li><b>📚 Cambridge Dictionary · Oxford Collocations (ozdic) · Ludwig</b><small>Significado, collocations y ejemplos reales de uso.</small></li>
+      <li><b>🃏 Anki</b><small>Repetición espaciada para tus propias frases.</small></li>
+      <li><b>👩‍🏫 italki / Preply · Tandem / HelloTalk</b><small>Tutores y conversación con nativos.</small></li>
+      <li><b>🤖 Asistente de IA</b><small>Corrige tus textos, simula entrevistas o conversaciones y explica errores en español.</small></li>
+    </ul>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn ghost" href="index.html">← Volver al curso</a>
+    <a class="btn" href="lesson.html?n=1">Empezar la primera clase →</a>
+  </div>
+</div>
+
+<script src="progress.js"></script>
+<script>
+  Progreso.contarTiempo();
+  const CAN = {
+    B1: ['Entiendo las ideas principales de conversaciones sobre temas cotidianos.', 'Puedo contar una experiencia, un viaje o un plan con cierto detalle.', 'Puedo escribir un email personal sencillo y bien organizado.', 'Me desenvuelvo en la mayoría de situaciones de un viaje.', 'Puedo dar mi opinión brevemente y justificarla.', 'Entiendo textos sencillos sobre temas que conozco.'],
+    B2: ['Entiendo series y noticias en inglés con subtítulos en inglés.', 'Puedo debatir un tema dando ventajas y desventajas.', 'Hablo con nativos con fluidez sin que la conversación sea un esfuerzo para ninguno.', 'Escribo ensayos y emails formales claros y detallados.', 'Leo artículos de opinión y entiendo la postura del autor.', 'Uso el condicional, la pasiva y el estilo indirecto sin pensar demasiado.'],
+    C1: ['Entiendo películas y podcasts sin subtítulos, incluso con acentos distintos.', 'Me expreso con fluidez y espontaneidad sin buscar palabras con frecuencia.', 'Uso el idioma con flexibilidad en el trabajo, en estudios y en lo social.', 'Escribo textos complejos, bien estructurados y con el registro adecuado.', 'Entiendo matices, ironía y significados implícitos.', 'Uso con naturalidad collocations, phrasal verbs y expresiones idiomáticas.']
+  };
+  let lv = 'B1';
+  const leer = () => { try { return JSON.parse(localStorage.getItem('eng-self') || '{}'); } catch (e) { return {}; } };
+  function pintar() {
+    const s = leer();
+    document.getElementById('lvtabs').querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.l === lv));
+    document.getElementById('self').innerHTML = CAN[lv].map((c, i) => `<li><label><input type="checkbox" data-k="${lv}-${i}" ${s[lv + '-' + i] ? 'checked' : ''}>${c}</label></li>`).join('');
+    const n = CAN[lv].filter((_, i) => s[lv + '-' + i]).length;
+    document.getElementById('selfscore').textContent = n === CAN[lv].length ? `🎉 ¡Dominas el nivel ${lv}! Pasa al siguiente.` : `${n} de ${CAN[lv].length} · ${n >= 4 ? 'Estás cerca de dominar este nivel.' : 'Este es tu nivel de trabajo actual.'}`;
+  }
+  document.getElementById('lvtabs').onclick = e => { const b = e.target.closest('button'); if (b) { lv = b.dataset.l; pintar(); } };
+  document.getElementById('self').onchange = e => {
+    const k = e.target.dataset.k; if (!k) return;
+    const s = leer(); s[k] = e.target.checked;
+    try { localStorage.setItem('eng-self', JSON.stringify(s)); } catch (er) {}
+    pintar();
+  };
+  pintar();
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js').catch(() => {});</script>
+</body>
+</html>

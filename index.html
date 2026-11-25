@@ -75,6 +75,16 @@
   .en .pill { background: #e6f0ff; color: #2a6fd0; }
   .en .go { color: #3c8cf4; }
 
+  .uk .lang-name { font-family: 'Fraunces', Georgia, serif; font-weight: 700; }
+  .uk .lang-name em { color: #1f4fa3; }
+  .uk:hover { border-color: #1f4fa3; }
+  .uk .strip i:nth-child(1) { background: #1f3f8f; }
+  .uk .strip i:nth-child(2) { background: #f4f1ea; }
+  .uk .strip i:nth-child(3) { background: #c8102e; }
+  .uk .pill { background: #e4ecf9; color: #1f4fa3; }
+  .uk .go { color: #1f4fa3; }
+  @media (prefers-color-scheme: dark) { .uk .pill { background: #1d2a40; color: #9dbdf5; } .uk .lang-name em, .uk .go { color: #7aa7f0; } }
+
   .it .lang-name { font-family: 'Fraunces', Georgia, serif; font-weight: 700; }
   .it .lang-name em { color: #1f7a4d; }
   .it:hover { border-color: #1f7a4d; }
@@ -132,6 +142,17 @@
       <div class="lang-foot">
         <span class="pill" id="it-progress">Personal · A1 → B1</span>
         <span class="go">Entra →</span>
+      </div>
+    </a>
+
+    <a class="lang uk" href="english/index.html">
+      <div class="strip"><i></i><i></i><i></i></div>
+      <div class="flag">🇬🇧</div>
+      <div class="lang-name">English <em>B1 → C1</em></div>
+      <div class="lang-desc">Mi curso personal para llegar a avanzado: 22 clases, phrasal verbs, idioms, lecturas, writing y speaking lab, verbos irregulares y ruta a C1.</div>
+      <div class="lang-foot">
+        <span class="pill" id="en-progress">Personal · B1 → C1</span>
+        <span class="go">Let's go →</span>
       </div>
     </a>
   </div>
@@ -198,6 +219,12 @@
     const done = LEZIONI.filter(l => scores[l.id] && scores[l.id].best >= 0.7).length;
     const r = Progreso.racha();
     document.getElementById('it-progress').textContent = `${done} / ${LEZIONI.length} clases` + (r ? ` · 🔥 ${r}` : '');
+  } catch (e) {}
+  // Progreso del curso English B1→C1
+  try {
+    const es = JSON.parse(localStorage.getItem('eng-scores') || '{}');
+    const n = Object.values(es).filter(s => s.best >= 0.7).length;
+    if (n) document.getElementById('en-progress').textContent = `${n} / 22 clases`;
   } catch (e) {}
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});</script>

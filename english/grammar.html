@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#1d2730">
+<link rel="icon" type="image/png" href="../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Idiomas">
+<title>Grammar B1 → C1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="english.css">
+<style>
+  .toc { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+  .toc a { font-size: 12px; font-weight: 600; text-decoration: none; padding: 6px 10px; border-radius: 99px; border: 1px solid var(--border); background: var(--card); }
+  .toc a:hover { border-color: var(--verde); }
+  .g-sec { scroll-margin-top: 12px; margin-top: 30px; }
+  .g-sec h2 { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .lvl { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 99px; background: var(--verde-soft); color: var(--verde); }
+  .g-sec p { margin: 8px 0; }
+  .g-sec ul { padding-left: 20px; margin: 6px 0; }
+  .g-sec li { margin: 4px 0; }
+  .scroll { overflow-x: auto; }
+  .g-sec table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 8px 0; }
+  .g-sec th, .g-sec td { text-align: left; padding: 7px 6px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .g-sec th { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  .g-sec td b { color: var(--verde); }
+  .quiz-mini { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 10px; }
+  .quiz-mini .q-text { font-size: 14px; }
+  .quiz-mini .opts { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+  .quiz-mini .opt { padding: 8px 10px; font-size: 14px; }
+  .filter { display: flex; gap: 6px; margin-top: 12px; }
+  .filter button { font: inherit; font-size: 13px; font-weight: 600; padding: 7px 12px; border-radius: 99px; cursor: pointer; border: 1px solid var(--border); background: var(--card); color: var(--text); }
+  .filter button.on { background: var(--verde); color: #fff; border-color: var(--verde); }
+</style>
+</head>
+<body>
+<div class="flag-strip"><i></i><i></i><i></i></div>
+<div class="top">
+  <a href="index.html">← Curso</a>
+  <span class="brand">English B1→C1 🇬🇧</span>
+</div>
+
+<div class="wrap" id="inicio">
+  <div class="kicker">Chuleta de consulta</div>
+  <h1>Grammar <em>B1 → C1</em></h1>
+  <p class="lead">Toda la gramática que necesitas para pasar de intermedio a avanzado, explicada en español con tablas, ejemplos y mini ejercicios. Úsala como consulta cuando dudes al hablar o escribir.</p>
+  <div class="filter" id="filter">
+    <button data-f="all" class="on">Todo</button><button data-f="B1">B1</button><button data-f="B2">B2</button><button data-f="C1">C1</button>
+  </div>
+  <div class="toc" id="toc"></div>
+  <div id="contenido"></div>
+  <div class="btn-row">
+    <a class="btn ghost" href="index.html">← Volver al curso</a>
+    <a class="btn" href="#inicio">↑ Arriba</a>
+  </div>
+</div>
+
+<script src="progress.js"></script>
+<script>
+  Progreso.contarTiempo();
+  const quiz = (q, opts, a) => `<div class="quiz-mini" data-a="${a}"><div class="q-text">${q}</div><div class="opts">${opts.map(o => `<button class="opt">${o}</button>`).join('')}</div></div>`;
+  const see = (txt, id) => `<p style="font-size:13px">📘 Clase: <a href="lesson.html?id=${id}" style="color:var(--verde);font-weight:700">${txt}</a></p>`;
+
+  const SEC = [
+    { id: 'tenses', lv: 'B1', t: 'Los 12 tiempos de un vistazo', html: `
+      <div class="scroll"><table>
+        <tr><th>Tiempo</th><th>Forma</th><th>Uso principal</th><th>Ejemplo</th></tr>
+        <tr><td>Present simple</td><td>I work / he works</td><td>hábitos, verdades</td><td>I work in a bank.</td></tr>
+        <tr><td>Present continuous</td><td>I'm working</td><td>ahora, planes fijos</td><td>I'm working from home today.</td></tr>
+        <tr><td>Present perfect</td><td>I have worked</td><td>experiencia, resultado, hasta ahora</td><td>I've worked here for years.</td></tr>
+        <tr><td>Present perfect continuous</td><td>I have been working</td><td>duración de una actividad</td><td>I've been working all day.</td></tr>
+        <tr><td>Past simple</td><td>I worked</td><td>pasado terminado</td><td>I worked there in 2020.</td></tr>
+        <tr><td>Past continuous</td><td>I was working</td><td>fondo / acción interrumpida</td><td>I was working when you called.</td></tr>
+        <tr><td>Past perfect</td><td>I had worked</td><td>antes de otro pasado</td><td>I had left when she arrived.</td></tr>
+        <tr><td>Past perfect continuous</td><td>I had been working</td><td>duración antes de otro pasado</td><td>I'd been waiting for an hour.</td></tr>
+        <tr><td>Future simple</td><td>I will work</td><td>decisión, promesa, predicción</td><td>I'll help you.</td></tr>
+        <tr><td>Future continuous</td><td>I will be working</td><td>en curso en un momento futuro</td><td>At 9 I'll be working.</td></tr>
+        <tr><td>Future perfect</td><td>I will have worked</td><td>terminado antes de un momento futuro</td><td>I'll have finished by 5.</td></tr>
+        <tr><td>Future perfect continuous</td><td>I will have been working</td><td>duración hasta un momento futuro</td><td>By June I'll have been working here for 3 years.</td></tr>
+      </table></div>
+      <p><strong>Verbos de estado</strong> (no van en continuo): know, believe, understand, like, love, hate, want, need, prefer, own, belong, seem, mean.</p>
+      ${quiz('By the time you arrive, we ___ dinner.', ['will finish', 'will have finished', 'finish'], 1)}` },
+
+    { id: 'perfect', lv: 'B1', t: 'Present perfect vs past simple', html: `
+      <ul><li><b>Present perfect</b>: experiencias sin fecha, algo que sigue, resultado presente. Palabras: ever, never, already, yet, just, since, for, so far, this week.</li>
+      <li><b>Past simple</b>: momento terminado. Palabras: yesterday, ago, last…, in 2019, when…</li>
+      <li><b>“Llevo X haciendo”</b> = <em>I've been doing … for X</em>. “Hace X que…” = <em>It's been X since…</em></li></ul>
+      ${quiz('I ___ to Spain three times.', ['went', 'have been', 'have gone'], 1)}
+      ${see('Present perfect vs past simple', 'b1-present-perfect')}` },
+
+    { id: 'future', lv: 'B1', t: 'Formas de futuro', html: `
+      <div class="scroll"><table>
+        <tr><td><b>will</b></td><td>decisión del momento, promesa, opinión</td><td>I'll call you.</td></tr>
+        <tr><td><b>going to</b></td><td>intención, evidencia</td><td>It's going to rain.</td></tr>
+        <tr><td><b>present continuous</b></td><td>plan en la agenda</td><td>I'm meeting Ana at 6.</td></tr>
+        <tr><td><b>present simple</b></td><td>horarios</td><td>The train leaves at 7.</td></tr>
+        <tr><td><b>be about to</b></td><td>inminente</td><td>I'm about to leave.</td></tr>
+        <tr><td><b>be due to</b></td><td>previsto oficialmente</td><td>The report is due to be published on Monday.</td></tr>
+      </table></div>
+      <p>Tras <em>when, as soon as, until, before, after, if, unless</em> → presente: <em>I'll tell you when I know.</em></p>
+      ${quiz('Call me as soon as you ___.', ['will arrive', 'arrive', 'are arriving'], 1)}` },
+
+    { id: 'conditionals', lv: 'B2', t: 'Condicionales completos', html: `
+      <div class="scroll"><table>
+        <tr><th>Tipo</th><th>If…</th><th>Resultado</th><th>Ejemplo</th></tr>
+        <tr><td>0</td><td>presente</td><td>presente</td><td>If you heat water, it boils.</td></tr>
+        <tr><td>1</td><td>presente</td><td>will</td><td>If it rains, I'll stay in.</td></tr>
+        <tr><td>2</td><td>pasado</td><td>would</td><td>If I had time, I'd travel.</td></tr>
+        <tr><td>3</td><td>past perfect</td><td>would have + part.</td><td>If I'd known, I'd have come.</td></tr>
+        <tr><td>Mixto A</td><td>past perfect</td><td>would + verbo</td><td>If I'd studied, I'd be a doctor now.</td></tr>
+        <tr><td>Mixto B</td><td>pasado</td><td>would have + part.</td><td>If I were braver, I'd have said yes.</td></tr>
+      </table></div>
+      <p><strong>Alternativas:</strong> unless, as long as, provided (that), in case, otherwise, supposing, but for. <strong>Inversión (C1):</strong> Had I known…, Should you need…, Were I to…</p>
+      ${quiz('If she ___ harder, she would have passed.', ['studied', 'had studied', 'would study'], 1)}
+      ${see('Third conditional, wishes & regrets', 'b2-wishes')}` },
+
+    { id: 'wish', lv: 'B2', t: 'Wish, if only, would rather, it\'s time', html: `
+      <div class="scroll"><table>
+        <tr><td>wish + pasado</td><td>deseo presente</td><td>I wish I had a car.</td></tr>
+        <tr><td>wish + past perfect</td><td>lamento pasado</td><td>I wish I hadn't said that.</td></tr>
+        <tr><td>wish + would</td><td>queja sobre otro</td><td>I wish you'd stop shouting.</td></tr>
+        <tr><td>would rather + sujeto + pasado</td><td>preferencia sobre otro</td><td>I'd rather you stayed.</td></tr>
+        <tr><td>it's (high) time + pasado</td><td>ya es hora</td><td>It's time we went home.</td></tr>
+      </table></div>
+      ${quiz('I wish I ___ more free time. (ahora)', ['have', 'had', 'would have'], 1)}` },
+
+    { id: 'passive', lv: 'B2', t: 'Pasiva y causativo', html: `
+      <p><b>be + participio</b> en cualquier tiempo: is made, was made, has been made, is being made, will be made, must be made.</p>
+      <p><b>Impersonal:</b> It is said/believed/thought that… · He is said to be… · She is believed to have left.</p>
+      <p><b>Causativo:</b> have/get + objeto + participio: I had my car serviced. · I need to get my hair cut.</p>
+      <p><b>Verbos sin pasiva:</b> happen, occur, arrive, die, exist, seem, appear (intransitivos).</p>
+      ${quiz('The results ___ next week.', ['will announce', 'will be announced', 'are announcing'], 1)}
+      ${see('The passive & causative', 'b2-passive')}` },
+
+    { id: 'reported', lv: 'B2', t: 'Estilo indirecto', html: `
+      <p>Un paso atrás en el tiempo: am → was, did/have done → had done, will → would, can → could. Cambian también today → that day, tomorrow → the next day, here → there.</p>
+      <p><b>Preguntas:</b> orden de afirmación: <em>She asked where I lived</em>. Sí/no → <em>if / whether</em>.</p>
+      <div class="scroll"><table>
+        <tr><td>+ to</td><td>agree, offer, promise, refuse, threaten</td></tr>
+        <tr><td>+ persona + to</td><td>advise, ask, encourage, remind, tell, warn</td></tr>
+        <tr><td>+ -ing</td><td>admit, deny, recommend, suggest</td></tr>
+        <tr><td>+ prep + -ing</td><td>apologise for, insist on, accuse sb of, blame sb for</td></tr>
+      </table></div>
+      ${quiz('He ___ that he had forgotten.', ['said me', 'told me', 'told'], 1)}` },
+
+    { id: 'modals', lv: 'B2', t: 'Modales (presente, pasado y deducción)', html: `
+      <div class="scroll"><table>
+        <tr><th>Idea</th><th>Presente</th><th>Pasado</th></tr>
+        <tr><td>Obligación</td><td>must / have to</td><td>had to</td></tr>
+        <tr><td>No necesario</td><td>don't have to / needn't</td><td>didn't need to / needn't have</td></tr>
+        <tr><td>Prohibición</td><td>mustn't / can't</td><td>couldn't / wasn't allowed to</td></tr>
+        <tr><td>Consejo</td><td>should / ought to</td><td>should have (crítica)</td></tr>
+        <tr><td>Deducción sí</td><td>must be</td><td>must have been</td></tr>
+        <tr><td>Deducción no</td><td>can't be</td><td>can't / couldn't have been</td></tr>
+        <tr><td>Posibilidad</td><td>may / might / could be</td><td>may / might / could have been</td></tr>
+        <tr><td>Capacidad</td><td>can / be able to</td><td>could (general) / managed to (una vez)</td></tr>
+      </table></div>
+      <p><strong>could vs managed to:</strong> para un logro concreto en el pasado usa <em>managed to / was able to</em>: “The fire spread fast, but we <u>managed to</u> escape” (no “could escape”).</p>
+      ${quiz('He ___ the message — he never reads email.', ["must have seen", "can't have seen", "should have seen"], 1)}
+      ${see('Modals of deduction', 'b2-deduction')}` },
+
+    { id: 'gerunds', lv: 'B1', t: 'Gerundio o infinitivo', html: `
+      <p><b>+ -ing:</b> enjoy, avoid, mind, finish, keep, suggest, consider, miss, risk, deny, admit, can't help, can't stand, feel like, look forward to, be used to, it's worth, there's no point (in).</p>
+      <p><b>+ to:</b> want, decide, hope, plan, manage, afford, refuse, promise, agree, expect, seem, tend, offer, learn, fail, threaten, deserve.</p>
+      <p><b>+ objeto + to:</b> want, ask, tell, advise, allow, encourage, expect, remind, persuade (I want <u>you to</u> come).</p>
+      <p><b>Cambian de significado:</b> stop, remember, forget, try, regret, go on, mean.</p>
+      ${quiz("It's not worth ___ about it.", ['to worry', 'worrying', 'worry'], 1)}` },
+
+    { id: 'relative', lv: 'B2', t: 'Oraciones de relativo', html: `
+      <p><b>who</b> (personas), <b>which</b> (cosas), <b>that</b> (ambas, solo defining), <b>whose</b> (posesión), <b>where / when / why</b>.</p>
+      <p><b>Non-defining</b> lleva comas y nunca <em>that</em>. <b>which</b> puede referirse a toda la frase (= lo cual).</p>
+      <p><b>Cuantificadores (C1):</b> some of whom, most of which, neither of whom, all of which.</p>
+      ${quiz('She finally called, ___ was a relief.', ['what', 'that', 'which'], 2)}` },
+
+    { id: 'articles', lv: 'B2', t: 'Artículos: a, an, the, Ø', html: `
+      <p>El error más frecuente de los hispanohablantes es poner <em>the</em> donde el inglés no lo usa.</p>
+      <div class="scroll"><table>
+        <tr><th>Sin artículo (Ø)</th><th>Con the</th></tr>
+        <tr><td>Generalizaciones: <em>Ø Life is short. Ø Dogs are loyal. I love Ø music.</em></td><td>Algo específico: <em>The music in this bar is great.</em></td></tr>
+        <tr><td>Comidas, deportes, idiomas, materias: <em>Ø lunch, Ø football, Ø English, Ø maths</em></td><td>Instrumentos: <em>play the guitar</em></td></tr>
+        <tr><td>Instituciones por su función: <em>go to Ø school / Ø work / Ø bed / Ø hospital</em></td><td>El edificio: <em>I went to the school to pick up my son.</em></td></tr>
+        <tr><td>Casi todos los países y ciudades: <em>Ø Panama, Ø London</em></td><td>Plurales y “unions”: <em>the USA, the UK, the Netherlands</em>; océanos, ríos: <em>the Pacific</em></td></tr>
+      </table></div>
+      <p><b>a/an</b> con profesiones: <em>She's <u>an</u> engineer.</em> En expresiones: <em>twice a week, $5 an hour, What a day!</em></p>
+      ${quiz('___ people say that ___ money can\'t buy happiness.', ['The / the', 'Ø / Ø', 'The / Ø'], 1)}` },
+
+    { id: 'quantifiers', lv: 'B1', t: 'Contables, incontables y cuantificadores', html: `
+      <div class="scroll"><table>
+        <tr><th></th><th>Contables (books)</th><th>Incontables (water, advice)</th></tr>
+        <tr><td>mucho</td><td>many / a lot of</td><td>much / a lot of</td></tr>
+        <tr><td>poco (negativo)</td><td>few</td><td>little</td></tr>
+        <tr><td>algunos (positivo)</td><td>a few</td><td>a little</td></tr>
+        <tr><td>cantidad</td><td>a number of</td><td>an amount of</td></tr>
+      </table></div>
+      <p><b>Incontables que en español sí se cuentan:</b> advice, information, news, furniture, luggage, equipment, research, homework, progress, knowledge, evidence, feedback. → <em>a piece of advice</em>, <em>some information</em> (nunca “informations”).</p>
+      ${quiz('Can you give me some ___?', ['advices', 'advice', 'an advice'], 1)}` },
+
+    { id: 'comparatives', lv: 'B2', t: 'Comparaciones avanzadas', html: `
+      <ul><li><b>Intensificar:</b> much / far / a lot / considerably + comparativo: <em>far better, much cheaper</em>.</li>
+      <li><b>Suavizar:</b> slightly / a bit / a little: <em>slightly bigger</em>.</li>
+      <li><b>The… the…:</b> <em>The more you practise, the better you get.</em></li>
+      <li><b>as… as:</b> <em>not nearly as good as, just as expensive as, twice as big as</em>.</li>
+      <li><b>Cada vez más:</b> <em>more and more, better and better, harder and harder</em>.</li></ul>
+      ${quiz('The more you read, ___ your vocabulary becomes.', ['the richest', 'richer', 'the richer'], 2)}` },
+
+    { id: 'prepositions', lv: 'B2', t: 'Preposiciones que van con verbos y adjetivos', html: `
+      <div class="scroll"><table>
+        <tr><th>Español</th><th>Inglés</th></tr>
+        <tr><td>depender de</td><td>depend <b>on</b></td></tr>
+        <tr><td>casarse con</td><td>marry sb / get married <b>to</b></td></tr>
+        <tr><td>soñar con</td><td>dream <b>of / about</b></td></tr>
+        <tr><td>pensar en</td><td>think <b>of / about</b></td></tr>
+        <tr><td>enamorarse de</td><td>fall in love <b>with</b></td></tr>
+        <tr><td>llegar a (un lugar)</td><td>arrive <b>in</b> (ciudad/país) / <b>at</b> (edificio)</td></tr>
+        <tr><td>interesado en</td><td>interested <b>in</b></td></tr>
+        <tr><td>bueno en</td><td>good <b>at</b></td></tr>
+        <tr><td>harto de</td><td>fed up <b>with</b> / tired <b>of</b></td></tr>
+        <tr><td>responsable de</td><td>responsible <b>for</b></td></tr>
+        <tr><td>diferente de</td><td>different <b>from</b> (to, UK)</td></tr>
+        <tr><td>consistir en</td><td>consist <b>of</b></td></tr>
+        <tr><td>discutir algo</td><td>discuss sth (sin preposición)</td></tr>
+        <tr><td>entrar en</td><td>enter a room (sin preposición)</td></tr>
+      </table></div>
+      ${quiz('It depends ___ the weather.', ['of', 'on', 'from'], 1)}
+      ${quiz('We discussed ___ the problem.', ['about', 'on', '(nada)'], 2)}` },
+
+    { id: 'inversion', lv: 'C1', t: 'Inversión y oraciones hendidas', html: `
+      <p><b>Inversión:</b> Never have I…, Rarely do we…, Not only did she…, No sooner had… than…, Hardly had… when…, Only when… did…, Little did I know…, Under no circumstances should…</p>
+      <p><b>Cleft:</b> It was X that/who… · What I need is… · All I want is… · What I did was (to)… · The thing is…</p>
+      <p><b>Énfasis con do:</b> I <u>do</u> like it. She <u>did</u> call.</p>
+      ${quiz('Not only ___ late, but he also forgot the keys.', ['he arrived', 'did he arrive', 'arrived he'], 1)}
+      ${see('Inversion for emphasis', 'c1-inversion')}` },
+
+    { id: 'participle', lv: 'C1', t: 'Cláusulas de participio y nominalización', html: `
+      <p><b>-ing</b> (activo/simultáneo): <em>Feeling tired, I went to bed.</em> · <b>Having + part.</b> (anterior): <em>Having finished, she left.</em> · <b>Participio</b> (pasivo): <em>Built in 1914, the canal…</em></p>
+      <p>El sujeto debe coincidir en ambas partes (evita el “dangling participle”).</p>
+      <p><b>Nominalización:</b> <em>The company expanded quickly</em> → <em>The rapid expansion of the company…</em></p>
+      ${quiz('___ the report, she sent it to her boss.', ['Having finished', 'Finished', 'Have finished'], 0)}` },
+
+    { id: 'errors', lv: 'B1', t: 'Los 20 errores típicos del hispanohablante', html: `
+      <div class="scroll"><table>
+        <tr><th>✗ Incorrecto</th><th>✓ Correcto</th></tr>
+        <tr><td>I have 24 years.</td><td>I'm 24 (years old).</td></tr>
+        <tr><td>I live here since 2015.</td><td>I've lived here since 2015.</td></tr>
+        <tr><td>Is raining.</td><td>It's raining.</td></tr>
+        <tr><td>People is…</td><td>People are…</td></tr>
+        <tr><td>The life is hard.</td><td>Life is hard.</td></tr>
+        <tr><td>I am agree.</td><td>I agree.</td></tr>
+        <tr><td>She explained me…</td><td>She explained to me…</td></tr>
+        <tr><td>I want that you come.</td><td>I want you to come.</td></tr>
+        <tr><td>Depend of…</td><td>Depend on…</td></tr>
+        <tr><td>Informations / advices</td><td>Information / advice</td></tr>
+        <tr><td>Make a question</td><td>Ask a question</td></tr>
+        <tr><td>Say me…</td><td>Tell me…</td></tr>
+        <tr><td>I didn't went.</td><td>I didn't go.</td></tr>
+        <tr><td>Actually (= actualmente)</td><td>Currently / nowadays</td></tr>
+        <tr><td>The most of people</td><td>Most people</td></tr>
+        <tr><td>Since 3 years</td><td>For 3 years</td></tr>
+        <tr><td>I'm boring (= aburrido)</td><td>I'm bored.</td></tr>
+        <tr><td>Explain me</td><td>Explain to me</td></tr>
+        <tr><td>He works as engineer.</td><td>He works as an engineer.</td></tr>
+        <tr><td>Win money / win time</td><td>Earn money / save time</td></tr>
+      </table></div>
+      ${quiz('“Estoy aburrido” =', ["I'm boring", "I'm bored", 'I have boring'], 1)}
+      ${quiz('“Ganar dinero (trabajando)” =', ['win money', 'earn money', 'gain money'], 1)}` }
+  ];
+
+  const pintar = f => {
+    const vis = SEC.filter(s => f === 'all' || s.lv === f);
+    document.getElementById('contenido').innerHTML = vis.map(s =>
+      `<section class="g-sec" id="${s.id}"><h2>${s.t} <span class="lvl">${s.lv}</span></h2><div class="card">${s.html}</div></section>`).join('');
+    document.getElementById('toc').innerHTML = vis.map(s => `<a href="#${s.id}">${s.t}</a>`).join('');
+  };
+  pintar('all');
+  document.getElementById('filter').onclick = e => {
+    const b = e.target.closest('button'); if (!b) return;
+    document.querySelectorAll('#filter button').forEach(x => x.classList.toggle('on', x === b));
+    pintar(b.dataset.f);
+  };
+  document.addEventListener('click', e => {
+    const o = e.target.closest('.quiz-mini .opt');
+    if (!o || o.disabled) return;
+    const box = o.closest('.quiz-mini'), btns = [...box.querySelectorAll('.opt')], ok = +box.dataset.a;
+    btns.forEach(x => x.disabled = true);
+    btns[ok].classList.add('ok');
+    if (btns.indexOf(o) !== ok) o.classList.add('bad');
+    Progreso.marcarActividad(0);
+  });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js').catch(() => {});</script>
+</body>
+</html>
