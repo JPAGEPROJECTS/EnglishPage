@@ -10,36 +10,55 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Idiomas">
-<title>Gramática básica — Italiano</title>
+<title>Grammatica — Italiano</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="italiano.css">
 <style>
-  .toc { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
-  .toc a { font-size: 13px; font-weight: 600; text-decoration: none; padding: 7px 11px; border-radius: 99px; border: 1px solid var(--border); background: var(--card); }
-  .toc a:hover { border-color: var(--verde); }
-  .g-sec { scroll-margin-top: 12px; margin-top: 30px; }
-  .g-sec h2 { display: flex; align-items: baseline; gap: 8px; }
-  .g-sec h2 small { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--muted); font-weight: 600; }
-  .g-sec p { margin: 8px 0; }
-  .g-sec ul { padding-left: 20px; margin: 6px 0; }
-  .g-sec li { margin: 4px 0; }
-  .g-sec table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 8px 0; }
-  .g-sec th, .g-sec td { text-align: left; padding: 7px 6px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  .g-sec th { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
-  .g-sec td b { color: var(--verde); }
-  .scroll { overflow-x: auto; }
-  .exs { display: grid; gap: 6px; margin-top: 10px; }
+  .search { font: inherit; width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--card); color: var(--text); margin-top: 16px; }
+  .bar2 { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-top: 10px; }
+  .bar2 button { font: inherit; font-size: 13px; font-weight: 600; padding: 7px 12px; border-radius: 99px; cursor: pointer; border: 1px solid var(--border); background: var(--card); color: var(--text); }
+  .bar2 button.on { background: var(--verde); border-color: var(--verde); color: #fff; }
+  .bar2 .count { margin-left: auto; font-size: 13px; color: var(--muted); font-weight: 600; }
+  .gstats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
+  .gstats div { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 10px; text-align: center; font-size: 12px; color: var(--muted); font-weight: 600; }
+  .gstats b { display: block; font-size: 1.25rem; color: var(--text); }
+  h2.cat { font-size: 1.3rem; margin: 26px 0 10px; }
+  details.topic { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+  details.topic[open] { border-color: var(--verde); }
+  details.topic > summary { list-style: none; cursor: pointer; padding: 14px 16px; display: flex; gap: 12px; align-items: center; }
+  details.topic > summary::-webkit-details-marker { display: none; }
+  .t-ico { width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; background: var(--verde-soft); color: var(--verde); }
+  .t-ico.done { background: var(--verde); color: #fff; font-size: 15px; }
+  .t-main { flex: 1; min-width: 0; }
+  .t-main b { display: block; }
+  .t-main small { color: var(--muted); font-size: 13px; }
+  .t-arrow { color: var(--muted); transition: transform .2s; }
+  details[open] .t-arrow { transform: rotate(90deg); }
+  .t-body { padding: 0 16px 16px; border-top: 1px solid var(--border); }
+  .t-body p { margin: 10px 0; }
+  .t-body ul { padding-left: 20px; margin: 6px 0; }
+  .t-body li { margin: 4px 0; }
+  .t-body table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 10px 0; display: block; overflow-x: auto; }
+  .t-body th, .t-body td { text-align: left; padding: 7px 6px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .t-body th { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  .t-body td b { color: var(--verde); }
+  .sub-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 16px 0 6px; }
+  .sub-h h4 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  .exs { display: grid; gap: 6px; }
   .exl { display: flex; align-items: center; gap: 10px; background: var(--bg); border-radius: 10px; padding: 8px 10px; font-size: 14px; }
   .exl .play { width: 30px; height: 30px; font-size: 12px; }
   .exl i { font-weight: 600; font-style: italic; }
   .exl span { color: var(--muted); }
-  .quiz-mini { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 10px; }
+  .exl.playing { outline: 2px solid var(--verde); }
+  .quiz-mini { margin-top: 10px; }
   .quiz-mini .q-text { font-size: 14px; }
-  .quiz-mini .opts { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); }
+  .quiz-mini .opts { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
   .quiz-mini .opt { padding: 8px 10px; font-size: 14px; }
-  .see { font-size: 13px; margin-top: 8px; }
+  .see { font-size: 13px; margin-top: 14px; }
   .see a { color: var(--verde); font-weight: 700; }
-  .top-link { display: block; text-align: right; font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .lvl { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 99px; background: var(--oro-soft); color: var(--oro); margin-left: 4px; }
+  .lvl:empty { display: none; }
+  .empty { display: none; text-align: center; color: var(--muted); padding: 24px 0; }
 </style>
 </head>
 <body>
@@ -50,307 +69,26 @@
 </div>
 
 <div class="wrap" id="inicio">
-  <div class="kicker">Chuleta de consulta</div>
-  <h1>Grammatica <em>di base</em></h1>
-  <p class="lead">Toda la gramática esencial en una sola página, comparada con el español. Cada tema tiene tablas, ejemplos con audio ▶ y un mini ejercicio para comprobar que lo entendiste.</p>
-  <div class="toc" id="toc"></div>
+  <div class="kicker">Consulta completa · A1 → B1</div>
+  <h1>Grammatica <em>completa</em></h1>
+  <p class="lead">Toda la gramática italiana que necesitas, explicada en español y comparada con lo que ya sabes. Cada tema tiene tablas, ejemplos con audio ▶ y mini ejercicios. Toca un tema para abrirlo.</p>
 
-  <!-- 1 -->
-  <section class="g-sec" id="pronomi">
-    <h2>1. Pronombres personales <small>io, tu, lui…</small></h2>
-    <div class="card">
-      <div class="scroll"><table>
-        <tr><th>Español</th><th>Italiano</th><th>Notas</th></tr>
-        <tr><td>yo</td><td><b>io</b></td><td>con minúscula (a diferencia del inglés “I”)</td></tr>
-        <tr><td>tú</td><td><b>tu</b></td><td>informal</td></tr>
-        <tr><td>él / ella</td><td><b>lui / lei</b></td><td>al escribir formal también <em>egli / ella</em></td></tr>
-        <tr><td>usted</td><td><b>Lei</b></td><td>le hablas a la persona (2ª), pero se conjuga como <em>lui/lei</em> (3ª). Ver abajo ⬇️</td></tr>
-        <tr><td>nosotros/as</td><td><b>noi</b></td><td>no cambia por género</td></tr>
-        <tr><td>vosotros / ustedes</td><td><b>voi</b></td><td>“ustedes” en Latinoamérica = <em>voi</em></td></tr>
-        <tr><td>ellos / ellas</td><td><b>loro</b></td><td>no cambia por género</td></tr>
-      </table></div>
-      <p><strong>Se omiten casi siempre</strong>, igual que en español: <em>Sono stanco</em> (no “io sono stanco”). Se usan para remarcar o contrastar: <em>Io lavoro, tu dormi!</em></p>
-      <p><strong>Ojo:</strong> para hablar a un grupo (“ustedes”) se usa <em>voi</em>: <em>Di dove siete?</em> = ¿De dónde son ustedes?</p>
+  <div class="gstats" id="gstats"></div>
 
-      <div class="card tip" style="margin:12px 0 4px">
-        <p style="margin-top:0"><strong>🎩 ¿Cómo funciona “Lei” (usted)?</strong></p>
-        <p>Con <em>Lei</em> le hablas <strong>directamente</strong> a la persona que tienes enfrente (como si fuera segunda persona), pero <strong>todo se conjuga como tercera persona</strong>, igual que <em>lui / lei</em> (él / ella).</p>
-        <p>Es lo mismo que pasa en español con “usted”: decimos <em>usted <u>es</u></em> (como “él es”) y no “usted eres”.</p>
-        <div class="scroll"><table>
-          <tr><th></th><th>Tú (informal)</th><th>Usted (formal)</th></tr>
-          <tr><td>Verbo</td><td>Tu <b>sei</b> stanco? <br><small>¿Estás cansado?</small></td><td>Lei <b>è</b> stanco? <br><small>¿Está usted cansado?</small></td></tr>
-          <tr><td>Cómo estás</td><td>Come <b>stai</b>?</td><td>Come <b>sta</b>?</td></tr>
-          <tr><td>Te / lo (objeto)</td><td><b>Ti</b> chiamo domani.</td><td><b>La</b> chiamo domani. <br><small>Le llamo mañana.</small></td></tr>
-          <tr><td>A ti / a usted</td><td><b>Ti</b> piace?</td><td><b>Le</b> piace? <br><small>¿Le gusta?</small></td></tr>
-          <tr><td>Tu / su (posesivo)</td><td>il <b>tuo</b> nome</td><td>il <b>Suo</b> nome <br><small>su nombre</small></td></tr>
-        </table></div>
-        <p><strong>Lo curioso:</strong> <em>Lei</em> significa literalmente “ella”, pero se usa igual para hablarle a un hombre o a una mujer. Por eso, al escribir, se pone con <strong>mayúscula</strong> (<em>Lei, La, Le, Suo</em>): así se distingue de <em>lei</em> (ella). Al hablar suenan igual y se entiende por el contexto.</p>
-        <p><strong>Truco:</strong> para tratar a alguien de usted, conjuga el verbo como si hablaras de “ella”: <em>Lei <u>parla</u> inglese?</em> = ¿Usted habla inglés?</p>
-      </div>
-      <div class="exs">
-        <div class="exl"><button class="play" data-say="Io sono di Panama, e tu?">▶</button><div><i>Io sono di Panama, e tu?</i><br><span>Yo soy de Panamá, ¿y tú?</span></div></div>
-        <div class="exl"><button class="play" data-say="Lei è italiana? Sì, sono di Roma.">▶</button><div><i>Lei è italiana? Sì, sono di Roma.</i><br><span>¿Usted es italiana? Sí, soy de Roma.</span></div></div>
-        <div class="exl"><button class="play" data-say="Scusi, Lei parla inglese?">▶</button><div><i>Scusi, Lei parla inglese?</i><br><span>Disculpe, ¿usted habla inglés? (parla = como “él/ella habla”)</span></div></div>
-      </div>
-      <div class="quiz-mini" data-a="2"><div class="q-text">“¿Ustedes vienen?” (a un grupo de amigos) =</div>
-        <div class="opts"><button class="opt">Lei viene?</button><button class="opt">Loro vengono?</button><button class="opt">Voi venite?</button></div></div>
-      <div class="quiz-mini" data-a="1"><div class="q-text">A un señor mayor: “¿Usted tiene hijos?” =</div>
-        <div class="opts"><button class="opt">Lei hai figli?</button><button class="opt">Lei ha figli?</button><button class="opt">Tu ha figli?</button></div></div>
-      <div class="see">Ver clase: <a href="lezione.html?id=saluti">Saludos · tu y Lei</a></div>
-    </div>
-  </section>
+  <input class="search" id="search" type="search" placeholder="🔍 Buscar: congiuntivo, ne, preposiciones, piacere…" autocomplete="off">
+  <div class="bar2" id="levels">
+    <button data-l="all" class="on">Todos</button><button data-l="A1">A1</button><button data-l="A2">A2</button><button data-l="B1">B1</button>
+    <span class="count" id="count"></span>
+  </div>
+  <div class="bar2">
+    <button id="open-all">📖 Abrir todo</button><button id="close-all">📕 Cerrar todo</button>
+  </div>
 
-  <!-- 2 -->
-  <section class="g-sec" id="essere">
-    <h2>2. Ser y estar: essere, stare y avere <small>sono, sto, ho</small></h2>
-    <div class="card">
-      <p>En italiano <strong>essere</strong> sirve para casi todo lo que en español es “ser” <u>y</u> “estar”. <strong>stare</strong> se usa solo en algunos casos.</p>
-      <div class="scroll"><table>
-        <tr><th>Uso</th><th>Verbo</th><th>Ejemplo</th></tr>
-        <tr><td>identidad, origen, profesión</td><td><b>essere</b></td><td>Sono Jonathan. Sono panamense. Sono studente.</td></tr>
-        <tr><td>emociones y estados</td><td><b>essere</b></td><td>Sono stanco. Sei felice? (estoy cansado / ¿estás feliz?)</td></tr>
-        <tr><td>ubicación</td><td><b>essere</b></td><td>Dove sei? Sono a casa. (¿dónde estás? estoy en casa)</td></tr>
-        <tr><td>salud / cómo estás</td><td><b>stare</b></td><td>Come stai? Sto bene, sto male.</td></tr>
-        <tr><td>acción en curso</td><td><b>stare</b> + gerundio</td><td>Sto mangiando. (estoy comiendo)</td></tr>
-        <tr><td>quedarse / permanecer</td><td><b>stare</b></td><td>Oggi sto a casa. Stai zitto! Stai fermo! Stai attento!</td></tr>
-        <tr><td>edad, hambre, sed, frío, calor, miedo</td><td><b>avere</b></td><td>Ho 24 anni. Ho fame. Ho freddo. Ho paura.</td></tr>
-        <tr><td>clima</td><td><b>fare</b></td><td>Fa caldo. Fa freddo.</td></tr>
-      </table></div>
-      <div class="scroll"><table>
-        <tr><th></th><th>io</th><th>tu</th><th>lui/lei</th><th>noi</th><th>voi</th><th>loro</th></tr>
-        <tr><td><b>essere</b></td><td>sono</td><td>sei</td><td>è</td><td>siamo</td><td>siete</td><td>sono</td></tr>
-        <tr><td><b>stare</b></td><td>sto</td><td>stai</td><td>sta</td><td>stiamo</td><td>state</td><td>stanno</td></tr>
-        <tr><td><b>avere</b></td><td>ho</td><td>hai</td><td>ha</td><td>abbiamo</td><td>avete</td><td>hanno</td></tr>
-      </table></div>
-      <div class="exs">
-        <div class="exl"><button class="play" data-say="Sono stanco, ma sto bene.">▶</button><div><i>Sono stanco, ma sto bene.</i><br><span>Estoy cansado, pero estoy bien (de salud).</span></div></div>
-        <div class="exl"><button class="play" data-say="Ho fame e ho sonno.">▶</button><div><i>Ho fame e ho sonno.</i><br><span>Tengo hambre y tengo sueño.</span></div></div>
-      </div>
-      <div class="quiz-mini" data-a="0"><div class="q-text">“Estoy nervioso” =</div>
-        <div class="opts"><button class="opt">Sono nervoso</button><button class="opt">Sto nervoso</button><button class="opt">Ho nervoso</button></div></div>
-      <div class="quiz-mini" data-a="1"><div class="q-text">“Tengo frío” =</div>
-        <div class="opts"><button class="opt">Sono freddo</button><button class="opt">Ho freddo</button><button class="opt">Fa freddo io</button></div></div>
-      <div class="see">Ver clase: <a href="lezione.html?id=essere-avere">Essere e avere</a></div>
-    </div>
-  </section>
-
-  <!-- 3 -->
-  <section class="g-sec" id="articoli">
-    <h2>3. Artículos <small>il, lo, la, un…</small></h2>
-    <div class="card">
-      <div class="scroll"><table>
-        <tr><th>La palabra empieza por…</th><th>el / la</th><th>los / las</th><th>un / una</th></tr>
-        <tr><td>masc. + consonante</td><td><b>il</b> libro</td><td><b>i</b> libri</td><td><b>un</b> libro</td></tr>
-        <tr><td>masc. + s+cons., z, gn, ps, y</td><td><b>lo</b> zaino</td><td><b>gli</b> zaini</td><td><b>uno</b> zaino</td></tr>
-        <tr><td>masc. + vocal</td><td><b>l'</b>amico</td><td><b>gli</b> amici</td><td><b>un</b> amico</td></tr>
-        <tr><td>fem. + consonante</td><td><b>la</b> casa</td><td><b>le</b> case</td><td><b>una</b> casa</td></tr>
-        <tr><td>fem. + vocal</td><td><b>l'</b>amica</td><td><b>le</b> amiche</td><td><b>un'</b>amica</td></tr>
-      </table></div>
-      <p><strong>Diferencias con el español:</strong> se usa artículo con los posesivos (<em>la mia casa</em>) y con los países (<em>l'Italia è bella</em>), pero no con “a casa”, “in centro” ni con familiares en singular (<em>mia madre</em>).</p>
-      <div class="quiz-mini" data-a="1"><div class="q-text">___ studente (el estudiante)</div>
-        <div class="opts"><button class="opt">il</button><button class="opt">lo</button><button class="opt">l'</button></div></div>
-      <div class="see">Ver clases: <a href="lezione.html?id=bar">Al bar</a> · <a href="lezione.html?id=plurali-possessivi">Plurali</a></div>
-    </div>
-  </section>
-
-  <!-- 4 -->
-  <section class="g-sec" id="nomi">
-    <h2>4. Sustantivos y adjetivos <small>género, plural, concordancia</small></h2>
-    <div class="card">
-      <div class="scroll"><table>
-        <tr><th>Termina en</th><th>Género</th><th>Plural</th><th>Ejemplo</th></tr>
-        <tr><td>-o</td><td>casi siempre masc.</td><td>-i</td><td>il ragazzo → i ragazzi</td></tr>
-        <tr><td>-a</td><td>casi siempre fem.</td><td>-e</td><td>la ragazza → le ragazze</td></tr>
-        <tr><td>-e</td><td>masc. o fem.</td><td>-i</td><td>il fiore → i fiori · la notte → le notti</td></tr>
-        <tr><td>vocal con tilde / palabra extranjera</td><td>—</td><td>no cambia</td><td>la città → le città · il bar → i bar</td></tr>
-      </table></div>
-      <p><strong>Adjetivos:</strong> concuerdan con el sustantivo y normalmente van después: <em>una casa grande, due ragazzi simpatici</em>. Los adjetivos en -e solo cambian en plural: <em>un libro interessante → libri interessanti</em>.</p>
-      <p><strong>bello</strong> y <strong>buono</strong> antes del sustantivo cambian como los artículos: <em>un bel ragazzo, un bello spettacolo, una bella giornata, dei bei giorni</em>; <em>un buon caffè, una buona idea</em>.</p>
-      <p><strong>Falsos géneros:</strong> <em>il problema, il programma, il tema</em> (masc. aunque terminan en -a); <em>la mano</em> (fem.); <em>il latte, il miele</em> (masc. a diferencia del español).</p>
-      <div class="quiz-mini" data-a="2"><div class="q-text">Plural de “la lezione interessante”:</div>
-        <div class="opts"><button class="opt">le lezione interessante</button><button class="opt">le lezioni interessante</button><button class="opt">le lezioni interessanti</button></div></div>
-      <div class="see">Ver clase: <a href="lezione.html?id=descrivere-meteo">Describir personas</a></div>
-    </div>
-  </section>
-
-  <!-- 5 -->
-  <section class="g-sec" id="possessivi">
-    <h2>5. Posesivos <small>il mio, è mio</small></h2>
-    <div class="card">
-      <div class="scroll"><table>
-        <tr><th>Persona</th><th>masc. sing.</th><th>fem. sing.</th><th>masc. pl.</th><th>fem. pl.</th></tr>
-        <tr><td>io</td><td><b>il mio</b></td><td><b>la mia</b></td><td><b>i miei</b></td><td><b>le mie</b></td></tr>
-        <tr><td>tu</td><td>il tuo</td><td>la tua</td><td>i tuoi</td><td>le tue</td></tr>
-        <tr><td>lui / lei / Lei</td><td>il suo</td><td>la sua</td><td>i suoi</td><td>le sue</td></tr>
-        <tr><td>noi</td><td>il nostro</td><td>la nostra</td><td>i nostri</td><td>le nostre</td></tr>
-        <tr><td>voi</td><td>il vostro</td><td>la vostra</td><td>i vostri</td><td>le vostre</td></tr>
-        <tr><td>loro</td><td>il loro</td><td>la loro</td><td>i loro</td><td>le loro</td></tr>
-      </table></div>
-      <p><strong>Una sola forma para “mi” y “mío”:</strong> el mismo posesivo sirve como adjetivo (<em>il mio libro</em> = mi libro) y como pronombre (<em>è il mio</em> = es el mío).</p>
-      <ul>
-        <li>Después de <em>essere</em> se puede omitir el artículo: <em>Questo libro è mio</em> = Este libro es mío.</li>
-        <li>Concuerda con <u>la cosa</u>, no con el dueño: <em>la sua macchina</em> = el carro de él / de ella.</li>
-        <li>Con familiares en singular, sin artículo: <em>mio padre, tua sorella</em> (pero <em>i miei fratelli, il loro figlio</em>).</li>
-        <li><em>“I miei”</em> solo, en plural, significa “mis padres”: <em>Vivo con i miei.</em></li>
-      </ul>
-      <div class="exs">
-        <div class="exl"><button class="play" data-say="Di chi è questa borsa? È mia!">▶</button><div><i>Di chi è questa borsa? È mia!</i><br><span>¿De quién es este bolso? ¡Es mío!</span></div></div>
-        <div class="exl"><button class="play" data-say="La mia macchina è rossa, la tua è nera.">▶</button><div><i>La mia macchina è rossa, la tua è nera.</i><br><span>Mi carro es rojo, el tuyo es negro.</span></div></div>
-      </div>
-      <div class="quiz-mini" data-a="1"><div class="q-text">“Sus llaves” (de Marco) =</div>
-        <div class="opts"><button class="opt">i suoi chiavi</button><button class="opt">le sue chiavi</button><button class="opt">le loro chiavi</button></div></div>
-      <div class="see">Ver clase: <a href="lezione.html?id=plurali-possessivi">Plurali e possessivi</a></div>
-    </div>
-  </section>
-
-  <!-- 6 -->
-  <section class="g-sec" id="dimostrativi">
-    <h2>6. Demostrativos <small>questo, quello</small></h2>
-    <div class="card">
-      <p><strong>questo</strong> = este (cerca) · <strong>quello</strong> = ese / aquel (lejos). En italiano no hay diferencia entre “ese” y “aquel”.</p>
-      <p><em>questo</em> es regular: questo, questa, questi, queste (ante vocal: <em>quest'anno</em>).</p>
-      <p><em>quello</em> antes de un sustantivo cambia <strong>como el artículo</strong>:</p>
-      <div class="scroll"><table>
-        <tr><th>Artículo</th><th>quello</th><th>Ejemplo</th></tr>
-        <tr><td>il / i</td><td><b>quel / quei</b></td><td>quel libro, quei libri</td></tr>
-        <tr><td>lo / gli</td><td><b>quello / quegli</b></td><td>quello zaino, quegli zaini</td></tr>
-        <tr><td>l' / gli</td><td><b>quell' / quegli</b></td><td>quell'amico, quegli amici</td></tr>
-        <tr><td>la / le</td><td><b>quella / quelle</b></td><td>quella casa, quelle case</td></tr>
-      </table></div>
-      <p>Solo, sin sustantivo, es regular: <em>Quale vuoi? Quello!</em> (¿Cuál quieres? ¡Ese!)</p>
-      <div class="exs">
-        <div class="exl"><button class="play" data-say="Questa pizza è buonissima. Quel ristorante è caro.">▶</button><div><i>Questa pizza è buonissima. Quel ristorante è caro.</i><br><span>Esta pizza está buenísima. Ese restaurante es caro.</span></div></div>
-      </div>
-      <div class="quiz-mini" data-a="2"><div class="q-text">___ ragazzi sono miei amici. (esos)</div>
-        <div class="opts"><button class="opt">Quelli</button><button class="opt">Quegli</button><button class="opt">Quei</button></div></div>
-    </div>
-  </section>
-
-  <!-- 7 -->
-  <section class="g-sec" id="pronomi-tutti">
-    <h2>7. Todos los pronombres <small>mi, ti, lo, gli, me…</small></h2>
-    <div class="card">
-      <div class="scroll"><table>
-        <tr><th>Sujeto</th><th>Directo (me, lo)</th><th>Indirecto (me, le)</th><th>Reflexivo</th><th>Tras preposición</th></tr>
-        <tr><td>io</td><td>mi</td><td>mi</td><td>mi</td><td><b>me</b></td></tr>
-        <tr><td>tu</td><td>ti</td><td>ti</td><td>ti</td><td><b>te</b></td></tr>
-        <tr><td>lui</td><td>lo</td><td>gli</td><td>si</td><td><b>lui</b></td></tr>
-        <tr><td>lei</td><td>la</td><td>le</td><td>si</td><td><b>lei</b></td></tr>
-        <tr><td>Lei (usted)</td><td>La</td><td>Le</td><td>si</td><td><b>Lei</b></td></tr>
-        <tr><td>noi</td><td>ci</td><td>ci</td><td>ci</td><td><b>noi</b></td></tr>
-        <tr><td>voi</td><td>vi</td><td>vi</td><td>vi</td><td><b>voi</b></td></tr>
-        <tr><td>loro</td><td>li / le</td><td>gli</td><td>si</td><td><b>loro</b></td></tr>
-      </table></div>
-      <p><strong>Tras preposición</strong> (con, per, a, di, da…): <em>con <u>me</u></em> (conmigo), <em>per <u>te</u></em> (para ti), <em>da <u>lui</u></em>. Nunca “con mi”: ¡<em>con me</em>!</p>
-      <p><strong>Posición:</strong> antes del verbo conjugado (<em>Ti chiamo</em>), pegados al infinitivo, al imperativo y al gerundio (<em>chiamarti, chiamami, chiamandoti</em>).</p>
-      <div class="exs">
-        <div class="exl"><button class="play" data-say="Vieni con me? Questo regalo è per te.">▶</button><div><i>Vieni con me? Questo regalo è per te.</i><br><span>¿Vienes conmigo? Este regalo es para ti.</span></div></div>
-      </div>
-      <div class="quiz-mini" data-a="0"><div class="q-text">“Conmigo” =</div>
-        <div class="opts"><button class="opt">con me</button><button class="opt">con mi</button><button class="opt">conmigo</button></div></div>
-      <div class="see">Ver clases: <a href="lezione.html?id=a2-shopping">Directos</a> · <a href="lezione.html?id=a2-viaggio">Indirectos</a> · <a href="lezione.html?id=a2-riflessivi">Reflexivos</a></div>
-    </div>
-  </section>
-
-  <!-- 8 -->
-  <section class="g-sec" id="preposizioni">
-    <h2>8. Preposiciones <small>di, a, da, in, su…</small></h2>
-    <div class="card">
-      <p>Las preposiciones <em>di, a, da, in, su</em> se unen al artículo (como “a + el = al”):</p>
-      <div class="scroll"><table>
-        <tr><th></th><th>il</th><th>lo</th><th>l'</th><th>la</th><th>i</th><th>gli</th><th>le</th></tr>
-        <tr><td><b>di</b></td><td>del</td><td>dello</td><td>dell'</td><td>della</td><td>dei</td><td>degli</td><td>delle</td></tr>
-        <tr><td><b>a</b></td><td>al</td><td>allo</td><td>all'</td><td>alla</td><td>ai</td><td>agli</td><td>alle</td></tr>
-        <tr><td><b>da</b></td><td>dal</td><td>dallo</td><td>dall'</td><td>dalla</td><td>dai</td><td>dagli</td><td>dalle</td></tr>
-        <tr><td><b>in</b></td><td>nel</td><td>nello</td><td>nell'</td><td>nella</td><td>nei</td><td>negli</td><td>nelle</td></tr>
-        <tr><td><b>su</b></td><td>sul</td><td>sullo</td><td>sull'</td><td>sulla</td><td>sui</td><td>sugli</td><td>sulle</td></tr>
-      </table></div>
-      <p><em>con, per, tra/fra</em> no se unen: <em>con il treno, per la mamma</em>.</p>
-      <ul>
-        <li><b>di</b>: de (posesión, materia, origen con essere): <em>il libro di Marco, sono di Panama</em>.</li>
-        <li><b>a</b>: a / en (ciudades, horas): <em>a Roma, alle otto</em>.</li>
-        <li><b>da</b>: desde, a casa de, hace (tiempo): <em>vengo da Milano, vado da Luca, studio da un anno</em>.</li>
-        <li><b>in</b>: en (países, medios, lugares): <em>in Italia, in treno, in banca</em>.</li>
-        <li><b>su</b>: sobre: <em>sul tavolo</em>.</li>
-      </ul>
-      <div class="quiz-mini" data-a="1"><div class="q-text">Le chiavi sono ___ tavolo. (sobre la mesa)</div>
-        <div class="opts"><button class="opt">su il</button><button class="opt">sul</button><button class="opt">nel</button></div></div>
-      <div class="quiz-mini" data-a="2"><div class="q-text">“Estudio italiano desde hace un año” =</div>
-        <div class="opts"><button class="opt">Studio italiano per un anno</button><button class="opt">Studio italiano di un anno</button><button class="opt">Studio italiano da un anno</button></div></div>
-      <div class="see">Ver clases: <a href="lezione.html?id=citta">In giro per la città</a> · <a href="lezione.html?id=a2-preposizioni">A Roma, in Italia</a></div>
-    </div>
-  </section>
-
-  <!-- 9 -->
-  <section class="g-sec" id="domande">
-    <h2>9. Negación y preguntas <small>non, mai, chi, dove…</small></h2>
-    <div class="card">
-      <p><strong>Negar:</strong> <em>non</em> va justo antes del verbo (y de los pronombres): <em>Non lo so.</em> La doble negación es normal, como en español:</p>
-      <div class="scroll"><table>
-        <tr><th>Italiano</th><th>Español</th><th>Ejemplo</th></tr>
-        <tr><td><b>non… mai</b></td><td>nunca</td><td>Non bevo mai caffè.</td></tr>
-        <tr><td><b>non… niente / nulla</b></td><td>nada</td><td>Non ho capito niente.</td></tr>
-        <tr><td><b>non… nessuno</b></td><td>nadie / ningún</td><td>Non c'è nessuno.</td></tr>
-        <tr><td><b>non… più</b></td><td>ya no</td><td>Non fumo più.</td></tr>
-        <tr><td><b>non… ancora</b></td><td>todavía no</td><td>Non ho ancora mangiato.</td></tr>
-      </table></div>
-      <p><strong>Preguntar:</strong> el orden no cambia, solo la entonación: <em>Parli italiano?</em></p>
-      <div class="scroll"><table>
-        <tr><th>Italiano</th><th>Español</th><th>Ejemplo</th></tr>
-        <tr><td><b>chi</b></td><td>quién</td><td>Chi è?</td></tr>
-        <tr><td><b>che cosa / cosa / che</b></td><td>qué</td><td>Cosa fai?</td></tr>
-        <tr><td><b>dove</b></td><td>dónde</td><td>Dove abiti? (dov'è)</td></tr>
-        <tr><td><b>quando</b></td><td>cuándo</td><td>Quando parti?</td></tr>
-        <tr><td><b>come</b></td><td>cómo</td><td>Come stai? (com'è)</td></tr>
-        <tr><td><b>perché</b></td><td>por qué / porque</td><td>Perché ridi? Perché sono felice.</td></tr>
-        <tr><td><b>quanto/a/i/e</b></td><td>cuánto/a/os/as</td><td>Quanti anni hai?</td></tr>
-        <tr><td><b>quale / qual</b></td><td>cuál</td><td>Qual è il tuo numero?</td></tr>
-      </table></div>
-      <div class="quiz-mini" data-a="1"><div class="q-text">“Todavía no he comido” =</div>
-        <div class="opts"><button class="opt">Ancora non mangio</button><button class="opt">Non ho ancora mangiato</button><button class="opt">Non ho più mangiato</button></div></div>
-    </div>
-  </section>
-
-  <!-- 10 -->
-  <section class="g-sec" id="verbi">
-    <h2>10. Los tiempos verbales de un vistazo <small>parlare</small></h2>
-    <div class="card">
-      <div class="scroll"><table>
-        <tr><th>Tiempo</th><th>Ejemplo (io)</th><th>Español</th><th>Uso</th></tr>
-        <tr><td><b>Presente</b></td><td>parlo</td><td>hablo</td><td>ahora, costumbres, futuro cercano</td></tr>
-        <tr><td><b>Passato prossimo</b></td><td>ho parlato</td><td>hablé / he hablado</td><td>acción terminada (el pasado más usado)</td></tr>
-        <tr><td><b>Imperfetto</b></td><td>parlavo</td><td>hablaba</td><td>descripciones y costumbres del pasado</td></tr>
-        <tr><td><b>Trapassato</b></td><td>avevo parlato</td><td>había hablado</td><td>antes de otro pasado</td></tr>
-        <tr><td><b>Futuro</b></td><td>parlerò</td><td>hablaré</td><td>planes, suposiciones</td></tr>
-        <tr><td><b>Condizionale</b></td><td>parlerei</td><td>hablaría</td><td>cortesía, deseos, consejos</td></tr>
-        <tr><td><b>Imperativo</b></td><td>parla!</td><td>¡habla!</td><td>órdenes</td></tr>
-        <tr><td><b>Congiuntivo</b></td><td>(che) parli</td><td>(que) hable</td><td>opinión, deseo, duda</td></tr>
-        <tr><td><b>Passato remoto</b></td><td>parlai</td><td>hablé</td><td>libros e historia</td></tr>
-      </table></div>
-      <p><strong>Las 3 conjugaciones:</strong> -are (parlare), -ere (prendere), -ire (dormire / capire con -isc-). Las terminaciones del presente están en la clase de rutina.</p>
-      <div class="see">Practica: <a href="coniuga.html">🔁 Práctica de verbos</a> · Ver clase: <a href="lezione.html?id=giornata">La mia giornata</a></div>
-    </div>
-  </section>
-
-  <!-- 11 -->
-  <section class="g-sec" id="speciali">
-    <h2>11. Estructuras especiales <small>c'è, piacere, si</small></h2>
-    <div class="card">
-      <ul>
-        <li><b>c'è / ci sono</b> = hay: <em>C'è un bar. Ci sono due bar.</em></li>
-        <li><b>piacere</b> funciona como “gustar”: <em>Mi piace la pizza. Mi piacciono i film.</em> Igual: <em>mancare</em> (extrañar), <em>servire</em> (necesitar), <em>interessare</em>.</li>
-        <li><b>si</b> impersonal = “se”: <em>In Italia si mangia bene.</em></li>
-        <li><b>ci vuole / ci vogliono</b> = hace falta / se tarda: <em>Ci vuole un'ora. Ci vogliono due ore.</em></li>
-        <li><b>da + tiempo</b> = desde hace (con presente): <em>Abito qui da tre anni.</em></li>
-        <li><b>stare per</b> = estar a punto de: <em>Sto per uscire.</em></li>
-      </ul>
-      <div class="quiz-mini" data-a="1"><div class="q-text">“Te extraño” =</div>
-        <div class="opts"><button class="opt">Ti manco</button><button class="opt">Mi manchi</button><button class="opt">Io manco te</button></div></div>
-    </div>
-  </section>
+  <div id="list"></div>
+  <div class="empty" id="empty">No hay temas con esa búsqueda.</div>
 
   <div class="card tip" style="margin-top:24px">
-    <strong>💡 Cómo usar esta página:</strong> no la leas toda de una vez. Vuelve a ella cuando una clase te genere dudas, haz el mini ejercicio del tema y escucha los ejemplos en voz alta.
+    <strong>💡 Cómo estudiar la gramática:</strong> no la leas de corrido. Abre un tema, escucha los ejemplos y repítelos en voz alta, haz los ejercicios y luego <strong>inventa 3 frases tuyas</strong> con esa regla. Cuando aciertes todos los ejercicios del tema, se marca con ✓. Para los verbos, usa también <a href="coniuga.html" style="color:var(--verde);font-weight:700">la práctica de verbos</a>.
   </div>
   <div class="btn-row">
     <a class="btn ghost" href="index.html">← Volver a las clases</a>
@@ -358,34 +96,121 @@
   </div>
 </div>
 
+<script src="grammatica-data.js"></script>
 <script src="progreso.js"></script>
 <script>
   Progreso.contarTiempo();
-  // Índice
-  document.getElementById('toc').innerHTML = [...document.querySelectorAll('.g-sec')]
-    .map(s => `<a href="#${s.id}">${s.querySelector('h2').childNodes[0].textContent.trim()}</a>`).join('');
+  const $ = id => document.getElementById(id);
+  const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+  const K = 'it-gram';
+  const leer = () => { try { return JSON.parse(localStorage.getItem(K) || '{}'); } catch (e) { return {}; } };
+  const guardar = v => { try { localStorage.setItem(K, JSON.stringify(v)); } catch (e) {} };
+  const dominado = (g, st = leer()) => (st[g.id] || []).filter(Boolean).length >= g.quiz.length;
 
-  // Audio
+  // ---------- Audio ----------
   let itVoice = null;
   function pickVoice() { const vs = speechSynthesis.getVoices(); itVoice = vs.find(v => v.lang === 'it-IT') || vs.find(v => v.lang && v.lang.startsWith('it')) || null; }
   if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+  function speak(t, onend) {
+    if (!('speechSynthesis' in window)) return;
+    const u = new SpeechSynthesisUtterance(t); u.lang = 'it-IT'; u.rate = 0.85; if (itVoice) u.voice = itVoice;
+    if (onend) u.onend = onend;
+    speechSynthesis.speak(u);
+  }
+  function leerTodos(box) {
+    speechSynthesis.cancel();
+    const filas = [...box.querySelectorAll('.exl')];
+    filas.forEach((f, i) => speak(f.dataset.it, () => { f.classList.remove('playing'); if (filas[i + 1]) filas[i + 1].classList.add('playing'); }));
+    if (filas[0]) filas[0].classList.add('playing');
+  }
+
+  // ---------- Pintar ----------
+  function tema(g, st) {
+    const ok = dominado(g, st);
+    return `<details class="topic" id="${g.id}" data-lv="${g.lv}" data-s="${esc((g.t + ' ' + g.sub + ' ' + g.html.replace(/<[^>]+>/g, ' ') + ' ' + g.ex.map(e => e.join(' ')).join(' ')).toLowerCase())}">
+      <summary><span class="t-ico ${ok ? 'done' : ''}">${ok ? '✓' : g.lv}</span>
+        <span class="t-main"><b>${g.t}</b><small>${g.sub}</small></span><span class="t-arrow">›</span></summary>
+      <div class="t-body">
+        ${g.html}
+        <div class="sub-h"><h4>🔊 Ejemplos</h4><button class="small-btn" data-all="${g.id}">▶ Escuchar todos</button></div>
+        <div class="exs" id="ex-${g.id}">${g.ex.map(([it, es]) => `<div class="exl" data-it="${esc(it)}"><button class="play" data-say="${esc(it)}">▶</button><div><i>${it}</i><br><span>${es}</span></div></div>`).join('')}</div>
+        <div class="sub-h"><h4>✏️ Practica</h4><span class="lvl" id="qs-${g.id}"></span></div>
+        ${g.quiz.map(([q, opts, a], i) => `<div class="quiz-mini" data-g="${g.id}" data-i="${i}" data-a="${a}"><div class="q-text">${i + 1}. ${q}</div><div class="opts">${opts.map(o => `<button class="opt">${o}</button>`).join('')}</div></div>`).join('')}
+        ${g.lesson ? `<div class="see">📘 Ver la clase relacionada: <a href="lezione.html?id=${g.lesson}">abrir clase →</a></div>` : ''}
+      </div></details>`;
+  }
+  function pintar() {
+    const st = leer();
+    const cats = [...new Set(GRAM.map(g => g.cat))];
+    $('list').innerHTML = cats.map(c => `<section data-cat="${esc(c)}"><h2 class="cat">${c}</h2>${GRAM.filter(g => g.cat === c).map(g => tema(g, st)).join('')}</section>`).join('');
+    actualizarStats();
+    filtrar();
+  }
+  function actualizarStats() {
+    const st = leer();
+    const dom = GRAM.filter(g => dominado(g, st)).length;
+    const ej = GRAM.reduce((n, g) => n + g.ex.length, 0);
+    $('gstats').innerHTML = `<div><b>${GRAM.length}</b>temas</div><div><b>${ej}</b>ejemplos con audio</div><div><b>${dom}/${GRAM.length}</b>dominados ✓</div>`;
+  }
+
+  // ---------- Filtros ----------
+  let nivel = 'all';
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  function filtrar() {
+    const q = norm($('search').value.trim());
+    let n = 0;
+    document.querySelectorAll('#list section').forEach(sec => {
+      let any = false;
+      sec.querySelectorAll('details.topic').forEach(d => {
+        const ok = (nivel === 'all' || d.dataset.lv === nivel) && (!q || norm(d.dataset.s).includes(q));
+        d.style.display = ok ? '' : 'none';
+        if (ok) { any = true; n++; if (q) d.open = true; }
+      });
+      sec.style.display = any ? '' : 'none';
+    });
+    $('count').textContent = `${n} temas`;
+    $('empty').style.display = n ? 'none' : 'block';
+  }
+  $('search').oninput = filtrar;
+  $('levels').onclick = e => {
+    const b = e.target.closest('button[data-l]'); if (!b) return;
+    nivel = b.dataset.l;
+    $('levels').querySelectorAll('button[data-l]').forEach(x => x.classList.toggle('on', x === b));
+    filtrar();
+  };
+  $('open-all').onclick = () => document.querySelectorAll('details.topic').forEach(d => { if (d.style.display !== 'none') d.open = true; });
+  $('close-all').onclick = () => document.querySelectorAll('details.topic').forEach(d => d.open = false);
+
+  // ---------- Clicks: audio y ejercicios ----------
   document.addEventListener('click', e => {
+    const all = e.target.closest('[data-all]');
+    if (all) { leerTodos($('ex-' + all.dataset.all)); return; }
     const b = e.target.closest('[data-say]');
-    if (b && 'speechSynthesis' in window) {
-      speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(b.dataset.say); u.lang = 'it-IT'; u.rate = 0.85; if (itVoice) u.voice = itVoice;
-      speechSynthesis.speak(u);
-      return;
-    }
-    // Mini ejercicios: corrección inmediata
+    if (b) { speechSynthesis.cancel(); speak(b.dataset.say); return; }
     const o = e.target.closest('.quiz-mini .opt');
     if (!o || o.disabled) return;
     const box = o.closest('.quiz-mini'), btns = [...box.querySelectorAll('.opt')], ok = +box.dataset.a;
-    btns.forEach(b => b.disabled = true);
+    btns.forEach(x => x.disabled = true);
     btns[ok].classList.add('ok');
-    if (btns.indexOf(o) !== ok) o.classList.add('bad');
+    const bien = btns.indexOf(o) === ok;
+    if (!bien) o.classList.add('bad');
+    const st = leer(), id = box.dataset.g;
+    st[id] = st[id] || [];
+    if (bien) st[id][+box.dataset.i] = true;
+    guardar(st);
     Progreso.marcarActividad(0);
+    const g = GRAM.find(x => x.id === id);
+    const hechos = (st[id] || []).filter(Boolean).length;
+    $('qs-' + id).textContent = `${hechos}/${g.quiz.length} correctos`;
+    if (dominado(g, st)) { const ico = document.querySelector(`#${id} .t-ico`); ico.classList.add('done'); ico.textContent = '✓'; }
+    actualizarStats();
   });
+
+  pintar();
+  // Abrir un tema si viene en la URL (#congiuntivo)
+  function abrirHash() { if (!location.hash) return; const d = document.getElementById(location.hash.slice(1)); if (d && d.tagName === 'DETAILS') { d.open = true; d.scrollIntoView(); } }
+  abrirHash();
+  addEventListener('hashchange', abrirHash);
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js').catch(() => {});</script>
 </body>
