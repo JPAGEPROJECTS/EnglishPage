@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#1d2730">
+<link rel="icon" type="image/png" href="../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Idiomas">
+<title>Readings — English</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="english.css">
+<style>
+  .level-switch { display: flex; gap: 8px; margin-top: 18px; }
+  .level-switch a { flex: 1; text-align: center; text-decoration: none; font-weight: 700; padding: 10px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); }
+  .level-switch a.on { background: var(--verde); border-color: var(--verde); color: #fff; }
+  .type { display: inline-block; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 99px; background: var(--oro-soft); color: var(--oro); }
+  .reading { font-size: 1.05rem; line-height: 1.75; }
+  .reading p { margin: 0 0 12px; }
+  .reading .tr { display: none; font-size: 14px; color: var(--muted); line-height: 1.6; margin: -6px 0 14px; padding-left: 12px; border-left: 3px solid var(--border); }
+  .show-tr .reading .tr { display: block; }
+  .listen-mode .reading { filter: blur(6px); user-select: none; }
+  .gloss { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px 14px; font-size: 14px; }
+  .gloss b { color: var(--verde); }
+  .tools { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+</style>
+</head>
+<body>
+<div class="flag-strip"><i></i><i></i><i></i></div>
+<div class="top">
+  <a href="index.html" id="back">← Clases</a>
+  <span class="brand">English B1→C1 🇬🇧</span>
+</div>
+
+<div class="wrap" id="app"></div>
+
+<script src="readings.js"></script>
+<script src="progress.js"></script>
+<script>
+  Progreso.contarTiempo();
+  const app = document.getElementById('app');
+  const qp = new URLSearchParams(location.search);
+  const niveles = [...new Set(LETTURE.map(l => l.level))];
+  const NOMBRES = { B1: 'Intermedio', B2: 'Intermedio alto', C1: 'Avanzado' };
+  const leer = () => { try { return JSON.parse(localStorage.getItem('eng-readings') || '{}'); } catch (e) { return {}; } };
+
+  // ---- Audio ----
+  let itVoice = null;
+  function pickVoice() { const vs = speechSynthesis.getVoices(); itVoice = vs.find(v => v.lang === 'en-US') || vs.find(v => v.lang && v.lang.startsWith('en')) || null; }
+  if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+  function speak(t) {
+    if (!('speechSynthesis' in window)) return;
+    const u = new SpeechSynthesisUtterance(t); u.lang = 'en-US'; u.rate = 0.85; if (itVoice) u.voice = itVoice;
+    speechSynthesis.speak(u);
+  }
+
+  const R = LETTURE.find(l => l.id === qp.get('r'));
+  if (!R) {
+    // ---- Lista de lecturas ----
+    let lv = qp.get('l'); if (!niveles.includes(lv)) lv = niveles[0];
+    const hechas = leer();
+    const items = LETTURE.filter(l => l.level === lv);
+    document.title = `Readings ${lv} — English`;
+    app.innerHTML = `
+      <div class="kicker">Comprensión de lectura y escucha</div>
+      <h1>Reading <em>&amp; listening</em></h1>
+      <p class="lead">Textos reales cortos (mensajes, anuncios, correos, historias) con audio, traducción y preguntas, como en los exámenes oficiales.</p>
+      <div class="level-switch">${niveles.map(l => `<a href="readings.html?l=${l}" class="${l === lv ? 'on' : ''}">${l} · ${NOMBRES[l]}</a>`).join('')}</div>
+      <div class="lesson-list">${items.map((l, i) => {
+        const h = hechas[l.id];
+        return `<a class="lesson${h && h.best >= 0.75 ? ' done' : ''}" href="readings.html?r=${l.id}">
+          <div class="lesson-num">${h && h.best >= 0.75 ? '✓' : i + 1}</div>
+          <div class="lesson-info"><div class="lesson-title">${l.title}</div><div class="lesson-sub">${l.type} · ${l.questions.length} preguntas</div></div>
+          ${h ? `<div class="lesson-score">${Math.round(h.best * 100)}%</div>` : '<div class="lesson-score" style="color:var(--muted)">›</div>'}</a>`;
+      }).join('')}</div>
+      <div class="card tip" style="margin-top:20px"><strong>💡 Cómo practicar:</strong> primero activa el <em>modo escucha</em> y oye el texto sin leerlo. Luego léelo, responde las preguntas y solo al final mira la traducción.</div>`;
+  } else {
+    // ---- Una lectura ----
+    document.title = `${R.title} — Readings`;
+    document.getElementById('back').href = `readings.html?l=${R.level}`;
+    document.getElementById('back').textContent = `← Readings ${R.level}`;
+    const lista = LETTURE.filter(l => l.level === R.level);
+    const sig = lista[lista.indexOf(R) + 1];
+    app.innerHTML = `
+      <div class="kicker">Nivel ${R.level} · Lettura</div>
+      <span class="type">${R.type}</span>
+      <h1 style="font-size:clamp(1.6rem,5vw,2.2rem);margin-top:8px">${R.title}</h1>
+      <div class="card" style="margin-top:16px">
+        <div class="tools">
+          <button class="small-btn" id="play">▶ Escuchar el texto</button>
+          <button class="small-btn" id="listen">🎧 Modo escucha</button>
+          <button class="small-btn" id="tr">🇪🇸 Ver traducción</button>
+        </div>
+        <div class="reading" id="reading">${R.text.map((p, i) => `<p>${p}</p><div class="tr">${R.es[i]}</div>`).join('')}</div>
+      </div>
+      <div class="card"><h3>📚 Palabras clave</h3><div class="gloss">${R.glossary.map(([it, es]) => `<div><b>${it}</b> — ${es}</div>`).join('')}</div></div>
+      <h2 style="margin:22px 0 10px">Preguntas</h2>
+      <div id="quiz">${R.questions.map((q, i) => `
+        <div class="card q" data-i="${i}"><div class="q-text">${i + 1}. ${q.q}</div>
+          <div class="opts">${q.opts.map((o, j) => `<button class="opt" data-j="${j}">${o}</button>`).join('')}</div></div>`).join('')}</div>
+      <button class="btn" id="check">Corregir</button>
+      <div class="result" id="result"><div class="big" id="score"></div><div id="msg"></div></div>
+      <div class="btn-row">
+        <a class="btn ghost" href="readings.html?l=${R.level}">← Todas las lecturas</a>
+        ${sig ? `<a class="btn" href="readings.html?r=${sig.id}">Siguiente lectura →</a>` : `<a class="btn" href="index.html">Volver a las clases</a>`}
+      </div>`;
+
+    let leyendo = false;
+    document.getElementById('play').onclick = e => {
+      if (!('speechSynthesis' in window)) return;
+      speechSynthesis.cancel();
+      if (leyendo) { leyendo = false; e.target.textContent = '▶ Escuchar el texto'; return; }
+      leyendo = true; e.target.textContent = '⏹ Parar';
+      R.text.forEach(p => speak(p));
+      const fin = new SpeechSynthesisUtterance(''); fin.onend = () => { leyendo = false; e.target.textContent = '▶ Escuchar el texto'; };
+      speechSynthesis.speak(fin);
+    };
+    document.getElementById('listen').onclick = e => {
+      const on = document.body.classList.toggle('listen-mode');
+      e.target.textContent = on ? '👀 Mostrar texto' : '🎧 Modo escucha';
+    };
+    document.getElementById('tr').onclick = e => {
+      const on = document.body.classList.toggle('show-tr');
+      e.target.textContent = on ? '🇪🇸 Ocultar traducción' : '🇪🇸 Ver traducción';
+    };
+
+    const elegidas = {};
+    document.getElementById('quiz').addEventListener('click', e => {
+      const b = e.target.closest('.opt'); if (!b || b.disabled) return;
+      const card = b.closest('.q');
+      card.querySelectorAll('.opt').forEach(x => x.style.borderColor = '');
+      b.style.borderColor = 'var(--text)';
+      elegidas[card.dataset.i] = +b.dataset.j;
+    });
+    document.getElementById('check').onclick = function () {
+      let ok = 0;
+      R.questions.forEach((q, i) => {
+        const btns = document.querySelectorAll(`.q[data-i="${i}"] .opt`);
+        btns.forEach(b => { b.disabled = true; b.style.borderColor = ''; });
+        btns[q.a].classList.add('ok');
+        if (elegidas[i] === q.a) ok++; else if (elegidas[i] !== undefined) btns[elegidas[i]].classList.add('bad');
+      });
+      const pct = ok / R.questions.length;
+      const h = leer(); h[R.id] = { best: Math.max(h[R.id] ? h[R.id].best : 0, pct) };
+      try { localStorage.setItem('eng-readings', JSON.stringify(h)); } catch (e) {}
+      Progreso.marcarActividad(0);
+      document.getElementById('score').textContent = `${ok} / ${R.questions.length}`;
+      document.getElementById('msg').textContent = pct === 1 ? 'Perfetto! Entendiste todo 🎉' : pct >= 0.75 ? 'Molto bene! Revisa la traducción de lo que fallaste.' : 'Vuelve a leer con la traducción y ve las palabras clave.';
+      document.getElementById('result').classList.add('on');
+      this.style.display = 'none';
+    };
+  }
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js').catch(() => {});</script>
+</body>
+</html>

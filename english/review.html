@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#1d2730">
+<link rel="icon" type="image/png" href="../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Idiomas">
+<title>Daily review — English</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="english.css">
+</head>
+<body>
+<div class="flag-strip"><i></i><i></i><i></i></div>
+<div class="top">
+  <a href="index.html">← Clases</a>
+  <span class="brand">English B1→C1 🇬🇧</span>
+</div>
+
+<div class="wrap">
+  <div class="kicker">Repetición espaciada</div>
+  <h1>Daily <em>review</em></h1>
+  <p class="lead">Aquí aparecen las palabras y frases que toca repasar hoy. Las que sabes vuelven en 1, 3, 7, 14, 30 y 60 días; las que fallas vuelven hoy mismo.</p>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="flash" id="flash" style="margin-top:0">
+      <div class="flash-count" id="f-count"></div>
+      <div class="flash-q" id="f-q"></div>
+      <div class="flash-a" id="f-a"></div>
+      <div class="flash-btns" id="f-btns"></div>
+    </div>
+  </div>
+
+  <div class="card tip">
+    <strong>💡 ¿Cómo entran palabras al repaso?</strong> Automáticamente cuando usas las <em>Tarjetas de repaso</em> de la pestaña Método, cuando fallas una pregunta del test, o cuando tocas <strong>＋</strong> en el vocabulario. Haz el repaso <strong>todos los días</strong>: 5 minutos bastan.
+  </div>
+
+  <div class="btn-row">
+    <a class="btn ghost" href="index.html">← Volver a las clases</a>
+    <a class="btn" href="words.html">📖 Añadir palabras</a>
+  </div>
+</div>
+
+<script src="progress.js"></script>
+<script>
+  Progreso.contarTiempo();
+
+  function pintarStats() {
+    document.getElementById('stats').innerHTML = Progreso.htmlStats() +
+      `<div class="streak-best">🧠 ${Progreso.dominadas()} de ${Progreso.totalRepaso()} tarjetas dominadas</div>`;
+  }
+
+  // ---- Audio ----
+  let itVoice = null;
+  function pickVoice() {
+    const vs = speechSynthesis.getVoices();
+    itVoice = vs.find(v => v.lang === 'en-US') || vs.find(v => v.lang && v.lang.startsWith('en')) || null;
+  }
+  if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+  function speak(text) {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text.replace(/\s*\/\s*/g, ', '));
+    u.lang = 'en-US'; u.rate = 0.85; if (itVoice) u.voice = itVoice;
+    speechSynthesis.speak(u);
+  }
+
+  // ---- Tarjetas ----
+  let queue = Progreso.pendientes().sort(() => Math.random() - .5);
+  const total = queue.length;
+  let hechas = 0;
+  const q = document.getElementById('f-q'), a = document.getElementById('f-a'),
+        btns = document.getElementById('f-btns'), count = document.getElementById('f-count');
+
+  function show() {
+    pintarStats();
+    if (!total) {
+      count.textContent = '';
+      q.textContent = 'Nada que repasar por ahora ✨';
+      a.innerHTML = Progreso.totalRepaso()
+        ? 'Ya repasaste todo lo de hoy. Vuelve mañana.'
+        : 'Aún no tienes palabras en repaso. Abre una clase y usa las tarjetas de la pestaña Método.';
+      btns.innerHTML = '<a class="btn" href="index.html">Ir a las clases</a>';
+      return;
+    }
+    count.textContent = `${hechas} / ${total} repasadas hoy`;
+    if (!queue.length) {
+      q.textContent = 'Bravissimo! 🎉';
+      a.textContent = 'Terminaste el repaso de hoy. Vuelve mañana para no perder la racha.';
+      btns.innerHTML = '<a class="btn" href="index.html">Volver a las clases</a>';
+      return;
+    }
+    const c = queue[0];
+    q.textContent = c.es; a.innerHTML = '';
+    btns.innerHTML = '<button class="btn" id="f-show">Ver respuesta</button>';
+    document.getElementById('f-show').onclick = () => {
+      a.innerHTML = `<div class="it">${c.it}</div>${c.pr ? `<div class="pron">/${c.pr}/</div>` : ''}`;
+      speak(c.say || c.it);
+      btns.innerHTML = '<button class="btn ghost" id="f-bad">✗ No la sabía</button><button class="btn" id="f-ok">✓ La sabía</button>';
+      document.getElementById('f-ok').onclick = () => { Progreso.responder(c, true); queue.shift(); hechas++; show(); };
+      document.getElementById('f-bad').onclick = () => { Progreso.responder(c, false); queue.push(queue.shift()); show(); };
+    };
+  }
+  show();
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js').catch(() => {});</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#1d2730">
+<link rel="icon" type="image/png" href="../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Idiomas">
+<title>English B1 → C1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="english.css">
+<style>
+  .continue { display: flex; align-items: center; gap: 12px; margin-top: 16px; padding: 14px 16px; border-radius: var(--radius); background: var(--verde); color: #fff; text-decoration: none; }
+  .continue .ic { font-size: 1.5rem; }
+  .continue div { flex: 1; }
+  .continue small { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; opacity: .85; }
+  .continue strong { font-size: 1.05rem; }
+  h2.sec { font-size: 1.3rem; margin: 26px 0 8px; }
+  .levels-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
+  .levels-bar div { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 10px; text-align: center; font-size: 12px; color: var(--muted); font-weight: 600; }
+  .levels-bar b { display: block; font-family: 'Fraunces', serif; font-size: 1.3rem; color: var(--text); }
+  .levels-bar .bar { margin-top: 6px; height: 6px; }
+</style>
+</head>
+<body>
+<div class="flag-strip"><i></i><i></i><i></i></div>
+<div class="top">
+  <a href="../index.html">← Inicio</a>
+  <span class="brand">English B1→C1 🇬🇧</span>
+</div>
+
+<div class="wrap">
+  <div class="kicker">Curso personal · de B1 a C1</div>
+  <h1>From B1 <em>to C1</em></h1>
+  <p class="lead">Tu ruta para pasar de intermedio a avanzado: clases con gramática de nivel, vocabulario con audio, phrasal verbs, idioms, lecturas, práctica de escritura y de conversación con micrófono, repaso automático y un examen por nivel.</p>
+
+  <a class="continue" id="continue"></a>
+
+  <div class="levels-bar" id="levels-bar"></div>
+
+  <div class="stats" id="stats"></div>
+  <a class="review-btn" id="review" href="review.html"></a>
+
+  <h2 class="sec">🧰 Herramientas</h2>
+  <a class="card guide-link" href="guide.html">🧭 <span><strong>Ruta a C1: plan, técnicas y recursos</strong><br><small>Cuántas horas, cómo estudiar cada habilidad, exámenes oficiales</small></span> ›</a>
+  <a class="card guide-link" href="grammar.html">🧩 <span><strong>Grammar B1 → C1</strong><br><small>Toda la gramática de nivel intermedio y avanzado en una página</small></span> ›</a>
+  <a class="card guide-link" href="verbs.html">🔁 <span><strong>Verbos irregulares y tiempos</strong><br><small>Lista completa con audio y práctica</small></span> ›</a>
+  <a class="card guide-link" href="writing.html">✍️ <span><strong>Writing lab</strong><br><small>Estructuras de emails, essays y reports, conectores y plantillas</small></span> ›</a>
+  <a class="card guide-link" href="speaking.html">🎤 <span><strong>Speaking lab</strong><br><small>Temas de conversación, frases para ganar tiempo y práctica con micrófono</small></span> ›</a>
+
+  <div class="lesson-list" id="list"></div>
+</div>
+
+<script src="lessons.js"></script>
+<script src="words.js"></script>
+<script src="readings.js"></script>
+<script src="progress.js"></script>
+<script>
+  Progreso.contarTiempo();
+  const leer = k => { try { return JSON.parse(localStorage.getItem(k) || '{}'); } catch (e) { return {}; } };
+  const scores = leer('eng-scores'), exams = leer('eng-exams'), lecturas = leer('eng-readings');
+  const NOMBRES = { B1: 'Intermediate', B2: 'Upper-intermediate', C1: 'Advanced' };
+  const niveles = ['B1', 'B2', 'C1'].filter(lv => LEZIONI.some(l => l.level === lv));
+
+  // ---- Continuar ----
+  const pasada = l => scores[l.id] && scores[l.id].best >= 0.7;
+  const iSig = LEZIONI.findIndex(l => !pasada(l));
+  const cont = document.getElementById('continue');
+  if (iSig >= 0) {
+    const L = LEZIONI[iSig];
+    cont.href = `lesson.html?n=${iSig + 1}`;
+    cont.innerHTML = `<span class="ic">${LEZIONI.some(pasada) ? '▶' : '🚀'}</span><div><small>${LEZIONI.some(pasada) ? 'Continuar' : 'Empieza aquí'} · ${L.level}</small><strong>Lesson ${iSig + 1}: ${L.title}</strong></div><span>›</span>`;
+  } else {
+    cont.href = 'exam.html?l=C1';
+    cont.innerHTML = `<span class="ic">🏆</span><div><small>¡Terminaste todas las clases!</small><strong>Haz el examen final C1</strong></div><span>›</span>`;
+  }
+
+  // ---- Progreso por nivel ----
+  document.getElementById('levels-bar').innerHTML = niveles.map(lv => {
+    const cl = LEZIONI.filter(l => l.level === lv), h = cl.filter(pasada).length;
+    const e = exams[lv], ok = e && e.best >= 0.8;
+    return `<div><b>${lv}${ok ? ' 🎓' : ''}</b>${h}/${cl.length} clases<div class="bar"><div style="width:${h / cl.length * 100}%"></div></div></div>`;
+  }).join('');
+
+  // ---- Racha y repaso ----
+  document.getElementById('stats').innerHTML = Progreso.htmlStats();
+  const pend = Progreso.pendientes().length;
+  const rb = document.getElementById('review');
+  rb.classList.toggle('empty', !pend);
+  rb.innerHTML = pend
+    ? `🧠 <span>Repaso de hoy<small>${pend} ${pend === 1 ? 'tarjeta pendiente' : 'tarjetas pendientes'}</small></span> ›`
+    : `🧠 <span>Repaso de hoy<small>${Progreso.totalRepaso() ? 'Todo al día ✓' : 'Aún vacío: usa las tarjetas de las clases'}</small></span> ›`;
+
+  // ---- Lista por nivel ----
+  const list = document.getElementById('list');
+  const add = html => list.insertAdjacentHTML('beforeend', html);
+  niveles.forEach(lv => {
+    const clases = LEZIONI.map((l, i) => ({ l, i })).filter(x => x.l.level === lv);
+    const hechas = clases.filter(x => pasada(x.l)).length;
+    add(`<div class="level-head"><b>${lv}</b> ${NOMBRES[lv]} <span>${hechas} / ${clases.length}</span></div>`);
+    if (PAROLE[lv]) {
+      const n = PAROLE[lv].reduce((t, c) => t + c.words.length, 0);
+      add(`<a class="lesson vocab-link" href="words.html?l=${lv}"><div class="lesson-num">📖</div>
+        <div class="lesson-info"><div class="lesson-title">Vocabulary ${lv}</div>
+        <div class="lesson-sub">${n} palabras y expresiones con audio y ejemplos</div></div>
+        <div class="lesson-score" style="color:var(--muted)">›</div></a>`);
+    }
+    const lect = LETTURE.filter(r => r.level === lv);
+    if (lect.length) {
+      const hechasL = lect.filter(r => lecturas[r.id] && lecturas[r.id].best >= 0.75).length;
+      add(`<a class="lesson vocab-link" href="readings.html?l=${lv}"><div class="lesson-num">📰</div>
+        <div class="lesson-info"><div class="lesson-title">Readings ${lv}</div>
+        <div class="lesson-sub">${lect.length} textos con audio y preguntas de comprensión</div></div>
+        <div class="lesson-score" style="color:var(--muted)">${hechasL ? hechasL + '/' + lect.length : '›'}</div></a>`);
+    }
+    clases.forEach(({ l, i }) => {
+      const s = scores[l.id], passed = pasada(l);
+      add(`<a class="lesson${passed ? ' done' : ''}" href="lesson.html?n=${i + 1}">
+        <div class="lesson-num">${passed ? '✓' : i + 1}</div>
+        <div class="lesson-info"><div class="lesson-title">${l.title}</div><div class="lesson-sub">${l.sub}</div></div>
+        ${s ? `<div class="lesson-score">${Math.round(s.best * 100)}%</div>` : '<div class="lesson-score" style="color:var(--muted)">›</div>'}</a>`);
+    });
+    const e = exams[lv], aprobado = e && e.best >= 0.8;
+    add(`<a class="lesson exam-link${aprobado ? ' done' : ''}" href="exam.html?l=${lv}">
+      <div class="lesson-num">${aprobado ? '🎓' : '📝'}</div>
+      <div class="lesson-info"><div class="lesson-title">Final exam ${lv}</div>
+      <div class="lesson-sub">${aprobado ? '¡Nivel aprobado!' : '20 preguntas de todo el nivel · aprueba con 80%'}</div></div>
+      ${e ? `<div class="lesson-score">${Math.round(e.best * 100)}%</div>` : '<div class="lesson-score" style="color:var(--muted)">›</div>'}</a>`);
+  });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js').catch(() => {});</script>
+</body>
+</html>

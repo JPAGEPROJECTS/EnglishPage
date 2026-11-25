@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#1d2730">
+<link rel="icon" type="image/png" href="../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Idiomas">
+<title>Lesson — English</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="english.css">
+</head>
+<body>
+<div class="flag-strip"><i></i><i></i><i></i></div>
+<div class="top">
+  <a href="index.html">← Clases</a>
+  <span class="brand">English B1→C1 🇬🇧</span>
+</div>
+
+<div class="wrap">
+  <div class="kicker" id="kicker"></div>
+  <h1 id="title" style="font-size:clamp(1.7rem,5vw,2.3rem)"></h1>
+  <p class="lead" id="intro"></p>
+
+  <div class="tabs" id="tabs">
+    <button data-p="vocab" class="on">Vocabulario</button>
+    <button data-p="phrases">Frases</button>
+    <button data-p="grammar">Gramática</button>
+    <button data-p="dialog">Diálogo</button>
+    <button data-p="metodo">Método</button>
+    <button data-p="quiz">Test</button>
+  </div>
+
+  <div class="panel on" id="p-vocab">
+    <div class="vocab-grid" id="vocab"></div>
+  </div>
+
+  <div class="panel" id="p-phrases">
+    <div class="card" id="phrases"></div>
+  </div>
+
+  <div class="panel" id="p-grammar">
+    <div class="card grammar"><h3 id="g-title"></h3><div id="g-body"></div></div>
+    <div id="tips"></div>
+  </div>
+
+  <div class="panel" id="p-dialog">
+    <div class="card dialog" id="dialog-box">
+      <div style="display:flex; gap:8px; justify-content:flex-end; flex-wrap:wrap;">
+        <button class="small-btn" id="play-all">▶ Escuchar todo</button>
+        <button class="small-btn" id="toggle-es">Mostrar traducción</button>
+      </div>
+      <div id="dialog"></div>
+    </div>
+    <p style="font-size:14px; color:var(--muted)">Consejo: escucha, pausa y repite cada línea en voz alta. Luego intenta hacer el papel de A sin mirar.</p>
+  </div>
+
+  <div class="panel" id="p-metodo">
+    <div class="card">
+      <div class="kicker">Técnica de esta clase</div>
+      <h3 id="m-tecnica" style="margin-top:4px"></h3>
+      <div class="metodo-body" id="m-como"></div>
+    </div>
+
+    <div class="card">
+      <h3>Errores típicos de hispanohablantes</h3>
+      <div id="m-errores"></div>
+    </div>
+
+    <div class="card tip" id="m-extra"></div>
+
+    <div class="card reto">
+      <div class="kicker">🎯 Reto de hoy</div>
+      <p id="m-reto" style="margin-top:6px"></p>
+    </div>
+
+    <div class="card">
+      <h3>Tarjetas de repaso</h3>
+      <p style="font-size:14px;color:var(--muted)">Recuerdo activo: lee el español, <strong>di la respuesta en voz alta</strong> y solo después dale la vuelta. Las que falles vuelven a salir al final, y todas pasan a tu <a href="review.html">repaso diario</a>.</p>
+      <div class="flash" id="flash">
+        <div class="flash-count" id="f-count"></div>
+        <div class="flash-q" id="f-q"></div>
+        <div class="flash-a" id="f-a"></div>
+        <div class="flash-btns" id="f-btns"></div>
+      </div>
+    </div>
+
+    <a class="card guide-link" href="guide.html">🧭 <span><strong>Ruta a C1: plan y técnicas</strong><br><small>Cómo estudiar, horas, recursos y exámenes oficiales</small></span> ›</a>
+  </div>
+
+  <div class="panel" id="p-quiz">
+    <div id="quiz"></div>
+    <button class="btn" id="check">Corregir</button>
+    <div class="result" id="result">
+      <div class="big" id="score"></div>
+      <div id="score-msg"></div>
+      <button class="btn ghost" style="margin-top:12px" onclick="location.reload()">Repetir</button>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn ghost" id="prev">← Anterior</a>
+    <a class="btn" id="next">Siguiente clase →</a>
+  </div>
+</div>
+
+<script src="lessons.js"></script>
+<script src="method.js"></script>
+<script src="progress.js"></script>
+<script>
+  const qp = new URLSearchParams(location.search);
+  const porId = LEZIONI.findIndex(l => l.id === qp.get('id')) + 1;
+  const n = porId || Math.min(Math.max(parseInt(qp.get('n')) || 1, 1), LEZIONI.length);
+  const L = LEZIONI[n - 1];
+  Progreso.contarTiempo();
+  document.title = `${n}. ${L.title} — English ${L.level}`;
+  document.getElementById('kicker').textContent = `Level ${L.level} · Lesson ${n} of ${LEZIONI.length}`;
+  document.getElementById('title').textContent = L.title;
+  document.getElementById('intro').textContent = L.intro;
+
+  // ---- Audio (voz en inglés del navegador) ----
+  let itVoice = null;
+  function pickVoice() {
+    const vs = speechSynthesis.getVoices();
+    itVoice = vs.find(v => v.lang === 'en-US') || vs.find(v => v.lang && v.lang.startsWith('en')) || null;
+  }
+  if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+  function speak(text, onend) {
+    if (!('speechSynthesis' in window)) return;
+    const u = new SpeechSynthesisUtterance(text.replace(/\s*\/\s*/g, ', '));
+    u.lang = 'en-US'; u.rate = 0.85;
+    if (itVoice) u.voice = itVoice;
+    if (onend) u.onend = onend;
+    speechSynthesis.speak(u);
+  }
+  const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+  const playBtn = t => `<button class="play" title="Escuchar" data-say="${esc(t)}">▶</button>`;
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-say]');
+    if (b) { speechSynthesis.cancel(); speak(b.dataset.say); }
+  });
+
+  // ---- Tabs ----
+  document.querySelectorAll('#tabs button').forEach(b => b.onclick = () => {
+    document.querySelectorAll('#tabs button').forEach(x => x.classList.toggle('on', x === b));
+    document.querySelectorAll('.panel').forEach(p => p.classList.toggle('on', p.id === 'p-' + b.dataset.p));
+    if ('speechSynthesis' in window) speechSynthesis.cancel();
+  });
+
+  // ---- Vocabulario ----
+  document.getElementById('vocab').innerHTML = L.vocab.map(([it, es, pr, say]) => `
+    <div class="word">${playBtn(say || it)}
+      <div class="word-text"><div class="it">${it}</div>${pr ? `<div class="pron">/${pr}/</div>` : ''}${es ? `<div class="es">${es}</div>` : ''}</div>
+    </div>`).join('');
+
+  // ---- Frases ----
+  const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const micBtn = t => Rec ? `<button class="play mic" title="Practicar pronunciación" data-mic="${esc(t)}">🎤</button>` : '';
+  document.getElementById('phrases').innerHTML =
+    (Rec ? `<p class="mic-hint">🎤 Toca el micrófono y di la frase en inglés: la app te dice cuánto se entendió.</p>` : '') +
+    L.phrases.map(([it, es, note, pr, say]) => `
+    <div class="phrase"><div class="phrase-btns">${playBtn(say || it)}${micBtn(say || it)}</div>
+      <div style="flex:1"><div class="it">${it}</div>${pr ? `<div class="pron">/${pr}/</div>` : ''}<div class="es">${es}</div>${note ? `<div class="note">💡 ${note}</div>` : ''}<div class="mic-result"></div></div>
+    </div>`).join('');
+
+  // ---- Práctica oral (reconocimiento de voz) ----
+  // El reconocimiento a veces devuelve cifras ("7"): se convierten a palabras ("sette")
+  function numIt(n) {
+    const u = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+    const d = ['', '', 'twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+    if (n < 20) return u[n];
+    if (n < 100) return d[Math.floor(n / 10)] + (n % 10 ? ' ' + u[n % 10] : '');
+    if (n < 1000) return u[Math.floor(n / 100)] + ' hundred' + (n % 100 ? ' ' + numIt(n % 100) : '');
+    return String(n);
+  }
+  // Contracciones: "I've" y "I have" cuentan igual
+  const expandir = s => s.toLowerCase().replace(/[’`]/g, "'")
+    .replace(/\bwon't\b/g, 'will not').replace(/\bcan't\b/g, 'can not').replace(/\bcannot\b/g, 'can not').replace(/n't\b/g, ' not')
+    .replace(/'ve\b/g, ' have').replace(/'m\b/g, ' am').replace(/'re\b/g, ' are').replace(/'ll\b/g, ' will').replace(/'d\b/g, ' would');
+  const normV = s => expandir(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9' ]/g, ' ').replace(/'/g, ' ').split(/\s+/).filter(Boolean)
+    .flatMap(w => /^\d+$/.test(w) ? numIt(+w).split(' ') : [w]);
+  function parecido(objetivo, dicho) { // % de palabras del objetivo dichas en orden (LCS)
+    const a = normV(objetivo), b = normV(dicho);
+    if (!a.length) return 0;
+    const dp = Array.from({ length: a.length + 1 }, () => new Array(b.length + 1).fill(0));
+    for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++)
+      dp[i][j] = a[i - 1] === b[j - 1] ? dp[i - 1][j - 1] + 1 : Math.max(dp[i - 1][j], dp[i][j - 1]);
+    return Math.round(dp[a.length][b.length] / a.length * 100);
+  }
+  let escuchando = null;
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-mic]');
+    if (!b || !Rec) return;
+    if (escuchando) { escuchando.abort(); return; }
+    if ('speechSynthesis' in window) speechSynthesis.cancel();
+    const out = b.closest('.phrase').querySelector('.mic-result');
+    const rec = new Rec();
+    rec.lang = 'en-US'; rec.interimResults = false; rec.maxAlternatives = 5;
+    escuchando = rec;
+    b.classList.add('rec'); b.textContent = '●';
+    out.innerHTML = '<span style="color:var(--muted)">Escuchando… habla ahora</span>';
+    rec.onresult = ev => {
+      const alts = Array.from(ev.results[0]).map(r => r.transcript);
+      let mejor = alts[0], pct = 0;
+      alts.forEach(t => { const p = parecido(b.dataset.mic, t); if (p > pct) { pct = p; mejor = t; } });
+      const msg = pct >= 85 ? '✓ Perfetto!' : pct >= 60 ? '≈ Quasi! Inténtalo otra vez' : '✗ Escucha el audio ▶ y repite';
+      out.innerHTML = `<span class="${pct >= 85 ? 'ok' : pct >= 60 ? 'mid' : 'bad'}">${msg} · ${pct}%</span><br><small>Escuché: “${esc(mejor)}”</small>`;
+      Progreso.marcarActividad(0);
+    };
+    rec.onerror = ev => {
+      out.innerHTML = ev.error === 'not-allowed' || ev.error === 'service-not-allowed'
+        ? '<span class="bad">Permite el uso del micrófono en tu navegador para practicar.</span>'
+        : ev.error === 'no-speech' ? '<span class="mid">No te escuché. Toca 🎤 y habla más cerca.</span>'
+        : ev.error === 'aborted' ? '' : '<span class="bad">No se pudo usar el reconocimiento de voz (' + ev.error + ').</span>';
+    };
+    rec.onend = () => { escuchando = null; b.classList.remove('rec'); b.textContent = '🎤'; };
+    try { rec.start(); } catch (err) { escuchando = null; }
+  });
+
+  // ---- Gramática y tips ----
+  document.getElementById('g-title').textContent = L.grammar.title;
+  document.getElementById('g-body').innerHTML = L.grammar.html;
+  document.getElementById('tips').innerHTML = L.tips.map(t =>
+    `<div class="card ${/falso amigo|ojo/i.test(t) ? 'warn' : 'tip'}">${t}</div>`).join('');
+
+  // ---- Diálogo ----
+  document.getElementById('dialog').innerHTML = L.dialog.map(([w, it, es]) => `
+    <div class="line"><div class="who ${w}">${w}</div>
+      <div class="bubble"><div class="it" style="font-weight:600">${it}</div><div class="es">${es}</div></div>
+      ${playBtn(it)}</div>`).join('');
+  const box = document.getElementById('dialog-box');
+  document.getElementById('toggle-es').onclick = e => {
+    box.classList.toggle('show-es');
+    e.target.textContent = box.classList.contains('show-es') ? 'Ocultar traducción' : 'Mostrar traducción';
+  };
+  document.getElementById('play-all').onclick = () => {
+    speechSynthesis.cancel();
+    L.dialog.forEach(([, it]) => speak(it));
+  };
+
+  // ---- Método ----
+  const M = (typeof METODO !== 'undefined' && METODO[L.id]) || null;
+  if (M) {
+    document.getElementById('m-tecnica').textContent = M.tecnica;
+    document.getElementById('m-como').innerHTML = M.como;
+    document.getElementById('m-errores').innerHTML = M.errores.map(([mal, bien, why]) => `
+      <div class="err"><div><span class="mal">✗ ${mal}</span><span class="bien">✓ ${bien}</span></div><div class="why">${why}</div></div>`).join('');
+    document.getElementById('m-extra').innerHTML = '<strong>💡 Dato extra:</strong> ' + M.extra;
+    document.getElementById('m-reto').textContent = M.reto;
+  } else {
+    document.querySelector('#tabs button[data-p=metodo]').style.display = 'none';
+  }
+
+  // Tarjetas: vocabulario + frases, en orden aleatorio
+  (function () {
+    const cards = [
+      ...L.vocab.filter(v => v[1]).map(([it, es, pr, say]) => ({ q: es, a: it, pr, say: say || it })),
+      ...L.phrases.map(([it, es, note, pr, say]) => ({ q: es, a: it, pr, say: say || it }))
+    ];
+    for (let i = cards.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [cards[i], cards[j]] = [cards[j], cards[i]]; }
+    let queue = cards.slice(), ok = 0, total = cards.length;
+    const q = document.getElementById('f-q'), a = document.getElementById('f-a'),
+          btns = document.getElementById('f-btns'), count = document.getElementById('f-count');
+    function show() {
+      count.textContent = `${ok} / ${total} aprendidas`;
+      if (!queue.length) {
+        q.textContent = 'Bravissimo! 🎉';
+        a.innerHTML = 'Repasaste todas las tarjetas. Vuelve a hacerlo en 3 días y luego en 7.';
+        btns.innerHTML = '<button class="btn ghost" id="f-again">Empezar de nuevo</button>';
+        document.getElementById('f-again').onclick = () => { queue = cards.slice(); ok = 0; show(); };
+        return;
+      }
+      const c = queue[0];
+      q.textContent = c.q; a.innerHTML = '';
+      btns.innerHTML = '<button class="btn" id="f-show">Ver respuesta</button>';
+      document.getElementById('f-show').onclick = () => {
+        a.innerHTML = `<div class="it">${c.a}</div>${c.pr ? `<div class="pron">/${c.pr}/</div>` : ''}`;
+        if ('speechSynthesis' in window) { speechSynthesis.cancel(); speak(c.say); }
+        btns.innerHTML = '<button class="btn ghost" id="f-bad">✗ Repasar</button><button class="btn" id="f-ok">✓ Lo sabía</button>';
+        const item = { it: c.a, es: c.q, pr: c.pr, say: c.say };
+        document.getElementById('f-ok').onclick = () => { Progreso.responder(item, true); queue.shift(); ok++; show(); };
+        document.getElementById('f-bad').onclick = () => { Progreso.responder(item, false); queue.push(queue.shift()); show(); };
+      };
+    }
+    show();
+  })();
+
+  // ---- Test ----
+  const norm = s => s.toLowerCase().trim()
+    .replace(/[’`]/g, "'").replace(/[¿?¡!.,;]/g, '').replace(/\s+/g, ' ');
+  const quiz = document.getElementById('quiz');
+  quiz.innerHTML = L.quiz.map((q, i) => `
+    <div class="card q" data-i="${i}">
+      <div class="q-text" style="display:flex;align-items:center;gap:10px">${q.say ? playBtn(q.say) : ''}<span>${i + 1}. ${q.q}</span></div>
+      ${q.opts
+        ? `<div class="opts">${q.opts.map((o, j) => `<button class="opt" data-j="${j}">${o}</button>`).join('')}</div>`
+        : `<div class="fill"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Escribe en inglés…"></div>`}
+      <div class="feedback"></div>
+    </div>`).join('');
+  const chosen = {};
+  quiz.querySelectorAll('.opt').forEach(b => b.onclick = () => {
+    const card = b.closest('.q');
+    card.querySelectorAll('.opt').forEach(x => x.style.borderColor = '');
+    b.style.borderColor = 'var(--text)';
+    chosen[card.dataset.i] = +b.dataset.j;
+  });
+  document.getElementById('check').onclick = function () {
+    let ok = 0;
+    L.quiz.forEach((q, i) => {
+      const card = quiz.querySelector(`.q[data-i="${i}"]`);
+      const fb = card.querySelector('.feedback');
+      if (q.opts) {
+        const btns = card.querySelectorAll('.opt');
+        btns.forEach(b => { b.disabled = true; b.style.borderColor = ''; });
+        btns[q.a].classList.add('ok');
+        if (chosen[i] === q.a) ok++;
+        else if (chosen[i] !== undefined) btns[chosen[i]].classList.add('bad');
+      } else {
+        const inp = card.querySelector('input');
+        inp.disabled = true;
+        const good = q.fill.map(norm).includes(norm(inp.value));
+        inp.classList.add(good ? 'ok' : 'bad');
+        if (good) ok++;
+        else {
+          fb.innerHTML = `Respuesta: <strong>${q.fill[0]}</strong>${q.say ? '' : ' · <small>añadida a tu repaso</small>'}`;
+          if (!q.say) Progreso.responder({ it: q.fill[0], es: q.q.replace(/^Escribe[^:]*:\s*/i, '') || q.q, say: q.fill[0] }, false);
+        }
+      }
+    });
+    const pct = ok / L.quiz.length;
+    Progreso.marcarActividad(0);
+    let scores = {};
+    try { scores = JSON.parse(localStorage.getItem('eng-scores') || '{}'); } catch (e) {}
+    const prev = scores[L.id] ? scores[L.id].best : 0;
+    scores[L.id] = { best: Math.max(prev, pct), last: pct };
+    try { localStorage.setItem('eng-scores', JSON.stringify(scores)); } catch (e) {}
+    document.getElementById('score').textContent = `${ok} / ${L.quiz.length}`;
+    document.getElementById('score-msg').textContent =
+      pct === 1 ? 'Perfetto! 🎉 Clase completada.' :
+      pct >= 0.7 ? 'Molto bene! Clase completada. Revisa lo que fallaste.' :
+      'Quasi! Repasa el vocabulario y la gramática y vuelve a intentarlo (necesitas 70%).';
+    document.getElementById('result').classList.add('on');
+    this.style.display = 'none';
+  };
+
+  // ---- Navegación ----
+  const prev = document.getElementById('prev'), next = document.getElementById('next');
+  if (n > 1) prev.href = `lesson.html?n=${n - 1}`; else prev.style.visibility = 'hidden';
+  if (n < LEZIONI.length) next.href = `lesson.html?n=${n + 1}`;
+  else { next.href = 'index.html'; next.textContent = 'Volver al menú'; }
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js').catch(() => {});</script>
+</body>
+</html>
